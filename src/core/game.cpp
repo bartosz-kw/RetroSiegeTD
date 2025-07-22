@@ -58,6 +58,7 @@ void Game::Init()
     ToggleBorderlessWindowed();
     SetExitKey(KEY_F12);
     SetTargetFPS(120);
+    Sprites::LoadTextures();
     m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
 }
@@ -76,6 +77,7 @@ void Game::Run()
 }
 void Game::Shutdown()
 {
+    Sprites::UnLoadTextures();
     UnloadRenderTexture(m_frame);
     CloseWindow();
 }
