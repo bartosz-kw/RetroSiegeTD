@@ -1,10 +1,13 @@
+#pragma once
 #include <raylib.h>
+#include "../managers/tilemanager.hpp"
 class Game
 {
 private: // variables
     Font m_mainFont = {};
     RenderTexture2D m_frame = {};
-
+    // managers
+    TileManager mgr_tile = {};
 private: // functions
     void UpdateDebug();
     void Update();

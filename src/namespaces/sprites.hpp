@@ -1,16 +1,22 @@
+#pragma once
+#include <array>
+#include <cstddef>
 #include <raylib.h>
 
 namespace Sprites
 {
-    inline Texture2D g_grassTile = {0};
+    inline std::array<Texture2D,1> g_textures = {};
 
-    void LoadTextures()
+    inline void LoadTextures()
     {
-        g_grassTile = LoadTexture("src/resources/sprites/GrassTile.png");
+        g_textures[0] = LoadTexture("src/resources/sprites/GrassTile.png");
 
     }
-    void UnLoadTextures()
+    inline void UnLoadTextures()
     {
-        UnloadTexture(g_grassTile);
+        for (size_t i = 0; i < g_textures.size(); i++)
+        {
+            UnloadTexture(g_textures[i]);
+        }
     }
 }

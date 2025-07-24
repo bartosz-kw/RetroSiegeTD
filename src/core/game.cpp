@@ -4,11 +4,11 @@
 #include "game.hpp"
 void Game::UpdateDebug()
 {
-    #ifdef RELEASE
-        return;
-    #endif
+#ifdef RELEASE
+    return;
+#endif
 
-        if (IsKeyPressed(KEY_F11))
+    if (IsKeyPressed(KEY_F11))
     {
         ToggleBorderlessWindowed();
     }
@@ -22,13 +22,7 @@ void Game::MakeTextureFrame() const
     BeginTextureMode(m_frame);
     ClearBackground(BLACK);
 
-    for (size_t i = 0; i < 18; i++)
-    {
-        for (size_t j = 0; j < 18; j++)
-        {
-            DrawTextureV(Sprites::g_grassTile, {15.0f * i, 15.0f * j}, WHITE);
-        }
-    }
+    mgr_tile.Draw();
 
     EndTextureMode();
 }
@@ -61,6 +55,14 @@ void Game::Init()
     Sprites::LoadTextures();
     m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
+    // managers
+    mgr_tile.Init();
+
+    GameMap map;
+    map.p_id = 1;
+    for (auto &row : map.p_tileIdMap)
+        row.fill(1);
+    mgr_tile.LoadMap(map);
 }
 void Game::Run()
 {
