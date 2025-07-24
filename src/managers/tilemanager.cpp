@@ -8,11 +8,11 @@ const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
     constexpr uint8_t indexOffset = 1;
     return typeId - indexOffset;
 }
-void TileManager::Draw() const
+void TileManager::Draw(uint8_t screenOffset) const
 {
     for (auto &&tile : m_tiles)
     {
-        DrawTextureV(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position, WHITE);
+        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset,tile.p_position.y, WHITE);
     }
 }
 void TileManager::LoadMap(GameMap gameMap)

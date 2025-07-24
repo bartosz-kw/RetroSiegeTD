@@ -21,9 +21,12 @@ void Game::MakeTextureFrame() const
 {
     BeginTextureMode(m_frame);
     ClearBackground(BLACK);
+    constexpr uint8_t boundingWidth = 105;
+    constexpr uint8_t screenOffset = boundingWidth;
 
-    mgr_tile.Draw();
-
+    DrawRectangle(0, 0, boundingWidth, p_gameHeight, GRAY);
+    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, GRAY);
+    mgr_tile.Draw(screenOffset);
     EndTextureMode();
 }
 void Game::Draw() const
@@ -34,15 +37,11 @@ void Game::Draw() const
 
     DrawTexturePro(
         m_frame.texture,
-        {0, 0, static_cast<float>(p_gameHeight), static_cast<float>(-p_gameHeight)},
-        {420, 0, static_cast<float>(p_scaledWidth), static_cast<float>(p_scaledHeight)},
+        {0, 0, static_cast<float>(p_gameWidth), static_cast<float>(-p_gameHeight)},
+        {0, 0, static_cast<float>(p_scaledWidth), static_cast<float>(p_scaledHeight)},
         {0, 0},
         0.0f,
         WHITE);
-
-    constexpr int boundingWidth = 420;
-    DrawRectangle(0, 0, boundingWidth, p_scaledHeight, GRAY);
-    DrawRectangle(p_scaledWidth + boundingWidth, 0, boundingWidth, p_scaledHeight, GRAY);
 
     EndDrawing();
 }

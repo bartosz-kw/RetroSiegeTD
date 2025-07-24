@@ -14,7 +14,7 @@ private:
 public:
     TileManager() = default;
     ~TileManager() = default;
-    void Draw() const;
+    void Draw(uint8_t screenOffset) const;
     void LoadMap(GameMap gameMap);
     void Init();
 };
