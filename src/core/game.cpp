@@ -23,9 +23,10 @@ void Game::MakeTextureFrame() const
     ClearBackground(BLACK);
     constexpr uint8_t boundingWidth = 105;
     constexpr uint8_t screenOffset = boundingWidth;
+    constexpr Color boundingColor = BLACK;
 
-    DrawRectangle(0, 0, boundingWidth, p_gameHeight, GRAY);
-    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, GRAY);
+    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
+    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     mgr_tile.Draw(screenOffset);
     EndTextureMode();
 }
@@ -60,18 +61,20 @@ void Game::Init()
     GameMap map;
     map.p_id = 1;
 
+    PrintDebug(sizeof(Tile));
+
     int i = 0;
     for (auto &row : map.p_tileIdMap)
     {
         row.fill(1);
         if (i == 2)
         {
-            
             row.fill(2);
         }
         i++;
     }
     mgr_tile.LoadMap(map);
+    PrintDebug(mgr_tile.GetTile(9).p_id);
 }
 void Game::Run()
 {

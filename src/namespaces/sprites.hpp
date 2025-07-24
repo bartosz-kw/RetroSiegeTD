@@ -1,10 +1,15 @@
 #pragma once
 #include <array>
 #include <cstddef>
+#include <cstdint>
 #include <raylib.h>
 
 namespace Sprites
 {
+    // offset data
+    inline constexpr int8_t tileTextureOffset = -1;
+    inline constexpr uint8_t enemyTextureOffset = 2;
+    //
     inline constexpr size_t p_textureAmount = 3;
     inline std::array<Texture2D,p_textureAmount> g_textures = {};
 

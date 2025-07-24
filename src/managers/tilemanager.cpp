@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "../namespaces/sprites.hpp"
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
@@ -5,8 +6,20 @@
 
 const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
-    constexpr uint8_t indexOffset = 1;
-    return typeId - indexOffset;
+    return typeId + Sprites::tileTextureOffset;
+}
+Tile TileManager::GetTile(uint16_t id) const
+{
+    auto it = std::lower_bound(m_tiles.begin(),m_tiles.end(),id,[](const Tile& tile,uint16_t id)
+    {
+        return tile.p_id < id;
+    });
+    if (it != m_tiles.end() && it->p_id == id)
+    {
+        return *it;
+    }
+    
+    return Tile{};
 }
 void TileManager::Draw(uint8_t screenOffset) const
 {
@@ -26,11 +39,16 @@ void TileManager::LoadMap(GameMap gameMap)
             tile.p_id = id;
             tile.p_typeId = gameMap.p_tileIdMap[i][j];
             tile.p_position = {static_cast<float>(g_tileSize * i), static_cast<float>(g_tileSize * j)};
-            PrintDebug(tile.p_typeId);
+            //PrintDebug(tile.p_typeId);
             m_tiles.push_back(tile);
-            id++;
+            id++; 
         }
     }
+    for (size_t i = 0; i < m_tiles.size(); i++)
+    {
+        PrintDebug(m_tiles[i].p_id);
+    }
+    
 }
 void TileManager::Init()
 {
