@@ -59,8 +59,18 @@ void Game::Init()
 
     GameMap map;
     map.p_id = 1;
+
+    int i = 0;
     for (auto &row : map.p_tileIdMap)
+    {
         row.fill(1);
+        if (i == 2)
+        {
+            
+            row.fill(2);
+        }
+        i++;
+    }
     mgr_tile.LoadMap(map);
 }
 void Game::Run()
