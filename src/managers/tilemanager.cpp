@@ -3,23 +3,36 @@
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
 
-
 const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
 }
 Tile TileManager::GetTile(uint16_t id) const
 {
-    auto it = std::lower_bound(m_tiles.begin(),m_tiles.end(),id,[](const Tile& tile,uint16_t id)
-    {
-        return tile.p_id < id;
-    });
+    auto it = std::lower_bound(m_tiles.begin(), m_tiles.end(), id, [](const Tile &tile, uint16_t id)
+                               { return tile.p_id < id; });
     if (it != m_tiles.end() && it->p_id == id)
     {
         return *it;
     }
-    
+
     return Tile{};
+}
+void TileManager::Update()
+{
+    Vector2 mousePosition = GetMousePosition();
+    for (auto &tile : m_tiles)
+    {
+        if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            continue;
+        }
+        if (!CheckCollisionPointRec(mousePosition,{tile.p_position.x * 4 + 105*4,tile.p_position.y * 4,15 * 4,15 * 4}))
+        {
+            continue;
+        }
+        PrintDebug(tile.p_id);
+    }
 }
 void TileManager::Draw(uint8_t screenOffset) const
 {
@@ -30,8 +43,8 @@ void TileManager::Draw(uint8_t screenOffset) const
         {
             color = RED;
         }
-        
-        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset,tile.p_position.y, color);
+
+        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
     }
 }
 void TileManager::LoadMap(GameMap gameMap)
@@ -46,16 +59,15 @@ void TileManager::LoadMap(GameMap gameMap)
             tile.p_typeId = gameMap.p_tileIdMap[i][j];
             tile.p_position = {static_cast<float>(g_tileSize * i), static_cast<float>(g_tileSize * j)};
             tile.p_nextTileId = gameMap.p_pathDirections[i][j];
-            //PrintDebug(tile.p_typeId);
+            // PrintDebug(tile.p_typeId);
             m_tiles.push_back(tile);
-            id++; 
+            id++;
         }
     }
     for (size_t i = 0; i < m_tiles.size(); i++)
     {
         PrintDebug(m_tiles[i].p_id);
     }
-    
 }
 void TileManager::Init()
 {

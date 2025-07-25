@@ -19,6 +19,7 @@ public:
     TileManager() = default;
     ~TileManager() = default; 
     Tile GetTile(uint16_t id) const;
+    void Update();
     void Draw(uint8_t screenOffset) const;
     void LoadMap(GameMap gameMap);
     void Init();

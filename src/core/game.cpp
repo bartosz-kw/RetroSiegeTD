@@ -18,6 +18,7 @@ void Game::Update()
     float deltaTime = GetFrameTime();
     UpdateDebug();
     mgr_enemy.Update(deltaTime);
+    mgr_tile.Update();
 }
 void Game::MakeTextureFrame() const
 {
