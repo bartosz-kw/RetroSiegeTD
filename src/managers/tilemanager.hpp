@@ -6,7 +6,11 @@ class TileManager
 {
 private:
     inline static const uint8_t g_tileSize = 15;
+private:
     std::vector<Tile> m_tiles = {};
+    
+
+
 
 private:
     const uint16_t GetTileTextureIndex(uint16_t typeId) const;

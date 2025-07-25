@@ -4,10 +4,21 @@
 struct Tile
 {
     Vector2 p_position = {0,0};
-    uint16_t p_id = 0;
+    uint16_t p_id = -1;
     uint16_t p_typeId = 0;
-    // if p_nextTileId = -3 then its not a path tile 
-    // if p_nextTileId = -2 end of the path
-    // if p_nextTileId = -1 start of the path
-    int16_t p_nextTileId = -3;
+
+    // if p_nextTileId = 0 then its not a path tile 
+    // Start of the path
+    // -1 = Up
+    // -2 = Down
+    // -3 = Right
+    // -4 = Left
+    // End
+    // -5 = End
+    // Direction codes:
+    // 1 = Up
+    // 2 = Down
+    // 3 = Right
+    // 4 = Left
+    int16_t p_nextTileId = -1;
 };

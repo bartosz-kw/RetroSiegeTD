@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include "../managers/tilemanager.hpp"
+#include "../managers/enemymanager.hpp"
 class Game
 {
 private: // variables
@@ -8,6 +9,7 @@ private: // variables
     RenderTexture2D m_frame = {};
     // managers
     TileManager mgr_tile = {};
+    EnemyManager mgr_enemy = {};
 private: // functions
     void UpdateDebug();
     void Update();

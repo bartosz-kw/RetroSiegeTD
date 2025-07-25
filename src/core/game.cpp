@@ -15,7 +15,9 @@ void Game::UpdateDebug()
 }
 void Game::Update()
 {
+    float deltaTime = GetFrameTime();
     UpdateDebug();
+    mgr_enemy.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {
@@ -28,6 +30,7 @@ void Game::MakeTextureFrame() const
     DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     mgr_tile.Draw(screenOffset);
+    mgr_enemy.Draw(screenOffset);
     EndTextureMode();
 }
 void Game::Draw() const
@@ -57,6 +60,8 @@ void Game::Init()
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
     // managers
     mgr_tile.Init();
+    mgr_enemy.InjectDependencies(&mgr_tile);
+    mgr_enemy.Init();
 
     GameMap map;
     map.p_id = 1;
@@ -73,8 +78,25 @@ void Game::Init()
         }
         i++;
     }
+    map.p_pathDirections = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {-3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,-5},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}};
     mgr_tile.LoadMap(map);
-    PrintDebug(mgr_tile.GetTile(9).p_id);
 }
 void Game::Run()
 {

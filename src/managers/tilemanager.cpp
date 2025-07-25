@@ -25,7 +25,13 @@ void TileManager::Draw(uint8_t screenOffset) const
 {
     for (auto &&tile : m_tiles)
     {
-        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset,tile.p_position.y, WHITE);
+        Color color = WHITE;
+        if (tile.p_nextTileId != 0)
+        {
+            color = RED;
+        }
+        
+        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset,tile.p_position.y, color);
     }
 }
 void TileManager::LoadMap(GameMap gameMap)
@@ -39,6 +45,7 @@ void TileManager::LoadMap(GameMap gameMap)
             tile.p_id = id;
             tile.p_typeId = gameMap.p_tileIdMap[i][j];
             tile.p_position = {static_cast<float>(g_tileSize * i), static_cast<float>(g_tileSize * j)};
+            tile.p_nextTileId = gameMap.p_pathDirections[i][j];
             //PrintDebug(tile.p_typeId);
             m_tiles.push_back(tile);
             id++; 
