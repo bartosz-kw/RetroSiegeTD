@@ -1,6 +1,7 @@
 #include <cstddef>
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/sprites.hpp"
+#include "../namespaces/settings.hpp"
 #include "game.hpp"
 void Game::UpdateDebug()
 {
@@ -11,6 +12,10 @@ void Game::UpdateDebug()
     if (IsKeyPressed(KEY_F11))
     {
         ToggleBorderlessWindowed();
+    }
+    if (IsKeyPressed(KEY_F3))
+    {
+        Settings::debugView = !Settings::debugView;
     }
 }
 void Game::Update()
@@ -81,7 +86,7 @@ void Game::Init()
     }
     map.p_pathDirections = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {-3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,-5},
+                             {-3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, -5},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

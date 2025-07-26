@@ -20,5 +20,5 @@ struct Tile
     // 2 = Down
     // 3 = Right
     // 4 = Left
-    int16_t p_nextTileId = -1;
+    int16_t p_moveDirection = -1;
 };

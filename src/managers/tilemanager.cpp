@@ -1,11 +1,33 @@
 #include <algorithm>
+#include <cassert>
 #include "../namespaces/sprites.hpp"
+#include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
 
 const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
+}
+Tile TileManager::GetPathStart()
+{
+    if (m_startPathId == -1)
+    {
+        for (auto &tile : m_tiles)
+        {
+            if (tile.p_moveDirection <= -1 && tile.p_moveDirection >= -4)
+            {
+                m_startPathId = static_cast<float>(tile.p_id);
+                return tile;
+            };
+        }
+    }
+    else
+    {
+        return GetTile(m_startPathId);
+    }
+    assert(false && "getpathstart did not find the tile");
+    return Tile{};
 }
 Tile TileManager::GetTile(uint16_t id) const
 {
@@ -18,6 +40,43 @@ Tile TileManager::GetTile(uint16_t id) const
 
     return Tile{};
 }
+int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
+{
+    // Direction codes:
+    // 1 = Up
+    // 2 = Down
+    // 3 = Right
+    // 4 = Left
+    direction = std::abs(direction);
+    if (direction == 1)
+    {
+        tileid -= 18;
+    }
+    else if (direction == 2)
+    {
+        tileid += 18;
+    }
+    else if (direction == 3)
+    {
+        tileid += 1;
+    }
+    else if (direction == 4)
+    {
+        tileid += -1;
+    }
+    else
+    {
+        PrintDebugError(direction,"UNKNOWN DIRECTION");
+        assert(false && "unknown direction was inputed into GetMovedId");
+    }
+    if (tileid < 0 && tileid > (18*18))
+    {
+        assert(false && "outofbounds id in GetMovedId");
+        tileid = 0;
+    }
+    
+    return tileid;
+}
 void TileManager::Update()
 {
     Vector2 mousePosition = GetMousePosition();
@@ -27,7 +86,7 @@ void TileManager::Update()
         {
             continue;
         }
-        if (!CheckCollisionPointRec(mousePosition,{tile.p_position.x * 4 + 105*4,tile.p_position.y * 4,15 * 4,15 * 4}))
+        if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
         {
             continue;
         }
@@ -39,11 +98,10 @@ void TileManager::Draw(uint8_t screenOffset) const
     for (auto &&tile : m_tiles)
     {
         Color color = WHITE;
-        if (tile.p_nextTileId != 0)
+        if (Settings::debugView && tile.p_moveDirection != 0)
         {
             color = RED;
         }
-
         DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
     }
 }
@@ -58,7 +116,7 @@ void TileManager::LoadMap(GameMap gameMap)
             tile.p_id = id;
             tile.p_typeId = gameMap.p_tileIdMap[i][j];
             tile.p_position = {static_cast<float>(g_tileSize * i), static_cast<float>(g_tileSize * j)};
-            tile.p_nextTileId = gameMap.p_pathDirections[i][j];
+            tile.p_moveDirection = gameMap.p_pathDirections[i][j];
             // PrintDebug(tile.p_typeId);
             m_tiles.push_back(tile);
             id++;

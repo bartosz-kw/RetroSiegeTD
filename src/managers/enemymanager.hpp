@@ -4,15 +4,19 @@
 class TileManager;
 class EnemyManager
 {
-    private:
+private:
     std::vector<Enemy> m_enemies = {};
-    TileManager* mgr_tile = nullptr;
-    private:
+    TileManager *mgr_tile = nullptr;
+
+private:
     const uint16_t GetEnemyTextureIndex(uint16_t typeId) const;
-    public:
+
+public:
+    void UpdateMovement(Enemy &enemy,float deltaTime); 
+    void CleanEnemy(Enemy &enemy);
+    void RemoveEnemies();
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
-    void InjectDependencies(TileManager* mgr_tilePtr);
+    void InjectDependencies(TileManager *mgr_tilePtr);
     void Init();
-
 };
