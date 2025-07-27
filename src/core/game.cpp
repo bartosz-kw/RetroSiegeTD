@@ -9,7 +9,6 @@ void Game::UpdateDebug()
 #ifdef RELEASE
     return;
 #endif
-
     if (IsKeyPressed(KEY_F11))
     {
         ToggleBorderlessWindowed();
@@ -80,8 +79,8 @@ void Game::InitMembers()
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
-    ToggleBorderlessWindowed();
-    SetExitKey(KEY_F12);
+    ToggleFullscreen();
+    SetExitKey(KEY_NULL);
     SetTargetFPS(120);
 }
 void Game::Init()
@@ -97,7 +96,7 @@ void Game::Run()
     {
         if (IsWindowMinimized())
         {
-            return;
+            continue;
         }
 
         Update();
