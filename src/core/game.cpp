@@ -1,5 +1,6 @@
 #include <cstddef>
 #include "../utility/debugUtil.hpp"
+#include "../utility/loadingUtil.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "game.hpp"
@@ -75,16 +76,8 @@ void Game::Init()
     PrintDebug(sizeof(Tile));
 
     int i = 0;
-    for (auto &row : map.p_tileIdMap)
-    {
-        row.fill(1);
-        if (i == 2)
-        {
-            row.fill(2);
-        }
-        i++;
-    }
-    map.p_pathDirections = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    map.p_tileIdMap = LoadTileTypes("src/resources/maps/Map1Tiles.png");
+    map.p_pathDirections = LoadMapDirections("src/resources/maps/Map1Directions.png"); /*p_pathDirections = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {-3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, -5},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -101,7 +94,7 @@ void Game::Init()
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}};
+                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}};*/
     mgr_tile.LoadMap(map);
 }
 void Game::Run()

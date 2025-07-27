@@ -108,15 +108,15 @@ void TileManager::Draw(uint8_t screenOffset) const
 void TileManager::LoadMap(GameMap gameMap)
 {
     uint16_t id = 0;
-    for (size_t i = 0; i < gameMap.p_tileIdMap.size(); i++)
+    for (size_t y = 0; y < gameMap.p_tileIdMap.size(); y++)
     {
-        for (size_t j = 0; j < gameMap.p_tileIdMap[i].size(); j++)
+        for (size_t x = 0; x < gameMap.p_tileIdMap[y].size(); x++)
         {
             Tile tile = {};
             tile.p_id = id;
-            tile.p_typeId = gameMap.p_tileIdMap[i][j];
-            tile.p_position = {static_cast<float>(g_tileSize * i), static_cast<float>(g_tileSize * j)};
-            tile.p_moveDirection = gameMap.p_pathDirections[i][j];
+            tile.p_typeId = gameMap.p_tileIdMap[y][x];
+            tile.p_position = {static_cast<float>(g_tileSize * x), static_cast<float>(g_tileSize * y)};
+            tile.p_moveDirection = gameMap.p_pathDirections[y][x];
             // PrintDebug(tile.p_typeId);
             m_tiles.push_back(tile);
             id++;
