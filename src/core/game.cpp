@@ -56,46 +56,40 @@ void Game::Draw() const
 
     EndDrawing();
 }
-void Game::Init()
+void Game::InitManagers()
 {
-    InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
-    ToggleBorderlessWindowed();
-    SetExitKey(KEY_F12);
-    SetTargetFPS(120);
-    Sprites::LoadTextures();
-    m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
-    m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
-    // managers
     mgr_tile.Init();
     mgr_enemy.InjectDependencies(&mgr_tile);
     mgr_enemy.Init();
 
     GameMap map;
     map.p_id = 1;
-
-    PrintDebug(sizeof(Tile));
-
-    int i = 0;
     map.p_tileIdMap = LoadTileTypes("src/resources/maps/Map1Tiles.png");
-    map.p_pathDirections = LoadMapDirections("src/resources/maps/Map1Directions.png"); /*p_pathDirections = {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {-3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, -5},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}};*/
+    map.p_pathDirections = LoadMapDirections("src/resources/maps/Map1Directions.png");
     mgr_tile.LoadMap(map);
+}
+void Game::InitSprites()
+{
+    Sprites::LoadTextures();
+}
+void Game::InitMembers()
+{
+    m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
+    m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
+}
+void Game::InitGame()
+{
+    InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
+    ToggleBorderlessWindowed();
+    SetExitKey(KEY_F12);
+    SetTargetFPS(120);
+}
+void Game::Init()
+{
+    InitGame();
+    InitSprites();
+    InitMembers();
+    InitManagers();
 }
 void Game::Run()
 {
@@ -109,6 +103,7 @@ void Game::Run()
         Update();
         Draw();
     }
+    Shutdown();
 }
 void Game::Shutdown()
 {

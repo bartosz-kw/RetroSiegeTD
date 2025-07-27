@@ -10,6 +10,7 @@ private: // variables
     // managers
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
+
 private: // functions
     void UpdateDebug();
     void Update();
@@ -18,14 +19,20 @@ private: // functions
 
 public: // variables
     const int p_gameHeight = 270;
-    const int p_gameWidth = 480;    
+    const int p_gameWidth = 480;
     const int p_scaledHeight = 1080;
     const int p_scaledWidth = 1920;
     const int p_screenHeight = 1080;
     const int p_screenWidth = 1920;
+
 public: // functions
     Game() = default;
     ~Game() = default;
+
+    void InitManagers();
+    void InitSprites();
+    void InitMembers();
+    void InitGame();
     void Init();
     void Run();
     void Shutdown();
