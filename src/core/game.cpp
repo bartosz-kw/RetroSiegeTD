@@ -24,6 +24,7 @@ void Game::Update()
     UpdateDebug();
     mgr_enemy.Update(deltaTime);
     mgr_tile.Update();
+    mgr_tower.Update(deltaTime); // <-- Add this after other managers
 }
 void Game::MakeTextureFrame() const
 {
@@ -37,6 +38,7 @@ void Game::MakeTextureFrame() const
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     mgr_tile.Draw(screenOffset);
     mgr_enemy.Draw(screenOffset);
+    mgr_tower.Draw(screenOffset);
     EndTextureMode();
 }
 void Game::Draw() const
@@ -58,14 +60,19 @@ void Game::Draw() const
 void Game::InitManagers()
 {
     mgr_tile.Init();
-    mgr_enemy.InjectDependencies(&mgr_tile);
-    mgr_enemy.Init();
-
+    
+    // loading map
     GameMap map;
     map.p_id = 1;
     map.p_tileIdMap = LoadTileTypes("src/resources/maps/Map1Tiles.png");
     map.p_pathDirections = LoadMapDirections("src/resources/maps/Map1Directions.png");
     mgr_tile.LoadMap(map);
+    // continue with managers
+
+    mgr_enemy.InjectDependencies(&mgr_tile);
+    mgr_enemy.Init();
+    mgr_tower.InjectDependencies(&mgr_tile);
+    mgr_tower.Init();
 }
 void Game::InitSprites()
 {

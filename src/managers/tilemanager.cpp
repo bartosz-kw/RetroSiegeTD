@@ -69,12 +69,12 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
         PrintDebugError(direction,"UNKNOWN DIRECTION");
         assert(false && "unknown direction was inputed into GetMovedId");
     }
-    if (tileid < 0 && tileid > (18*18))
+    if (tileid < 0 || tileid > (18*18))
     {
         assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
-    
+    PrintDebug(tileid);
     return tileid;
 }
 void TileManager::Update()
