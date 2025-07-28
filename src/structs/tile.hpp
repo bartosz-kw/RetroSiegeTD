@@ -1,6 +1,12 @@
 #pragma once
 #include <cstdint>
 #include <raylib.h>
+enum TileType
+{
+    GrassTile = 1,
+    GrassPath1 = 2,
+    GrassPath2 = 3,
+};
 struct Tile
 {
     Vector2 p_position = {0,0};

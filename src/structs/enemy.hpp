@@ -1,6 +1,10 @@
 #pragma once
 #include <raylib.h>
 #include <cstdint>
+enum EnemyType
+{
+    BlueSlime = 1
+};
 struct Enemy
 {
     int64_t p_health = 10;

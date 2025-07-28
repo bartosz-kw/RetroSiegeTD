@@ -77,6 +77,10 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
     PrintDebug(tileid);
     return tileid;
 }
+Tile* TileManager::GetLastClickedTile()
+{
+    return m_lastClickedTile;
+}
 void TileManager::Update()
 {
     Vector2 mousePosition = GetMousePosition();
@@ -90,6 +94,7 @@ void TileManager::Update()
         {
             continue;
         }
+        m_lastClickedTile = &tile;
         PrintDebug(tile.p_id);
     }
 }
@@ -130,3 +135,4 @@ void TileManager::LoadMap(GameMap gameMap)
 void TileManager::Init()
 {
 }
+

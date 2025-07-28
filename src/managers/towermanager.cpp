@@ -29,7 +29,7 @@ void TowerManager::DetectInput()
     if (IsKeyPressed(KEY_T))
     {
         Tower tower = {};
-        tower.p_typeId = 1;
+        tower.p_typeId = TowerType::Ninja;
         tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
         tower.p_tileId = 40; 
         tower.p_dirty = true;
@@ -70,7 +70,7 @@ void TowerManager::Draw(uint8_t screenOffset) const
 void TowerManager::Init()
 {
     Tower tower = {};
-    tower.p_typeId = 1;
+    tower.p_typeId = TowerType::Ninja;
     tower.p_id = 1;
     tower.p_tileId = 40;
     AddTower(tower);

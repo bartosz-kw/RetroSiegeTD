@@ -87,7 +87,7 @@ void EnemyManager::Init()
     Enemy enemy = {};
     enemy.p_id = 1;
     enemy.p_tileId = -1;
-    enemy.p_typeId = 1;
+    enemy.p_typeId = EnemyType::BlueSlime;
     enemy.p_speed = 1;
     m_enemies.push_back(enemy);
 }

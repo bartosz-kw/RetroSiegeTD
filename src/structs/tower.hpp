@@ -1,5 +1,9 @@
 #include <cstdint>
 #include <raylib.h>
+enum TowerType
+{
+    Ninja = 1
+};
 struct Tower
 {               
     Vector2 p_position = {0,0}         ;       

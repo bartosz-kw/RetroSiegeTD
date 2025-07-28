@@ -9,6 +9,7 @@ private:
 
 private:
     std::vector<Tile> m_tiles = {};
+    Tile* m_lastClickedTile = nullptr;
     int16_t m_startPathId = -1;
 
 private:
@@ -20,6 +21,7 @@ public:
     Tile GetPathStart();
     Tile GetTile(uint16_t id) const;
     int16_t GetMovedId(uint16_t tileid, int8_t direction) const;
+    Tile* GetLastClickedTile();
     void Update();
     void Draw(uint8_t screenOffset) const;
     void LoadMap(GameMap gameMap);

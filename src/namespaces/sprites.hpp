@@ -19,8 +19,8 @@ namespace Sprites
         g_textures[0] = LoadTexture("src/resources/sprites/GrassTile.png");
         g_textures[1] = LoadTexture("src/resources/sprites/GrassPathSprite1.png");
         g_textures[2] = LoadTexture("src/resources/sprites/GrassPathSprite2.png");
-        g_textures[3] = LoadTexture("src/resources/sprites/SlimeEnemy.png");
-        g_textures[4] = LoadTexture("src/resources/sprites/WizardTower.png");
+        g_textures[3] = LoadTexture("src/resources/sprites/BlueSlimeEnemy.png");
+        g_textures[4] = LoadTexture("src/resources/sprites/NinjaTower.png");
     }
     inline void UnLoadTextures()
     {
