@@ -16,8 +16,9 @@ public:
     uint16_t GetTowerTextureIndex(uint16_t typeId) const;
     void AddTower(Tower tower);
     void RemoveTower(int32_t id);
+    void DetectInput();
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
     void Init();
-    void InjectDependencies(TileManager* mgr_tilePtr); // Add this function
+    void InjectDependencies(TileManager* mgr_tilePtr); 
 };

@@ -8,17 +8,14 @@ void TowerManager::InjectDependencies(TileManager* mgr_tilePtr)
 {
     mgr_tile = mgr_tilePtr;
 }
-
 uint16_t TowerManager::GetTowerTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::towerTextureOffset;
 }
-
 void TowerManager::AddTower(Tower tower)
 {
     m_towers.push_back(tower);
 }
-
 void TowerManager::RemoveTower(int32_t id)
 {
     m_towers.erase(
@@ -27,10 +24,23 @@ void TowerManager::RemoveTower(int32_t id)
         m_towers.end()
     );
 }
-
+void TowerManager::DetectInput()
+{
+    if (IsKeyPressed(KEY_T))
+    {
+        Tower tower = {};
+        tower.p_typeId = 1;
+        tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
+        tower.p_tileId = 40; 
+        tower.p_dirty = true;
+        AddTower(tower);
+    }
+}
 void TowerManager::Update(float deltaTime)
 {
     assert(mgr_tile && "mgr_tile in towermanager was nullptr");
+
+    DetectInput();
 
     for (auto& tower : m_towers)
     {
@@ -43,7 +53,6 @@ void TowerManager::Update(float deltaTime)
         tower.p_dirty = false;
     }
 }
-
 void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
