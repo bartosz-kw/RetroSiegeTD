@@ -1,10 +1,11 @@
 #include "towermanager.hpp"
+#include "../utility/debugUtil.hpp"
 #include "../namespaces/sprites.hpp"
-#include "../managers/tilemanager.hpp" 
+#include "../managers/tilemanager.hpp"
 #include <cassert>
 #include <algorithm>
 
-void TowerManager::InjectDependencies(TileManager* mgr_tilePtr)
+void TowerManager::InjectDependencies(TileManager *mgr_tilePtr)
 {
     mgr_tile = mgr_tilePtr;
 }
@@ -20,19 +21,39 @@ void TowerManager::RemoveTower(int32_t id)
 {
     m_towers.erase(
         std::remove_if(m_towers.begin(), m_towers.end(),
-            [id](const Tower& t) { return t.p_id == id; }),
-        m_towers.end()
-    );
+                       [id](const Tower &t)
+                       { return t.p_id == id; }),
+        m_towers.end());
+}
+bool TowerManager::CanPlaceTower(Tile *tile)
+{
+    if (tile->p_moveDirection != 0)
+    {
+        return false;
+    }
+    for (auto &tower : m_towers)
+    {
+        if (tower.p_tileId == tile->p_id)
+            return false;
+    }
+    return true;
 }
 void TowerManager::DetectInput()
 {
-    if (IsKeyPressed(KEY_T))
+    if (IsKeyDown(KEY_T))
     {
+        Tile *tile = mgr_tile->GetLastClickedTile();
+        if (tile == nullptr)
+            return;
+        if (!CanPlaceTower(tile))
+            return;
+
         Tower tower = {};
         tower.p_typeId = TowerType::Ninja;
         tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
-        tower.p_tileId = 40; 
+        tower.p_tileId = tile->p_id;
         tower.p_dirty = true;
+        PrintDebug(tile->p_id,"Tower Placed At");
         AddTower(tower);
     }
 }
@@ -42,7 +63,7 @@ void TowerManager::Update(float deltaTime)
 
     DetectInput();
 
-    for (auto& tower : m_towers)
+    for (auto &tower : m_towers)
     {
         if (!tower.p_dirty)
             continue;
@@ -57,15 +78,12 @@ void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
-        DrawTexture
-        (
+        DrawTexture(
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
             tower.p_position.y,
-            WHITE
-        );
+            WHITE);
     }
-    
 }
 void TowerManager::Init()
 {

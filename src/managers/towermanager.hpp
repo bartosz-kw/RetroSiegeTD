@@ -2,7 +2,8 @@
 #include <vector>
 #include "../structs/tower.hpp"
 
-class TileManager; // Forward declaration
+class TileManager; // Forward declaration for tile and manager
+class Tile;
 
 class TowerManager
 {
@@ -16,6 +17,7 @@ public:
     uint16_t GetTowerTextureIndex(uint16_t typeId) const;
     void AddTower(Tower tower);
     void RemoveTower(int32_t id);
+    bool CanPlaceTower(Tile *tile);
     void DetectInput();
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
