@@ -2,7 +2,8 @@
 #include <raylib.h>
 #include "../managers/tilemanager.hpp"
 #include "../managers/enemymanager.hpp"
-#include "../managers/towermanager.hpp" 
+#include "../managers/towermanager.hpp"
+#include "../managers/bulletmanager.hpp"
 
 class Game
 {
@@ -12,7 +13,8 @@ private: // variables
     // managers
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
-    TowerManager mgr_tower = {}; 
+    TowerManager mgr_tower = {};
+    BulletManager mgr_bullet = {}; 
 
 private: // functions
     void UpdateDebug();

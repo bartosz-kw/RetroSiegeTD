@@ -24,7 +24,8 @@ void Game::Update()
     UpdateDebug();
     mgr_enemy.Update(deltaTime);
     mgr_tile.Update();
-    mgr_tower.Update(deltaTime); // <-- Add this after other managers
+    mgr_tower.Update(deltaTime); 
+    mgr_enemy.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {
@@ -39,6 +40,7 @@ void Game::MakeTextureFrame() const
     mgr_tile.Draw(screenOffset);
     mgr_enemy.Draw(screenOffset);
     mgr_tower.Draw(screenOffset);
+    mgr_bullet.Draw(screenOffset);
     EndTextureMode();
 }
 void Game::Draw() const
@@ -69,6 +71,7 @@ void Game::InitManagers()
     mgr_tile.LoadMap(map);
     // continue with managers
 
+    mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile);
     mgr_enemy.Init();
     mgr_tower.InjectDependencies(&mgr_tile);
