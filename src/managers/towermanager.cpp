@@ -1,6 +1,7 @@
 #include "towermanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/sprites.hpp"
+#include "../namespaces/settings.hpp"
 #include "../managers/tilemanager.hpp"
 #include <cassert>
 #include <algorithm>
@@ -78,11 +79,25 @@ void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
-        DrawTexture(
+        DrawTexture
+        (
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
             tower.p_position.y,
-            WHITE);
+            WHITE
+        );
+        if(Settings::debugView)
+        {
+            Color color = {255,0,0,125};
+            constexpr float centerOffset = 7.5f; // since all textures are 15x15
+            DrawCircle
+            (
+                static_cast<int>(tower.p_position.x + screenOffset + centerOffset),
+                static_cast<int>(tower.p_position.y + centerOffset),
+                static_cast<float>(tower.p_range),
+                color
+            );
+        }
     }
 }
 void TowerManager::Init()
