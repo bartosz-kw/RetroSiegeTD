@@ -6,13 +6,14 @@
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
 #include <cassert>
+#include <cmath>
 #include <algorithm>
 
 constexpr float centerOffset = 7.5f; // since all textures are 15x15
 
-Vector2 TowerManager::GetCenterPosition(const Tower& tower) const
+Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
-    return Vector2{tower.p_position.x + centerOffset,tower.p_position.y + centerOffset};
+    return Vector2{tower.p_position.x + centerOffset, tower.p_position.y + centerOffset};
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
 {
@@ -64,9 +65,38 @@ void TowerManager::DetectInput()
         tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
         tower.p_tileId = tile->p_id;
         tower.p_dirty = true;
-        PrintDebug(tile->p_id,"Tower Placed At");
+        PrintDebug(tile->p_id, "Tower Placed At");
         AddTower(tower);
     }
+}
+void TowerManager::UpdateFight(Tower &tower, float deltatime)
+{
+    tower.p_timeToAttack += deltatime; 
+
+    Vector2 centerPos = GetCenterPosition(tower);
+    uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos, tower.p_range);
+
+    if (enemyId == 0 || tower.p_timeToAttack < tower.p_attackSpeed)
+    {
+        return;
+    }
+    Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
+    if (enemy)
+    {
+        // calc angle using atan2 
+        float angle = atan2(enemy->p_position.y - tower.p_position.y,enemy->p_position.x - tower.p_position.x); 
+        
+        // make bullet
+        Bullet bullet = {};
+        bullet.p_typeId = BulletType::Shuliken;
+        bullet.p_damage = tower.p_damage;
+        bullet.p_angle = angle;
+        bullet.p_position = tower.p_position;
+        bullet.p_speed = 0.5f;
+        mgr_bullet->AddBullet(bullet);
+    }
+    tower.p_timeToAttack = 0.0f;
+
 }
 void TowerManager::Update(float deltaTime)
 {
@@ -78,11 +108,7 @@ void TowerManager::Update(float deltaTime)
 
     for (auto &tower : m_towers)
     {
-        Vector2 centerPos = GetCenterPosition(tower);
-        uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos,tower.p_range);
-        // TODO: enemy damage logic
-
-
+        UpdateFight(tower,deltaTime);
         if (!tower.p_dirty)
             continue;
 
@@ -96,24 +122,20 @@ void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
-        DrawTexture
-        (
+        DrawTexture(
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
             tower.p_position.y,
-            WHITE
-        );
-        if(Settings::debugView)
+            WHITE);
+        if (Settings::debugView)
         {
-            Color color = {255,0,0,125};
-            Vector2 centerPos = GetCenterPosition(tower);     
-            DrawCircle
-            (
+            Color color = {255, 0, 0, 125};
+            Vector2 centerPos = GetCenterPosition(tower);
+            DrawCircle(
                 static_cast<int>(centerPos.x + screenOffset),
-                static_cast<int>(centerPos.y ),
+                static_cast<int>(centerPos.y),
                 static_cast<float>(tower.p_range),
-                color
-            );
+                color);
         }
     }
 }

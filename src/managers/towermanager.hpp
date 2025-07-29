@@ -23,6 +23,7 @@ public:
     void RemoveTower(int32_t id);
     bool CanPlaceTower(Tile *tile);
     void DetectInput();
+    void UpdateFight(Tower& tower, float deltatime);
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
     void Init();

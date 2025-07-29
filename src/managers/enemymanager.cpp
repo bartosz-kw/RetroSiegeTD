@@ -44,6 +44,11 @@ const uint16_t EnemyManager::GetEnemyTextureIndex(uint16_t typeId) const
 }
 void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
 {
+    if (enemy.p_tileId == -1)
+    {
+        return;
+    }
+    
     enemy.p_timeToMove += deltaTime;
     if (enemy.p_timeToMove >= enemy.p_speed)
     {
@@ -55,7 +60,7 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
             return;
         }
         enemy.p_tileId = mgr_tile->GetMovedId(enemy.p_tileId, moveDirection);
-        enemy.p_timeToMove = false;
+        enemy.p_timeToMove = 0;
         enemy.p_dirty = true;
         enemy.p_walked += 1;
     }
@@ -66,6 +71,8 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     if (enemy.p_tileId == -1)
     {
         enemy.p_tileId = mgr_tile->GetPathStart().p_id;
+        // if id is invalid make tower move on first frame after its updated
+        enemy.p_timeToMove = enemy.p_speed;
     }
 
     // get tile
@@ -82,7 +89,7 @@ void EnemyManager::RemoveEnemies()
     std::vector<size_t> indexesToRemove = {};
     for (size_t i = 0; i < m_enemies.size(); i++)
     {
-        if (!m_enemies[i].p_alive)
+        if (!m_enemies[i].p_alive || m_enemies[i].p_health <= 0)
         {
             indexesToRemove.push_back(i);
         }

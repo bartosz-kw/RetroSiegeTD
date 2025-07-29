@@ -24,8 +24,8 @@ void Game::Update()
     UpdateDebug();
     mgr_enemy.Update(deltaTime);
     mgr_tile.Update();
-    mgr_tower.Update(deltaTime); 
-    mgr_enemy.Update(deltaTime);
+    mgr_tower.Update(deltaTime);
+    mgr_bullet.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {
@@ -35,12 +35,12 @@ void Game::MakeTextureFrame() const
     constexpr uint8_t screenOffset = boundingWidth;
     constexpr Color boundingColor = BLACK;
 
-    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
-    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     mgr_tile.Draw(screenOffset);
     mgr_enemy.Draw(screenOffset);
     mgr_tower.Draw(screenOffset);
     mgr_bullet.Draw(screenOffset);
+    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
+    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     EndTextureMode();
 }
 void Game::Draw() const
@@ -62,7 +62,7 @@ void Game::Draw() const
 void Game::InitManagers()
 {
     mgr_tile.Init();
-    
+
     // loading map
     GameMap map;
     map.p_id = 1;
@@ -74,7 +74,7 @@ void Game::InitManagers()
     mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile);
     mgr_enemy.Init();
-    mgr_tower.InjectDependencies(&mgr_tile,&mgr_enemy,&mgr_bullet);
+    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet);
     mgr_tower.Init();
 }
 void Game::InitSprites()

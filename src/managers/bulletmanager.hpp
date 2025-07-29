@@ -12,8 +12,8 @@ private:
 public:
     BulletManager() = default;
 
-    void AddBullet(const Bullet& bullet);
-    void RemoveBullet(int32_t id);
+    void AddBullet(Bullet bullet);
+    void RemoveBullets();
 
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
