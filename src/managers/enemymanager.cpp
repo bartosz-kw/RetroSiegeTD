@@ -4,19 +4,32 @@
 #include "../namespaces/sprites.hpp"
 #include <cassert>
 
-int16_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
+constexpr float centerOffset = 7.5f; 
+
+Vector2 EnemyManager::GetCenterPosition(const Enemy& enemy) const
 {
+    return Vector2{enemy.p_position.x + centerOffset, enemy.p_position.y + centerOffset};
+}
+uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
+{
+    uint16_t biggestWalked = 0;
+    uint32_t biggestWalkedId = 0;
     for (auto& enemy : m_enemies)
     {
-        Vector2 enemyCenter = {enemy.p_position.x/2,enemy.p_position.y/2};
+        Vector2 enemyCenter = {enemy.p_position.x + centerOffset
+                              ,enemy.p_position.y + centerOffset};
         if (CheckCollisionPointCircle(enemyCenter, center, radius))
         {
-            return enemy.p_id;
+            if (biggestWalked < enemy.p_walked)
+            {
+                biggestWalked = enemy.p_walked;
+                biggestWalkedId = enemy.p_id;
+            }
         }
     }
-    return -1;
+    return biggestWalkedId;
 }
-Enemy* EnemyManager::GetEnemyById(int16_t id)
+Enemy* EnemyManager::GetEnemyById(uint32_t id)
 {
     for (auto& enemy : m_enemies)
     {
@@ -34,7 +47,8 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
     enemy.p_timeToMove += deltaTime;
     if (enemy.p_timeToMove >= enemy.p_speed)
     {
-        int16_t moveDirection = mgr_tile->GetTile(enemy.p_tileId).p_moveDirection;
+        Tile positionTile = mgr_tile->GetTile(enemy.p_tileId);
+        int16_t moveDirection = positionTile.p_moveDirection;
         if (moveDirection == -5)
         {
             enemy.p_alive = false;
@@ -43,6 +57,7 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
         enemy.p_tileId = mgr_tile->GetMovedId(enemy.p_tileId, moveDirection);
         enemy.p_timeToMove = false;
         enemy.p_dirty = true;
+        enemy.p_walked += 1;
     }
 }
 void EnemyManager::CleanEnemy(Enemy &enemy)
@@ -53,7 +68,6 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
         enemy.p_tileId = mgr_tile->GetPathStart().p_id;
     }
 
-    PrintDebug(enemy.p_tileId, "Enemy new id");
     // get tile
     Tile tile = mgr_tile->GetTile(enemy.p_tileId);
 
@@ -61,7 +75,6 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     enemy.p_position = tile.p_position;
     enemy.p_dirty = false;
 
-    PrintDebug("enemy has been cleaned", "Update Test");
     assert(tile.p_id != -1);
 }
 void EnemyManager::RemoveEnemies()
@@ -109,6 +122,6 @@ void EnemyManager::Init()
     enemy.p_id = 1;
     enemy.p_tileId = -1;
     enemy.p_typeId = EnemyType::BlueSlime;
-    enemy.p_speed = 1;
+    enemy.p_speed = 10;
     m_enemies.push_back(enemy);
 }

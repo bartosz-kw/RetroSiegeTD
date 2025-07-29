@@ -74,7 +74,7 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
         assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
-    PrintDebug(tileid);
+    //PrintDebug(tileid);
     return tileid;
 }
 Tile* TileManager::GetLastClickedTile()

@@ -11,9 +11,10 @@ private:
 private:
     const uint16_t GetEnemyTextureIndex(uint16_t typeId) const;
 
-public: 
-    int16_t FindEnemyInArea(Vector2 center, float radius);
-    Enemy* GetEnemyById(int16_t id);
+public:
+    Vector2 GetCenterPosition(const Enemy& enemy) const; // Add this line
+    uint32_t FindEnemyInArea(Vector2 center, float radius);
+    Enemy* GetEnemyById(uint32_t id);
     void UpdateMovement(Enemy &enemy, float deltaTime);
     void CleanEnemy(Enemy &enemy);
     void RemoveEnemies();

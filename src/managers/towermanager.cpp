@@ -3,12 +3,22 @@
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "../managers/tilemanager.hpp"
+#include "../managers/enemymanager.hpp"
+#include "../managers/bulletmanager.hpp"
 #include <cassert>
 #include <algorithm>
 
-void TowerManager::InjectDependencies(TileManager *mgr_tilePtr)
+constexpr float centerOffset = 7.5f; // since all textures are 15x15
+
+Vector2 TowerManager::GetCenterPosition(const Tower& tower) const
+{
+    return Vector2{tower.p_position.x + centerOffset,tower.p_position.y + centerOffset};
+}
+void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
 {
     mgr_tile = mgr_tilePtr;
+    mgr_enemy = mgr_enemyPtr;
+    mgr_bullet = mgr_bulletPtr;
 }
 uint16_t TowerManager::GetTowerTextureIndex(uint16_t typeId) const
 {
@@ -61,11 +71,18 @@ void TowerManager::DetectInput()
 void TowerManager::Update(float deltaTime)
 {
     assert(mgr_tile && "mgr_tile in towermanager was nullptr");
+    assert(mgr_enemy && "mgr_enemy in towermanager was nullptr");
+    assert(mgr_bullet && "mgr_bullet in towermanager was nullptr");
 
     DetectInput();
 
     for (auto &tower : m_towers)
     {
+        Vector2 centerPos = GetCenterPosition(tower);
+        uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos,tower.p_range);
+        // TODO: enemy damage logic
+
+
         if (!tower.p_dirty)
             continue;
 
@@ -89,11 +106,11 @@ void TowerManager::Draw(uint8_t screenOffset) const
         if(Settings::debugView)
         {
             Color color = {255,0,0,125};
-            constexpr float centerOffset = 7.5f; // since all textures are 15x15
+            Vector2 centerPos = GetCenterPosition(tower);     
             DrawCircle
             (
-                static_cast<int>(tower.p_position.x + screenOffset + centerOffset),
-                static_cast<int>(tower.p_position.y + centerOffset),
+                static_cast<int>(centerPos.x + screenOffset),
+                static_cast<int>(centerPos.y ),
                 static_cast<float>(tower.p_range),
                 color
             );
@@ -106,5 +123,6 @@ void TowerManager::Init()
     tower.p_typeId = TowerType::Ninja;
     tower.p_id = 1;
     tower.p_tileId = 40;
+    tower.p_range = 60;
     AddTower(tower);
 }

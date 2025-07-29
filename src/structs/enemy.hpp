@@ -11,6 +11,7 @@ struct Enemy
     Vector2 p_position = {0,0};
     uint32_t p_id = -1;
     uint16_t p_typeId = 0;
+    uint16_t p_walked = 0;
     int16_t p_tileId = 0;
     float p_speed = 1;
     float p_timeToMove = 0;
