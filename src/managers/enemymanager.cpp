@@ -4,6 +4,27 @@
 #include "../namespaces/sprites.hpp"
 #include <cassert>
 
+int16_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
+{
+    for (auto& enemy : m_enemies)
+    {
+        Vector2 enemyCenter = {enemy.p_position.x/2,enemy.p_position.y/2};
+        if (CheckCollisionPointCircle(enemyCenter, center, radius))
+        {
+            return enemy.p_id;
+        }
+    }
+    return -1;
+}
+Enemy* EnemyManager::GetEnemyById(int16_t id)
+{
+    for (auto& enemy : m_enemies)
+    {
+        if (enemy.p_id == id)
+            return &enemy;
+    }
+    return nullptr;
+}
 const uint16_t EnemyManager::GetEnemyTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::enemyTextureOffset;
