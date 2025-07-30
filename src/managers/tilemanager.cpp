@@ -95,7 +95,6 @@ bool TileManager::IsTileClicked(const Tile& tile) const
     }
     return true;
 }
-
 void TileManager::Update()
 {
     for (auto &tile : m_tiles)
@@ -139,5 +138,6 @@ void TileManager::LoadMap(GameMap gameMap)
 }
 void TileManager::Init()
 {
+    
 }
 
