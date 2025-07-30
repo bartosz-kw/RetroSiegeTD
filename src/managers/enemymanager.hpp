@@ -19,6 +19,7 @@ public:
     uint32_t FindEnemyInArea(Vector2 center, float radius);
     Enemy* GetEnemyById(uint32_t id);
     void UpdateMovement(Enemy &enemy, float deltaTime);
+    void HandleHits(Enemy &enemy);
     void CleanEnemy(Enemy &enemy);
     void RemoveEnemies();
     void Update(float deltaTime);

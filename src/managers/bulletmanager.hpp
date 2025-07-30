@@ -12,7 +12,7 @@ private:
 public:
     BulletManager() = default;
 
-    bool CheckHitAtPosition(const Rectangle area) const;
+    std::vector<Bullet> CheckHitAtPosition(const Rectangle area);
 
     void AddBullet(Bullet bullet);
     void RemoveBullets();

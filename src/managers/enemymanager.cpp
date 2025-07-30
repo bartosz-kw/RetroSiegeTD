@@ -66,6 +66,19 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
         enemy.p_walked += 1;
     }
 }
+void EnemyManager::HandleHits(Enemy &enemy)
+{
+    Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+    Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
+
+    std::vector<Bullet> detectedBullets = mgr_bullet->CheckHitAtPosition(enemyRect);
+    for (auto &bullet : detectedBullets)
+    {
+        enemy.p_health -= bullet.p_damage;
+        PrintDebug(enemy.p_health,"HIT TAKEN");
+    }
+    
+}
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
     // check if enemy has valid tile id
@@ -107,6 +120,7 @@ void EnemyManager::Update(float deltaTime)
     for (auto &enemy : m_enemies)
     {
         UpdateMovement(enemy, deltaTime);
+        HandleHits(enemy);
         RemoveEnemies();
         if (!enemy.p_dirty)
             continue;

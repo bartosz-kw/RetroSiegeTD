@@ -5,16 +5,22 @@
 #include <cmath>
 #include <algorithm>
 
-bool BulletManager::CheckHitAtPosition(const Rectangle area) const
+std::vector<Bullet> BulletManager::CheckHitAtPosition(const Rectangle area) 
 {
-    for (const auto& bullet : m_bullets)
+    std::vector<Bullet> detectedBullets = {};
+    for (auto& bullet : m_bullets)
     {
         Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
         Vector2 pos = bullet.p_position;
-        Rectangle bulletRect = { pos.x, pos.y, bulletTexture.width, bulletTexture.height };
-        return CheckCollisionRecs(area,bulletRect);
+        Rectangle bulletRect = { pos.x, pos.y, static_cast<float>(bulletTexture.width),static_cast<float>(bulletTexture.height) };
+        if(CheckCollisionRecs(area,bulletRect))
+        {
+            detectedBullets.push_back(bullet);
+            bullet.p_alive = false;
+            
+        }
     }
-    return false;
+    return detectedBullets;
 }
 
 uint16_t BulletManager::GetBulletTextureIndex(uint16_t typeId) const
