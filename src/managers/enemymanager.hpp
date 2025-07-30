@@ -16,7 +16,7 @@ private:
     Vector2 CalculateMovePosition(int16_t moveDirection);
 
 public:
-    Vector2 GetCenterPosition(const Enemy& enemy) const; // Add this line
+    Vector2 GetCenterPosition(const Enemy& enemy) const; 
     uint32_t FindEnemyInArea(Vector2 center, float radius);
     Enemy* GetEnemyById(uint32_t id);
     void UpdateVisualPosition(Enemy &enemy, Vector2& tilePosition,int16_t moveDirection);

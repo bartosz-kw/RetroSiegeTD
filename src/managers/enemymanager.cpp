@@ -14,7 +14,7 @@ Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
 }
 uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
 {
-    int16_t biggestWalked = -10000;
+    int32_t biggestWalked = -10000;
     uint32_t biggestWalkedId = 0;
     for (auto &enemy : m_enemies)
     {
