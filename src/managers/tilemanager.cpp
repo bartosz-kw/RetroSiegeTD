@@ -42,11 +42,6 @@ Tile TileManager::GetTile(uint16_t id) const
 }
 int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
 {
-    // Direction codes:
-    // 1 = Up
-    // 2 = Down
-    // 3 = Right
-    // 4 = Left
     direction = std::abs(direction);
     if (direction == 1)
     {
