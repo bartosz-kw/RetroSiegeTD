@@ -52,6 +52,7 @@ bool TowerManager::CanPlaceTower(Tile *tile)
 }
 void TowerManager::DetectInput()
 {
+    // this is debug key, and this will be changed in later versions
     if (IsKeyDown(KEY_T))
     {
         Tile *tile = mgr_tile->GetLastClickedTile();

@@ -81,21 +81,30 @@ Tile* TileManager::GetLastClickedTile()
 {
     return m_lastClickedTile;
 }
+bool TileManager::IsTileClicked(const Tile& tile) const
+{
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        return false;
+    }
+    Vector2 mousePosition = GetMousePosition();
+    // TODO: Remove magic numbers
+    if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
+    {
+        return false;
+    }
+    return true;
+}
+
 void TileManager::Update()
 {
-    Vector2 mousePosition = GetMousePosition();
     for (auto &tile : m_tiles)
     {
-        if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        if (IsTileClicked(tile))
         {
-            continue;
+            m_lastClickedTile = &tile;
+            PrintDebug(tile.p_id);
         }
-        if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
-        {
-            continue;
-        }
-        m_lastClickedTile = &tile;
-        PrintDebug(tile.p_id);
     }
 }
 void TileManager::Draw(uint8_t screenOffset) const
@@ -126,10 +135,6 @@ void TileManager::LoadMap(GameMap gameMap)
             m_tiles.push_back(tile);
             id++;
         }
-    }
-    for (size_t i = 0; i < m_tiles.size(); i++)
-    {
-        PrintDebug(m_tiles[i].p_id);
     }
 }
 void TileManager::Init()

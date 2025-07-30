@@ -22,12 +22,10 @@ std::vector<Bullet> BulletManager::CheckHitAtPosition(const Rectangle area)
     }
     return detectedBullets;
 }
-
 uint16_t BulletManager::GetBulletTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::buttetTextureOffset;
 }
-
 void BulletManager::AddBullet(Bullet bullet)
 {
     m_bullets.push_back(bullet);
@@ -60,13 +58,11 @@ void BulletManager::Update(float deltaTime)
 
     RemoveBullets();
 }
-
 void BulletManager::UpdatePosition(Bullet &bullet, float deltaTime)
 {
     bullet.p_position.x += cos(bullet.p_angle) * bullet.p_speed * deltaTime;
     bullet.p_position.y += sin(bullet.p_angle) * bullet.p_speed * deltaTime;
 }
-
 void BulletManager::ValidatePosition(Bullet &bullet)
 {
     Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
@@ -78,7 +74,6 @@ void BulletManager::ValidatePosition(Bullet &bullet)
         bullet.p_alive = false;
     }
 }
-
 void BulletManager::Draw(uint8_t screenOffset) const
 {
     for (const auto &bullet : m_bullets)
@@ -90,7 +85,6 @@ void BulletManager::Draw(uint8_t screenOffset) const
             WHITE);
     }
 }
-
 void BulletManager::Init()
 {
     m_bullets.clear();

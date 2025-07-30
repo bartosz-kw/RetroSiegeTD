@@ -14,6 +14,7 @@ private:
 
 private:
     const uint16_t GetTileTextureIndex(uint16_t typeId) const;
+    bool IsTileClicked(const Tile& tile) const;
 
 public:
     TileManager() = default;
