@@ -1,5 +1,6 @@
 #include "enemymanager.hpp"
 #include "tilemanager.hpp"
+#include "bulletmanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/sprites.hpp"
 #include <cassert>
@@ -119,9 +120,10 @@ void EnemyManager::Draw(uint8_t screenOffset) const
         DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, WHITE);
     }
 }
-void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr)
+void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr)
 {
     mgr_tile = mgr_tilePtr;
+    mgr_bullet = mgr_bulletPtr;
 }
 void EnemyManager::Init()
 {

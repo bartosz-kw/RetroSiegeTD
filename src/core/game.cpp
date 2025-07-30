@@ -72,7 +72,7 @@ void Game::InitManagers()
     // continue with managers
 
     mgr_bullet.Init();
-    mgr_enemy.InjectDependencies(&mgr_tile);
+    mgr_enemy.InjectDependencies(&mgr_tile,&mgr_bullet);
     mgr_enemy.Init();
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet);
     mgr_tower.Init();

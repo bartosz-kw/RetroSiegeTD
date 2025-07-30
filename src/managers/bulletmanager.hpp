@@ -12,10 +12,14 @@ private:
 public:
     BulletManager() = default;
 
+    bool CheckHitAtPosition(const Rectangle area) const;
+
     void AddBullet(Bullet bullet);
     void RemoveBullets();
 
     void Update(float deltaTime);
+    void UpdatePosition(Bullet& bullet,float deltaTime);
+    void ValidatePosition(Bullet& bullet);
     void Draw(uint8_t screenOffset) const;
     void Init();
 };

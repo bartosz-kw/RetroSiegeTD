@@ -2,11 +2,14 @@
 #include "../structs/enemy.hpp"
 
 class TileManager;
+class BulletManager;
+
 class EnemyManager
 {
 private:
     std::vector<Enemy> m_enemies = {};
     TileManager *mgr_tile = nullptr;
+    BulletManager *mgr_bullet = nullptr;
 
 private:
     const uint16_t GetEnemyTextureIndex(uint16_t typeId) const;
@@ -20,6 +23,6 @@ public:
     void RemoveEnemies();
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
-    void InjectDependencies(TileManager *mgr_tilePtr);
+    void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr);
     void Init();
 };

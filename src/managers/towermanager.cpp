@@ -92,7 +92,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
         bullet.p_damage = tower.p_damage;
         bullet.p_angle = angle;
         bullet.p_position = tower.p_position;
-        bullet.p_speed = 0.5f;
+        bullet.p_speed = 50.0f;
         mgr_bullet->AddBullet(bullet);
     }
     tower.p_timeToAttack = 0.0f;
