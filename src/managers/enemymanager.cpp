@@ -6,11 +6,10 @@
 #include <raymath.h>
 #include <cassert>
 
-constexpr float centerOffset = 7.5f;
-
 Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
 {
-    return Vector2{enemy.p_position.x + centerOffset, enemy.p_position.y + centerOffset};
+    Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+    return Vector2{enemy.p_position.x + enemyTexture.width / 2.0f, enemy.p_position.y + enemyTexture.height / 2.0f};
 }
 uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
 {
@@ -18,7 +17,7 @@ uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
     uint32_t biggestWalkedId = 0;
     for (auto &enemy : m_enemies)
     {
-        Vector2 enemyCenter = {enemy.p_position.x + centerOffset, enemy.p_position.y + centerOffset};
+        Vector2 enemyCenter = GetCenterPosition(enemy);
         if (CheckCollisionPointCircle(enemyCenter, center, radius))
         {
             if (biggestWalked < enemy.p_walked)
@@ -118,9 +117,7 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     // check if enemy has valid tile id
     if (enemy.p_tileId == -1)
     {
-        enemy.p_tileId = mgr_tile->GetPathStart().p_id;
-        // if id is invalid make tower move on first frame after its updated
-        // enemy.p_timeToMove = enemy.p_speed;
+        enemy.p_tileId = mgr_tile->GetPathStart().p_id;;
     }
 
     // get tile

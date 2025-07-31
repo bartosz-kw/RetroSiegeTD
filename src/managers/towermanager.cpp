@@ -9,11 +9,10 @@
 #include <cmath>
 #include <algorithm>
 
-
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
     Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
-    return Vector2{tower.p_position.x + towerTexture.width/2.0f, tower.p_position.y + towerTexture.height/2.0f};
+    return Vector2{tower.p_position.x + towerTexture.width / 2.0f, tower.p_position.y + towerTexture.height / 2.0f};
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
 {
@@ -72,7 +71,7 @@ void TowerManager::DetectInput()
 }
 void TowerManager::UpdateFight(Tower &tower, float deltatime)
 {
-    tower.p_timeToAttack += deltatime; 
+    tower.p_timeToAttack += deltatime;
 
     Vector2 centerPos = GetCenterPosition(tower);
     uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos, tower.p_range);
@@ -85,8 +84,8 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     if (enemy)
     {
         Vector2 bulletPos = centerPos;
-        float angle = atan2(enemy->p_position.y - bulletPos.y,enemy->p_position.x - bulletPos.x); 
-        
+        float angle = atan2(enemy->p_position.y - bulletPos.y, enemy->p_position.x - bulletPos.x);
+
         // make bullet
         Bullet bullet = {};
         bullet.p_typeId = BulletType::Shuliken;
@@ -110,7 +109,7 @@ void TowerManager::Update(float deltaTime)
 
     for (auto &tower : m_towers)
     {
-        UpdateFight(tower,deltaTime);
+        UpdateFight(tower, deltaTime);
         if (!tower.p_dirty)
             continue;
 
@@ -124,11 +123,13 @@ void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
-        DrawTexture(
+        DrawTexture
+        (
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
             tower.p_position.y,
-            WHITE);
+            WHITE
+        );
         if (Settings::debugView)
         {
             Color color = {255, 0, 0, 125};
