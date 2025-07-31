@@ -9,11 +9,11 @@
 #include <cmath>
 #include <algorithm>
 
-constexpr float centerOffset = 7.5f; // since all textures are 15x15
 
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
-    return Vector2{tower.p_position.x + centerOffset, tower.p_position.y + centerOffset};
+    Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+    return Vector2{tower.p_position.x + towerTexture.width/2.0f, tower.p_position.y + towerTexture.height/2.0f};
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
 {
@@ -84,20 +84,21 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
     if (enemy)
     {
-        // calc angle using atan2 
-        float angle = atan2(enemy->p_position.y - tower.p_position.y,enemy->p_position.x - tower.p_position.x); 
+        Vector2 bulletPos = centerPos;
+        float angle = atan2(enemy->p_position.y - bulletPos.y,enemy->p_position.x - bulletPos.x); 
         
         // make bullet
         Bullet bullet = {};
         bullet.p_typeId = BulletType::Shuliken;
         bullet.p_damage = tower.p_damage;
-        bullet.p_angle = angle;
-        bullet.p_position = tower.p_position;
-        bullet.p_speed = 50.0f;
+        bullet.p_directionAngle = angle;
+        bullet.p_position = bulletPos;
+        bullet.p_spinning = true;
+        bullet.p_spinSpeed = 200.0f;
+        bullet.p_speed = 75.0f;
         mgr_bullet->AddBullet(bullet);
     }
     tower.p_timeToAttack = 0.0f;
-
 }
 void TowerManager::Update(float deltaTime)
 {
