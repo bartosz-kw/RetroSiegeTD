@@ -3,6 +3,7 @@
 #include "bulletmanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/sprites.hpp"
+#include "../namespaces/enemies.hpp"
 #include <raymath.h>
 #include <cassert>
 
@@ -172,10 +173,8 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 }
 void EnemyManager::Init()
 {
-    Enemy enemy = {};
+    Enemy enemy = Enemies::GetEnemyData(EnemyType::BlueSlime);
     enemy.p_id = 1;
     enemy.p_tileId = -1;
-    enemy.p_typeId = EnemyType::BlueSlime;
-    enemy.p_speed = 4.0f;
     m_enemies.push_back(enemy);
 }

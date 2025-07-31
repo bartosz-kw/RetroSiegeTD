@@ -3,6 +3,7 @@
 #include "../namespaces/towers.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
+#include "../namespaces/bullets.hpp"
 #include "../managers/tilemanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
@@ -88,14 +89,10 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
         float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
         // make bullet
-        Bullet bullet = {};
-        bullet.p_typeId = BulletType::Shuliken;
+        Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
         bullet.p_damage = tower.p_damage;
         bullet.p_directionAngle = angle;
         bullet.p_position = bulletPos;
-        bullet.p_spinning = true;
-        bullet.p_spinSpeed = 200.0f;
-        bullet.p_speed = 75.0f;
         mgr_bullet->AddBullet(bullet);
     }
     tower.p_timeToAttack = 0.0f;

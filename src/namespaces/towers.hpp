@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <cassert>
 #include "src/structs/tower.hpp"
 
 namespace Towers
@@ -18,6 +19,7 @@ namespace Towers
         {
             return it->second;
         }
+        assert(false && "couldn't find requested data in towerData");
         return Tower{};
     }
 }
