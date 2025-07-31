@@ -37,7 +37,7 @@ Tile TileManager::GetTile(uint16_t id) const
     {
         return *it;
     }
-
+    PrintDebugError("Incorrect Id returned");
     return Tile{};
 }
 int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const

@@ -1,5 +1,6 @@
 #include "towermanager.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../namespaces/towers.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "../managers/tilemanager.hpp"
@@ -60,8 +61,7 @@ void TowerManager::DetectInput()
         if (!CanPlaceTower(tile))
             return;
 
-        Tower tower = {};
-        tower.p_typeId = TowerType::Ninja;
+        Tower tower = Towers::GetTowerData(TowerType::Ninja);
         tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
         tower.p_tileId = tile->p_id;
         tower.p_dirty = true;
@@ -84,7 +84,8 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     if (enemy)
     {
         Vector2 bulletPos = centerPos;
-        float angle = atan2(enemy->p_position.y - bulletPos.y, enemy->p_position.x - bulletPos.x);
+        Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+        float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
         // make bullet
         Bullet bullet = {};
@@ -115,6 +116,7 @@ void TowerManager::Update(float deltaTime)
 
         // Get the tile from TileManager and update tower position
         Tile tile = mgr_tile->GetTile(tower.p_tileId);
+        assert(tile.p_id != -1);
         tower.p_position = tile.p_position;
         tower.p_dirty = false;
     }
@@ -144,10 +146,8 @@ void TowerManager::Draw(uint8_t screenOffset) const
 }
 void TowerManager::Init()
 {
-    Tower tower = {};
-    tower.p_typeId = TowerType::Ninja;
+    Tower tower = Towers::GetTowerData(TowerType::Ninja);
     tower.p_id = 1;
     tower.p_tileId = 40;
-    tower.p_range = 60;
     AddTower(tower);
 }

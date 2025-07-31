@@ -5,17 +5,16 @@
 
 namespace Towers
 {
-    // Map of TowerType id to Tower data
-    inline std::unordered_map<int, Tower> towerData = 
+    inline std::unordered_map<int, Tower> g_towerData =
     {
-        { TowerType::Ninja, Tower{} }
+        // damage, position, id, range, attackSpeed, timeToAttack, typeId, tileId, dirty
+        {TowerType::Ninja, Tower{1, {-1, -1}, -1, 75.0f, 0.5f, 0, TowerType::Ninja, 0, true}}
     };
 
-    // Get Tower data by TowerType id
-    inline Tower getTowerData(int typeId)
+    inline Tower GetTowerData(int typeId)
     {
-        auto it = towerData.find(typeId);
-        if (it != towerData.end())
+        auto it = g_towerData.find(typeId);
+        if (it != g_towerData.end())
         {
             return it->second;
         }
