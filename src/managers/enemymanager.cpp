@@ -180,6 +180,11 @@ void EnemyManager::Draw(uint8_t screenOffset) const
 {
     for (auto &enemy : m_enemies)
     {
+        if (enemy.p_dirty)
+        {
+            continue;
+        }
+        
         DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, WHITE);
     }
 }
