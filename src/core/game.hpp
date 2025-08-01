@@ -4,6 +4,7 @@
 #include "../managers/enemymanager.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/bulletmanager.hpp"
+#include "../managers/wavemanager.hpp"
 
 class Game
 {
@@ -15,6 +16,7 @@ private: // variables
     EnemyManager mgr_enemy = {};
     TowerManager mgr_tower = {};
     BulletManager mgr_bullet = {}; 
+    WaveManager mgr_wave = {};
 
 private: // functions
     void UpdateDebug();

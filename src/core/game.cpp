@@ -26,6 +26,7 @@ void Game::Update()
     mgr_tile.Update();
     mgr_tower.Update(deltaTime);
     mgr_bullet.Update(deltaTime);
+    mgr_wave.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {
@@ -76,6 +77,9 @@ void Game::InitManagers()
     mgr_enemy.Init();
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet);
     mgr_tower.Init();
+
+    mgr_wave.InjectDependencies(&mgr_enemy);
+    mgr_wave.Init();
 }
 void Game::InitSprites()
 {

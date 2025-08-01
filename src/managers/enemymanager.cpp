@@ -7,6 +7,10 @@
 #include <raymath.h>
 #include <cassert>
 
+uint32_t EnemyManager::GetNewValidId()
+{
+    return m_IdCounter++;
+}
 Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
 {
     Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
@@ -113,6 +117,10 @@ void EnemyManager::HandleHits(Enemy &enemy)
         PrintDebug(enemy.p_health, "HIT TAKEN");
     }
 }
+void EnemyManager::AddEnemy(Enemy enemy)
+{
+    m_enemies.push_back(enemy);
+}
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
     // check if enemy has valid tile id
@@ -174,7 +182,7 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 void EnemyManager::Init()
 {
     Enemy enemy = Enemies::GetEnemyData(EnemyType::BlueSlime);
-    enemy.p_id = 1;
+    enemy.p_id = GetNewValidId();
     enemy.p_tileId = -1;
-    m_enemies.push_back(enemy);
+    AddEnemy(enemy);
 }

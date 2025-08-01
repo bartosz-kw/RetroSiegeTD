@@ -8,6 +8,7 @@ class EnemyManager
 {
 private:
     std::vector<Enemy> m_enemies = {};
+    uint32_t m_IdCounter = 1;
     TileManager *mgr_tile = nullptr;
     BulletManager *mgr_bullet = nullptr;
 
@@ -16,12 +17,14 @@ private:
     Vector2 CalculateMovePosition(int16_t moveDirection);
 
 public:
-    Vector2 GetCenterPosition(const Enemy& enemy) const; 
+    uint32_t GetNewValidId();
+    Vector2 GetCenterPosition(const Enemy &enemy) const;
     uint32_t FindEnemyInArea(Vector2 center, float radius);
-    Enemy* GetEnemyById(uint32_t id);
-    void UpdateVisualPosition(Enemy &enemy, Vector2& tilePosition,int16_t moveDirection);
+    Enemy *GetEnemyById(uint32_t id);
+    void UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int16_t moveDirection);
     void UpdateMovement(Enemy &enemy, float deltaTime);
     void HandleHits(Enemy &enemy);
+    void AddEnemy(Enemy enemy);
     void CleanEnemy(Enemy &enemy);
     void RemoveEnemies();
     void Update(float deltaTime);
