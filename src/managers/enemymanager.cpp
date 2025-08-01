@@ -7,42 +7,8 @@
 #include <raymath.h>
 #include <cassert>
 
-uint32_t EnemyManager::GetNewValidId()
-{
-    return m_IdCounter++;
-}
-Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
-{
-    Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
-    return Vector2{enemy.p_position.x + enemyTexture.width / 2.0f, enemy.p_position.y + enemyTexture.height / 2.0f};
-}
-uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
-{
-    int32_t biggestWalked = -10000;
-    uint32_t biggestWalkedId = 0;
-    for (auto &enemy : m_enemies)
-    {
-        Vector2 enemyCenter = GetCenterPosition(enemy);
-        if (CheckCollisionPointCircle(enemyCenter, center, radius))
-        {
-            if (biggestWalked < enemy.p_walked)
-            {
-                biggestWalked = enemy.p_walked;
-                biggestWalkedId = enemy.p_id;
-            }
-        }
-    }
-    return biggestWalkedId;
-}
-Enemy *EnemyManager::GetEnemyById(uint32_t id)
-{
-    for (auto &enemy : m_enemies)
-    {
-        if (enemy.p_id == id)
-            return &enemy;
-    }
-    return nullptr;
-}
+// Private
+
 const uint16_t EnemyManager::GetEnemyTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::enemyTextureOffset;
@@ -114,12 +80,8 @@ void EnemyManager::HandleHits(Enemy &enemy)
     for (auto &bullet : detectedBullets)
     {
         enemy.p_health -= bullet.p_damage;
-        PrintDebug(enemy.p_health, "HIT TAKEN");
+        //PrintDebug(enemy.p_health, "HIT TAKEN");
     }
-}
-void EnemyManager::AddEnemy(Enemy enemy)
-{
-    m_enemies.push_back(enemy);
 }
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
@@ -138,6 +100,9 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
 
     assert(tile.p_id != -1);
 }
+
+// Public
+
 void EnemyManager::RemoveEnemies()
 {
     std::vector<size_t> indexesToRemove = {};
@@ -154,6 +119,50 @@ void EnemyManager::RemoveEnemies()
     {
         m_enemies.erase(m_enemies.begin() + *it);
     }
+}
+bool EnemyManager::IsEnemiesEmpty() const
+{
+    return m_enemies.empty();
+}
+uint32_t EnemyManager::GetNewValidId()
+{
+    return m_IdCounter++;
+}
+Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
+{
+    Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+    return Vector2{enemy.p_position.x + enemyTexture.width / 2.0f, enemy.p_position.y + enemyTexture.height / 2.0f};
+}
+uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
+{
+    int32_t biggestWalked = -10000;
+    uint32_t biggestWalkedId = 0;
+    for (auto &enemy : m_enemies)
+    {
+        Vector2 enemyCenter = GetCenterPosition(enemy);
+        if (CheckCollisionPointCircle(enemyCenter, center, radius))
+        {
+            if (biggestWalked < enemy.p_walked)
+            {
+                biggestWalked = enemy.p_walked;
+                biggestWalkedId = enemy.p_id;
+            }
+        }
+    }
+    return biggestWalkedId;
+}
+Enemy *EnemyManager::GetEnemyById(uint32_t id)
+{
+    for (auto &enemy : m_enemies)
+    {
+        if (enemy.p_id == id)
+            return &enemy;
+    }
+    return nullptr;
+}
+void EnemyManager::AddEnemy(Enemy enemy)
+{
+    m_enemies.push_back(enemy);
 }
 void EnemyManager::Update(float deltaTime)
 {
@@ -181,8 +190,4 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 }
 void EnemyManager::Init()
 {
-    Enemy enemy = Enemies::GetEnemyData(EnemyType::BlueSlime);
-    enemy.p_id = GetNewValidId();
-    enemy.p_tileId = -1;
-    AddEnemy(enemy);
 }

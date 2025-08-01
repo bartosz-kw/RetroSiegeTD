@@ -8,11 +8,14 @@ private:
     std::vector<EnemyWave> m_enemyWaves = {};
     float m_time = 0.0f;
     EnemyManager* mgr_enemy = nullptr; 
+
+    
+    void RemoveWave(uint32_t id);
+    void HandleWave();
 public:
     WaveManager() = default;
-        EnemyWave* GetSmallestIdWave();
 
-    void HandleWave();
+    EnemyWave* GetSmallestIdWave();
     void Update(float deltaTime);
     void InjectDependencies(EnemyManager* enemyManager);
     void Init();
