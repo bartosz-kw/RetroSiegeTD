@@ -11,6 +11,8 @@
 #include <cmath>
 #include <algorithm>
 
+// Private
+
 void TowerManager::DetectInput()
 {
     // this is debug key, and this will be changed in later versions
@@ -30,7 +32,6 @@ void TowerManager::DetectInput()
         AddTower(tower);
     }
 }
-
 void TowerManager::UpdateFight(Tower &tower, float deltatime)
 {
     tower.p_timeToAttack += deltatime;
@@ -59,22 +60,21 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     tower.p_timeToAttack = 0.0f;
 }
 
+// Public
+
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
     Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     return Vector2{tower.p_position.x + towerTexture.width / 2.0f, tower.p_position.y + towerTexture.height / 2.0f};
 }
-
 uint16_t TowerManager::GetTowerTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::towerTextureOffset;
 }
-
 void TowerManager::AddTower(Tower tower)
 {
     m_towers.push_back(tower);
 }
-
 void TowerManager::RemoveTower(int32_t id)
 {
     m_towers.erase(
@@ -83,7 +83,6 @@ void TowerManager::RemoveTower(int32_t id)
                        { return t.p_id == id; }),
         m_towers.end());
 }
-
 bool TowerManager::CanPlaceTower(Tile *tile)
 {
     if (tile->p_moveDirection != 0)
@@ -97,7 +96,6 @@ bool TowerManager::CanPlaceTower(Tile *tile)
     }
     return true;
 }
-
 void TowerManager::Update(float deltaTime)
 {
     assert(mgr_tile && "mgr_tile in towermanager was nullptr");
@@ -119,7 +117,6 @@ void TowerManager::Update(float deltaTime)
         tower.p_dirty = false;
     }
 }
-
 void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
@@ -143,11 +140,9 @@ void TowerManager::Draw(uint8_t screenOffset) const
         }
     }
 }
-
 void TowerManager::Init()
 {
 }
-
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
 {
     mgr_tile = mgr_tilePtr;

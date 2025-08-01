@@ -3,6 +3,8 @@
 #include "../namespaces/enemies.hpp"
 #include "../utility/debugUtil.hpp"
 
+// Private
+
 void WaveManager::RemoveWave(uint32_t id)
 {
     auto eraseLambda = [id](const EnemyWave &wave)
@@ -11,7 +13,6 @@ void WaveManager::RemoveWave(uint32_t id)
     };
     m_enemyWaves.erase(std::remove_if(m_enemyWaves.begin(), m_enemyWaves.end(), eraseLambda), m_enemyWaves.end());
 }
-
 void WaveManager::HandleWave()
 {
     EnemyWave *currentWave = GetSmallestIdWave();
@@ -47,6 +48,8 @@ void WaveManager::HandleWave()
     }
 }
 
+// Public
+
 EnemyWave *WaveManager::GetSmallestIdWave()
 {
     if (m_enemyWaves.empty())
@@ -62,7 +65,6 @@ EnemyWave *WaveManager::GetSmallestIdWave()
     }
     return smallest;
 }
-
 void WaveManager::Update(float deltaTime)
 {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
@@ -70,12 +72,10 @@ void WaveManager::Update(float deltaTime)
     m_time += deltaTime;
     HandleWave();
 }
-
 void WaveManager::InjectDependencies(EnemyManager *enemyManager)
 {
     mgr_enemy = enemyManager;
 }
-
 void WaveManager::Init()
 {
 

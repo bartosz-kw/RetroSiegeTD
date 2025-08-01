@@ -9,6 +9,20 @@ const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
 }
+bool TileManager::IsTileClicked(const Tile &tile) const
+{
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        return false;
+    }
+    Vector2 mousePosition = GetMousePosition();
+    // TODO: Remove magic numbers
+    if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
+    {
+        return false;
+    }
+    return true;
+}
 Tile TileManager::GetPathStart()
 {
     if (m_startPathId == -1)
@@ -61,10 +75,10 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
     }
     else
     {
-        PrintDebugError(direction,"UNKNOWN DIRECTION");
+        PrintDebugError(direction, "UNKNOWN DIRECTION");
         assert(false && "unknown direction was inputed into GetMovedId");
     }
-    if (tileid < 0 || tileid > (18*18))
+    if (tileid < 0 || tileid > (18 * 18))
     {
         assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
@@ -72,23 +86,9 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
     //PrintDebug(tileid);
     return tileid;
 }
-Tile* TileManager::GetLastClickedTile()
+Tile *TileManager::GetLastClickedTile()
 {
     return m_lastClickedTile;
-}
-bool TileManager::IsTileClicked(const Tile& tile) const
-{
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        return false;
-    }
-    Vector2 mousePosition = GetMousePosition();
-    // TODO: Remove magic numbers
-    if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
-    {
-        return false;
-    }
-    return true;
 }
 void TileManager::Update()
 {
@@ -135,4 +135,3 @@ void TileManager::Init()
 {
     
 }
-
