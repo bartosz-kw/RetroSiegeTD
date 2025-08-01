@@ -4,5 +4,5 @@
 
 struct EnemyWave {
     int p_id;
-    std::vector<std::pair<float, int>> p_values;
+    std::vector<std::pair<float, int>> p_enemySpawns; // float is time to spawn and int is id
 };
