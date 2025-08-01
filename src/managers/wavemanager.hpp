@@ -10,6 +10,7 @@ private:
     EnemyManager* mgr_enemy = nullptr; 
 public:
     WaveManager() = default;
+        EnemyWave* GetSmallestIdWave();
 
     void HandleWave();
     void Update(float deltaTime);
