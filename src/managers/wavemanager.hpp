@@ -9,9 +9,10 @@ private:
     float m_time = 0.0f;
     EnemyManager* mgr_enemy = nullptr; 
 
-    
+private:
     void RemoveWave(uint32_t id);
     void HandleWave();
+    void LoadWaves();
 public:
     WaveManager() = default;
 

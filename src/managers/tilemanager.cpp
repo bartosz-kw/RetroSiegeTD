@@ -5,6 +5,8 @@
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
 
+// Private
+
 const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
@@ -23,6 +25,9 @@ bool TileManager::IsTileClicked(const Tile &tile) const
     }
     return true;
 }
+
+// Public
+
 Tile TileManager::GetPathStart()
 {
     if (m_startPathId == -1)

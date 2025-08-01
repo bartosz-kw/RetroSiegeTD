@@ -47,6 +47,29 @@ void WaveManager::HandleWave()
         return; // safe guard, ending function after deleting used pointer
     }
 }
+void WaveManager::LoadWaves()
+{
+    std::vector<std::pair<float, int>> enemySpawns2 = {};
+    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    EnemyWave wave2 = {};
+    wave2.p_id = 2;
+    wave2.p_enemySpawns = enemySpawns2;
+
+    std::vector<std::pair<float, int>> enemySpawns1 = {};
+    enemySpawns1.push_back({5.0f, EnemyType::BlueSlime});
+    enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
+    EnemyWave wave1 = {};
+    wave1.p_id = 1;
+    wave1.p_enemySpawns = enemySpawns1;
+    m_enemyWaves.push_back(wave1);
+    m_enemyWaves.push_back(wave2);
+}
 
 // Public
 
@@ -78,27 +101,7 @@ void WaveManager::InjectDependencies(EnemyManager *enemyManager)
 }
 void WaveManager::Init()
 {
-
-    std::vector<std::pair<float, int>> enemySpawns2 = {};
-    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
-    EnemyWave wave2 = {};
-    wave2.p_id = 2;
-    wave2.p_enemySpawns = enemySpawns2;
-
-    std::vector<std::pair<float, int>> enemySpawns1 = {};
-    enemySpawns1.push_back({5.0f, EnemyType::BlueSlime});
-    enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
-    enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
-    EnemyWave wave1 = {};
-    wave1.p_id = 1;
-    wave1.p_enemySpawns = enemySpawns1;
-    m_enemyWaves.push_back(wave1);
-    m_enemyWaves.push_back(wave2);
+    LoadWaves();
 
     m_time = 0.0f;
 }
