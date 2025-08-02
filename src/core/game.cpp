@@ -4,6 +4,8 @@
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "game.hpp"
+
+// Private functions
 void Game::UpdateDebug()
 {
 #ifdef RELEASE
@@ -40,8 +42,11 @@ void Game::MakeTextureFrame() const
     mgr_enemy.Draw(screenOffset);
     mgr_tower.Draw(screenOffset);
     mgr_bullet.Draw(screenOffset);
+
     DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
+
+    gui_waveCounter.Draw();
     EndTextureMode();
 }
 void Game::Draw() const
@@ -73,13 +78,17 @@ void Game::InitManagers()
     // continue with managers
 
     mgr_bullet.Init();
-    mgr_enemy.InjectDependencies(&mgr_tile,&mgr_bullet);
+    mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet);
     mgr_enemy.Init();
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet);
     mgr_tower.Init();
 
     mgr_wave.InjectDependencies(&mgr_enemy);
     mgr_wave.Init();
+}
+void Game::InitGui()
+{
+    gui_waveCounter.Init();
 }
 void Game::InitSprites()
 {
@@ -97,12 +106,14 @@ void Game::InitGame()
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
 }
+// Public functions
 void Game::Init()
 {
     InitGame();
     InitSprites();
     InitMembers();
     InitManagers();
+    InitGui();
 }
 void Game::Run()
 {

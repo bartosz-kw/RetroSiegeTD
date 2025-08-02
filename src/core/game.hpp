@@ -5,6 +5,7 @@
 #include "../managers/towermanager.hpp"
 #include "../managers/bulletmanager.hpp"
 #include "../managers/wavemanager.hpp"
+#include "../gui/wavecounter.hpp"
 
 class Game
 {
@@ -15,14 +16,22 @@ private: // variables
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
     TowerManager mgr_tower = {};
-    BulletManager mgr_bullet = {}; 
+    BulletManager mgr_bullet = {};
     WaveManager mgr_wave = {};
+    // gui
+    WaveCounter gui_waveCounter = {};
 
 private: // functions
     void UpdateDebug();
     void Update();
     void MakeTextureFrame() const;
     void Draw() const;
+
+    void InitManagers();
+    void InitGui();
+    void InitSprites();
+    void InitMembers();
+    void InitGame();
 
 public: // variables
     const int p_gameHeight = 270;
@@ -36,10 +45,6 @@ public: // functions
     Game() = default;
     ~Game() = default;
 
-    void InitManagers();
-    void InitSprites();
-    void InitMembers();
-    void InitGame();
     void Init();
     void Run();
     void Shutdown();
