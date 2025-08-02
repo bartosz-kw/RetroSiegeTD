@@ -18,8 +18,17 @@ bool TileManager::IsTileClicked(const Tile &tile) const
         return false;
     }
     Vector2 mousePosition = GetMousePosition();
-    // TODO: Remove magic numbers
-    if (!CheckCollisionPointRec(mousePosition, {tile.p_position.x * 4 + 105 * 4, tile.p_position.y * 4, 15 * 4, 15 * 4}))
+
+    uint8_t scale = 4;
+    uint8_t screenOffset = 105;
+    Rectangle tileRect = 
+    {
+        tile.p_position.x * scale + screenOffset * scale, // x
+        tile.p_position.y * scale, // y
+        static_cast<float>(g_tileSize * scale), // width
+        static_cast<float>(g_tileSize * scale)  // height
+    };
+    if (!CheckCollisionPointRec(mousePosition, tileRect))
     {
         return false;
     }
@@ -88,7 +97,7 @@ int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
         assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
-    //PrintDebug(tileid);
+    // PrintDebug(tileid);
     return tileid;
 }
 Tile *TileManager::GetLastClickedTile()
@@ -138,5 +147,4 @@ void TileManager::LoadMap(GameMap gameMap)
 }
 void TileManager::Init()
 {
-    
 }
