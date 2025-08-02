@@ -43,6 +43,7 @@ void EnemyManager::UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int
     constexpr float minTime = 0.0f;
     float normalizedTime = (enemy.p_timeToMove - minTime) / (enemy.p_speed - minTime);
     enemy.p_position = Vector2Add(tilePosition, Vector2Scale(movePosition, normalizedTime));
+    
 }
 void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
 {
