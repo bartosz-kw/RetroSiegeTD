@@ -6,6 +6,7 @@
 #include "../managers/bulletmanager.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../gui/wavecounter.hpp"
+#include "../gui/towerselect.hpp"
 
 class Game
 {
@@ -20,6 +21,7 @@ private: // variables
     WaveManager mgr_wave = {};
     // gui
     WaveCounter gui_waveCounter = {};
+    TowerSelect gui_towerSelect = {};
 
 private: // functions
     void UpdateDebug();

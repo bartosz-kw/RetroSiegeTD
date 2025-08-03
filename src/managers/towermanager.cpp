@@ -15,6 +15,7 @@
 
 void TowerManager::DetectInput()
 {
+
     // this is debug key, and this will be changed in later versions
     if (IsKeyDown(KEY_T))
     {
@@ -31,6 +32,28 @@ void TowerManager::DetectInput()
         PrintDebug(tile->p_id, "Tower Placed At");
         AddTower(tower);
     }
+}
+void TowerManager::DetectTowerInput(Tower &tower)
+{
+    Vector2 mousePosition = GetMousePosition();
+    Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+    Rectangle towerRect =
+        {tower.p_position.x * 4 + 105 * 4, tower.p_position.y * 4, static_cast<float>(texture.width * 4), static_cast<float>(texture.height * 4)};
+
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        return;
+    }
+    if (!CheckCollisionPointRec(mousePosition, towerRect))
+    {
+        return;
+    }
+    if (tower.p_dirty)
+    {
+        return;
+    }
+
+    m_lastSelectedTower = &tower;
 }
 void TowerManager::UpdateFight(Tower &tower, float deltatime)
 {
@@ -83,6 +106,10 @@ void TowerManager::RemoveTower(int32_t id)
                        { return t.p_id == id; }),
         m_towers.end());
 }
+Tower *TowerManager::GetLastSelectedTower()
+{
+    return m_lastSelectedTower;
+}
 bool TowerManager::CanPlaceTower(Tile *tile)
 {
     if (tile->p_moveDirection != 0)
@@ -106,28 +133,28 @@ void TowerManager::Update(float deltaTime)
 
     for (auto &tower : m_towers)
     {
-        UpdateFight(tower, deltaTime);
-        if (!tower.p_dirty)
-            continue;
+        assert(tower.p_id >= 0 && tower.p_id <= (18*18));
+        if (tower.p_dirty)
+        {
+            Tile tile = mgr_tile->GetTile(tower.p_tileId);
+            assert(tile.p_id != -1);
+            tower.p_position = tile.p_position;
+            tower.p_dirty = false;
+        }
 
-        // Get the tile from TileManager and update tower position
-        Tile tile = mgr_tile->GetTile(tower.p_tileId);
-        assert(tile.p_id != -1);
-        tower.p_position = tile.p_position;
-        tower.p_dirty = false;
+        UpdateFight(tower, deltaTime);
+        DetectTowerInput(tower);
     }
 }
 void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
-        DrawTexture
-        (
+        DrawTexture(
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
             tower.p_position.y,
-            WHITE
-        );
+            WHITE);
         if (Settings::debugView)
         {
             Color color = {255, 0, 0, 125};
