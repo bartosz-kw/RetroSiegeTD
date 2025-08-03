@@ -10,6 +10,7 @@ private:
     
 private:
     void UpdateTextPosition(TextLabel& label);
+    void InitLabels();
     
 public:
     void Update();
