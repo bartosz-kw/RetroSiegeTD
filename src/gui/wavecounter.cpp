@@ -23,7 +23,8 @@ void WaveCounter::Draw() const
 {
     for (auto &label : m_textLabels)
     {
-        DrawRectangleRec(label.p_rect,label.p_color);
+        DrawRectangleRounded(label.p_rect,10.0f,4.0f,label.p_color);
+        //DrawRectangleRec(label.p_rect,label.p_color);
         DrawTextEx(GetFontDefault(),label.p_text.c_str(),label.p_textPosition,label.p_fontSize,1.0f,BLACK);
     }
 }
@@ -42,7 +43,7 @@ void WaveCounter::Init()
     waveCountLabel.p_text = "Wave:";
     waveCountLabel.p_id = 1;
     waveCountLabel.p_fontSize = GetFontDefault().baseSize;
-    waveCountLabel.p_rect = {0,0,105,20};
+    waveCountLabel.p_rect = {0,4,105,20};
     waveCountLabel.p_updateFunction = [&waveCountLabel,this]()
     {
         EnemyWave* currentWave = mgr_wave->GetSmallestIdWave();
