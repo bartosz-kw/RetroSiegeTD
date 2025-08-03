@@ -7,6 +7,7 @@
 struct TextLabel
 {
     Rectangle p_rect = {0, 0};
+    Vector2 p_textPosition = {0,0};
     std::string p_text = "";
     Color p_color = WHITE;
     int p_id = 0;

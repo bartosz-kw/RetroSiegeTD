@@ -29,6 +29,9 @@ void Game::Update()
     mgr_tower.Update(deltaTime);
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
+
+
+    gui_waveCounter.Update();
 }
 void Game::MakeTextureFrame() const
 {
