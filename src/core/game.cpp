@@ -17,7 +17,7 @@ void Game::UpdateDebug()
     }
     if (IsKeyPressed(KEY_F3))
     {
-        Settings::debugView = !Settings::debugView;
+        Settings::g_debugView = !Settings::g_debugView;
     }
 }
 void Game::Update()
@@ -40,6 +40,9 @@ void Game::MakeTextureFrame() const
     constexpr uint8_t boundingWidth = 105;
     constexpr uint8_t screenOffset = boundingWidth;
     constexpr Color boundingColor = BLACK;
+
+    Settings::g_boundingSize = boundingWidth;
+    Settings::g_gameScale = 4;
 
     mgr_tile.Draw(screenOffset);
     mgr_enemy.Draw(screenOffset);

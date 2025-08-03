@@ -18,15 +18,12 @@ bool TileManager::IsTileClicked(const Tile &tile) const
         return false;
     }
     Vector2 mousePosition = GetMousePosition();
-
-    uint8_t scale = 4;
-    uint8_t screenOffset = 105;
     Rectangle tileRect = 
     {
-        tile.p_position.x * scale + screenOffset * scale, // x
-        tile.p_position.y * scale, // y
-        static_cast<float>(g_tileSize * scale), // width
-        static_cast<float>(g_tileSize * scale)  // height
+        tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale, // x
+        tile.p_position.y * Settings::g_gameScale, // y
+        static_cast<float>(g_tileSize * Settings::g_gameScale), // width
+        static_cast<float>(g_tileSize * Settings::g_gameScale)  // height
     };
     if (!CheckCollisionPointRec(mousePosition, tileRect))
     {
@@ -120,7 +117,7 @@ void TileManager::Draw(uint8_t screenOffset) const
     for (auto &&tile : m_tiles)
     {
         Color color = WHITE;
-        if (Settings::debugView && tile.p_moveDirection != 0)
+        if (Settings::g_debugView && tile.p_moveDirection != 0)
         {
             color = RED;
         }

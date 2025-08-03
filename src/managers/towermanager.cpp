@@ -38,7 +38,10 @@ void TowerManager::DetectTowerInput(Tower &tower)
     Vector2 mousePosition = GetMousePosition();
     Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     Rectangle towerRect =
-        {tower.p_position.x * 4 + 105 * 4, tower.p_position.y * 4, static_cast<float>(texture.width * 4), static_cast<float>(texture.height * 4)};
+        {tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale
+        , tower.p_position.y * Settings::g_gameScale
+        , static_cast<float>(texture.width * Settings::g_gameScale)
+        , static_cast<float>(texture.height * Settings::g_gameScale)};
 
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
@@ -155,7 +158,7 @@ void TowerManager::Draw(uint8_t screenOffset) const
             tower.p_position.x + screenOffset,
             tower.p_position.y,
             WHITE);
-        if (Settings::debugView)
+        if (Settings::g_debugView)
         {
             Color color = {255, 0, 0, 125};
             Vector2 centerPos = GetCenterPosition(tower);
