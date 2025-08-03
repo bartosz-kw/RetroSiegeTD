@@ -30,7 +30,6 @@ void Game::Update()
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
 
-
     gui_waveCounter.Update();
 }
 void Game::MakeTextureFrame() const
@@ -91,6 +90,8 @@ void Game::InitManagers()
 }
 void Game::InitGui()
 {
+    
+    gui_waveCounter.InjectDependencies(&mgr_wave);
     gui_waveCounter.Init();
 }
 void Game::InitSprites()
@@ -105,7 +106,7 @@ void Game::InitMembers()
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
-    ToggleFullscreen();
+    //ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
 }

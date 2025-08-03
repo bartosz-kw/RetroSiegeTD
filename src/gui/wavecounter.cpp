@@ -1,5 +1,7 @@
 #include "wavecounter.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../managers/wavemanager.hpp"
+#include <cassert>
 
 void WaveCounter::UpdateTextPosition(TextLabel& label)
 {
@@ -26,13 +28,31 @@ void WaveCounter::Draw() const
     }
 }
 
+void WaveCounter::InjectDependencies(WaveManager* waveManager)
+{
+    mgr_wave = waveManager;
+}
+
 void WaveCounter::Init()
 {
-    TextLabel waveCountLabel = {};
-    waveCountLabel.p_text = "eeeee";
+    assert(mgr_wave != nullptr && "WaveManager wasn't injected and its dependency");
+    
+    m_textLabels.emplace_back(TextLabel{});
+    TextLabel& waveCountLabel = m_textLabels.back();
+    waveCountLabel.p_text = "Wave:";
     waveCountLabel.p_id = 1;
     waveCountLabel.p_fontSize = GetFontDefault().baseSize;
-    waveCountLabel.p_rect = {0,0,100,20};
-
-    m_textLabels.push_back(waveCountLabel);
+    waveCountLabel.p_rect = {0,0,105,20};
+    waveCountLabel.p_updateFunction = [&waveCountLabel,this]()
+    {
+        EnemyWave* currentWave = mgr_wave->GetSmallestIdWave();
+        if (!currentWave)
+        {
+            waveCountLabel.p_text = "Victory!";
+            return;
+        }
+        
+        std::string text = "Wave: " + std::to_string(currentWave->p_id);
+        waveCountLabel.p_text = text;
+    };
 }
