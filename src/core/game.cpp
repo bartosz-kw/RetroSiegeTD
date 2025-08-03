@@ -13,7 +13,7 @@ void Game::UpdateDebug()
 #endif
     if (IsKeyPressed(KEY_F11))
     {
-        ToggleBorderlessWindowed();
+        ToggleFullscreen();
     }
     if (IsKeyPressed(KEY_F3))
     {
