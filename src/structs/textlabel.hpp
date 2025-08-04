@@ -10,8 +10,8 @@ struct TextLabel
     Vector2 p_textPosition = {0,0};
     std::string p_text = "";
     Color p_color = WHITE;
-    int p_id = 0;
-    int p_fontSize = 10;
+    uint16_t p_id = 0;
+    uint8_t p_fontSize = 10;
     std::function<void()> p_updateFunction = [](){};
     bool p_visible = true;
 };
