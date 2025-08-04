@@ -5,11 +5,13 @@ enum TowerType
 {
     Ninja = 1
 };
+
 struct Tower
 {               
     int64_t p_damage = 1;
-    Vector2 p_position = {0,0}         ;       
+    Vector2 p_position = {0,0};       
     int32_t p_id = -1;
+    uint16_t p_level = 0;
     float p_range = 30;
     float p_attackSpeed = 1;
     float p_timeToAttack = 0;
