@@ -47,7 +47,14 @@ void WaveCounter::Draw() const
 {
     for (auto &label : m_textLabels)
     {
-        DrawRectangleRounded(label.p_rect,10.0f,4.0f,label.p_color);
+        if (!label.p_visible)
+        {
+            return;
+        }
+        
+        constexpr float segments = 4.0f;
+        constexpr float roundness = 10.0f;
+        DrawRectangleRounded(label.p_rect,roundness,segments,label.p_color);
         //DrawRectangleRec(label.p_rect,label.p_color);
         DrawTextEx(GetFontDefault(),label.p_text.c_str(),label.p_textPosition,label.p_fontSize,1.0f,BLACK);
     }

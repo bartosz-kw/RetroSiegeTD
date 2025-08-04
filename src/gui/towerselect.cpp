@@ -14,23 +14,46 @@ void TowerSelect::UpdateTextPosition(TextLabel& label)
 
 void TowerSelect::InitLabels()
 {
+    m_textLabels.reserve(2);
+
     m_textLabels.emplace_back(TextLabel{});
-    TextLabel& towerInfoLabel = m_textLabels.back();
-    towerInfoLabel.p_text = "Tower Info:";
-    towerInfoLabel.p_id = 1;
-    towerInfoLabel.p_fontSize = GetFontDefault().baseSize;
-    towerInfoLabel.p_rect = {0, 250, 105, 20};
-    towerInfoLabel.p_color = BLUE;
-    towerInfoLabel.p_updateFunction = [&towerInfoLabel, this]()
+    TextLabel& towerNameLabel = m_textLabels.back();
+    towerNameLabel.p_text = "Tower Info:";
+    towerNameLabel.p_id = 1;
+    towerNameLabel.p_fontSize = GetFontDefault().baseSize;
+    towerNameLabel.p_rect = {0, 230, 105, 20};
+    towerNameLabel.p_color = BLUE;
+    towerNameLabel.p_updateFunction = [&towerNameLabel, this]()
     {
         
         Tower* tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
-            towerInfoLabel.p_text = "No Tower Selected";
+            towerNameLabel.p_visible = false;
             return;
         }
-        towerInfoLabel.p_text = std::to_string(tower->p_id);
+        towerNameLabel.p_text = "Tower Id: " + std::to_string(tower->p_id);
+        towerNameLabel.p_visible = true;
+        
+    };
+
+    m_textLabels.emplace_back(TextLabel{});
+    TextLabel& towerLevelLabel = m_textLabels.back();
+    towerLevelLabel.p_text = "h";
+    towerLevelLabel.p_id = 1;
+    towerLevelLabel.p_fontSize = GetFontDefault().baseSize;
+    towerLevelLabel.p_rect = {0, 250, 21, 20};
+    towerLevelLabel.p_color = BLUE;
+    towerLevelLabel.p_updateFunction = [&towerLevelLabel, this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            towerLevelLabel.p_visible = false;
+            return;
+        }
+        towerLevelLabel.p_text = "L: " + std::to_string(tower->p_level);
+        towerLevelLabel.p_visible = true;
         
     };
 }
@@ -48,7 +71,13 @@ void TowerSelect::Draw() const
 {
     for (auto &label : m_textLabels)
     {
-        DrawRectangleRounded(label.p_rect, 10.0f, 4.0f, label.p_color);
+        if (!label.p_visible)
+        {
+            return;
+        }
+        constexpr float segments = 4.0f;
+        constexpr float roundness = 5.0f;
+        DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
         DrawTextEx(GetFontDefault(), label.p_text.c_str(), label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
     }
 }
