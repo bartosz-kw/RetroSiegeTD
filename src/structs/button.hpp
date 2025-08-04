@@ -11,9 +11,11 @@ struct Button
     Color p_color = BLUE;
     Color p_hoverColor = LIGHTGRAY;
     Color p_pressedColor = DARKBLUE;
+    Vector2 p_textPosition = {0,0};
     uint16_t p_id = 0;
+    float p_fontSize = 10.0f;
     std::function<void()> p_onPressed = [](){};
-    std::function<void()> p_updateFunc = [](){};
+    std::function<void()> p_updateFunction = [](){};
     bool p_isHovered = false;
     bool p_isPressed = false;
     bool p_visible = true;

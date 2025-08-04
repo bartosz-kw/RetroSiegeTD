@@ -12,7 +12,14 @@ void TowerSelect::UpdateTextPosition(TextLabel& label)
         label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f
     };
 }
-
+void TowerSelect::UpdateTextPosition(Button& button)
+{
+    Vector2 textMeasurement = MeasureTextEx(GetFontDefault(), button.p_text.c_str(), GetFontDefault().baseSize, 1.0f);
+    button.p_textPosition = {
+        button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
+        button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f
+    };
+}
 void TowerSelect::InitLabels()
 {
     constexpr uint8_t amountOfLabels = 5;
@@ -116,6 +123,37 @@ void TowerSelect::InitLabels()
         rangeLabel.p_visible = true;
     };
 }
+void TowerSelect::InitButtons()
+{
+    constexpr uint8_t amountOfButtons = 1;
+    m_buttons.reserve(amountOfButtons);
+
+    m_buttons.emplace_back(Button{});
+    Button& upgradeButton = m_buttons.back();
+    upgradeButton.p_text = "Upgrade";
+    upgradeButton.p_id = 1;
+    upgradeButton.p_rect = {63, 250, 42, 20};
+    upgradeButton.p_color = GREEN;
+    upgradeButton.p_fontSize = GetFontDefault().baseSize;
+    upgradeButton.p_updateFunction = [&upgradeButton, this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            upgradeButton.p_visible = false;
+            return;
+        }
+        upgradeButton.p_visible = true;
+    };
+    upgradeButton.p_onPressed = [this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (tower)
+        {
+            PrintDebug("Hello world");//this->mgr_tower->UpgradeTower(tower->p_id);
+        }
+    };
+}
 void TowerSelect::Update()
 {
     for (auto &label : m_textLabels)
@@ -123,8 +161,20 @@ void TowerSelect::Update()
         UpdateTextPosition(label);
         label.p_updateFunction();
     }
-}
+    for (auto &button : m_buttons)
+    {
+        UpdateTextPosition(button);
+        button.p_updateFunction();
+        Vector2 mousePosition = GetMousePosition();
+        //if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition,button.p_rect))
+        //{
+        //    button.p_onPressed();            
+        //}
 
+        
+    }
+    
+}
 void TowerSelect::Draw() const
 {
     for (auto &label : m_textLabels)
@@ -138,15 +188,25 @@ void TowerSelect::Draw() const
         DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
         DrawTextEx(GetFontDefault(), label.p_text.c_str(), label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
     }
+    for (auto &button : m_buttons)
+    {
+        if (!button.p_visible)
+        {
+            return;
+        }
+        constexpr float segments = 4.0f;
+        constexpr float roundness = 5.0f;
+        DrawRectangleRounded(button.p_rect, roundness, segments, button.p_color);
+        DrawTextEx(GetFontDefault(), button.p_text.c_str(), button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
+    }
 }
-
 void TowerSelect::InjectDependencies(TowerManager* towerManager)
 {
     mgr_tower = towerManager;
 }
-
 void TowerSelect::Init()
 {
     assert(mgr_tower != nullptr && "TowerManager wasn't injected and its dependency");
     InitLabels();
+    InitButtons();
 }
