@@ -87,7 +87,14 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
 }
 
 // Public
-
+std::string TowerManager::TowerTypeToString(TowerType type)
+{
+    switch (type)
+    {
+        case TowerType::Ninja: return "Ninja";
+        default:               return "Unknown";
+    }
+}
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
     Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
@@ -173,7 +180,7 @@ void TowerManager::Draw(uint8_t screenOffset) const
 void TowerManager::Init()
 {
 }
-void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr)
+void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;

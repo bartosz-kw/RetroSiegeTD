@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 #include "../structs/tower.hpp"
 
 class TileManager; 
@@ -22,6 +23,7 @@ private:
 public:
     TowerManager() = default;
 
+    std::string TowerTypeToString(TowerType type);
     Vector2 GetCenterPosition(const Tower& tower) const; 
     uint16_t GetTowerTextureIndex(uint16_t typeId) const;
     void AddTower(Tower tower);
