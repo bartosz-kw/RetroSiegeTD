@@ -13,4 +13,5 @@ struct TextLabel
     int p_id = 0;
     int p_fontSize = 10;
     std::function<void()> p_updateFunction = [](){};
+    bool p_visible = true;
 };
