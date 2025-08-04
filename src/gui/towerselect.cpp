@@ -1,6 +1,7 @@
 #include "towerselect.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
+#include <format>
 #include <cassert>
 
 void TowerSelect::UpdateTextPosition(TextLabel& label)
@@ -14,50 +15,107 @@ void TowerSelect::UpdateTextPosition(TextLabel& label)
 
 void TowerSelect::InitLabels()
 {
-    m_textLabels.reserve(2);
+    constexpr uint8_t amountOfLabels = 5;
+    m_textLabels.reserve(amountOfLabels);
 
     m_textLabels.emplace_back(TextLabel{});
-    TextLabel& towerNameLabel = m_textLabels.back();
-    towerNameLabel.p_text = "Tower Info:";
-    towerNameLabel.p_id = 1;
-    towerNameLabel.p_fontSize = GetFontDefault().baseSize;
-    towerNameLabel.p_rect = {0, 230, 105, 20};
-    towerNameLabel.p_color = BLUE;
-    towerNameLabel.p_updateFunction = [&towerNameLabel, this]()
+    TextLabel& nameLabel = m_textLabels.back();
+    nameLabel.p_text = "Tower Info:";
+    nameLabel.p_id = 1;
+    nameLabel.p_fontSize = GetFontDefault().baseSize;
+    nameLabel.p_rect = {0, 170, 105, 20};
+    nameLabel.p_color = BLUE;
+    nameLabel.p_updateFunction = [&nameLabel, this]()
     {
         
         Tower* tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
-            towerNameLabel.p_visible = false;
+            nameLabel.p_visible = false;
             return;
         }
-        towerNameLabel.p_text = "Tower Id: " + std::to_string(tower->p_id);
-        towerNameLabel.p_visible = true;
+        nameLabel.p_text = "Tower Id: " + std::to_string(tower->p_id);
+        nameLabel.p_visible = true;
         
     };
 
     m_textLabels.emplace_back(TextLabel{});
-    TextLabel& towerLevelLabel = m_textLabels.back();
-    towerLevelLabel.p_text = "h";
-    towerLevelLabel.p_id = 1;
-    towerLevelLabel.p_fontSize = GetFontDefault().baseSize;
-    towerLevelLabel.p_rect = {0, 250, 21, 20};
-    towerLevelLabel.p_color = BLUE;
-    towerLevelLabel.p_updateFunction = [&towerLevelLabel, this]()
+    TextLabel& levelLabel = m_textLabels.back();
+    levelLabel.p_text = "h";
+    levelLabel.p_id = 1;
+    levelLabel.p_fontSize = GetFontDefault().baseSize;
+    levelLabel.p_rect = {0, 190, 63, 20};
+    levelLabel.p_color = BLUE;
+    levelLabel.p_updateFunction = [&levelLabel, this]()
     {
         Tower* tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
-            towerLevelLabel.p_visible = false;
+            levelLabel.p_visible = false;
             return;
         }
-        towerLevelLabel.p_text = "L: " + std::to_string(tower->p_level);
-        towerLevelLabel.p_visible = true;
+        levelLabel.p_text = "L: " + std::to_string(tower->p_level);
+        levelLabel.p_visible = true;
         
+    };
+
+    m_textLabels.emplace_back(TextLabel{});
+    TextLabel& damageLabel = m_textLabels.back();
+    damageLabel.p_text = "D: 0";
+    damageLabel.p_id = 2;
+    damageLabel.p_fontSize = GetFontDefault().baseSize;
+    damageLabel.p_rect = {0, 210, 63, 20};
+    damageLabel.p_color = BLUE;
+    damageLabel.p_updateFunction = [&damageLabel, this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            damageLabel.p_visible = false;
+            return;
+        }
+        damageLabel.p_text = "D: " + std::to_string(tower->p_damage);
+        damageLabel.p_visible = true;
+    };
+
+    m_textLabels.emplace_back(TextLabel{});
+    TextLabel& attackSpeedLabel = m_textLabels.back();
+    attackSpeedLabel.p_text = "AS: 0";
+    attackSpeedLabel.p_id = 3;
+    attackSpeedLabel.p_fontSize = GetFontDefault().baseSize;
+    attackSpeedLabel.p_rect = {0, 230, 63, 20};
+    attackSpeedLabel.p_color = BLUE;
+    attackSpeedLabel.p_updateFunction = [&attackSpeedLabel, this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            attackSpeedLabel.p_visible = false;
+            return;
+        }
+        attackSpeedLabel.p_text = "AS: " + std::format("{:.2f}", tower->p_attackSpeed);
+        attackSpeedLabel.p_visible = true;
+    };
+
+    m_textLabels.emplace_back(TextLabel{});
+    TextLabel& rangeLabel = m_textLabels.back();
+    rangeLabel.p_text = "R: 0";
+    rangeLabel.p_id = 4;
+    rangeLabel.p_fontSize = GetFontDefault().baseSize;
+    rangeLabel.p_rect = {0, 250, 63, 20};
+    rangeLabel.p_color = BLUE;
+    rangeLabel.p_updateFunction = [&rangeLabel, this]()
+    {
+        Tower* tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            rangeLabel.p_visible = false;
+            return;
+        }
+        rangeLabel.p_text = "R: " + std::format("{:.2f}", tower->p_range);
+        rangeLabel.p_visible = true;
     };
 }
-
 void TowerSelect::Update()
 {
     for (auto &label : m_textLabels)
