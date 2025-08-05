@@ -38,11 +38,13 @@ void GuiManager::UpdatePress(Button &button)
             ,
             button.p_rect.height * Settings::g_gameScale // height
         };
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    button.p_isHovered = false;
+    if (!CheckCollisionPointRec(mousePosition, scaledButtonRect))
     {
         return;
     }
-    if (!CheckCollisionPointRec(mousePosition, scaledButtonRect))
+    button.p_isHovered = true;
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         return;
     }
@@ -90,7 +92,6 @@ void GuiManager::RemoveLabel(int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-
 void GuiManager::Update()
 {
     for (auto &label : m_labels)
@@ -130,10 +131,21 @@ void GuiManager::Draw() const
     {
         if (!button.p_visible)
             continue;
+        Color buttonColor = button.p_color;
+        if (button.p_isHovered)
+        {
+            buttonColor =
+            {
+                static_cast<unsigned char>(button.p_color.r * 0.8f),
+                static_cast<unsigned char>(button.p_color.g * 0.8f),
+                static_cast<unsigned char>(button.p_color.b * 0.8f),
+                static_cast<unsigned char>(button.p_color.a)
+            };
+        }
 
         constexpr float segments = 4.0f;
         constexpr float roundness = 5.0f;
-        DrawRectangleRounded(button.p_rect, roundness, segments, button.p_color);
+        DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
         DrawTextEx(GetFontDefault(), button.p_text.c_str(),
                    button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
     }

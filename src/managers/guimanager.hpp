@@ -16,6 +16,7 @@ private:
     void UpdateTextPosition(TextLabel &label);
     void UpdateTextPosition(Button &button);
     void UpdatePress(Button &button);
+    void UpdateHover(Button &button);
 
 public:
     void Init();
