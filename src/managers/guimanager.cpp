@@ -50,6 +50,55 @@ void GuiManager::UpdatePress(Button &button)
     }
     button.p_onPressed(button);
 }
+void GuiManager::UpdateLabel(TextLabel &label)
+{
+    if (label.p_updateFunction)
+    {
+        label.p_updateFunction(label);
+    }
+    UpdateTextPosition(label);
+}
+void GuiManager::UpdateButton(Button &button)
+{
+    if (button.p_updateFunction)
+    {
+        button.p_updateFunction(button);
+    }
+    UpdateTextPosition(button);
+    UpdatePress(button);
+}
+void GuiManager::DrawButton(const Button &button) const
+{
+    if (!button.p_visible)
+        return;
+    Color buttonColor = button.p_color;
+    if (button.p_isHovered)
+    {
+        buttonColor =
+            {
+                static_cast<unsigned char>(button.p_color.r * 0.8f),
+                static_cast<unsigned char>(button.p_color.g * 0.8f),
+                static_cast<unsigned char>(button.p_color.b * 0.8f),
+                static_cast<unsigned char>(button.p_color.a)};
+    }
+
+    constexpr float segments = 4.0f;
+    constexpr float roundness = 5.0f;
+    DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
+    DrawTextEx(GetFontDefault(), button.p_text.c_str(),
+               button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
+}
+void GuiManager::DrawLabel(const TextLabel &label) const
+{
+    if (!label.p_visible)
+        return;
+
+    constexpr float segments = 4.0f;
+    constexpr float roundness = 5.0f;
+    DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
+    DrawTextEx(GetFontDefault(), label.p_text.c_str(),
+               label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
+}
 
 /// Public
 
@@ -96,57 +145,23 @@ void GuiManager::Update()
 {
     for (auto &label : m_labels)
     {
-        if (label.p_updateFunction)
-        {
-            label.p_updateFunction(label);
-        }
-        UpdateTextPosition(label);
+        UpdateLabel(label);
     }
 
     for (auto &button : m_buttons)
     {
-        if (button.p_updateFunction)
-        {
-            button.p_updateFunction(button);
-        }
-        UpdateTextPosition(button);
-        UpdatePress(button);
+        UpdateButton(button);
     }
 }
 void GuiManager::Draw() const
 {
     for (const auto &label : m_labels)
     {
-        if (!label.p_visible)
-            continue;
-
-        constexpr float segments = 4.0f;
-        constexpr float roundness = 5.0f;
-        DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
-        DrawTextEx(GetFontDefault(), label.p_text.c_str(),
-                   label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
+        DrawLabel(label);
     }
 
     for (const auto &button : m_buttons)
     {
-        if (!button.p_visible)
-            continue;
-        Color buttonColor = button.p_color;
-        if (button.p_isHovered)
-        {
-            buttonColor =
-            {
-                static_cast<unsigned char>(button.p_color.r * 0.8f),
-                static_cast<unsigned char>(button.p_color.g * 0.8f),
-                static_cast<unsigned char>(button.p_color.b * 0.8f),
-                static_cast<unsigned char>(button.p_color.a)
-            };
-        }
-
-        constexpr float segments = 4.0f;
-        constexpr float roundness = 5.0f;
-        DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
-        DrawTextEx(GetFontDefault(), button.p_text.c_str(),
-                   button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
+        DrawButton(button);
     }
 }

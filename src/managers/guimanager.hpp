@@ -16,7 +16,10 @@ private:
     void UpdateTextPosition(TextLabel &label);
     void UpdateTextPosition(Button &button);
     void UpdatePress(Button &button);
-    void UpdateHover(Button &button);
+    void UpdateLabel(TextLabel &label);
+    void UpdateButton(Button &button);
+    void DrawButton(const Button &button) const;
+    void DrawLabel(const TextLabel &label) const;
 
 public:
     void Init();
