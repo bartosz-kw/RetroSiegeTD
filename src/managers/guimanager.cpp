@@ -38,7 +38,7 @@ void GuiManager::ReserveButton(size_t count)
 }
 void GuiManager::ReserveLabel(size_t count)
 {
-    m_labels.reserve(m_buttons.size() + count);
+    m_labels.reserve(m_labels.size() + count);
 }
 Button& GuiManager::AddButton(const Button& button)
 {
