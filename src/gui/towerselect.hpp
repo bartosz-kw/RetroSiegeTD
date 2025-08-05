@@ -11,8 +11,6 @@ private:
     TowerManager* mgr_tower = nullptr;
     GuiManager* mgr_gui = nullptr;
 private:
-    void UpdateTextPosition(TextLabel& label);
-    void UpdateTextPosition(Button& label);
     void InitLabels();
     void InitButtons();
 
