@@ -30,6 +30,8 @@ void Game::Update()
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
 
+    
+    mgr_gui.Update();
     gui_waveCounter.Update();
     gui_towerSelect.Update();
 }
@@ -52,6 +54,7 @@ void Game::MakeTextureFrame() const
     DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
+    mgr_gui.Draw();
     gui_waveCounter.Draw();
     gui_towerSelect.Draw();
 
