@@ -25,7 +25,9 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
-        label.p_text = "Id: " + std::to_string(tower->p_id) + "/ Type: " + this->mgr_tower->TowerTypeToString((TowerType)tower->p_typeId);;
+        label.p_text = "Id: " + std::to_string(tower->p_id) + "/ Type: " 
+        + 
+        this->mgr_tower->TowerTypeToString(static_cast<TowerType>(tower->p_typeId));
         label.p_visible = true;
         
     };

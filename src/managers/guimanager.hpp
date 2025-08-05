@@ -15,6 +15,7 @@ private:
 
     void UpdateTextPosition(TextLabel &label);
     void UpdateTextPosition(Button &button);
+    void UpdatePress(Button &button);
 
 public:
     void Init();
@@ -25,7 +26,6 @@ public:
     TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(int id);
     void RemoveLabel(int id);
-
     void Update();
     void Draw() const;
 };
