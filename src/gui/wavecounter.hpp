@@ -1,20 +1,16 @@
 #include "../structs/textlabel.hpp"
 
 class WaveManager; // Forward declaration
-
+class GuiManager;
 class WaveCounter
 {
 private:
-    std::vector<TextLabel> m_textLabels = {};
     WaveManager* mgr_wave = nullptr;
-    
+    GuiManager* mgr_gui = nullptr;
 private:
-    void UpdateTextPosition(TextLabel& label);
     void InitLabels();
     
 public:
-    void Update();
-    void Draw() const;
-    void InjectDependencies(WaveManager* waveManager);
+    void InjectDependencies(WaveManager* waveManager,GuiManager* guiManager);
     void Init();
 };

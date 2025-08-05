@@ -12,6 +12,6 @@ struct TextLabel
     Color p_color = WHITE;
     uint16_t p_id = 0;
     uint8_t p_fontSize = 10;
-    std::function<void()> p_updateFunction = [](){};
+    std::function<void(TextLabel& label)> p_updateFunction = [](TextLabel& label){};
     bool p_visible = true;
 };

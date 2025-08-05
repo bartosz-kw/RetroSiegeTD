@@ -32,7 +32,6 @@ void Game::Update()
 
     
     mgr_gui.Update();
-    gui_waveCounter.Update();
 }
 void Game::MakeTextureFrame() const
 {
@@ -54,7 +53,6 @@ void Game::MakeTextureFrame() const
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
     mgr_gui.Draw();
-    gui_waveCounter.Draw();
 
     EndTextureMode();
 }
@@ -98,7 +96,7 @@ void Game::InitManagers()
 void Game::InitGui()
 {
     
-    gui_waveCounter.InjectDependencies(&mgr_wave);
+    gui_waveCounter.InjectDependencies(&mgr_wave,&mgr_gui);
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower,&mgr_gui);
     gui_towerSelect.Init();

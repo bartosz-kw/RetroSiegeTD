@@ -74,7 +74,7 @@ void GuiManager::Update()
     {
         if (label.p_updateFunction)
         {
-            label.p_updateFunction();
+            label.p_updateFunction(label);
         }
         UpdateTextPosition(label);
     }
@@ -83,7 +83,7 @@ void GuiManager::Update()
     {
         if (button.p_updateFunction)
         {
-            button.p_updateFunction();
+            button.p_updateFunction(button);
         }
         UpdateTextPosition(button);
 
@@ -93,7 +93,7 @@ void GuiManager::Update()
         {
             if (button.p_onPressed)
             {
-                button.p_onPressed();
+                button.p_onPressed(button);
             }
         }
     }
