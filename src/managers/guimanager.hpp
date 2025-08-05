@@ -21,8 +21,8 @@ public:
 
     void ReserveButton(size_t count);
     void ReserveLabel(size_t count);
-    void AddButton(const Button &button);
-    void AddLabel(const TextLabel &label);
+    Button& AddButton(const Button &button);
+    TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(int id);
     void RemoveLabel(int id);
 

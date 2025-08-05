@@ -4,13 +4,12 @@
 #include "../structs/textlabel.hpp"
 
 class TowerManager; 
+class GuiManager;
 class TowerSelect
 {
 private:
-    std::vector<Button> m_buttons = {};
-    std::vector<TextLabel> m_textLabels = {};
     TowerManager* mgr_tower = nullptr;
-
+    GuiManager* mgr_gui = nullptr;
 private:
     void UpdateTextPosition(TextLabel& label);
     void UpdateTextPosition(Button& label);
@@ -18,8 +17,6 @@ private:
     void InitButtons();
 
 public:
-    void Update();
-    void Draw() const;
-    void InjectDependencies(TowerManager* towerManager);
+    void InjectDependencies(TowerManager* towerManager,GuiManager* guiManager);
     void Init();
 };

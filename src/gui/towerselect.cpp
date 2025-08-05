@@ -1,6 +1,7 @@
 #include "towerselect.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
+#include "../managers/guimanager.hpp"
 #include <format>
 #include <cassert>
 
@@ -23,11 +24,10 @@ void TowerSelect::UpdateTextPosition(Button& button)
 void TowerSelect::InitLabels()
 {
     constexpr uint8_t amountOfLabels = 5;
-    m_textLabels.reserve(amountOfLabels);
+    mgr_gui->ReserveLabel(amountOfLabels);
 
-    m_textLabels.emplace_back(TextLabel{});
-    TextLabel& nameLabel = m_textLabels.back();
-    nameLabel.p_text = "Tower Info:";
+    TextLabel& nameLabel = mgr_gui->AddLabel(TextLabel{});
+    nameLabel.p_text = "";
     nameLabel.p_id = 1;
     nameLabel.p_fontSize = GetFontDefault().baseSize;
     nameLabel.p_rect = {0, 170, 105, 20};
@@ -46,9 +46,9 @@ void TowerSelect::InitLabels()
         
     };
 
-    m_textLabels.emplace_back(TextLabel{});
-    TextLabel& levelLabel = m_textLabels.back();
-    levelLabel.p_text = "h";
+
+    TextLabel& levelLabel = mgr_gui->AddLabel(TextLabel{});
+    levelLabel.p_text = "";
     levelLabel.p_id = 1;
     levelLabel.p_fontSize = GetFontDefault().baseSize;
     levelLabel.p_rect = {0, 190, 63, 20};
@@ -66,9 +66,8 @@ void TowerSelect::InitLabels()
         
     };
 
-    m_textLabels.emplace_back(TextLabel{});
-    TextLabel& damageLabel = m_textLabels.back();
-    damageLabel.p_text = "D: 0";
+    TextLabel& damageLabel = mgr_gui->AddLabel(TextLabel{});
+    damageLabel.p_text = "";
     damageLabel.p_id = 2;
     damageLabel.p_fontSize = GetFontDefault().baseSize;
     damageLabel.p_rect = {0, 210, 63, 20};
@@ -85,9 +84,8 @@ void TowerSelect::InitLabels()
         damageLabel.p_visible = true;
     };
 
-    m_textLabels.emplace_back(TextLabel{});
-    TextLabel& attackSpeedLabel = m_textLabels.back();
-    attackSpeedLabel.p_text = "AS: 0";
+    TextLabel& attackSpeedLabel = mgr_gui->AddLabel(TextLabel{});
+    attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = 3;
     attackSpeedLabel.p_fontSize = GetFontDefault().baseSize;
     attackSpeedLabel.p_rect = {0, 230, 63, 20};
@@ -104,8 +102,7 @@ void TowerSelect::InitLabels()
         attackSpeedLabel.p_visible = true;
     };
 
-    m_textLabels.emplace_back(TextLabel{});
-    TextLabel& rangeLabel = m_textLabels.back();
+    TextLabel& rangeLabel = mgr_gui->AddLabel(TextLabel{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = 4;
     rangeLabel.p_fontSize = GetFontDefault().baseSize;
@@ -126,10 +123,10 @@ void TowerSelect::InitLabels()
 void TowerSelect::InitButtons()
 {
     constexpr uint8_t amountOfButtons = 1;
-    m_buttons.reserve(amountOfButtons);
+    mgr_gui->ReserveButton(amountOfButtons);
 
-    m_buttons.emplace_back(Button{});
-    Button& upgradeButton = m_buttons.back();
+    
+    Button& upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upgrade";
     upgradeButton.p_id = 1;
     upgradeButton.p_rect = {63, 250, 42, 20};
@@ -154,59 +151,15 @@ void TowerSelect::InitButtons()
         }
     };
 }
-void TowerSelect::Update()
-{
-    for (auto &label : m_textLabels)
-    {
-        UpdateTextPosition(label);
-        label.p_updateFunction();
-    }
-    for (auto &button : m_buttons)
-    {
-        UpdateTextPosition(button);
-        button.p_updateFunction();
-        Vector2 mousePosition = GetMousePosition();
-        //if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition,button.p_rect))
-        //{
-        //    button.p_onPressed();            
-        //}
-
-        
-    }
-    
-}
-void TowerSelect::Draw() const
-{
-    for (auto &label : m_textLabels)
-    {
-        if (!label.p_visible)
-        {
-            return;
-        }
-        constexpr float segments = 4.0f;
-        constexpr float roundness = 5.0f;
-        DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
-        DrawTextEx(GetFontDefault(), label.p_text.c_str(), label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
-    }
-    for (auto &button : m_buttons)
-    {
-        if (!button.p_visible)
-        {
-            return;
-        }
-        constexpr float segments = 4.0f;
-        constexpr float roundness = 5.0f;
-        DrawRectangleRounded(button.p_rect, roundness, segments, button.p_color);
-        DrawTextEx(GetFontDefault(), button.p_text.c_str(), button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
-    }
-}
-void TowerSelect::InjectDependencies(TowerManager* towerManager)
+void TowerSelect::InjectDependencies(TowerManager* towerManager,GuiManager* guiManager)
 {
     mgr_tower = towerManager;
+    mgr_gui = guiManager;
 }
 void TowerSelect::Init()
 {
     assert(mgr_tower != nullptr && "TowerManager wasn't injected and its dependency");
+    assert(mgr_gui != nullptr && "GuiManager wasn't injected and its dependency");
     InitLabels();
     InitButtons();
 }

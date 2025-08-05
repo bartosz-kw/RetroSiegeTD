@@ -33,7 +33,6 @@ void Game::Update()
     
     mgr_gui.Update();
     gui_waveCounter.Update();
-    gui_towerSelect.Update();
 }
 void Game::MakeTextureFrame() const
 {
@@ -56,7 +55,6 @@ void Game::MakeTextureFrame() const
 
     mgr_gui.Draw();
     gui_waveCounter.Draw();
-    gui_towerSelect.Draw();
 
     EndTextureMode();
 }
@@ -102,7 +100,7 @@ void Game::InitGui()
     
     gui_waveCounter.InjectDependencies(&mgr_wave);
     gui_waveCounter.Init();
-    gui_towerSelect.InjectDependencies(&mgr_tower);
+    gui_towerSelect.InjectDependencies(&mgr_tower,&mgr_gui);
     gui_towerSelect.Init();
 }
 void Game::InitSprites()

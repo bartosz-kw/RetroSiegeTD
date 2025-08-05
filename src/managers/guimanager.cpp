@@ -3,6 +3,8 @@
 #include <format>
 #include <algorithm>
 
+// Private
+
 void GuiManager::UpdateTextPosition(TextLabel& label)
 {
     Vector2 textMeasurement = MeasureTextEx(GetFontDefault(), 
@@ -13,7 +15,6 @@ void GuiManager::UpdateTextPosition(TextLabel& label)
         label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f
     };
 }
-
 void GuiManager::UpdateTextPosition(Button& button)
 {
     Vector2 textMeasurement = MeasureTextEx(GetFontDefault(), 
@@ -25,33 +26,32 @@ void GuiManager::UpdateTextPosition(Button& button)
     };
 }
 
+/// Public
+
 void GuiManager::Init()
 {
     
 }
-
 void GuiManager::ReserveButton(size_t count)
 {
     m_buttons.reserve(m_buttons.size() + count);
 }
-
 void GuiManager::ReserveLabel(size_t count)
 {
     m_labels.reserve(m_buttons.size() + count);
 }
-
-void GuiManager::AddButton(const Button& button)
+Button& GuiManager::AddButton(const Button& button)
 {
     m_buttons.push_back(button);
     UpdateTextPosition(m_buttons.back());
+    return m_buttons.back();
 }
-
-void GuiManager::AddLabel(const TextLabel& label)
+TextLabel& GuiManager::AddLabel(const TextLabel& label)
 {
     m_labels.push_back(label);
     UpdateTextPosition(m_labels.back());
+    return m_labels.back();
 }
-
 void GuiManager::RemoveButton(int id)
 {
     m_buttons.erase(
@@ -60,7 +60,6 @@ void GuiManager::RemoveButton(int id)
         m_buttons.end()
     );
 }
-
 void GuiManager::RemoveLabel(int id)
 {
     m_labels.erase(
@@ -69,7 +68,6 @@ void GuiManager::RemoveLabel(int id)
         m_labels.end()
     );
 }
-
 void GuiManager::Update()
 {
     for (auto& label : m_labels)
@@ -100,7 +98,6 @@ void GuiManager::Update()
         }
     }
 }
-
 void GuiManager::Draw() const
 {
     for (const auto& label : m_labels)
