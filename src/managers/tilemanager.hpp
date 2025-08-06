@@ -25,6 +25,7 @@ public:
     Tile GetTile(uint16_t id) const;
     int16_t GetMovedId(uint16_t tileid, int8_t direction) const;
     Tile* GetLastClickedTile();
+    Tile* GetLastHoveredTile();
     void Update();
     void Draw(uint8_t screenOffset) const;
     void LoadMap(GameMap gameMap);

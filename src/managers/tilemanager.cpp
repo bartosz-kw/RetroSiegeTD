@@ -111,6 +111,10 @@ Tile *TileManager::GetLastClickedTile()
 {
     return m_lastClickedTile;
 }
+Tile *TileManager::GetLastHoveredTile()
+{
+    return m_lastHoveredTile;
+}
 void TileManager::Update()
 {
     for (auto &tile : m_tiles)
@@ -131,6 +135,11 @@ void TileManager::Draw(uint8_t screenOffset) const
         }
         DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
     }
+    if (m_lastHoveredTile)
+    {
+        
+    }
+    
 }
 void TileManager::LoadMap(GameMap gameMap)
 {
@@ -152,5 +161,5 @@ void TileManager::LoadMap(GameMap gameMap)
 }
 void TileManager::Init()
 {
-    
+
 }
