@@ -10,11 +10,13 @@ private:
 private:
     std::vector<Tile> m_tiles = {};
     Tile* m_lastClickedTile = nullptr;
+    Tile* m_lastHoveredTile = nullptr;
     int16_t m_startPathId = -1;
 
 private:
     const uint16_t GetTileTextureIndex(uint16_t typeId) const;
-    bool IsTileClicked(const Tile& tile) const;
+    bool IsTileHovered(Tile& tile);
+    bool IsTileClicked(Tile& tile);
 
 public:
     TileManager() = default;

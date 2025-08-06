@@ -11,12 +11,8 @@ const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
 }
-bool TileManager::IsTileClicked(const Tile &tile) const
+bool TileManager::IsTileHovered(Tile &tile)
 {
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        return false;
-    }
     Vector2 mousePosition = GetMousePosition();
     Rectangle tileRect = 
     {
@@ -29,6 +25,20 @@ bool TileManager::IsTileClicked(const Tile &tile) const
     {
         return false;
     }
+    m_lastHoveredTile = &tile;
+    return true;
+}
+bool TileManager::IsTileClicked(Tile &tile)
+{
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        return false;
+    }
+    if (!IsTileHovered(tile))
+    {
+        return false;
+    }
+    m_lastClickedTile = &tile;
     return true;
 }
 
@@ -107,8 +117,6 @@ void TileManager::Update()
     {
         if (IsTileClicked(tile))
         {
-            m_lastClickedTile = &tile;
-            PrintDebug(tile.p_id);
         }
     }
 }
@@ -144,4 +152,5 @@ void TileManager::LoadMap(GameMap gameMap)
 }
 void TileManager::Init()
 {
+    
 }
