@@ -8,9 +8,8 @@
 
 void TowerPlace::InitLabels()
 {
-    PrintDebug("eh");
     TextLabel& headerLabel = mgr_gui->AddLabel(TextLabel{});
-    headerLabel.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f),0.0f,static_cast<float>(Settings::g_boundingSize),20};
+    headerLabel.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f),4.0f,static_cast<float>(Settings::g_boundingSize),20.0f};
     headerLabel.p_id = mgr_gui->GetAmountOfLabels();
     headerLabel.p_text = "Towers: ";
 }

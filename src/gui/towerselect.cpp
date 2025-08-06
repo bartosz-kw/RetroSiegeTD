@@ -12,7 +12,7 @@ void TowerSelect::InitLabels()
 
     TextLabel& nameLabel = mgr_gui->AddLabel(TextLabel{});
     nameLabel.p_text = "";
-    nameLabel.p_id = 1;
+    nameLabel.p_id = mgr_gui->GetAmountOfLabels();
     nameLabel.p_fontSize = GetFontDefault().baseSize;
     nameLabel.p_rect = {0, 170, 105, 20};
     nameLabel.p_color = BLUE;
@@ -35,7 +35,7 @@ void TowerSelect::InitLabels()
 
     TextLabel& levelLabel = mgr_gui->AddLabel(TextLabel{});
     levelLabel.p_text = "";
-    levelLabel.p_id = 1;
+    levelLabel.p_id = mgr_gui->GetAmountOfLabels();
     levelLabel.p_fontSize = GetFontDefault().baseSize;
     levelLabel.p_rect = {0, 190, 63, 20};
     levelLabel.p_color = BLUE;
@@ -54,7 +54,7 @@ void TowerSelect::InitLabels()
 
     TextLabel& damageLabel = mgr_gui->AddLabel(TextLabel{});
     damageLabel.p_text = "";
-    damageLabel.p_id = 2;
+    damageLabel.p_id = mgr_gui->GetAmountOfLabels();
     damageLabel.p_fontSize = GetFontDefault().baseSize;
     damageLabel.p_rect = {0, 210, 63, 20};
     damageLabel.p_color = BLUE;
@@ -72,7 +72,7 @@ void TowerSelect::InitLabels()
 
     TextLabel& attackSpeedLabel = mgr_gui->AddLabel(TextLabel{});
     attackSpeedLabel.p_text = "";
-    attackSpeedLabel.p_id = 3;
+    attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
     attackSpeedLabel.p_fontSize = GetFontDefault().baseSize;
     attackSpeedLabel.p_rect = {0, 230, 63, 20};
     attackSpeedLabel.p_color = BLUE;
@@ -90,7 +90,7 @@ void TowerSelect::InitLabels()
 
     TextLabel& rangeLabel = mgr_gui->AddLabel(TextLabel{});
     rangeLabel.p_text = "R: 0";
-    rangeLabel.p_id = 4;
+    rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
     rangeLabel.p_fontSize = GetFontDefault().baseSize;
     rangeLabel.p_rect = {0, 250, 63, 20};
     rangeLabel.p_color = BLUE;
@@ -114,7 +114,7 @@ void TowerSelect::InitButtons()
     
     Button& upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upgrade";
-    upgradeButton.p_id = 1;
+    upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
     upgradeButton.p_rect = {63, 250, 42, 20};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_fontSize = GetFontDefault().baseSize;

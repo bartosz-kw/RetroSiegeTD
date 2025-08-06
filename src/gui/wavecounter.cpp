@@ -12,7 +12,7 @@ void WaveCounter::InitLabels()
 
     TextLabel& waveCountLabel = mgr_gui->AddLabel(TextLabel{});
     waveCountLabel.p_text = "Wave:";
-    waveCountLabel.p_id = 1;
+    waveCountLabel.p_id = mgr_gui->GetAmountOfLabels();
     waveCountLabel.p_fontSize = GetFontDefault().baseSize;
     waveCountLabel.p_rect = {0,4,105,20};
     waveCountLabel.p_color = GREEN;
