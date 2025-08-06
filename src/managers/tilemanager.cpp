@@ -111,9 +111,17 @@ Tile *TileManager::GetLastClickedTile()
 {
     return m_lastClickedTile;
 }
-Tile *TileManager::GetLastHoveredTile()
+Tile* TileManager::GetLastHoveredTile()
 {
     return m_lastHoveredTile;
+}
+Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
+{
+    constexpr float offset = g_tileSize/2.0f;
+    return Vector2{
+        tile.p_position.x + offset,
+        tile.p_position.y + offset
+    };
 }
 void TileManager::Update()
 {

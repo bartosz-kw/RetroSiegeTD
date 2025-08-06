@@ -172,13 +172,23 @@ void TowerManager::Update(float deltaTime)
 }
 void TowerManager::DrawHover(uint8_t screenOffset) const
 {
+    Tower selectedTower = Towers::GetTowerData(1);
     Tile* lastHoveredTile = mgr_tile->GetLastHoveredTile();
     if (lastHoveredTile)
     {
         if (IsKeyDown(KEY_T) && CanPlaceTower(lastHoveredTile))
         {
-            Color color = {255, 255, 255, 128};
-            DrawTexture(Sprites::g_textures[6], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, color);
+            Color towerColor = {255, 255, 255, 128};
+            Color rangeColor = {41, 154, 255, 128};
+            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, towerColor);
+            Vector2 centerPos = mgr_tile->GetTileCenterPosition(*lastHoveredTile);
+            DrawCircle
+            (
+                static_cast<int>(centerPos.x + screenOffset),
+                static_cast<int>(centerPos.y),
+                static_cast<float>(selectedTower.p_range),
+                rangeColor
+            );
         }
     }
 }
@@ -203,7 +213,6 @@ void TowerManager::Draw(uint8_t screenOffset) const
                 color);
         }
     }
-    
     DrawHover(screenOffset);
 }
 void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr)
