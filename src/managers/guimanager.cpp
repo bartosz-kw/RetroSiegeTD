@@ -101,9 +101,13 @@ void GuiManager::DrawLabel(const TextLabel &label) const
 }
 
 /// Public
-
-void GuiManager::Init()
+size_t GuiManager::GetAmountOfLabels() const
 {
+    return m_labels.size();
+}
+size_t GuiManager::GetAmountOfButtons() const
+{
+    return m_buttons.size();
 }
 void GuiManager::ReserveButton(size_t count)
 {
@@ -165,3 +169,7 @@ void GuiManager::Draw() const
         DrawButton(button);
     }
 }
+void GuiManager::Init()
+{
+}
+

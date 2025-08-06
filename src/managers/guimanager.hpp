@@ -22,8 +22,9 @@ private:
     void DrawLabel(const TextLabel &label) const;
 
 public:
-    void Init();
-
+    
+    size_t GetAmountOfLabels() const;
+    size_t GetAmountOfButtons() const;
     void ReserveButton(size_t count);
     void ReserveLabel(size_t count);
     Button& AddButton(const Button &button);
@@ -32,4 +33,6 @@ public:
     void RemoveLabel(int id);
     void Update();
     void Draw() const;
+    void Init();
+    
 };
