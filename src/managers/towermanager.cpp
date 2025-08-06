@@ -38,10 +38,12 @@ void TowerManager::DetectTowerInput(Tower &tower)
     Vector2 mousePosition = GetMousePosition();
     Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     Rectangle towerRect =
-        {tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale
-        , tower.p_position.y * Settings::g_gameScale
-        , static_cast<float>(texture.width * Settings::g_gameScale)
-        , static_cast<float>(texture.height * Settings::g_gameScale)};
+    {
+        tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale // x
+        , tower.p_position.y * Settings::g_gameScale // y
+        , static_cast<float>(texture.width * Settings::g_gameScale) // width 
+        , static_cast<float>(texture.height * Settings::g_gameScale) // height
+    };
 
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
@@ -56,7 +58,7 @@ void TowerManager::DetectTowerInput(Tower &tower)
         return;
     }
 
-    m_lastSelectedTower = &tower;
+    m_lastSelectedTowerId = tower.p_id;
 }
 void TowerManager::UpdateFight(Tower &tower, float deltatime)
 {
@@ -87,6 +89,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
 }
 
 // Public
+
 std::string TowerManager::TowerTypeToString(TowerType type)
 {
     switch (type)
@@ -118,7 +121,18 @@ void TowerManager::RemoveTower(int32_t id)
 }
 Tower *TowerManager::GetLastSelectedTower()
 {
-    return m_lastSelectedTower;
+    return GetTowerById(m_lastSelectedTowerId);
+}
+Tower* TowerManager::GetTowerById(int32_t id)
+{
+    for (auto& tower : m_towers)
+    {
+        if (tower.p_id == id)
+        {
+            return &tower;
+        }
+    }
+    return nullptr;
 }
 bool TowerManager::CanPlaceTower(Tile *tile)
 {
@@ -177,12 +191,12 @@ void TowerManager::Draw(uint8_t screenOffset) const
         }
     }
 }
-void TowerManager::Init()
-{
-}
 void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;
     mgr_bullet = mgr_bulletPtr;
+}
+void TowerManager::Init()
+{
 }

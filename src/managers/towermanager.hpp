@@ -12,7 +12,7 @@ class TowerManager
 {
 private:
     std::vector<Tower> m_towers = {};
-    Tower* m_lastSelectedTower = nullptr;
+    int32_t m_lastSelectedTowerId = -1;
     TileManager* mgr_tile = nullptr; 
     EnemyManager* mgr_enemy = nullptr;
     BulletManager* mgr_bullet = nullptr; 
@@ -29,9 +29,10 @@ public:
     void AddTower(Tower tower);
     void RemoveTower(int32_t id);
     Tower* GetLastSelectedTower();
+    Tower* GetTowerById(int32_t id);
     bool CanPlaceTower(Tile *tile);
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
-    void Init();
-    void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr);    
+    void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr); 
+    void Init();   
 };
