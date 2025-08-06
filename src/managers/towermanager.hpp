@@ -30,8 +30,9 @@ public:
     void RemoveTower(int32_t id);
     Tower* GetLastSelectedTower();
     Tower* GetTowerById(int32_t id);
-    bool CanPlaceTower(Tile *tile);
+    bool CanPlaceTower(Tile *tile) const;
     void Update(float deltaTime);
+    void DrawHover(uint8_t screenOffset) const;
     void Draw(uint8_t screenOffset) const;
     void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr); 
     void Init();   

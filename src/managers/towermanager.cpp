@@ -134,7 +134,7 @@ Tower* TowerManager::GetTowerById(int32_t id)
     }
     return nullptr;
 }
-bool TowerManager::CanPlaceTower(Tile *tile)
+bool TowerManager::CanPlaceTower(Tile *tile) const
 {
     if (tile->p_moveDirection != 0)
     {
@@ -170,6 +170,19 @@ void TowerManager::Update(float deltaTime)
         DetectTowerInput(tower);
     }
 }
+void TowerManager::DrawHover(uint8_t screenOffset) const
+{
+    Tile* lastHoveredTile = mgr_tile->GetLastHoveredTile();
+    if (lastHoveredTile)
+    {
+        if (IsKeyDown(KEY_T) && CanPlaceTower(lastHoveredTile))
+        {
+            Color color = {255, 255, 255, 128};
+            DrawTexture(Sprites::g_textures[6], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, color);
+        }
+    }
+}
+
 void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
@@ -190,6 +203,8 @@ void TowerManager::Draw(uint8_t screenOffset) const
                 color);
         }
     }
+    
+    DrawHover(screenOffset);
 }
 void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr)
 {

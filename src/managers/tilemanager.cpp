@@ -14,13 +14,13 @@ const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
 bool TileManager::IsTileHovered(Tile &tile)
 {
     Vector2 mousePosition = GetMousePosition();
-    Rectangle tileRect = 
-    {
-        tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale, // x
-        tile.p_position.y * Settings::g_gameScale, // y
-        static_cast<float>(g_tileSize * Settings::g_gameScale), // width
-        static_cast<float>(g_tileSize * Settings::g_gameScale)  // height
-    };
+    Rectangle tileRect =
+        {
+            tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale, // x
+            tile.p_position.y * Settings::g_gameScale,                                                    // y
+            static_cast<float>(g_tileSize * Settings::g_gameScale),                                       // width
+            static_cast<float>(g_tileSize * Settings::g_gameScale)                                        // height
+        };
     if (!CheckCollisionPointRec(mousePosition, tileRect))
     {
         return false;
@@ -30,11 +30,11 @@ bool TileManager::IsTileHovered(Tile &tile)
 }
 bool TileManager::IsTileClicked(Tile &tile)
 {
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    if (!IsTileHovered(tile))
     {
         return false;
     }
-    if (!IsTileHovered(tile))
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         return false;
     }
@@ -135,11 +135,6 @@ void TileManager::Draw(uint8_t screenOffset) const
         }
         DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
     }
-    if (m_lastHoveredTile)
-    {
-        
-    }
-    
 }
 void TileManager::LoadMap(GameMap gameMap)
 {
@@ -161,5 +156,4 @@ void TileManager::LoadMap(GameMap gameMap)
 }
 void TileManager::Init()
 {
-
 }
