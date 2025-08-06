@@ -8,6 +8,7 @@
 #include "../managers/guimanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
+#include "../gui/towerplace.hpp"
 
 class Game
 {
@@ -24,8 +25,9 @@ private: // variables
     // gui
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};
+    TowerPlace gui_towerPlace = {};
 
-private: // functions
+private: // functions 
     void UpdateDebug();
     void Update();
     void MakeTextureFrame() const;

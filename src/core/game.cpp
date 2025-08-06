@@ -100,6 +100,8 @@ void Game::InitGui()
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower,&mgr_gui);
     gui_towerSelect.Init();
+    gui_towerPlace.InjectDependencies(&mgr_tower,&mgr_gui);
+    gui_towerPlace.Init();
 }
 void Game::InitSprites()
 {
