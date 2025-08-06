@@ -8,8 +8,8 @@ namespace Bullets
 {
     inline std::unordered_map<int, Bullet> g_bulletData =
     {
-        // id, damage, position, directionAngle, rotation, spinSpeed, speed, typeId, spinning, alive
-        {BulletType::Shuliken, Bullet{-1, 0, {-1, -1}, 0.0f, 0.0f, 200.0f, 75.0f, BulletType::Shuliken, true, true}}
+        // position, id, damage, directionAngle, rotation, spinSpeed, speed, typeId, spinning, alive
+        {BulletType::Shuliken, Bullet{{-1, -1}, -1, 0, 0.0f, 0.0f, 200.0f, 75.0f, BulletType::Shuliken, true, true}}
     };
 
     inline Bullet GetBulletData(int typeId)
