@@ -192,7 +192,6 @@ void TowerManager::DrawHover(uint8_t screenOffset) const
         }
     }
 }
-
 void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)

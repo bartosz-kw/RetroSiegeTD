@@ -25,5 +25,5 @@ void PSManager::SetMoney(uint64_t amount)
 
 void PSManager::Init()
 {
-    m_money = 0;
+    m_money = 250;
 }
