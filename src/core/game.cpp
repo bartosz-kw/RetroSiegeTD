@@ -102,6 +102,8 @@ void Game::InitGui()
     gui_towerSelect.Init();
     gui_towerPlace.InjectDependencies(&mgr_tower,&mgr_gui);
     gui_towerPlace.Init();
+    gui_playerStats.InjectDependencies(&mgr_gui);
+    gui_playerStats.Init();
 }
 void Game::InitSprites()
 {

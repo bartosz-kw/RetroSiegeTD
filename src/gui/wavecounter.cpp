@@ -35,6 +35,7 @@ void WaveCounter::InjectDependencies(WaveManager* waveManager,GuiManager* guiMan
 
 void WaveCounter::Init()
 {
+    assert(mgr_gui != nullptr && "GuiManager wasn't injected and its dependency");
     assert(mgr_wave != nullptr && "WaveManager wasn't injected and its dependency");
     InitLabels();
 }

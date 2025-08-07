@@ -9,6 +9,7 @@
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
+#include "../gui/playerstats.hpp"
 
 class Game
 {
@@ -26,6 +27,7 @@ private: // variables
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};
     TowerPlace gui_towerPlace = {};
+    PlayerStats gui_playerStats = {};
 
 private: // functions 
     void UpdateDebug();
