@@ -189,10 +189,11 @@ void EnemyManager::Draw(uint8_t screenOffset) const
         DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, WHITE);
     }
 }
-void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr)
+void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_bullet = mgr_bulletPtr;
+    mgr_ps = mgr_psPtr;
 }
 void EnemyManager::Init()
 {

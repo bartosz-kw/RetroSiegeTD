@@ -3,6 +3,7 @@
 
 class TileManager;
 class BulletManager;
+class PSManager;
 
 class EnemyManager
 {
@@ -11,6 +12,7 @@ private:
     uint32_t m_IdCounter = 1;
     TileManager *mgr_tile = nullptr;
     BulletManager *mgr_bullet = nullptr;
+    PSManager *mgr_ps = nullptr;
 
 private:
     const uint16_t GetEnemyTextureIndex(uint16_t typeId) const;
@@ -30,6 +32,6 @@ public:
     void AddEnemy(Enemy enemy);
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
-    void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr);
+    void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr);
     void Init();
 };
