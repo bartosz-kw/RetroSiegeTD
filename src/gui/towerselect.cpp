@@ -47,7 +47,7 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
-        label.p_text = "L: " + std::to_string(tower->p_level);
+        label.p_text = "Lv: " + std::to_string(tower->p_level);
         label.p_visible = true;
         
     };
@@ -66,7 +66,7 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
-        label.p_text = "D: " + std::to_string(tower->p_damage);
+        label.p_text = "Dmg: " + std::to_string(tower->p_damage);
         label.p_visible = true;
     };
 
@@ -84,7 +84,7 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
-        label.p_text = "AS: " + std::format("{:.2f}", tower->p_attackSpeed);
+        label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed);
         label.p_visible = true;
     };
 
