@@ -6,6 +6,7 @@
 #include "../managers/bulletmanager.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
+#include "../managers/psmanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
@@ -23,6 +24,7 @@ private: // variables
     BulletManager mgr_bullet = {};
     WaveManager mgr_wave = {};
     GuiManager mgr_gui = {};
+    PSManager mgr_ps = {};
     // gui
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};

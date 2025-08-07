@@ -2,6 +2,7 @@
 #include "../utility/debugUtil.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
+#include "../managers/psmanager.hpp"
 #include <cassert>
 
 
@@ -15,13 +16,14 @@ void PlayerStats::InitLabels()
     waveCountLabel.p_color = GREEN;
     waveCountLabel.p_updateFunction = [this](TextLabel& label)
     {
-        std::string text = "$: " + std::to_string(0);
+        std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;
     };
 }
-void PlayerStats::InjectDependencies(GuiManager* guiManager)
+void PlayerStats::InjectDependencies(GuiManager* guiManager,PSManager* psManager)
 {
     mgr_gui = guiManager;
+    mgr_ps = psManager;
 }
 void PlayerStats::Init()
 {

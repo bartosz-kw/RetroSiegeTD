@@ -74,6 +74,7 @@ void Game::Draw() const
 }
 void Game::InitManagers()
 {
+    mgr_ps.Init();
     mgr_tile.Init();
 
     // loading map
@@ -102,7 +103,7 @@ void Game::InitGui()
     gui_towerSelect.Init();
     gui_towerPlace.InjectDependencies(&mgr_tower,&mgr_gui);
     gui_towerPlace.Init();
-    gui_playerStats.InjectDependencies(&mgr_gui);
+    gui_playerStats.InjectDependencies(&mgr_gui,&mgr_ps);
     gui_playerStats.Init();
 }
 void Game::InitSprites()
