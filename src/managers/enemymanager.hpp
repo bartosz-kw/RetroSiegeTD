@@ -21,6 +21,7 @@ private:
     void UpdateMovement(Enemy &enemy, float deltaTime);
     void HandleHits(Enemy &enemy);
     void CleanEnemy(Enemy &enemy);
+    void PreKillEnemy(Enemy &enemy);
     void RemoveEnemies();
 public:
 

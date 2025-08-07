@@ -2,6 +2,7 @@
 #include "tilemanager.hpp"
 #include "bulletmanager.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../managers/psmanager.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/enemies.hpp"
 #include <raymath.h>
@@ -84,6 +85,10 @@ void EnemyManager::HandleHits(Enemy &enemy)
         //PrintDebug(enemy.p_health, "HIT TAKEN");
     }
 }
+void EnemyManager::PreKillEnemy(Enemy &enemy)
+{
+    mgr_ps->AddMoney(enemy.p_moneyDrop);
+}
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
     // check if enemy has valid tile id
@@ -118,6 +123,7 @@ void EnemyManager::RemoveEnemies()
         return;
     for (auto it = indexesToRemove.rbegin(); it != indexesToRemove.rend(); ++it)
     {
+        PreKillEnemy(m_enemies.at(*it));
         m_enemies.erase(m_enemies.begin() + *it);
     }
 }
