@@ -7,6 +7,7 @@ enum EnemyType
 };
 struct Enemy
 {
+    uint64_t p_moneyDrop = 0;
     int64_t p_health = 10;
     Vector2 p_position = {0,0};
     uint32_t p_id = -1;
