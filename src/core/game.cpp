@@ -3,6 +3,7 @@
 #include "../utility/loadingUtil.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
+#include "../namespaces/towers.hpp"
 #include "game.hpp"
 
 // Private functions
@@ -53,7 +54,7 @@ void Game::MakeTextureFrame() const
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
     mgr_gui.Draw();
-
+    
     EndTextureMode();
 }
 void Game::Draw() const
@@ -110,6 +111,10 @@ void Game::InitSprites()
 {
     Sprites::LoadTextures();
 }
+void Game::InitDatas()
+{
+    Towers::InitTowerData();
+}
 void Game::InitMembers()
 {
     m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
@@ -127,6 +132,7 @@ void Game::Init()
 {
     InitGame();
     InitSprites();
+    InitDatas();
     InitMembers();
     InitManagers();
     InitGui();

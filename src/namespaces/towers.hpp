@@ -6,11 +6,28 @@
 
 namespace Towers
 {
-    inline std::unordered_map<int, Tower> g_towerData =
+    inline std::unordered_map<int, Tower> g_towerData = {};
+
+    inline void InitTowerData()
     {
-            // price , damage, position, range, attackSpeed, timeToAttack, id, level, typeId, tileId, dirty
-            {TowerType::Ninja, Tower{25 ,1, {-1, -1}, 75.0f, 0.5f, 0, -1, 0, TowerType::Ninja, 0, true}}
-    };
+        g_towerData.clear();
+        
+        // ninja Lv 1
+        Tower ninja1Tower = {};
+        ninja1Tower.p_price = 25;
+        ninja1Tower.p_damage = 1;
+        ninja1Tower.p_position = {-1.0f, -1.0f};
+        ninja1Tower.p_range = 75.0f;
+        ninja1Tower.p_attackSpeed = 0.5f;
+        ninja1Tower.p_timeToAttack = 0.0f;
+        ninja1Tower.p_id = -1;
+        ninja1Tower.p_level = 0;
+        ninja1Tower.p_typeId = TowerType::Ninja;
+        ninja1Tower.p_tileId = 0;
+        ninja1Tower.p_dirty = true;
+        
+        g_towerData[TowerType::Ninja] = ninja1Tower;
+    }
 
     inline Tower GetTowerData(int typeId)
     {
