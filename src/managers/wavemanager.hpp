@@ -22,7 +22,7 @@ public:
     WaveManager() = default;
 
     
-    TempMessage GetWaveMessage();
+    TempMessage* GetWaveMessage();
     EnemyWave* GetSmallestIdWave();
     void Update(float deltaTime);
     void InjectDependencies(EnemyManager* enemyManager, PSManager* psManager);

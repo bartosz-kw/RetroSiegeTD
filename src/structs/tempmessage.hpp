@@ -2,6 +2,6 @@
 
 struct TempMessage
 {
-    std::string message = "";
-    float time = 1.0f;
+    std::string p_message = "";
+    float p_time = 1.0f;
 };
