@@ -8,8 +8,8 @@ struct Button
 {
     std::string p_text = "";
 
-    std::function<void(Button& button)> p_onPressed = [](Button& button){};
-    std::function<void(Button& button)> p_updateFunction = [](Button& button){};
+    std::function<void(float deltaTime,Button& button)> p_onPressed = [](float deltaTime,Button& button){};
+    std::function<void(float deltaTime,Button& button)> p_updateFunction = [](float deltaTime,Button& button){};
 
     Texture p_buttonImage = { 0, 0, 0, 0, 0 };
 

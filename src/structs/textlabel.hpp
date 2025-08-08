@@ -8,7 +8,7 @@ struct TextLabel
 {
     std::string p_text = "";
 
-    std::function<void(TextLabel& label)> p_updateFunction = [](TextLabel& label){};
+    std::function<void(float deltaTime,TextLabel& label)> p_updateFunction = [](float deltaTime,TextLabel& label){};
 
     Rectangle p_rect = {0, 0};
     Vector2 p_textPosition = {0,0};

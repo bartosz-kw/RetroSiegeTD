@@ -25,7 +25,7 @@ void GuiManager::UpdateTextPosition(Button &button)
         button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
         button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f};
 }
-void GuiManager::UpdatePress(Button &button)
+void GuiManager::UpdatePress(float deltaTime,Button &button)
 {
     Vector2 mousePosition = GetMousePosition();
     Rectangle scaledButtonRect =
@@ -48,24 +48,24 @@ void GuiManager::UpdatePress(Button &button)
     {
         return;
     }
-    button.p_onPressed(button);
+    button.p_onPressed(deltaTime,button);
 }
-void GuiManager::UpdateLabel(TextLabel &label)
+void GuiManager::UpdateLabel(float deltaTime,TextLabel &label)
 {
     if (label.p_updateFunction)
     {
-        label.p_updateFunction(label);
+        label.p_updateFunction(deltaTime,label);
     }
     UpdateTextPosition(label);
 }
-void GuiManager::UpdateButton(Button &button)
+void GuiManager::UpdateButton(float deltaTime,Button &button)
 {
     if (button.p_updateFunction)
     {
-        button.p_updateFunction(button);
+        button.p_updateFunction(deltaTime,button);
     }
     UpdateTextPosition(button);
-    UpdatePress(button);
+    UpdatePress(deltaTime,button);
 }
 void GuiManager::DrawButton(const Button &button) const
 {
@@ -145,16 +145,16 @@ void GuiManager::RemoveLabel(int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-void GuiManager::Update()
+void GuiManager::Update(float deltaTime)
 {
     for (auto &label : m_labels)
     {
-        UpdateLabel(label);
+        UpdateLabel(deltaTime,label);
     }
 
     for (auto &button : m_buttons)
     {
-        UpdateButton(button);
+        UpdateButton(deltaTime,button);
     }
 }
 void GuiManager::Draw() const

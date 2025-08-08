@@ -13,12 +13,20 @@ void WaveCounter::InitLabels()
     waveCountLabel.p_fontSize = GetFontDefault().baseSize;
     waveCountLabel.p_rect = {5,3,95,20};
     waveCountLabel.p_color = GREEN;
-    waveCountLabel.p_updateFunction = [this](TextLabel& label)
+    waveCountLabel.p_updateFunction = [this](float deltaTime , TextLabel& label)
     {
         EnemyWave* currentWave = mgr_wave->GetSmallestIdWave();
+        TempMessage* currentMessage = mgr_wave->GetWaveMessage();
+        assert(currentMessage != nullptr && "currentMessage shouldn't be a nullptr");
         if (!currentWave)
         {
             label.p_text = "Victory!";
+            return;
+        }
+        else if(!currentMessage->p_message.empty())
+        {
+            currentMessage->p_time -= deltaTime;
+            label.p_text = currentMessage->p_message;
             return;
         }
         

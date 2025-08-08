@@ -16,7 +16,6 @@ void TowerPlace::InitLabels()
 }
 void TowerPlace::InitButtons()
 {
-    // TODO: Initialize buttons when needed
 }
 void TowerPlace::InjectDependencies(TowerManager* towerManager,GuiManager* guiManager)
 {

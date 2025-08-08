@@ -15,9 +15,9 @@ private:
 
     void UpdateTextPosition(TextLabel &label);
     void UpdateTextPosition(Button &button);
-    void UpdatePress(Button &button);
-    void UpdateLabel(TextLabel &label);
-    void UpdateButton(Button &button);
+    void UpdatePress(float deltaTime,Button &button);
+    void UpdateLabel(float deltaTime,TextLabel &label);
+    void UpdateButton(float deltaTime,Button &button);
     void DrawButton(const Button &button) const;
     void DrawLabel(const TextLabel &label) const;
 
@@ -31,7 +31,7 @@ public:
     TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(int id);
     void RemoveLabel(int id);
-    void Update();
+    void Update(float deltaTime);
     void Draw() const;
     void Init();
     

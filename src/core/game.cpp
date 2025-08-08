@@ -31,7 +31,7 @@ void Game::Update()
     mgr_wave.Update(deltaTime);
 
     
-    mgr_gui.Update();
+    mgr_gui.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {

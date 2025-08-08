@@ -14,7 +14,7 @@ void PlayerStats::InitLabels()
     waveCountLabel.p_fontSize = GetFontDefault().baseSize;
     waveCountLabel.p_rect = {5,28,95,20};
     waveCountLabel.p_color = GREEN;
-    waveCountLabel.p_updateFunction = [this](TextLabel& label)
+    waveCountLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
     {
         std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;

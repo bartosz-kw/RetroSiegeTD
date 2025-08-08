@@ -20,7 +20,7 @@ void TowerSelect::InitLabels()
     nameLabel.p_fontSize = GetFontDefault().baseSize;
     nameLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     nameLabel.p_color = BLUE;
-    nameLabel.p_updateFunction = [this](TextLabel &label)
+    nameLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -39,7 +39,7 @@ void TowerSelect::InitLabels()
     levelLabel.p_fontSize = GetFontDefault().baseSize;
     levelLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 58, 20};
     levelLabel.p_color = BLUE;
-    levelLabel.p_updateFunction = [this](TextLabel &label)
+    levelLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -57,7 +57,7 @@ void TowerSelect::InitLabels()
     damageLabel.p_fontSize = GetFontDefault().baseSize;
     damageLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 58, 20};
     damageLabel.p_color = BLUE;
-    damageLabel.p_updateFunction = [this](TextLabel &label)
+    damageLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -75,7 +75,7 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_fontSize = GetFontDefault().baseSize;
     attackSpeedLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 58, 20};
     attackSpeedLabel.p_color = BLUE;
-    attackSpeedLabel.p_updateFunction = [this](TextLabel &label)
+    attackSpeedLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -93,7 +93,7 @@ void TowerSelect::InitLabels()
     rangeLabel.p_fontSize = GetFontDefault().baseSize / 1.0f;
     rangeLabel.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 58, 20};
     rangeLabel.p_color = BLUE;
-    rangeLabel.p_updateFunction = [this](TextLabel &label)
+    rangeLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -116,7 +116,7 @@ void TowerSelect::InitButtons()
     upgradeButton.p_rect = {65, (startingPoint - offset * 0) + gap * 1, 36, 20};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_fontSize = GetFontDefault().baseSize;
-    upgradeButton.p_updateFunction = [this](Button &button)
+    upgradeButton.p_updateFunction = [this](float deltaTime,Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -126,7 +126,7 @@ void TowerSelect::InitButtons()
         }
         button.p_visible = true;
     };
-    upgradeButton.p_onPressed = [this](Button &button)
+    upgradeButton.p_onPressed = [this](float deltaTime,Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
