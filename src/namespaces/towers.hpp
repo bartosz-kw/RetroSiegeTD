@@ -8,7 +8,7 @@ namespace Towers
 {
     inline std::unordered_map<int, Tower> g_towerData =
     {
-            // damage, position, range, attackSpeed, timeToAttack, id, level, typeId, tileId, dirty
+            // price , damage, position, range, attackSpeed, timeToAttack, id, level, typeId, tileId, dirty
             {TowerType::Ninja, Tower{25 ,1, {-1, -1}, 75.0f, 0.5f, 0, -1, 0, TowerType::Ninja, 0, true}}
     };
 

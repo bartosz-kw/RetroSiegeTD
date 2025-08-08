@@ -16,6 +16,10 @@ void PSManager::SubMoney(uint64_t amount)
     {
         m_money -= amount;
     }
+    else
+    {
+        m_money = 0;
+    }
 }
 
 void PSManager::SetMoney(uint64_t amount)

@@ -4,6 +4,7 @@
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/bullets.hpp"
 #include "../namespaces/settings.hpp"
+#include "../managers/psmanager.hpp"
 #include "../managers/tilemanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
@@ -26,11 +27,14 @@ void TowerManager::DetectInput()
             return;
 
         Tower tower = Towers::GetTowerData(TowerType::Ninja);
-        tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
-        tower.p_tileId = tile->p_id;
-        tower.p_dirty = true;
-        PrintDebug(tile->p_id, "Tower Placed At");
-        AddTower(tower);
+        if (tower.p_price <= mgr_ps->GetMoney())
+        {
+            mgr_ps->SubMoney(tower.p_price);
+            tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
+            tower.p_tileId = tile->p_id;
+            tower.p_price = true;
+            AddTower(tower);
+        }
     }
 }
 void TowerManager::DetectTowerInput(Tower &tower)
@@ -38,12 +42,15 @@ void TowerManager::DetectTowerInput(Tower &tower)
     Vector2 mousePosition = GetMousePosition();
     Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     Rectangle towerRect =
-    {
-        tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale // x
-        , tower.p_position.y * Settings::g_gameScale // y
-        , static_cast<float>(texture.width * Settings::g_gameScale) // width 
-        , static_cast<float>(texture.height * Settings::g_gameScale) // height
-    };
+        {
+            tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale // x
+            ,
+            tower.p_position.y * Settings::g_gameScale // y
+            ,
+            static_cast<float>(texture.width * Settings::g_gameScale) // width
+            ,
+            static_cast<float>(texture.height * Settings::g_gameScale) // height
+        };
 
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
@@ -94,8 +101,10 @@ std::string TowerManager::TowerTypeToString(TowerType type)
 {
     switch (type)
     {
-        case TowerType::Ninja: return "Ninja";
-        default:               return "Unknown";
+    case TowerType::Ninja:
+        return "Ninja";
+    default:
+        return "Unknown";
     }
 }
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
@@ -123,9 +132,9 @@ Tower *TowerManager::GetLastSelectedTower()
 {
     return GetTowerById(m_lastSelectedTowerId);
 }
-Tower* TowerManager::GetTowerById(int32_t id)
+Tower *TowerManager::GetTowerById(int32_t id)
 {
-    for (auto& tower : m_towers)
+    for (auto &tower : m_towers)
     {
         if (tower.p_id == id)
         {
@@ -157,7 +166,7 @@ void TowerManager::Update(float deltaTime)
 
     for (auto &tower : m_towers)
     {
-        assert(tower.p_id >= 0 && tower.p_id <= (18*18));
+        assert(tower.p_id >= 0 && tower.p_id <= (18 * 18));
         if (tower.p_dirty)
         {
             Tile tile = mgr_tile->GetTile(tower.p_tileId);
@@ -173,7 +182,7 @@ void TowerManager::Update(float deltaTime)
 void TowerManager::DrawHover(uint8_t screenOffset) const
 {
     Tower selectedTower = Towers::GetTowerData(1);
-    Tile* lastHoveredTile = mgr_tile->GetLastHoveredTile();
+    Tile *lastHoveredTile = mgr_tile->GetLastHoveredTile();
     if (lastHoveredTile)
     {
         if (IsKeyDown(KEY_T) && CanPlaceTower(lastHoveredTile))
@@ -182,13 +191,11 @@ void TowerManager::DrawHover(uint8_t screenOffset) const
             Color rangeColor = {41, 154, 255, 128};
             DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, towerColor);
             Vector2 centerPos = mgr_tile->GetTileCenterPosition(*lastHoveredTile);
-            DrawCircle
-            (
+            DrawCircle(
                 static_cast<int>(centerPos.x + screenOffset),
                 static_cast<int>(centerPos.y),
                 static_cast<float>(selectedTower.p_range),
-                rangeColor
-            );
+                rangeColor);
         }
     }
 }
@@ -214,12 +221,12 @@ void TowerManager::Draw(uint8_t screenOffset) const
     }
     DrawHover(screenOffset);
 }
-void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr, PSManager* mgr_psPtr)
+void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;
     mgr_bullet = mgr_bulletPtr;
-    mgr_ps = mgr_psPtr;    
+    mgr_ps = mgr_psPtr;
 }
 void TowerManager::Init()
 {
