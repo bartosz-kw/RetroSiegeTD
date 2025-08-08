@@ -20,6 +20,11 @@ void TowerManager::DetectInput()
     // this is debug key, and this will be changed in later versions
     if (IsKeyDown(KEY_T))
     {
+        if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            return;
+        }
+        
         Tile *tile = mgr_tile->GetLastClickedTile();
         if (tile == nullptr)
             return;
