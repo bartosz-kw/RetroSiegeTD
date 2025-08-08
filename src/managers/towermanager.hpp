@@ -3,9 +3,12 @@
 #include <string>
 #include "../structs/tower.hpp"
 
-class TileManager; 
+
 class Tile;
+
+class TileManager; 
 class EnemyManager;
+class PSManager;
 class BulletManager; 
 
 class TowerManager
@@ -15,6 +18,7 @@ private:
     int32_t m_lastSelectedTowerId = -1;
     TileManager* mgr_tile = nullptr; 
     EnemyManager* mgr_enemy = nullptr;
+    PSManager* mgr_ps = nullptr;
     BulletManager* mgr_bullet = nullptr; 
 private:
     void DetectInput();
@@ -34,6 +38,6 @@ public:
     void Update(float deltaTime);
     void DrawHover(uint8_t screenOffset) const;
     void Draw(uint8_t screenOffset) const;
-    void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr); 
+    void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr, PSManager* mgr_psPtr); 
     void Init();   
 };

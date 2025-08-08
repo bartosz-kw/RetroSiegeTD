@@ -88,7 +88,7 @@ void Game::InitManagers()
     mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps);
     mgr_enemy.Init();
-    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet);
+    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps);
     mgr_tower.Init();
 
     mgr_wave.InjectDependencies(&mgr_enemy);

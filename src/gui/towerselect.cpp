@@ -7,7 +7,7 @@
 
 constexpr uint16_t startingPoint = 250;
 constexpr uint8_t offset = 15;
-constexpr int8_t gap = -20;
+constexpr int8_t gap = -10;
 
 void TowerSelect::InitLabels()
 {
@@ -131,7 +131,7 @@ void TowerSelect::InitButtons()
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
         {
-            PrintDebug("Hello world"); // this->mgr_tower->UpgradeTower(tower->p_id);
+            PrintDebug("Hello world"); 
         }
     };
 }

@@ -214,12 +214,17 @@ void TowerManager::Draw(uint8_t screenOffset) const
     }
     DrawHover(screenOffset);
 }
-void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr)
+void TowerManager::InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr, PSManager* mgr_psPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;
     mgr_bullet = mgr_bulletPtr;
+    mgr_ps = mgr_psPtr;    
 }
 void TowerManager::Init()
 {
+    assert(mgr_tile != nullptr && "TileManager wasn't injected and its dependency");
+    assert(mgr_enemy != nullptr && "EnemyManager wasn't injected and its dependency");
+    assert(mgr_bullet != nullptr && "BulletManager wasn't injected and its dependency");
+    assert(mgr_ps != nullptr && "PSManager wasn't injected and its dependency");
 }
