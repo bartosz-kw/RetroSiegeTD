@@ -81,7 +81,12 @@ void WaveManager::LoadWaves()
 }
 
 // Public
-
+TempMessage WaveManager::GetWaveMessage()
+{
+    TempMessage result = m_waveMessage;
+    m_waveMessage = {};
+    return result;
+}
 EnemyWave *WaveManager::GetSmallestIdWave()
 {
     if (m_enemyWaves.empty())
@@ -115,3 +120,5 @@ void WaveManager::Init()
 
     m_time = 0.0f;
 }
+
+

@@ -1,5 +1,6 @@
 #pragma once
 #include "../structs/wave.hpp"
+#include "../structs/tempmessage.hpp"
 
 class EnemyManager; 
 class PSManager; 
@@ -7,6 +8,7 @@ class PSManager;
 class WaveManager {
 private:
     std::vector<EnemyWave> m_enemyWaves = {};
+    TempMessage m_waveMessage = {};
     float m_time = 0.0f;
     EnemyManager* mgr_enemy = nullptr; 
     PSManager* mgr_ps = nullptr;
@@ -19,6 +21,8 @@ private:
 public:
     WaveManager() = default;
 
+    
+    TempMessage GetWaveMessage();
     EnemyWave* GetSmallestIdWave();
     void Update(float deltaTime);
     void InjectDependencies(EnemyManager* enemyManager, PSManager* psManager);
