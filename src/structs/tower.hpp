@@ -8,6 +8,7 @@ enum TowerType
 
 struct Tower
 {               
+    uint64_t p_price = 0;
     int64_t p_damage = 1;  
     Vector2 p_position = {0,0};
     float p_range = 30;
