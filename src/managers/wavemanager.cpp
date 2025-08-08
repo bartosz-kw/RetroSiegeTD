@@ -5,6 +5,10 @@
 
 // Private
 
+void WaveManager::PreKillWave(EnemyWave* wave)
+{
+    
+}
 void WaveManager::RemoveWave(uint32_t id)
 {
     auto eraseLambda = [id](const EnemyWave &wave)
@@ -42,6 +46,8 @@ void WaveManager::HandleWave()
     }
     if (currentWave->p_enemySpawns.empty() && mgr_enemy->IsEnemiesEmpty())
     {
+        
+        PreKillWave(currentWave);
         RemoveWave(currentWave->p_id);
         // PrintDebugError(currentWave->p_id); // funny undefined behavior
         return; // safe guard, ending function after deleting used pointer
@@ -58,6 +64,7 @@ void WaveManager::LoadWaves()
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     EnemyWave wave2 = {};
     wave2.p_id = 2;
+    wave2.p_moneyReward = 50;
     wave2.p_enemySpawns = enemySpawns2;
 
     std::vector<std::pair<float, int>> enemySpawns1 = {};
@@ -66,6 +73,7 @@ void WaveManager::LoadWaves()
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     EnemyWave wave1 = {};
     wave1.p_id = 1;
+    wave1.p_moneyReward = 40;
     wave1.p_enemySpawns = enemySpawns1;
     m_enemyWaves.push_back(wave1);
     m_enemyWaves.push_back(wave2);
@@ -95,9 +103,10 @@ void WaveManager::Update(float deltaTime)
     m_time += deltaTime;
     HandleWave();
 }
-void WaveManager::InjectDependencies(EnemyManager *enemyManager)
+void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager)
 {
     mgr_enemy = enemyManager;
+    mgr_ps = psManager;
 }
 void WaveManager::Init()
 {
