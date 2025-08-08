@@ -1,5 +1,6 @@
 #include "wavemanager.hpp"
 #include "enemymanager.hpp"
+#include "psmanager.hpp"
 #include "../namespaces/enemies.hpp"
 #include "../utility/debugUtil.hpp"
 
@@ -7,7 +8,7 @@
 
 void WaveManager::PreKillWave(EnemyWave* wave)
 {
-    
+    mgr_ps->AddMoney(wave->p_moneyReward);
 }
 void WaveManager::RemoveWave(uint32_t id)
 {
