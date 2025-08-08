@@ -8,6 +8,9 @@
 
 void WaveManager::PreKillWave(EnemyWave* wave)
 {
+    m_waveMessage = {};
+    m_waveMessage.p_message = "Cleared: $" + std::to_string(wave->p_moneyReward) + "+";
+    m_waveMessage.p_time = 3.0f;
     mgr_ps->AddMoney(wave->p_moneyReward);
 }
 void WaveManager::RemoveWave(uint32_t id)
