@@ -86,16 +86,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
     if (enemy)
     {
-        Vector2 bulletPos = centerPos;
-        Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
-        float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
-
-        // make bullet
-        Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
-        bullet.p_damage = tower.p_damage;
-        bullet.p_directionAngle = angle;
-        bullet.p_position = bulletPos;
-        mgr_bullet->AddBullet(bullet);
+        tower.p_fightFunction(deltatime,tower,enemy,mgr_enemy,mgr_bullet,this);
     }
     tower.p_timeToAttack = 0.0f;
 }

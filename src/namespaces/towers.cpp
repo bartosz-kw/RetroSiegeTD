@@ -1,0 +1,62 @@
+#include "towers.hpp"
+#include "bullets.hpp"
+#include "../managers/towermanager.hpp"
+#include "../managers/enemymanager.hpp"
+#include "../managers/bulletmanager.hpp"
+#include <unordered_map>
+#include <cassert>
+#include <cmath>
+
+namespace Towers
+{
+    std::unordered_map<int, Tower> g_towerData = {};
+
+    void InitTowerData()
+    {
+        g_towerData.clear();
+
+        // ninja Lv 1
+        Tower ninja1Tower = {};
+        ninja1Tower.p_fightFunction = [](float deltaTime, Tower &tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager* mgr_tower)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            // make bullet
+            Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
+            bullet.p_damage = tower.p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_position = bulletPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower &tower) {
+
+        };
+        ninja1Tower.p_price = 25;
+        ninja1Tower.p_damage = 1;
+        ninja1Tower.p_position = {-1.0f, -1.0f};
+        ninja1Tower.p_range = 75.0f;
+        ninja1Tower.p_attackSpeed = 0.5f;
+        ninja1Tower.p_timeToAttack = 0.0f;
+        ninja1Tower.p_id = -1;
+        ninja1Tower.p_level = 0;
+        ninja1Tower.p_typeId = TowerType::Ninja;
+        ninja1Tower.p_tileId = 0;
+        ninja1Tower.p_dirty = true;
+
+        g_towerData[TowerType::Ninja] = ninja1Tower;
+    }
+
+    Tower GetTowerData(int typeId)
+    {
+        auto it = g_towerData.find(typeId);
+        if (it != g_towerData.end())
+        {
+            return it->second;
+        }
+        assert(false && "couldn't find requested data in towerData");
+        return Tower{};
+    }
+}

@@ -14,8 +14,8 @@
 
 class Game
 {
-private: // variables
-    Font m_mainFont = {};
+private: 
+    // variables
     RenderTexture2D m_frame = {};
     // managers
     TileManager mgr_tile = {};

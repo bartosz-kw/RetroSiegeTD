@@ -1,5 +1,6 @@
 #include "playerstats.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../namespaces/settings.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
 #include "../managers/psmanager.hpp"
@@ -11,7 +12,7 @@ void PlayerStats::InitLabels()
     TextLabel& waveCountLabel = mgr_gui->AddLabel(TextLabel{});
     waveCountLabel.p_text = "Wave:";
     waveCountLabel.p_id = mgr_gui->GetAmountOfLabels();
-    waveCountLabel.p_fontSize = GetFontDefault().baseSize;
+    waveCountLabel.p_fontSize = Settings::g_gameFont.baseSize;
     waveCountLabel.p_rect = {5,28,95,20};
     waveCountLabel.p_color = GREEN;
     waveCountLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)

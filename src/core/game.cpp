@@ -119,7 +119,7 @@ void Game::InitDatas()
 }
 void Game::InitMembers()
 {
-    m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
+    //m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
 }
 void Game::InitGame()
@@ -128,6 +128,7 @@ void Game::InitGame()
     //ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
+    Settings::g_gameFont = GetFontDefault();
 }
 // Public functions
 void Game::Init()
