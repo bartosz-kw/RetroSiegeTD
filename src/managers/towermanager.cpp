@@ -86,7 +86,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
     if (enemy)
     {
-        tower.p_fightFunction(deltatime,tower,enemy,mgr_enemy,mgr_bullet,this);
+        tower.p_fightFunction(deltatime,&tower,enemy,mgr_enemy,mgr_bullet,this);
     }
     tower.p_timeToAttack = 0.0f;
 }

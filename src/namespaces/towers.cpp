@@ -1,5 +1,6 @@
 #include "towers.hpp"
 #include "bullets.hpp"
+#include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
@@ -17,22 +18,23 @@ namespace Towers
 
         // ninja Lv 1
         Tower ninja1Tower = {};
-        ninja1Tower.p_fightFunction = [](float deltaTime, Tower &tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager* mgr_tower)
+        ninja1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager* mgr_tower)
         {
-            Vector2 centerPos = mgr_tower->GetCenterPosition(tower);
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
             // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
-            bullet.p_damage = tower.p_damage;
+            bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower &tower) {
-
+        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower) 
+        {
+            PrintDebug("Update Func");
         };
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;

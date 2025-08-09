@@ -132,7 +132,7 @@ void TowerSelect::InitButtons()
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
         {
-            PrintDebug("Hello world"); 
+            tower->p_upgradeFunction(deltaTime,tower);
         }
     };
 }
