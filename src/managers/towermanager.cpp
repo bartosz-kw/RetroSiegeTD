@@ -97,8 +97,10 @@ std::string TowerManager::TowerTypeToString(TowerType type)
 {
     switch (type)
     {
-    case TowerType::NinjaLv1: 
-    case TowerType::NinjaLv2: 
+    case TowerType::Nothing:
+        return "Nothing";
+    case TowerType::NinjaLv1:
+    case TowerType::NinjaLv2:
     case TowerType::NinjaLv3:
     case TowerType::NinjaLv4:
         return "Ninja";

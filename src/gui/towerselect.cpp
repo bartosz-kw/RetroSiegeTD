@@ -1,5 +1,6 @@
 #include "towerselect.hpp"
 #include "../namespaces/settings.hpp"
+#include "../namespaces/towers.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/psmanager.hpp"
@@ -49,6 +50,14 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
+        if (tower->p_isUpgradeHovered)
+        {
+            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            label.p_text = "Lv: " + std::to_string(tower->p_level) + " -> " + std::to_string(postUpgradeData.p_level);
+            label.p_visible = true;
+            return;
+        }
+        
         label.p_text = "Lv: " + std::to_string(tower->p_level);
         label.p_visible = true;
     };
@@ -65,6 +74,13 @@ void TowerSelect::InitLabels()
         if (!tower)
         {
             label.p_visible = false;
+            return;
+        }
+        if (tower->p_isUpgradeHovered)
+        {
+            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            label.p_text = "Dmg: " + std::to_string(tower->p_damage) + " -> " + std::to_string(postUpgradeData.p_damage);
+            label.p_visible = true;
             return;
         }
         label.p_text = "Dmg: " + std::to_string(tower->p_damage);
@@ -85,6 +101,13 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
+        if (tower->p_isUpgradeHovered)
+        {
+            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed) + " -> " + std::format("{:.2f}", postUpgradeData.p_attackSpeed);
+            label.p_visible = true;
+            return;
+        }
         label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed);
         label.p_visible = true;
     };
@@ -103,6 +126,14 @@ void TowerSelect::InitLabels()
             label.p_visible = false;
             return;
         }
+        if (tower->p_isUpgradeHovered)
+        {
+            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            label.p_text = "R: " + std::format("{:.2f}", tower->p_range) + " -> " + std::format("{:.2f}", postUpgradeData.p_range);
+            label.p_visible = true;
+            return;
+        }
+
         label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
         label.p_visible = true;
     };
@@ -115,13 +146,15 @@ void TowerSelect::InitButtons()
 
     #pragma region UpgradeButton
     Button &upgradeButton = mgr_gui->AddButton(Button{});
-    upgradeButton.p_text = "Upg";
+    upgradeButton.p_text = "Upgrade";
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
     upgradeButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, 20};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        button.p_text = "Upgrade";
+        button.p_color = GREEN;
         if (!tower)
         {
             button.p_visible = false;
@@ -129,9 +162,12 @@ void TowerSelect::InitButtons()
         }
         else if (!tower->p_canUpgrade)
         {
-            button.p_visible = false;
+            button.p_visible = true;
+            button.p_color = RED;
+            button.p_text = "Max Upgrade";
             return;
         }
+        tower->p_isUpgradeHovered = button.p_isHovered;
         button.p_visible = true;
     };
     upgradeButton.p_onPressed = [this](float deltaTime, Button &button)
@@ -139,7 +175,7 @@ void TowerSelect::InitButtons()
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
         {
-            if (!tower->p_canUpgrade)
+            if (!tower->p_canUpgrade || tower->p_upgradesTo == TowerType::Nothing)
             {
                 return;
             }

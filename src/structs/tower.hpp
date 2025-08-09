@@ -4,6 +4,7 @@
 #include <raylib.h>
 enum TowerType
 {
+    Nothing = 0,
     NinjaLv1 = 1,
     NinjaLv2 = 2,
     NinjaLv3 = 3,
@@ -25,10 +26,12 @@ struct Tower
     float p_range = 30;
     float p_attackSpeed = 1;
     float p_timeToAttack = 0;
+    TowerType p_upgradesTo = TowerType::Nothing;
     int32_t p_id = -1;   
     uint16_t p_level = 0;
     int16_t p_typeId = 0;
     int16_t p_tileId = 0;
+    bool p_isUpgradeHovered = false;
     bool p_canUpgrade = false;
     bool p_dirty = true;
 };

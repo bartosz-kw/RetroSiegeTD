@@ -15,6 +15,12 @@ namespace Towers
 
     void UpgradeTowerBasic(float deltaTime, Tower *tower, PSManager *mgr_ps, TowerType upgradeType)
     {
+        assert(upgradeType != TowerType::Nothing);
+        if (upgradeType == TowerType::Nothing)
+        {
+            return;
+        }
+        
         Tower upgradedTower = GetTowerData(upgradeType);
         if (!tower)
         {
@@ -54,7 +60,7 @@ namespace Towers
         };
         ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,TowerType::NinjaLv2);
+            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;
@@ -62,6 +68,7 @@ namespace Towers
         ninja1Tower.p_range = 75.0f;
         ninja1Tower.p_attackSpeed = 0.5f;
         ninja1Tower.p_timeToAttack = 0.0f;
+        ninja1Tower.p_upgradesTo = TowerType::NinjaLv2;
         ninja1Tower.p_id = -1;
         ninja1Tower.p_level = 1;
         ninja1Tower.p_typeId = TowerType::NinjaLv1;
@@ -91,7 +98,7 @@ namespace Towers
         };
         ninja2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,TowerType::NinjaLv3);
+            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja2Tower.p_price = 50;
         ninja2Tower.p_damage = 2;
@@ -99,6 +106,7 @@ namespace Towers
         ninja2Tower.p_range = 85.0f;
         ninja2Tower.p_attackSpeed = 0.4f;
         ninja2Tower.p_timeToAttack = 0.0f;
+        ninja2Tower.p_upgradesTo = TowerType::NinjaLv3;
         ninja2Tower.p_id = -1;
         ninja2Tower.p_level = 2;
         ninja2Tower.p_typeId = TowerType::NinjaLv2;
@@ -128,7 +136,7 @@ namespace Towers
         };
         ninja3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,TowerType::NinjaLv4);
+            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja3Tower.p_price = 75;
         ninja3Tower.p_damage = 3;
@@ -136,6 +144,7 @@ namespace Towers
         ninja3Tower.p_range = 95.0f;
         ninja3Tower.p_attackSpeed = 0.3f;
         ninja3Tower.p_timeToAttack = 0.0f;
+        ninja3Tower.p_upgradesTo = TowerType::NinjaLv4;
         ninja3Tower.p_id = -1;
         ninja3Tower.p_level = 3;
         ninja3Tower.p_typeId = TowerType::NinjaLv3;
@@ -174,6 +183,7 @@ namespace Towers
         ninja4Tower.p_range = 105.0f;
         ninja4Tower.p_attackSpeed = 0.25f;
         ninja4Tower.p_timeToAttack = 0.0f;
+        ninja4Tower.p_upgradesTo = TowerType::Nothing;
         ninja4Tower.p_id = -1;
         ninja4Tower.p_level = 4;
         ninja4Tower.p_typeId = TowerType::NinjaLv4;
