@@ -147,6 +147,7 @@ namespace Towers
 #pragma endregion
 
 #pragma region NinjaLv4
+
         // ninja Lv 4
         Tower ninja4Tower = {};
         ninja4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)

@@ -3,6 +3,7 @@
 #include "psmanager.hpp"
 #include "../namespaces/enemies.hpp"
 #include "../utility/debugUtil.hpp"
+#include <cassert>
 
 // Private
 
