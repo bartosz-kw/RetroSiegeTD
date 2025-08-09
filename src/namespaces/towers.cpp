@@ -33,7 +33,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower) 
+        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower,PSManager* mgr_ps) 
         {
             PrintDebug("Update Func");
         };
@@ -47,6 +47,7 @@ namespace Towers
         ninja1Tower.p_level = 0;
         ninja1Tower.p_typeId = TowerType::NinjaLv1;
         ninja1Tower.p_tileId = 0;
+        ninja1Tower.p_canUpgrade = true;
         ninja1Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv1] = ninja1Tower;
@@ -69,7 +70,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower) 
+        ninja2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower,PSManager* mgr_ps) 
         {
             PrintDebug("Update Func");
         };
@@ -83,6 +84,7 @@ namespace Towers
         ninja2Tower.p_level = 0;
         ninja2Tower.p_typeId = TowerType::NinjaLv2;
         ninja2Tower.p_tileId = 0;
+        ninja2Tower.p_canUpgrade = true;
         ninja2Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv2] = ninja2Tower;
@@ -105,7 +107,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower) 
+        ninja3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower,PSManager* mgr_ps) 
         {
             PrintDebug("Update Func");
         };
@@ -119,6 +121,7 @@ namespace Towers
         ninja3Tower.p_level = 0;
         ninja3Tower.p_typeId = TowerType::NinjaLv3;
         ninja3Tower.p_tileId = 0;
+        ninja3Tower.p_canUpgrade = true;
         ninja3Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv3] = ninja3Tower;
@@ -141,7 +144,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja4Tower.p_upgradeFunction = [](float deltaTime, Tower *tower) 
+        ninja4Tower.p_upgradeFunction = [](float deltaTime, Tower *tower,PSManager* mgr_ps) 
         {
             PrintDebug("Update Func");
         };
@@ -155,6 +158,7 @@ namespace Towers
         ninja4Tower.p_level = 0;
         ninja4Tower.p_typeId = TowerType::NinjaLv4;
         ninja4Tower.p_tileId = 0;
+        ninja4Tower.p_canUpgrade = false;
         ninja4Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv4] = ninja4Tower;

@@ -2,6 +2,7 @@
 #include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
+#include "../managers/psmanager.hpp"
 #include "../managers/guimanager.hpp"
 #include <format>
 #include <cassert>
@@ -21,7 +22,7 @@ void TowerSelect::InitLabels()
     nameLabel.p_fontSize = Settings::g_gameFont.baseSize;
     nameLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     nameLabel.p_color = BLUE;
-    nameLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
+    nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -40,7 +41,7 @@ void TowerSelect::InitLabels()
     levelLabel.p_fontSize = Settings::g_gameFont.baseSize;
     levelLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 58, 20};
     levelLabel.p_color = BLUE;
-    levelLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
+    levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -58,7 +59,7 @@ void TowerSelect::InitLabels()
     damageLabel.p_fontSize = Settings::g_gameFont.baseSize;
     damageLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 58, 20};
     damageLabel.p_color = BLUE;
-    damageLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
+    damageLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -76,7 +77,7 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_fontSize = Settings::g_gameFont.baseSize;
     attackSpeedLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 58, 20};
     attackSpeedLabel.p_color = BLUE;
-    attackSpeedLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
+    attackSpeedLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -94,7 +95,7 @@ void TowerSelect::InitLabels()
     rangeLabel.p_fontSize = Settings::g_gameFont.baseSize / 1.0f;
     rangeLabel.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 58, 20};
     rangeLabel.p_color = BLUE;
-    rangeLabel.p_updateFunction = [this](float deltaTime,TextLabel &label)
+    rangeLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -117,7 +118,7 @@ void TowerSelect::InitButtons()
     upgradeButton.p_rect = {65, (startingPoint - offset * 0) + gap * 1, 36, 20};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_fontSize = Settings::g_gameFont.baseSize;
-    upgradeButton.p_updateFunction = [this](float deltaTime,Button &button)
+    upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -125,21 +126,32 @@ void TowerSelect::InitButtons()
             button.p_visible = false;
             return;
         }
+        else if (!tower->p_canUpgrade)
+        {
+            button.p_visible = false;
+            return;
+        }
         button.p_visible = true;
     };
-    upgradeButton.p_onPressed = [this](float deltaTime,Button &button)
+    upgradeButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
         {
-            tower->p_upgradeFunction(deltaTime,tower);
+            if (!tower->p_canUpgrade)
+            {
+                return;
+            }
+
+            tower->p_upgradeFunction(deltaTime, tower, this->mgr_ps);
         }
     };
 }
-void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager)
+void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager* psManager)
 {
     mgr_tower = towerManager;
     mgr_gui = guiManager;
+    mgr_ps = psManager;
 }
 void TowerSelect::Init()
 {
