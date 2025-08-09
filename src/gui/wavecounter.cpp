@@ -34,13 +34,11 @@ void WaveCounter::InitLabels()
         label.p_text = text;
     };
 }
-
 void WaveCounter::InjectDependencies(WaveManager* waveManager,GuiManager* guiManager)
 {
     mgr_wave = waveManager;
     mgr_gui = guiManager;
 }
-
 void WaveCounter::Init()
 {
     assert(mgr_gui != nullptr && "GuiManager wasn't injected and its dependency");

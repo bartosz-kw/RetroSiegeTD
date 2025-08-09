@@ -2,6 +2,7 @@
 #include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include <raylib.h>
+#include <cmath>
 #include <format>
 #include <algorithm>
 
@@ -12,18 +13,22 @@ void GuiManager::UpdateTextPosition(TextLabel &label)
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             label.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
-    label.p_textPosition = {
-        label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
-        label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f};
+    label.p_textPosition = 
+    {
+        std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // y
+        std::round(label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // x
+    };
 }
 void GuiManager::UpdateTextPosition(Button &button)
 {
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             button.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
-    button.p_textPosition = {
-        button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
-        button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f};
+    button.p_textPosition = 
+    {
+        std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // x
+        std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // y
+    };
 }
 void GuiManager::UpdatePress(float deltaTime,Button &button)
 {

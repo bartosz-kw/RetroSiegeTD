@@ -3,6 +3,7 @@
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
+#include "../managers/psmanager.hpp"
 #include "../managers/bulletmanager.hpp"
 #include <unordered_map>
 #include <cassert>
@@ -35,7 +36,20 @@ namespace Towers
         };
         ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower,PSManager* mgr_ps) 
         {
-            PrintDebug("Update Func");
+            Tower upgradedTower = GetTowerData(TowerType::NinjaLv2);
+            if (!tower)
+            {
+                return;
+            }
+            
+            if(mgr_ps->GetMoney() >= upgradedTower.p_price)
+            {
+                mgr_ps->SubMoney(upgradedTower.p_price);
+                upgradedTower.p_id = tower->p_id;
+                upgradedTower.p_tileId = tower->p_tileId;
+                upgradedTower.p_dirty = true;
+                *tower = upgradedTower;
+            }
         };
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;

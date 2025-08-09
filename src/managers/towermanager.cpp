@@ -37,7 +37,7 @@ void TowerManager::DetectInput()
             mgr_ps->SubMoney(tower.p_price);
             tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
             tower.p_tileId = tile->p_id;
-            tower.p_price = true;
+            tower.p_dirty = true;
             AddTower(tower);
         }
     }
@@ -199,6 +199,11 @@ void TowerManager::Draw(uint8_t screenOffset) const
 {
     for (auto &tower : m_towers)
     {
+        if (tower.p_dirty)
+        {
+            continue;
+        }
+        
         DrawTexture(
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,
