@@ -11,7 +11,7 @@ void GuiManager::UpdateTextPosition(TextLabel &label)
 {
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             label.p_text.c_str(),
-                                            label.p_fontSize, 1.0f);
+                                            Settings::g_gameFont.baseSize, 1.0f);
     label.p_textPosition = {
         label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
         label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f};
@@ -20,7 +20,7 @@ void GuiManager::UpdateTextPosition(Button &button)
 {
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             button.p_text.c_str(),
-                                            button.p_fontSize, 1.0f);
+                                            Settings::g_gameFont.baseSize, 1.0f);
     button.p_textPosition = {
         button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
         button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f};
@@ -86,7 +86,7 @@ void GuiManager::DrawButton(const Button &button) const
     constexpr float roundness = 5.0f;
     DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
     DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
-               button.p_textPosition, button.p_fontSize, 1.0f, BLACK);
+               button.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
 }
 void GuiManager::DrawLabel(const TextLabel &label) const
 {
@@ -97,7 +97,7 @@ void GuiManager::DrawLabel(const TextLabel &label) const
     constexpr float roundness = 5.0f;
     DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
     DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
-               label.p_textPosition, label.p_fontSize, 1.0f, BLACK);
+               label.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
 }
 
 /// Public

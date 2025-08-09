@@ -16,7 +16,6 @@ struct Button
     Rectangle p_rect = {0, 0, 100, 30};
     Vector2 p_textPosition = {0, 0};
     Color p_color = BLUE;
-    float p_fontSize = 10.0f;
 
     uint16_t p_id = 0;
     bool p_isHovered = false;

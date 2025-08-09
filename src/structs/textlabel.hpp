@@ -15,6 +15,5 @@ struct TextLabel
     Color p_color = WHITE;
 
     uint16_t p_id = 0;
-    uint8_t p_fontSize = 10;
     bool p_visible = true;
 };
