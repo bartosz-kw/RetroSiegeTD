@@ -24,7 +24,7 @@ void TowerManager::DetectInput()
         {
             return;
         }
-        
+
         Tile *tile = mgr_tile->GetLastClickedTile();
         if (tile == nullptr)
             return;
@@ -86,7 +86,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
     Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
     if (enemy)
     {
-        tower.p_fightFunction(deltatime,&tower,enemy,mgr_enemy,mgr_bullet,this);
+        tower.p_fightFunction(deltatime, &tower, enemy, mgr_enemy, mgr_bullet, this);
     }
     tower.p_timeToAttack = 0.0f;
 }
@@ -97,7 +97,10 @@ std::string TowerManager::TowerTypeToString(TowerType type)
 {
     switch (type)
     {
-    case TowerType::NinjaLv1:
+    case TowerType::NinjaLv1: 
+    case TowerType::NinjaLv2: 
+    case TowerType::NinjaLv3:
+    case TowerType::NinjaLv4:
         return "Ninja";
     default:
         return "Unknown";
@@ -203,7 +206,7 @@ void TowerManager::Draw(uint8_t screenOffset) const
         {
             continue;
         }
-        
+
         DrawTexture(
             Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
             tower.p_position.x + screenOffset,

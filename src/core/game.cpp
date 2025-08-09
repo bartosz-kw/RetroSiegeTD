@@ -24,16 +24,15 @@ void Game::UpdateDebug()
 }
 void Game::Update()
 {
-    float deltaTime = GetFrameTime();
     UpdateDebug();
+    
+    float deltaTime = GetFrameTime();
+    mgr_gui.Update(deltaTime);
     mgr_enemy.Update(deltaTime);
     mgr_tile.Update();
     mgr_tower.Update(deltaTime);
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
-
-    
-    mgr_gui.Update(deltaTime);
 }
 void Game::MakeTextureFrame() const
 {
@@ -55,7 +54,7 @@ void Game::MakeTextureFrame() const
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
     mgr_gui.Draw();
-    
+
     EndTextureMode();
 }
 void Game::Draw() const
@@ -93,18 +92,18 @@ void Game::InitManagers()
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps);
     mgr_tower.Init();
 
-    mgr_wave.InjectDependencies(&mgr_enemy,&mgr_ps);
+    mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps);
     mgr_wave.Init();
 }
 void Game::InitGui()
 {
-    gui_waveCounter.InjectDependencies(&mgr_wave,&mgr_gui);
+    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui);
     gui_waveCounter.Init();
-    gui_towerSelect.InjectDependencies(&mgr_tower,&mgr_gui,&mgr_ps);
+    gui_towerSelect.InjectDependencies(&mgr_tower, &mgr_gui, &mgr_ps);
     gui_towerSelect.Init();
-    gui_towerPlace.InjectDependencies(&mgr_tower,&mgr_gui);
+    gui_towerPlace.InjectDependencies(&mgr_tower, &mgr_gui);
     gui_towerPlace.Init();
-    gui_playerStats.InjectDependencies(&mgr_gui,&mgr_ps);
+    gui_playerStats.InjectDependencies(&mgr_gui, &mgr_ps);
     gui_playerStats.Init();
 }
 void Game::InitSprites()
@@ -118,13 +117,13 @@ void Game::InitDatas()
 }
 void Game::InitMembers()
 {
-    //m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
+    // m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
 }
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
-    //ToggleFullscreen();
+    // ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = GetFontDefault();
