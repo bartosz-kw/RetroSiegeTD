@@ -31,7 +31,7 @@ void TowerManager::DetectInput()
         if (!CanPlaceTower(tile))
             return;
 
-        Tower tower = Towers::GetTowerData(TowerType::Ninja);
+        Tower tower = Towers::GetTowerData(TowerType::NinjaLv1);
         if (tower.p_price <= mgr_ps->GetMoney())
         {
             mgr_ps->SubMoney(tower.p_price);
@@ -97,7 +97,7 @@ std::string TowerManager::TowerTypeToString(TowerType type)
 {
     switch (type)
     {
-    case TowerType::Ninja:
+    case TowerType::NinjaLv1:
         return "Ninja";
     default:
         return "Unknown";

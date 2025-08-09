@@ -44,11 +44,11 @@ namespace Towers
         ninja1Tower.p_timeToAttack = 0.0f;
         ninja1Tower.p_id = -1;
         ninja1Tower.p_level = 0;
-        ninja1Tower.p_typeId = TowerType::Ninja;
+        ninja1Tower.p_typeId = TowerType::NinjaLv1;
         ninja1Tower.p_tileId = 0;
         ninja1Tower.p_dirty = true;
 
-        g_towerData[TowerType::Ninja] = ninja1Tower;
+        g_towerData[TowerType::NinjaLv1] = ninja1Tower;
     }
 
     Tower GetTowerData(int typeId)
