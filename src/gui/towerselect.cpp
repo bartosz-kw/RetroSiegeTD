@@ -16,6 +16,7 @@ void TowerSelect::InitLabels()
     constexpr size_t amountOfLabels = 5;
     mgr_gui->ReserveLabel(amountOfLabels);
 
+    #pragma region NameLabel
     TextLabel &nameLabel = mgr_gui->AddLabel(TextLabel{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -33,7 +34,8 @@ void TowerSelect::InitLabels()
                        this->mgr_tower->TowerTypeToString(static_cast<TowerType>(tower->p_typeId));
         label.p_visible = true;
     };
-
+    #pragma endregion
+    #pragma region LevelLabel
     TextLabel &levelLabel = mgr_gui->AddLabel(TextLabel{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -50,7 +52,8 @@ void TowerSelect::InitLabels()
         label.p_text = "Lv: " + std::to_string(tower->p_level);
         label.p_visible = true;
     };
-
+    #pragma endregion
+    #pragma region DamageLabel
     TextLabel &damageLabel = mgr_gui->AddLabel(TextLabel{});
     damageLabel.p_text = "";
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -67,7 +70,8 @@ void TowerSelect::InitLabels()
         label.p_text = "Dmg: " + std::to_string(tower->p_damage);
         label.p_visible = true;
     };
-
+    #pragma endregion
+    #pragma region AttackSpeedLabel
     TextLabel &attackSpeedLabel = mgr_gui->AddLabel(TextLabel{});
     attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -84,7 +88,8 @@ void TowerSelect::InitLabels()
         label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed);
         label.p_visible = true;
     };
-
+    #pragma endregion
+    #pragma region RangeLabel
     TextLabel &rangeLabel = mgr_gui->AddLabel(TextLabel{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -101,12 +106,14 @@ void TowerSelect::InitLabels()
         label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
         label.p_visible = true;
     };
+    #pragma endregion
 }
 void TowerSelect::InitButtons()
 {
     constexpr size_t amountOfButtons = 1;
     mgr_gui->ReserveButton(amountOfButtons);
 
+    #pragma region UpgradeButton
     Button &upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upg";
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
@@ -140,6 +147,7 @@ void TowerSelect::InitButtons()
             tower->p_upgradeFunction(deltaTime, tower, this->mgr_ps);
         }
     };
+    #pragma endregion
 }
 void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager* psManager)
 {

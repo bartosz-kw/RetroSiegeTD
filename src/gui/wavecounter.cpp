@@ -8,6 +8,10 @@
 
 void WaveCounter::InitLabels()
 {
+    constexpr size_t amountOfLabels = 1;
+    mgr_gui->ReserveLabel(amountOfLabels);
+
+    #pragma region WaveCountLabel
     TextLabel& waveCountLabel = mgr_gui->AddLabel(TextLabel{});
     waveCountLabel.p_text = "Wave:";
     waveCountLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -33,6 +37,7 @@ void WaveCounter::InitLabels()
         std::string text = "Wave: " + std::to_string(currentWave->p_id);
         label.p_text = text;
     };
+    #pragma endregion
 }
 void WaveCounter::InjectDependencies(WaveManager* waveManager,GuiManager* guiManager)
 {

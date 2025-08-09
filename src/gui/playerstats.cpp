@@ -9,16 +9,21 @@
 
 void PlayerStats::InitLabels()
 {
-    TextLabel& waveCountLabel = mgr_gui->AddLabel(TextLabel{});
-    waveCountLabel.p_text = "Wave:";
-    waveCountLabel.p_id = mgr_gui->GetAmountOfLabels();
-    waveCountLabel.p_rect = {5,28,95,20};
-    waveCountLabel.p_color = GREEN;
-    waveCountLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
+    constexpr size_t amountOfLabels = 1;
+    mgr_gui->ReserveLabel(amountOfLabels);
+
+    #pragma region MoneyLabel
+    TextLabel& moneyLabel = mgr_gui->AddLabel(TextLabel{});
+    moneyLabel.p_text = "Wave:";
+    moneyLabel.p_id = mgr_gui->GetAmountOfLabels();
+    moneyLabel.p_rect = {5,28,95,20};
+    moneyLabel.p_color = GREEN;
+    moneyLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
     {
         std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;
     };
+    #pragma endregion
 }
 void PlayerStats::InjectDependencies(GuiManager* guiManager,PSManager* psManager)
 {
