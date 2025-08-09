@@ -1,13 +1,18 @@
 #pragma once
 #include <cstdint>
+#include <functional>
 #include <raylib.h>
 enum TowerType
 {
     Ninja = 1
 };
-
+class EnemyManager;
+class BulletManager;
 struct Tower
-{               
+{              
+    std::function<void(float deltaTime,Tower& tower,EnemyManager* mgr_enemy,BulletManager* mgr_bullet)> 
+    p_fightFunction = [](float deltaTime,Tower& tower,EnemyManager* mgr_enemy,BulletManager* mgr_bullet){};
+    std::function<void(float deltaTime,Tower& tower)> p_upgradeFunction = [](float deltaTime,Tower& tower){};
     uint64_t p_price = 0;
     int64_t p_damage = 1;  
     Vector2 p_position = {0,0};
