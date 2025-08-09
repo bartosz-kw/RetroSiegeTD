@@ -153,7 +153,6 @@ void TowerSelect::InitButtons()
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
-        button.p_text = "Upgrade";
         button.p_color = GREEN;
         if (!tower)
         {
@@ -167,6 +166,7 @@ void TowerSelect::InitButtons()
             button.p_text = "Max Upgrade";
             return;
         }
+        button.p_text = "Upgrade: " + std::to_string(tower->p_price) + " $";
         tower->p_isUpgradeHovered = button.p_isHovered;
         button.p_visible = true;
     };
