@@ -20,7 +20,7 @@ void TowerSelect::InitLabels()
     TextLabel &nameLabel = mgr_gui->AddLabel(TextLabel{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
-    nameLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
+    nameLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
     nameLabel.p_color = BLUE;
     nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
@@ -39,7 +39,7 @@ void TowerSelect::InitLabels()
     TextLabel &levelLabel = mgr_gui->AddLabel(TextLabel{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
-    levelLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 58, 20};
+    levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     levelLabel.p_color = BLUE;
     levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
@@ -57,7 +57,7 @@ void TowerSelect::InitLabels()
     TextLabel &damageLabel = mgr_gui->AddLabel(TextLabel{});
     damageLabel.p_text = "";
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
-    damageLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 58, 20};
+    damageLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, 20};
     damageLabel.p_color = BLUE;
     damageLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
@@ -75,7 +75,7 @@ void TowerSelect::InitLabels()
     TextLabel &attackSpeedLabel = mgr_gui->AddLabel(TextLabel{});
     attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
-    attackSpeedLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 58, 20};
+    attackSpeedLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, 20};
     attackSpeedLabel.p_color = BLUE;
     attackSpeedLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
@@ -93,7 +93,7 @@ void TowerSelect::InitLabels()
     TextLabel &rangeLabel = mgr_gui->AddLabel(TextLabel{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
-    rangeLabel.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 58, 20};
+    rangeLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, 20};
     rangeLabel.p_color = BLUE;
     rangeLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
@@ -117,7 +117,7 @@ void TowerSelect::InitButtons()
     Button &upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upg";
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
-    upgradeButton.p_rect = {65, (startingPoint - offset * 0) + gap * 1, 36, 20};
+    upgradeButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, 20};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
