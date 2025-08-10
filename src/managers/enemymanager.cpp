@@ -37,14 +37,13 @@ Vector2 EnemyManager::CalculateMovePosition(int16_t moveDirection)
     }
     return Vector2{dx, dy};
 }
-void EnemyManager::UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int16_t moveDirection) 
+void EnemyManager::UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int16_t moveDirection)
 {
     Vector2 movePosition = CalculateMovePosition(moveDirection);
 
     constexpr float minTime = 0.0f;
     float normalizedTime = (enemy.p_timeToMove - minTime) / (enemy.p_speed - minTime);
     enemy.p_position = Vector2Add(tilePosition, Vector2Scale(movePosition, normalizedTime));
-    
 }
 void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
 {
@@ -69,7 +68,7 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
     }
     else
     {
-        enemy.p_alive = false;
+        enemy.p_survived = true;
         return;
     }
 }
@@ -82,19 +81,27 @@ void EnemyManager::HandleHits(Enemy &enemy)
     for (auto &bullet : detectedBullets)
     {
         enemy.p_health -= bullet.p_damage;
-        //PrintDebug(enemy.p_health, "HIT TAKEN");
+        // PrintDebug(enemy.p_health, "HIT TAKEN");
     }
 }
 void EnemyManager::PreKillEnemy(Enemy &enemy)
 {
-    mgr_ps->AddMoney(enemy.p_moneyDrop);
+    if (!enemy.p_alive)
+    {
+        mgr_ps->AddMoney(enemy.p_moneyDrop);
+    }
+    else if (enemy.p_survived)
+    {
+        mgr_ps->SubHealth(enemy.p_health);
+    }
 }
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
     // check if enemy has valid tile id
     if (enemy.p_tileId == -1)
     {
-        enemy.p_tileId = mgr_tile->GetPathStart().p_id;;
+        enemy.p_tileId = mgr_tile->GetPathStart().p_id;
+        ;
     }
 
     // get tile
@@ -114,7 +121,7 @@ void EnemyManager::RemoveEnemies()
     std::vector<size_t> indexesToRemove = {};
     for (size_t i = 0; i < m_enemies.size(); i++)
     {
-        if (!m_enemies[i].p_alive || m_enemies[i].p_health <= 0)
+        if (!m_enemies[i].p_alive || m_enemies[i].p_survived)
         {
             indexesToRemove.push_back(i);
         }
@@ -175,13 +182,19 @@ void EnemyManager::Update(float deltaTime)
 {
     for (auto &enemy : m_enemies)
     {
+        if (enemy.p_health <= 0)
+        {
+            enemy.p_alive = false;
+        }
+
         UpdateMovement(enemy, deltaTime);
         HandleHits(enemy);
-        RemoveEnemies();
-        if (!enemy.p_dirty)
-            continue;
-        CleanEnemy(enemy);
+        if (enemy.p_dirty)
+        {
+            CleanEnemy(enemy);
+        }
     }
+    RemoveEnemies();
 }
 void EnemyManager::Draw(uint8_t screenOffset) const
 {
@@ -191,7 +204,7 @@ void EnemyManager::Draw(uint8_t screenOffset) const
         {
             continue;
         }
-        
+
         DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, WHITE);
     }
 }

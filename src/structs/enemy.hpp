@@ -17,5 +17,6 @@ struct Enemy
     uint16_t p_walked = 0;
     int16_t p_tileId = 0;
     bool p_alive = true;
+    bool p_survived = false;
     bool p_dirty = true;
 };

@@ -10,6 +10,7 @@ namespace Enemies
         g_enemyData.clear();
         
         #pragma region BlueSlime
+
         // Blue Slime
         Enemy blueSlime = {};
         blueSlime.p_moneyDrop = 10;
@@ -22,6 +23,7 @@ namespace Enemies
         blueSlime.p_walked = 0;
         blueSlime.p_tileId = -1;
         blueSlime.p_alive = true;
+        blueSlime.p_survived = false;
         blueSlime.p_dirty = true;
         
         g_enemyData[EnemyType::BlueSlime] = blueSlime;
