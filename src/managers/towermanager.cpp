@@ -16,6 +16,11 @@
 
 void TowerManager::DetectInput()
 {
+    if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+    {
+        m_placeTower = TowerType::Nothing;
+    }
+    
     if (m_placeTower != TowerType::Nothing)
     {
         if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
