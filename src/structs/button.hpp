@@ -15,6 +15,7 @@ struct Button
 
     Rectangle p_rect = {0, 0, 100, 30};
     Vector2 p_textPosition = {0, 0};
+    Vector2 p_imagePosition = {0 , 0};
     Color p_color = BLUE;
 
     uint16_t p_id = 0;

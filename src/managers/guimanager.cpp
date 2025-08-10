@@ -30,6 +30,19 @@ void GuiManager::UpdateTextPosition(Button &button)
         std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // y
     };
 }
+void GuiManager::UpdateImagePosition(Button &button)
+{
+    if (button.p_buttonImage.id == 0)
+    {
+        return;
+    }
+    
+    button.p_imagePosition = 
+    {
+        button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f // x
+        ,button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f // y
+    };
+}
 void GuiManager::UpdatePress(float deltaTime,Button &button)
 {
     Vector2 mousePosition = GetMousePosition();
@@ -70,6 +83,7 @@ void GuiManager::UpdateButton(float deltaTime,Button &button)
         button.p_updateFunction(deltaTime,button);
     }
     UpdateTextPosition(button);
+    UpdateImagePosition(button);
     UpdatePress(deltaTime,button);
 }
 void GuiManager::DrawButton(const Button &button) const
