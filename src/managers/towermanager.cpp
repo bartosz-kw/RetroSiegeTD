@@ -16,9 +16,7 @@
 
 void TowerManager::DetectInput()
 {
-
-    // this is debug key, and this will be changed in later versions
-    if (IsKeyDown(KEY_T))
+    if (m_placeTower != TowerType::Nothing)
     {
         if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
@@ -31,7 +29,7 @@ void TowerManager::DetectInput()
         if (!CanPlaceTower(tile))
             return;
 
-        Tower tower = Towers::GetTowerData(TowerType::NinjaLv1);
+        Tower tower = Towers::GetTowerData(m_placeTower);
         if (tower.p_price <= mgr_ps->GetMoney())
         {
             mgr_ps->SubMoney(tower.p_price);
@@ -194,17 +192,19 @@ void TowerManager::DrawHover(uint8_t screenOffset) const
     Tile *lastHoveredTile = mgr_tile->GetLastHoveredTile();
     if (lastHoveredTile)
     {
-        if (IsKeyDown(KEY_T) && CanPlaceTower(lastHoveredTile))
+        if (m_placeTower != TowerType::Nothing && CanPlaceTower(lastHoveredTile))
         {
             Color towerColor = {255, 255, 255, 128};
             Color rangeColor = {41, 154, 255, 128};
             DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, towerColor);
             Vector2 centerPos = mgr_tile->GetTileCenterPosition(*lastHoveredTile);
-            DrawCircle(
+            DrawCircle
+            (
                 static_cast<int>(centerPos.x + screenOffset),
                 static_cast<int>(centerPos.y),
                 static_cast<float>(selectedTower.p_range),
-                rangeColor);
+                rangeColor
+            );
         }
     }
 }
