@@ -200,7 +200,11 @@ void TowerManager::Update(float deltaTime)
 }
 void TowerManager::DrawHover(uint8_t screenOffset) const
 {
-    Tower selectedTower = Towers::GetTowerData(1);
+    if (m_placeTower == TowerType::Nothing)
+    {
+        return;
+    }
+    Tower selectedTower = Towers::GetTowerData(m_placeTower);
     Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
     if (hoveredTile)
     {
