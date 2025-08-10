@@ -144,6 +144,14 @@ Tower *TowerManager::GetTowerById(int32_t id)
     }
     return nullptr;
 }
+TowerType TowerManager::GetPlaceTower() const
+{
+    return m_placeTower;
+}
+void TowerManager::SetPlaceTower(TowerType type)
+{
+    m_placeTower = type;
+}
 bool TowerManager::CanPlaceTower(Tile *tile) const
 {
     if (tile->p_moveDirection != 0)

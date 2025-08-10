@@ -2,9 +2,11 @@
 #include <vector>
 #include "../structs/button.hpp"
 #include "../structs/textlabel.hpp"
+#include "../structs/tower.hpp"
 
 class TowerManager; 
 class GuiManager;
+
 class TowerPlace
 {
 private:
@@ -14,6 +16,7 @@ private:
 
 private:
     void InitLabels();
+    void ControlPlaceTower(TowerType controlType);
     void InitButtons();
 
 public:

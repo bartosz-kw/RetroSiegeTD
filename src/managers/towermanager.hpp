@@ -16,6 +16,7 @@ class TowerManager
 private:
     std::vector<Tower> m_towers = {};
     int32_t m_lastSelectedTowerId = -1;
+    TowerType m_placeTower = TowerType::Nothing;
     TileManager* mgr_tile = nullptr; 
     EnemyManager* mgr_enemy = nullptr;
     PSManager* mgr_ps = nullptr;
@@ -34,6 +35,8 @@ public:
     void RemoveTower(int32_t id);
     Tower* GetLastSelectedTower();
     Tower* GetTowerById(int32_t id);
+    TowerType GetPlaceTower() const;
+    void SetPlaceTower(TowerType type);
     bool CanPlaceTower(Tile *tile) const;
     void Update(float deltaTime);
     void DrawHover(uint8_t screenOffset) const;
