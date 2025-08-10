@@ -9,6 +9,7 @@ private:
 private:
     std::vector<Tile> m_tiles = {};
     Tile* m_lastClickedTile = nullptr;
+    Tile* m_currentHoveredTile = nullptr;
     Tile* m_lastHoveredTile = nullptr;
     int16_t m_startPathId = -1;
 private:
@@ -23,6 +24,7 @@ public:
     int16_t GetMovedId(uint16_t tileid, int8_t direction) const;
     Tile* GetLastClickedTile();
     Tile* GetLastHoveredTile();
+    Tile* GetCurrentHoveredTile();
     Vector2 GetTileCenterPosition(const Tile& tile) const;
     void Update();
     void Draw(uint8_t screenOffset) const;

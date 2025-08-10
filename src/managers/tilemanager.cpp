@@ -26,6 +26,7 @@ bool TileManager::IsTileHovered(Tile &tile)
         return false;
     }
     m_lastHoveredTile = &tile;
+    m_currentHoveredTile = &tile;
     return true;
 }
 bool TileManager::IsTileClicked(Tile &tile)
@@ -115,6 +116,10 @@ Tile* TileManager::GetLastHoveredTile()
 {
     return m_lastHoveredTile;
 }
+Tile* TileManager::GetCurrentHoveredTile()
+{
+    return m_currentHoveredTile;
+}
 Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
 {
     constexpr float offset = g_tileSize/2.0f;
@@ -125,6 +130,7 @@ Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
 }
 void TileManager::Update()
 {
+    m_currentHoveredTile = nullptr;
     for (auto &tile : m_tiles)
     {
         if (IsTileClicked(tile))

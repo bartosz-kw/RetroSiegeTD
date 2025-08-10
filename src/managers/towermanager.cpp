@@ -29,10 +29,16 @@ void TowerManager::DetectInput()
         }
 
         Tile *tile = mgr_tile->GetLastClickedTile();
+        Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
+        if (hoveredTile == nullptr)
+            return;
         if (tile == nullptr)
             return;
         if (!CanPlaceTower(tile))
             return;
+        if (tile->p_id != hoveredTile->p_id)
+            return;
+        
 
         Tower tower = Towers::GetTowerData(m_placeTower);
         if (mgr_ps->CanAfford(tower.p_price))
@@ -195,15 +201,15 @@ void TowerManager::Update(float deltaTime)
 void TowerManager::DrawHover(uint8_t screenOffset) const
 {
     Tower selectedTower = Towers::GetTowerData(1);
-    Tile *lastHoveredTile = mgr_tile->GetLastHoveredTile();
-    if (lastHoveredTile)
+    Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
+    if (hoveredTile)
     {
-        if (m_placeTower != TowerType::Nothing && CanPlaceTower(lastHoveredTile))
+        if (m_placeTower != TowerType::Nothing && CanPlaceTower(hoveredTile))
         {
             Color towerColor = {255, 255, 255, 128};
             Color rangeColor = {41, 154, 255, 128};
-            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, towerColor);
-            Vector2 centerPos = mgr_tile->GetTileCenterPosition(*lastHoveredTile);
+            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
+            Vector2 centerPos = mgr_tile->GetTileCenterPosition(*hoveredTile);
             DrawCircle(
                 static_cast<int>(centerPos.x + screenOffset),
                 static_cast<int>(centerPos.y),
