@@ -20,7 +20,7 @@ void TowerManager::DetectInput()
     {
         m_placeTower = TowerType::Nothing;
     }
-    
+
     if (m_placeTower != TowerType::Nothing)
     {
         if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -47,6 +47,11 @@ void TowerManager::DetectInput()
 }
 void TowerManager::DetectTowerInput(Tower &tower)
 {
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        return;
+    }
+
     Vector2 mousePosition = GetMousePosition();
     Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     Rectangle towerRect =
@@ -60,10 +65,6 @@ void TowerManager::DetectTowerInput(Tower &tower)
             static_cast<float>(texture.height * Settings::g_gameScale) // height
         };
 
-    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-    {
-        return;
-    }
     if (!CheckCollisionPointRec(mousePosition, towerRect))
     {
         return;
@@ -203,13 +204,11 @@ void TowerManager::DrawHover(uint8_t screenOffset) const
             Color rangeColor = {41, 154, 255, 128};
             DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], lastHoveredTile->p_position.x + screenOffset, lastHoveredTile->p_position.y, towerColor);
             Vector2 centerPos = mgr_tile->GetTileCenterPosition(*lastHoveredTile);
-            DrawCircle
-            (
+            DrawCircle(
                 static_cast<int>(centerPos.x + screenOffset),
                 static_cast<int>(centerPos.y),
                 static_cast<float>(selectedTower.p_range),
-                rangeColor
-            );
+                rangeColor);
         }
     }
 }
