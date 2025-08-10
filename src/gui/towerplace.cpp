@@ -1,4 +1,5 @@
 #include "towerplace.hpp"
+#include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
@@ -21,6 +22,27 @@ void TowerPlace::InitLabels()
 }
 void TowerPlace::InitButtons()
 {
+    constexpr size_t amountOfButtons = 1;
+    mgr_gui->ReserveButton(amountOfButtons);
+
+    #pragma region NinjaButton
+    Button& ninjaButton = mgr_gui->AddButton(Button{});
+    ninjaButton.p_text = "";
+    ninjaButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f), 25.0f, 25.0f, 25.0f};
+    ninjaButton.p_color = YELLOW;
+    ninjaButton.p_id = mgr_gui->GetAmountOfButtons();
+    ninjaButton.p_isHovered = false;
+    ninjaButton.p_visible = true;
+    ninjaButton.p_buttonImage = Sprites::g_textures[Sprites::towerTextureOffset + TowerType::NinjaLv1];
+    ninjaButton.p_onPressed = [](float deltaTime, Button& button) 
+    {
+        // Placeholder for button press action
+    };
+    ninjaButton.p_updateFunction = [](float deltaTime, Button& button) 
+    {
+        // Placeholder for button update logic
+    };
+    #pragma endregion
 }
 void TowerPlace::InjectDependencies(TowerManager* towerManager,GuiManager* guiManager)
 {
