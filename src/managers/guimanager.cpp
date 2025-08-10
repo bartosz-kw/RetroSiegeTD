@@ -13,22 +13,22 @@ void GuiManager::UpdateTextPosition(TextLabel &label)
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             label.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
-    label.p_textPosition = 
-    {
-        std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // y
-        std::round(label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // x
-    };
+    label.p_textPosition =
+        {
+            std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // y
+            std::round(label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // x
+        };
 }
 void GuiManager::UpdateTextPosition(Button &button)
 {
     Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             button.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
-    button.p_textPosition = 
-    {
-        std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // x
-        std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // y
-    };
+    button.p_textPosition =
+        {
+            std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // x
+            std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // y
+        };
 }
 void GuiManager::UpdateImagePosition(Button &button)
 {
@@ -36,14 +36,15 @@ void GuiManager::UpdateImagePosition(Button &button)
     {
         return;
     }
-    
-    button.p_imagePosition = 
-    {
-        button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f // x
-        ,button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f // y
-    };
+
+    button.p_imagePosition =
+        {
+            button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f // x
+            ,
+            button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f // y
+        };
 }
-void GuiManager::UpdatePress(float deltaTime,Button &button)
+void GuiManager::UpdatePress(float deltaTime, Button &button)
 {
     Vector2 mousePosition = GetMousePosition();
     Rectangle scaledButtonRect =
@@ -66,25 +67,25 @@ void GuiManager::UpdatePress(float deltaTime,Button &button)
     {
         return;
     }
-    button.p_onPressed(deltaTime,button);
+    button.p_onPressed(deltaTime, button);
 }
-void GuiManager::UpdateLabel(float deltaTime,TextLabel &label)
+void GuiManager::UpdateLabel(float deltaTime, TextLabel &label)
 {
     if (label.p_updateFunction)
     {
-        label.p_updateFunction(deltaTime,label);
+        label.p_updateFunction(deltaTime, label);
     }
     UpdateTextPosition(label);
 }
-void GuiManager::UpdateButton(float deltaTime,Button &button)
+void GuiManager::UpdateButton(float deltaTime, Button &button)
 {
     if (button.p_updateFunction)
     {
-        button.p_updateFunction(deltaTime,button);
+        button.p_updateFunction(deltaTime, button);
     }
     UpdateTextPosition(button);
     UpdateImagePosition(button);
-    UpdatePress(deltaTime,button);
+    UpdatePress(deltaTime, button);
 }
 void GuiManager::DrawButton(const Button &button) const
 {
@@ -104,8 +105,16 @@ void GuiManager::DrawButton(const Button &button) const
     constexpr float segments = 4.0f;
     constexpr float roundness = 5.0f;
     DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
-    DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
-               button.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+    if (!button.p_text.empty())
+    {
+        DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
+                   button.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+    }
+    if (button.p_buttonImage.id != 0)
+    {
+        DrawTextureV(button.p_buttonImage,button.p_imagePosition,WHITE);
+    }
+    
 }
 void GuiManager::DrawLabel(const TextLabel &label) const
 {
@@ -168,12 +177,12 @@ void GuiManager::Update(float deltaTime)
 {
     for (auto &label : m_labels)
     {
-        UpdateLabel(deltaTime,label);
+        UpdateLabel(deltaTime, label);
     }
 
     for (auto &button : m_buttons)
     {
-        UpdateButton(deltaTime,button);
+        UpdateButton(deltaTime, button);
     }
 }
 void GuiManager::Draw() const
@@ -191,4 +200,3 @@ void GuiManager::Draw() const
 void GuiManager::Init()
 {
 }
-
