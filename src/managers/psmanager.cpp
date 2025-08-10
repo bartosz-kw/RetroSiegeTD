@@ -63,4 +63,5 @@ void PSManager::Init()
 {
     m_money = 250;
     m_health = 100;
+    m_maxHealth = 100;
 }
