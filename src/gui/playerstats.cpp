@@ -9,15 +9,28 @@
 
 void PlayerStats::InitLabels()
 {
-    constexpr size_t amountOfLabels = 1;
+    constexpr size_t amountOfLabels = 2;
     mgr_gui->ReserveLabel(amountOfLabels);
+
+    #pragma region HealthLabel
+    TextLabel& healthLabel = mgr_gui->AddLabel(TextLabel{});
+    healthLabel.p_text = "Health:";
+    healthLabel.p_id = mgr_gui->GetAmountOfLabels();
+    healthLabel.p_rect = {5,28,95,20};
+    healthLabel.p_color = RED;
+    healthLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
+    {
+        std::string text = "Hp: " + std::to_string(mgr_ps->GetHealth()) + "/" + std::to_string(mgr_ps->GetMaxHealth());
+        label.p_text = text;
+    };
+    #pragma endregion
 
     #pragma region MoneyLabel
     TextLabel& moneyLabel = mgr_gui->AddLabel(TextLabel{});
     moneyLabel.p_text = "Wave:";
     moneyLabel.p_id = mgr_gui->GetAmountOfLabels();
-    moneyLabel.p_rect = {5,28,95,20};
-    moneyLabel.p_color = GREEN;
+    moneyLabel.p_rect = {5,53,95,20};
+    moneyLabel.p_color = YELLOW;
     moneyLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
     {
         std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
