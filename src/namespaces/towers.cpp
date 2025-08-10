@@ -27,7 +27,7 @@ namespace Towers
             return;
         }
 
-        if (mgr_ps->GetMoney() >= upgradedTower.p_price)
+        if (mgr_ps->CanAfford(upgradedTower.p_price))
         {
             mgr_ps->SubMoney(upgradedTower.p_price);
             upgradedTower.p_id = tower->p_id;

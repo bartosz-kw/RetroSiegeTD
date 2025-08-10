@@ -35,7 +35,7 @@ void TowerManager::DetectInput()
             return;
 
         Tower tower = Towers::GetTowerData(m_placeTower);
-        if (tower.p_price <= mgr_ps->GetMoney())
+        if (mgr_ps->CanAfford(tower.p_price))
         {
             mgr_ps->SubMoney(tower.p_price);
             tower.p_id = static_cast<int32_t>(m_towers.size() + 1);

@@ -57,7 +57,7 @@ bool PSManager::CanAfford(uint64_t cost) const
 }
 uint64_t PSManager::GetMaxHealth() const
 {
-    return m_maxHealth; // Default max health, can be made configurable
+    return m_maxHealth;
 }
 void PSManager::Init()
 {
