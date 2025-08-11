@@ -3,11 +3,15 @@
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/wavemanager.hpp"
+#include "../utility/debugUtil.hpp"
 #include <cassert>
 
 void PlayerManager::OnGameOver()
 {
-    
+    mgr_enemy->ClearEnemies();
+    mgr_tower->ClearTowers();
+    mgr_wave->ClearWaves();
+    PrintDebug("Gameover reached");
 }
 
 bool PlayerManager::IsGameOver() const

@@ -101,7 +101,7 @@ void Game::InitManagers()
 }
 void Game::InitGui()
 {
-    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui);
+    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui,&mgr_player);
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower, &mgr_gui, &mgr_ps);
     gui_towerSelect.Init();
