@@ -79,6 +79,12 @@ void TowerManager::DetectTowerInput(Tower &tower)
         return;
     }
 
+    if (tower.p_id == m_lastSelectedTowerId)
+    {
+        m_lastSelectedTowerId = -1;
+        return;
+    }
+    
     m_lastSelectedTowerId = tower.p_id;
 }
 void TowerManager::UpdateFight(Tower &tower, float deltatime)
