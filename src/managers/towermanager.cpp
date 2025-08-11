@@ -191,6 +191,10 @@ bool TowerManager::CanPlaceTower(Tile *tile) const
     }
     return true;
 }
+void TowerManager::ClearTowers()
+{
+    m_towers.clear();
+}
 void TowerManager::Update(float deltaTime)
 {
     assert(mgr_tile && "mgr_tile in towermanager was nullptr");

@@ -31,6 +31,7 @@ public:
     uint32_t FindEnemyInArea(Vector2 center, float radius);
     Enemy *GetEnemyById(uint32_t id);
     void AddEnemy(Enemy enemy);
+    void ClearEnemies();
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;
     void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr);

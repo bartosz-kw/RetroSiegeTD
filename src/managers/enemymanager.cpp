@@ -178,6 +178,10 @@ void EnemyManager::AddEnemy(Enemy enemy)
 {
     m_enemies.push_back(enemy);
 }
+void EnemyManager::ClearEnemies()
+{
+    m_enemies.clear();
+}
 void EnemyManager::Update(float deltaTime)
 {
     for (auto &enemy : m_enemies)

@@ -110,6 +110,10 @@ EnemyWave *WaveManager::GetSmallestIdWave()
     }
     return smallest;
 }
+void WaveManager::ClearWaves()
+{
+    m_enemyWaves.clear();
+}
 void WaveManager::Update(float deltaTime)
 {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
