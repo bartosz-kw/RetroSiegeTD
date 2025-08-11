@@ -19,7 +19,7 @@ void WaveCounter::InitLabels()
     waveCountLabel.p_color = GREEN;
     waveCountLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        EnemyWave *currentWave = mgr_wave->GetSmallestIdWave();
+        const EnemyWave *currentWave = mgr_wave->GetSmallestIdWave();
         TempMessage *currentMessage = mgr_wave->GetWaveMessage();
         assert(currentMessage != nullptr && "currentMessage shouldn't be a nullptr");
         if (!currentWave && mgr_player->IsGameOver())
@@ -39,7 +39,7 @@ void WaveCounter::InitLabels()
             return;
         }
 
-        std::string text = "Wave: " + std::to_string(currentWave->p_id);
+        const std::string text = "Wave: " + std::to_string(currentWave->p_id);
         label.p_text = text;
     };
 #pragma endregion

@@ -16,7 +16,7 @@ private:
 
 private:
     void InitLabels();
-    void ControlPlaceTower(TowerType controlType);
+    void ControlPlaceTower(const TowerType controlType);
     void InitButtons();
 
 public:

@@ -20,7 +20,7 @@ void PlayerStats::InitLabels()
     healthLabel.p_color = RED;
     healthLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
     {
-        std::string text = "Hp: " + std::to_string(mgr_ps->GetHealth()) + "/" + std::to_string(mgr_ps->GetMaxHealth());
+        const std::string text = "Hp: " + std::to_string(mgr_ps->GetHealth()) + "/" + std::to_string(mgr_ps->GetMaxHealth());
         label.p_text = text;
     };
     #pragma endregion
@@ -33,7 +33,7 @@ void PlayerStats::InitLabels()
     moneyLabel.p_color = YELLOW;
     moneyLabel.p_updateFunction = [this](float deltaTime,TextLabel& label)
     {
-        std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
+        const std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;
     };
     #pragma endregion

@@ -21,7 +21,7 @@ void TowerPlace::InitLabels()
 #pragma endregion
 }
 
-void TowerPlace::ControlPlaceTower(TowerType controlType)
+void TowerPlace::ControlPlaceTower(const TowerType controlType)
 {
     if (mgr_tower->GetPlaceTower() == controlType)
     {

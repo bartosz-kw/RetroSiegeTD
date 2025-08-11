@@ -25,7 +25,7 @@ void TowerSelect::InitLabels()
     nameLabel.p_color = BLUE;
     nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
             label.p_visible = false;
@@ -44,7 +44,7 @@ void TowerSelect::InitLabels()
     levelLabel.p_color = BLUE;
     levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
             label.p_visible = false;
@@ -52,7 +52,7 @@ void TowerSelect::InitLabels()
         }
         if (tower->p_isUpgradeHovered)
         {
-            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "Lv: " + std::to_string(tower->p_level) + " -> " + std::to_string(postUpgradeData.p_level);
             label.p_visible = true;
             return;
@@ -70,7 +70,7 @@ void TowerSelect::InitLabels()
     damageLabel.p_color = BLUE;
     damageLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
             label.p_visible = false;
@@ -78,7 +78,7 @@ void TowerSelect::InitLabels()
         }
         if (tower->p_isUpgradeHovered)
         {
-            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "Dmg: " + std::to_string(tower->p_damage) + " -> " + std::to_string(postUpgradeData.p_damage);
             label.p_visible = true;
             return;
@@ -95,7 +95,7 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_color = BLUE;
     attackSpeedLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
             label.p_visible = false;
@@ -103,7 +103,7 @@ void TowerSelect::InitLabels()
         }
         if (tower->p_isUpgradeHovered)
         {
-            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed) + " -> " + std::format("{:.2f}", postUpgradeData.p_attackSpeed);
             label.p_visible = true;
             return;
@@ -120,7 +120,7 @@ void TowerSelect::InitLabels()
     rangeLabel.p_color = BLUE;
     rangeLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
         {
             label.p_visible = false;
@@ -128,7 +128,7 @@ void TowerSelect::InitLabels()
         }
         if (tower->p_isUpgradeHovered)
         {
-            Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
+            const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "R: " + std::format("{:.2f}", tower->p_range) + " -> " + std::format("{:.2f}", postUpgradeData.p_range);
             label.p_visible = true;
             return;

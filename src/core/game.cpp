@@ -26,7 +26,7 @@ void Game::Update()
 {
     UpdateDebug();
 
-    float deltaTime = GetFrameTime();
+    const float deltaTime = GetFrameTime();
     mgr_gui.Update(deltaTime);
     mgr_enemy.Update(deltaTime);
     mgr_tile.Update();
