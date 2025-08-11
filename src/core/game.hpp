@@ -7,6 +7,7 @@
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
 #include "../managers/psmanager.hpp"
+#include "../managers/playermanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
@@ -25,6 +26,7 @@ private:
     WaveManager mgr_wave = {};
     GuiManager mgr_gui = {};
     PSManager mgr_ps = {};
+    PlayerManager mgr_player = {};
     // gui
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};

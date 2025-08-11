@@ -25,7 +25,7 @@ void Game::UpdateDebug()
 void Game::Update()
 {
     UpdateDebug();
-    
+
     float deltaTime = GetFrameTime();
     mgr_gui.Update(deltaTime);
     mgr_enemy.Update(deltaTime);
@@ -33,6 +33,7 @@ void Game::Update()
     mgr_tower.Update(deltaTime);
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
+    mgr_player.Update();
 }
 void Game::MakeTextureFrame() const
 {
@@ -94,6 +95,9 @@ void Game::InitManagers()
 
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps);
     mgr_wave.Init();
+
+    mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy,&mgr_wave);
+    mgr_player.Init();
 }
 void Game::InitGui()
 {

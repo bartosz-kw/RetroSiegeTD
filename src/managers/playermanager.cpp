@@ -2,18 +2,33 @@
 #include "../managers/psmanager.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
+#include "../managers/wavemanager.hpp"
 #include <cassert>
 
-bool PlayerManager::IsGameOver() const
-{   
-    return mgr_ps->IsAlive();
+void PlayerManager::OnGameOver()
+{
+    
 }
 
-void PlayerManager::InjectDependencies(PSManager* psManager, TowerManager* towerManager, EnemyManager* enemyManager)
+bool PlayerManager::IsGameOver() const
+{
+    return !mgr_ps->IsAlive();
+}
+
+void PlayerManager::Update()
+{
+    if (IsGameOver())
+    {
+        OnGameOver();
+    }
+}
+
+void PlayerManager::InjectDependencies(PSManager* psManager, TowerManager* towerManager, EnemyManager* enemyManager, WaveManager* waveManager)
 {
     mgr_ps = psManager;
     mgr_tower = towerManager;
     mgr_enemy = enemyManager;
+    mgr_wave = waveManager;
 }
 
 void PlayerManager::Init()
@@ -22,4 +37,3 @@ void PlayerManager::Init()
     assert(mgr_tower != nullptr && "TowerManager dependency not injected");
     assert(mgr_enemy != nullptr && "EnemyManager dependency not injected");
 }
-
