@@ -35,6 +35,7 @@ public:
     void RemoveTower(int32_t id);
     Tower* GetLastSelectedTower();
     Tower* GetTowerById(int32_t id);
+    const Tower* GetReadTowerById(int32_t id) const;
     TowerType GetPlaceTower() const;
     void SetPlaceTower(TowerType type);
     bool CanPlaceTower(Tile *tile) const;

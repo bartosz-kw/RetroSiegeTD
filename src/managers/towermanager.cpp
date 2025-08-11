@@ -38,7 +38,6 @@ void TowerManager::DetectInput()
             return;
         if (tile->p_id != hoveredTile->p_id)
             return;
-        
 
         Tower tower = Towers::GetTowerData(m_placeTower);
         if (mgr_ps->CanAfford(tower.p_price))
@@ -143,9 +142,20 @@ Tower *TowerManager::GetLastSelectedTower()
 {
     return GetTowerById(m_lastSelectedTowerId);
 }
-Tower *TowerManager::GetTowerById(int32_t id)
+Tower* TowerManager::GetTowerById(int32_t id)
 {
     for (auto &tower : m_towers)
+    {
+        if (tower.p_id == id)
+        {
+            return &tower;
+        }
+    }
+    return nullptr;
+}
+const Tower* TowerManager::GetReadTowerById(int32_t id) const
+{
+    for (const auto &tower : m_towers)
     {
         if (tower.p_id == id)
         {
@@ -236,18 +246,26 @@ void TowerManager::Draw(uint8_t screenOffset) const
             tower.p_position.x + screenOffset,
             tower.p_position.y,
             WHITE);
-        if (Settings::g_debugView)
-        {
-            Color color = {255, 0, 0, 125};
-            Vector2 centerPos = GetCenterPosition(tower);
-            DrawCircle(
-                static_cast<int>(centerPos.x + screenOffset),
-                static_cast<int>(centerPos.y),
-                static_cast<float>(tower.p_range),
-                color);
-        }
     }
     DrawHover(screenOffset);
+    if (m_lastSelectedTowerId != -1)
+    {
+        const Tower *tower = GetReadTowerById(m_lastSelectedTowerId);
+        if (!tower)
+        {
+            return;
+        }
+        
+        const Color color = { 0, 121, 241, 128 };
+        const Vector2 centerPos = GetCenterPosition(*tower);
+        DrawCircle
+        (
+            static_cast<int>(centerPos.x + screenOffset),
+            static_cast<int>(centerPos.y),
+            static_cast<float>(tower->p_range),
+            color
+        );
+    }
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
 {
