@@ -87,7 +87,7 @@ void TowerManager::DetectTowerInput(Tower &tower)
     
     m_lastSelectedTowerId = tower.p_id;
 }
-void TowerManager::UpdateFight(Tower &tower, float deltatime)
+void TowerManager::UpdateFight(Tower &tower, const float deltatime)
 {
     tower.p_timeToAttack += deltatime;
 
@@ -108,7 +108,7 @@ void TowerManager::UpdateFight(Tower &tower, float deltatime)
 
 // Public
 
-std::string TowerManager::TowerTypeToString(TowerType type)
+std::string TowerManager::TowerTypeToString(const TowerType type)
 {
     switch (type)
     {
@@ -125,10 +125,10 @@ std::string TowerManager::TowerTypeToString(TowerType type)
 }
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
-    Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+    const Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
     return Vector2{tower.p_position.x + towerTexture.width / 2.0f, tower.p_position.y + towerTexture.height / 2.0f};
 }
-uint16_t TowerManager::GetTowerTextureIndex(uint16_t typeId) const
+uint16_t TowerManager::GetTowerTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::towerTextureOffset;
 }
@@ -136,7 +136,7 @@ void TowerManager::AddTower(Tower tower)
 {
     m_towers.push_back(tower);
 }
-void TowerManager::RemoveTower(int32_t id)
+void TowerManager::RemoveTower(const int32_t id)
 {
     m_towers.erase(
         std::remove_if(m_towers.begin(), m_towers.end(),
@@ -148,7 +148,7 @@ Tower *TowerManager::GetLastSelectedTower()
 {
     return GetTowerById(m_lastSelectedTowerId);
 }
-Tower* TowerManager::GetTowerById(int32_t id)
+Tower* TowerManager::GetTowerById(const int32_t id)
 {
     for (auto &tower : m_towers)
     {
@@ -159,7 +159,7 @@ Tower* TowerManager::GetTowerById(int32_t id)
     }
     return nullptr;
 }
-const Tower* TowerManager::GetReadTowerById(int32_t id) const
+const Tower* TowerManager::GetReadTowerById(const int32_t id) const
 {
     for (const auto &tower : m_towers)
     {
@@ -174,11 +174,11 @@ TowerType TowerManager::GetPlaceTower() const
 {
     return m_placeTower;
 }
-void TowerManager::SetPlaceTower(TowerType type)
+void TowerManager::SetPlaceTower(const TowerType type)
 {
     m_placeTower = type;
 }
-bool TowerManager::CanPlaceTower(Tile *tile) const
+bool TowerManager::CanPlaceTower(const Tile *tile) const
 {
     if (tile->p_moveDirection != 0)
     {
@@ -187,7 +187,9 @@ bool TowerManager::CanPlaceTower(Tile *tile) const
     for (auto &tower : m_towers)
     {
         if (tower.p_tileId == tile->p_id)
+        {
             return false;
+        }
     }
     return true;
 }
@@ -195,7 +197,7 @@ void TowerManager::ClearTowers()
 {
     m_towers.clear();
 }
-void TowerManager::Update(float deltaTime)
+void TowerManager::Update(const float deltaTime)
 {
     assert(mgr_tile && "mgr_tile in towermanager was nullptr");
     assert(mgr_enemy && "mgr_enemy in towermanager was nullptr");
@@ -218,20 +220,20 @@ void TowerManager::Update(float deltaTime)
         DetectTowerInput(tower);
     }
 }
-void TowerManager::DrawHover(uint8_t screenOffset) const
+void TowerManager::DrawHover(const uint8_t screenOffset) const
 {
     if (m_placeTower == TowerType::Nothing)
     {
         return;
     }
-    Tower selectedTower = Towers::GetTowerData(m_placeTower);
-    Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
+    const Tower selectedTower = Towers::GetTowerData(m_placeTower);
+    const Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
     if (hoveredTile)
     {
         if (m_placeTower != TowerType::Nothing && CanPlaceTower(hoveredTile))
         {
-            Color towerColor = {255, 255, 255, 128};
-            Color rangeColor = {41, 154, 255, 128};
+            const Color towerColor = {255, 255, 255, 128};
+            const Color rangeColor = {41, 154, 255, 128};
             DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
             Vector2 centerPos = mgr_tile->GetTileCenterPosition(*hoveredTile);
             DrawCircle(
@@ -242,9 +244,9 @@ void TowerManager::DrawHover(uint8_t screenOffset) const
         }
     }
 }
-void TowerManager::Draw(uint8_t screenOffset) const
+void TowerManager::Draw(const uint8_t screenOffset) const
 {
-    for (auto &tower : m_towers)
+    for (const auto &tower : m_towers)
     {
         if (tower.p_dirty)
         {

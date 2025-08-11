@@ -14,9 +14,9 @@ void WaveManager::PreKillWave(EnemyWave* wave)
     m_waveMessage.p_time = 3.0f;
     mgr_ps->AddMoney(wave->p_moneyReward);
 }
-void WaveManager::RemoveWave(uint32_t id)
+void WaveManager::RemoveWave(const uint32_t id)
 {
-    auto eraseLambda = [id](const EnemyWave &wave)
+    const auto eraseLambda = [id](const EnemyWave &wave)
     {
         return wave.p_id == id;
     };
@@ -35,7 +35,7 @@ void WaveManager::HandleWave()
     {
         if (currentWave->p_enemySpawns[i].first < m_time)
         {
-            Enemy enemy = Enemies::GetEnemyData(EnemyType::BlueSlime);
+            Enemy enemy = Enemies::GetEnemyData(currentWave->p_enemySpawns[i].second);
             enemy.p_tileId = -1;
             enemy.p_id = mgr_enemy->GetNewValidId();
             mgr_enemy->AddEnemy(enemy);
@@ -114,7 +114,7 @@ void WaveManager::ClearWaves()
 {
     m_enemyWaves.clear();
 }
-void WaveManager::Update(float deltaTime)
+void WaveManager::Update(const float deltaTime)
 {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
 

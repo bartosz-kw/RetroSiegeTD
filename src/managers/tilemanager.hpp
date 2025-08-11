@@ -13,21 +13,21 @@ private:
     Tile* m_lastHoveredTile = nullptr;
     int16_t m_startPathId = -1;
 private:
-    const uint16_t GetTileTextureIndex(uint16_t typeId) const;
+    const uint16_t GetTileTextureIndex(const uint16_t typeId) const;
     bool IsTileHovered(Tile& tile);
     bool IsTileClicked(Tile& tile);
 public:
     TileManager() = default;
     ~TileManager() = default;
     Tile GetPathStart();
-    Tile GetTile(uint16_t id) const;
-    int16_t GetMovedId(uint16_t tileid, int8_t direction) const;
+    Tile GetTile(const uint16_t id) const;
+    const int16_t GetMovedId(uint16_t tileid, int8_t direction) const;
     Tile* GetLastClickedTile();
     Tile* GetLastHoveredTile();
     Tile* GetCurrentHoveredTile();
-    Vector2 GetTileCenterPosition(const Tile& tile) const;
+    const Vector2 GetTileCenterPosition(const Tile& tile) const;
     void Update();
-    void Draw(uint8_t screenOffset) const;
-    void LoadMap(GameMap gameMap);
+    void Draw(const uint8_t screenOffset) const;
+    void LoadMap(const GameMap gameMap);
     void Init();
 };

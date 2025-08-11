@@ -7,14 +7,14 @@
 
 // Private
 
-const uint16_t TileManager::GetTileTextureIndex(uint16_t typeId) const
+const uint16_t TileManager::GetTileTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::tileTextureOffset;
 }
 bool TileManager::IsTileHovered(Tile &tile)
 {
-    Vector2 mousePosition = GetMousePosition();
-    Rectangle tileRect =
+    const Vector2 mousePosition = GetMousePosition();
+    const Rectangle tileRect =
         {
             tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale, // x
             tile.p_position.y * Settings::g_gameScale,                                                    // y
@@ -76,7 +76,7 @@ Tile TileManager::GetTile(uint16_t id) const
     PrintDebugError("Incorrect Id returned");
     return Tile{};
 }
-int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
+const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
 {
     direction = std::abs(direction);
     if (direction == 1)
@@ -120,7 +120,7 @@ Tile* TileManager::GetCurrentHoveredTile()
 {
     return m_currentHoveredTile;
 }
-Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
+const Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
 {
     constexpr float offset = g_tileSize/2.0f;
     return Vector2{
@@ -138,7 +138,7 @@ void TileManager::Update()
         }
     }
 }
-void TileManager::Draw(uint8_t screenOffset) const
+void TileManager::Draw(const uint8_t screenOffset) const
 {
     for (auto &&tile : m_tiles)
     {

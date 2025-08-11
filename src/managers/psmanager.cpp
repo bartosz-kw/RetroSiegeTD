@@ -1,15 +1,15 @@
 #include "psmanager.hpp"
 #include <raymath.h>
 
-uint64_t PSManager::GetMoney() const
+const uint64_t PSManager::GetMoney() const
 {
     return m_money;
 }
-void PSManager::AddMoney(uint64_t amount)
+void PSManager::AddMoney(const uint64_t amount)
 {
     m_money += amount;
 }
-void PSManager::SubMoney(uint64_t amount)
+void PSManager::SubMoney(const uint64_t amount)
 {
     if (amount <= m_money)
     {
@@ -20,19 +20,19 @@ void PSManager::SubMoney(uint64_t amount)
         m_money = 0;
     }
 }
-void PSManager::SetMoney(uint64_t amount)
+void PSManager::SetMoney(const uint64_t amount)
 {
     m_money = amount;
 }
-uint64_t PSManager::GetHealth() const
+const uint64_t PSManager::GetHealth() const
 {
     return m_health;
 }
-void PSManager::AddHealth(uint64_t amount)
+void PSManager::AddHealth(const uint64_t amount)
 {
     m_health = Clamp(m_health + amount, 0.0f , m_maxHealth);
 }
-void PSManager::SubHealth(uint64_t amount)
+void PSManager::SubHealth(const uint64_t amount)
 {
     if (amount <= m_health)
     {
@@ -43,7 +43,7 @@ void PSManager::SubHealth(uint64_t amount)
         m_health = 0;
     }
 }
-void PSManager::SetHealth(uint64_t amount)
+void PSManager::SetHealth(const uint64_t amount)
 {
     m_health = amount;
 }
@@ -51,11 +51,11 @@ bool PSManager::IsAlive() const
 {
     return m_health > 0;
 }
-bool PSManager::CanAfford(uint64_t cost) const
+bool PSManager::CanAfford(const uint64_t cost) const
 {
     return m_money >= cost;
 }
-uint64_t PSManager::GetMaxHealth() const
+const uint64_t PSManager::GetMaxHealth() const
 {
     return m_maxHealth;
 }

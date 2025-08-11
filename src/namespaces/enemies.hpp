@@ -8,5 +8,5 @@ namespace Enemies
     extern std::unordered_map<int, Enemy> g_enemyData;
 
     void InitEnemyData();
-    Enemy GetEnemyData(int typeId);
+    Enemy GetEnemyData(const int typeId);
 }

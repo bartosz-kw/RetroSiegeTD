@@ -24,25 +24,25 @@ private:
 private:
     void DetectInput();
     void DetectTowerInput(Tower& tower);
-    void UpdateFight(Tower& tower, float deltatime);
+    void UpdateFight(Tower& tower, const float deltatime);
 public:
     TowerManager() = default;
 
-    std::string TowerTypeToString(TowerType type);
+    std::string TowerTypeToString(const TowerType type);
     Vector2 GetCenterPosition(const Tower& tower) const; 
-    uint16_t GetTowerTextureIndex(uint16_t typeId) const;
+    uint16_t GetTowerTextureIndex(const uint16_t typeId) const;
     void AddTower(Tower tower);
-    void RemoveTower(int32_t id);
+    void RemoveTower(const int32_t id);
     Tower* GetLastSelectedTower();
-    Tower* GetTowerById(int32_t id);
-    const Tower* GetReadTowerById(int32_t id) const;
+    Tower* GetTowerById(const int32_t id);
+    const Tower* GetReadTowerById(const int32_t id) const;
     TowerType GetPlaceTower() const;
-    void SetPlaceTower(TowerType type);
-    bool CanPlaceTower(Tile *tile) const;
+    void SetPlaceTower(const TowerType type);
+    bool CanPlaceTower(const Tile *tile) const;
     void ClearTowers();
-    void Update(float deltaTime);
-    void DrawHover(uint8_t screenOffset) const;
-    void Draw(uint8_t screenOffset) const;
+    void Update(const float deltaTime);
+    void DrawHover(const uint8_t screenOffset) const;
+    void Draw(const uint8_t screenOffset) const;
     void InjectDependencies(TileManager* mgr_tilePtr, EnemyManager* mgr_enemyPtr, BulletManager* mgr_bulletPtr, PSManager* mgr_psPtr); 
     void Init();   
 };

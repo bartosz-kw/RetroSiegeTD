@@ -10,7 +10,7 @@
 
 void GuiManager::UpdateTextPosition(TextLabel &label)
 {
-    Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
+    const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             label.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
     label.p_textPosition =
@@ -21,7 +21,7 @@ void GuiManager::UpdateTextPosition(TextLabel &label)
 }
 void GuiManager::UpdateTextPosition(Button &button)
 {
-    Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
+    const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                             button.p_text.c_str(),
                                             Settings::g_gameFont.baseSize, 1.0f);
     button.p_textPosition =
@@ -44,10 +44,10 @@ void GuiManager::UpdateImagePosition(Button &button)
             button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f // y
         };
 }
-void GuiManager::UpdatePress(float deltaTime, Button &button)
+void GuiManager::UpdatePress(const float deltaTime, Button &button)
 {
-    Vector2 mousePosition = GetMousePosition();
-    Rectangle scaledButtonRect =
+    const Vector2 mousePosition = GetMousePosition();
+    const Rectangle scaledButtonRect =
         {
             button.p_rect.x * Settings::g_gameScale // x
             ,
@@ -69,7 +69,7 @@ void GuiManager::UpdatePress(float deltaTime, Button &button)
     }
     button.p_onPressed(deltaTime, button);
 }
-void GuiManager::UpdateLabel(float deltaTime, TextLabel &label)
+void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label)
 {
     if (label.p_updateFunction)
     {
@@ -77,7 +77,7 @@ void GuiManager::UpdateLabel(float deltaTime, TextLabel &label)
     }
     UpdateTextPosition(label);
 }
-void GuiManager::UpdateButton(float deltaTime, Button &button)
+void GuiManager::UpdateButton(const float deltaTime, Button &button)
 {
     if (button.p_updateFunction)
     {
@@ -129,19 +129,19 @@ void GuiManager::DrawLabel(const TextLabel &label) const
 }
 
 /// Public
-size_t GuiManager::GetAmountOfLabels() const
+const size_t GuiManager::GetAmountOfLabels() const
 {
     return m_labels.size();
 }
-size_t GuiManager::GetAmountOfButtons() const
+const size_t GuiManager::GetAmountOfButtons() const
 {
     return m_buttons.size();
 }
-void GuiManager::ReserveButton(size_t count)
+void GuiManager::ReserveButton(const size_t count)
 {
     m_buttons.reserve(m_buttons.size() + count);
 }
-void GuiManager::ReserveLabel(size_t count)
+void GuiManager::ReserveLabel(const size_t count)
 {
     m_labels.reserve(m_labels.size() + count);
 }
@@ -157,7 +157,7 @@ TextLabel &GuiManager::AddLabel(const TextLabel &label)
     UpdateTextPosition(m_labels.back());
     return m_labels.back();
 }
-void GuiManager::RemoveButton(int id)
+void GuiManager::RemoveButton(const int id)
 {
     m_buttons.erase(
         std::remove_if(m_buttons.begin(), m_buttons.end(),
@@ -165,7 +165,7 @@ void GuiManager::RemoveButton(int id)
                        { return button.p_id == id; }),
         m_buttons.end());
 }
-void GuiManager::RemoveLabel(int id)
+void GuiManager::RemoveLabel(const int id)
 {
     m_labels.erase(
         std::remove_if(m_labels.begin(), m_labels.end(),
@@ -173,7 +173,7 @@ void GuiManager::RemoveLabel(int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-void GuiManager::Update(float deltaTime)
+void GuiManager::Update(const float deltaTime)
 {
     for (auto &label : m_labels)
     {

@@ -16,23 +16,23 @@ private:
     void UpdateTextPosition(TextLabel &label);
     void UpdateTextPosition(Button &button);
     void UpdateImagePosition(Button &button);
-    void UpdatePress(float deltaTime,Button &button);
-    void UpdateLabel(float deltaTime,TextLabel &label);
-    void UpdateButton(float deltaTime,Button &button);
+    void UpdatePress(const float deltaTime,Button &button);
+    void UpdateLabel(const float deltaTime,TextLabel &label);
+    void UpdateButton(const float deltaTime,Button &button);
     void DrawButton(const Button &button) const;
     void DrawLabel(const TextLabel &label) const;
 
 public:
     
-    size_t GetAmountOfLabels() const;
-    size_t GetAmountOfButtons() const;
-    void ReserveButton(size_t count);
-    void ReserveLabel(size_t count);
+    const size_t GetAmountOfLabels() const;
+    const size_t GetAmountOfButtons() const;
+    void ReserveButton(const size_t count);
+    void ReserveLabel(const size_t count);
     Button& AddButton(const Button &button);
     TextLabel& AddLabel(const TextLabel &label);
-    void RemoveButton(int id);
-    void RemoveLabel(int id);
-    void Update(float deltaTime);
+    void RemoveButton(const int id);
+    void RemoveLabel(const int id);
+    void Update(const float deltaTime);
     void Draw() const;
     void Init();
     

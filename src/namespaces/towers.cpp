@@ -13,7 +13,7 @@ namespace Towers
 {
     std::unordered_map<int, Tower> g_towerData = {};
 
-    void UpgradeTowerBasic(float deltaTime, Tower *tower, PSManager *mgr_ps, TowerType upgradeType)
+    void UpgradeTowerBasic(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType)
     {
         assert(upgradeType != TowerType::Nothing);
         if (upgradeType == TowerType::Nothing)
@@ -159,7 +159,7 @@ namespace Towers
 
         // ninja Lv 4
         Tower ninja4Tower = {};
-        ninja4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        ninja4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -173,7 +173,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja4Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
+        ninja4Tower.p_upgradeFunction = [](const float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
             // nothing since it doesn't upgrade further
         };

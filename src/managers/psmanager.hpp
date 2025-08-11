@@ -12,17 +12,17 @@ public:
     PSManager() = default;
 
     // money
-    uint64_t GetMoney() const;
-    void AddMoney(uint64_t amount);
-    void SubMoney(uint64_t amount);
-    void SetMoney(uint64_t amount);
-    bool CanAfford(uint64_t cost) const;
+    const uint64_t GetMoney() const;
+    void AddMoney(const uint64_t amount);
+    void SubMoney(const uint64_t amount);
+    void SetMoney(const uint64_t amount);
+    bool CanAfford(const uint64_t cost) const;
     // health
-    uint64_t GetHealth() const;
-    uint64_t GetMaxHealth() const;
-    void AddHealth(uint64_t amount);
-    void SubHealth(uint64_t amount);
-    void SetHealth(uint64_t amount);
+    const uint64_t GetHealth() const;
+    const uint64_t GetMaxHealth() const;
+    void AddHealth(const uint64_t amount);
+    void SubHealth(const uint64_t amount);
+    void SetHealth(const uint64_t amount);
     bool IsAlive() const;
 
     void Init();

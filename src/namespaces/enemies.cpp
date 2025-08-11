@@ -30,7 +30,7 @@ namespace Enemies
         #pragma endregion
     }
 
-    Enemy GetEnemyData(int typeId)
+    Enemy GetEnemyData(const int typeId)
     {
         auto it = g_enemyData.find(typeId);
         if (it != g_enemyData.end())

@@ -10,11 +10,11 @@
 
 // Private
 
-const uint16_t EnemyManager::GetEnemyTextureIndex(uint16_t typeId) const
+const uint16_t EnemyManager::GetEnemyTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::enemyTextureOffset;
 }
-Vector2 EnemyManager::CalculateMovePosition(int16_t moveDirection)
+const Vector2 EnemyManager::CalculateMovePosition(const int16_t moveDirection) const
 {
     float dy = 0.0f;
     float dx = 0.0f;
@@ -37,7 +37,7 @@ Vector2 EnemyManager::CalculateMovePosition(int16_t moveDirection)
     }
     return Vector2{dx, dy};
 }
-void EnemyManager::UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int16_t moveDirection)
+void EnemyManager::UpdateVisualPosition(Enemy &enemy, const Vector2 &tilePosition, const int16_t moveDirection)
 {
     Vector2 movePosition = CalculateMovePosition(moveDirection);
 
@@ -45,7 +45,7 @@ void EnemyManager::UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int
     float normalizedTime = (enemy.p_timeToMove - minTime) / (enemy.p_speed - minTime);
     enemy.p_position = Vector2Add(tilePosition, Vector2Scale(movePosition, normalizedTime));
 }
-void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
+void EnemyManager::UpdateMovement(Enemy &enemy, const float deltaTime)
 {
     if (enemy.p_tileId == -1)
     {
@@ -74,11 +74,11 @@ void EnemyManager::UpdateMovement(Enemy &enemy, float deltaTime)
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
-    Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
-    Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
+    const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+    const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
 
-    std::vector<Bullet> detectedBullets = mgr_bullet->CheckHitAtPosition(enemyRect);
-    for (auto &bullet : detectedBullets)
+    const std::vector<Bullet> detectedBullets = mgr_bullet->CheckHitAtPosition(enemyRect);
+    for (const auto &bullet : detectedBullets)
     {
         enemy.p_health -= bullet.p_damage;
         // PrintDebug(enemy.p_health, "HIT TAKEN");
@@ -105,7 +105,7 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     }
 
     // get tile
-    Tile tile = mgr_tile->GetTile(enemy.p_tileId);
+    const Tile tile = mgr_tile->GetTile(enemy.p_tileId);
 
     // update data
     enemy.p_position = tile.p_position;
@@ -147,7 +147,7 @@ Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
     Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
     return Vector2{enemy.p_position.x + enemyTexture.width / 2.0f, enemy.p_position.y + enemyTexture.height / 2.0f};
 }
-uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
+uint32_t EnemyManager::FindEnemyInArea(const Vector2 center, const float radius)
 {
     int32_t biggestWalked = -10000;
     uint32_t biggestWalkedId = 0;
@@ -165,7 +165,7 @@ uint32_t EnemyManager::FindEnemyInArea(Vector2 center, float radius)
     }
     return biggestWalkedId;
 }
-Enemy *EnemyManager::GetEnemyById(uint32_t id)
+Enemy *EnemyManager::GetEnemyById(const uint32_t id)
 {
     for (auto &enemy : m_enemies)
     {

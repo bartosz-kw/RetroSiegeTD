@@ -17,10 +17,11 @@ class BulletManager;
 class PSManager;
 struct Tower
 {              
-    std::function<void(float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower)> 
-    p_fightFunction = [](float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower){};
-    std::function<void(float deltaTime,Tower* tower,PSManager* mgr_ps)> p_upgradeFunction = [](float deltaTime,Tower* tower,PSManager* mgr_ps){};
-    uint64_t p_price = 0;
+    std::function<void(const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower)> 
+    p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower){};
+    std::function<void(const float deltaTime,Tower* tower,PSManager* mgr_ps)> 
+    p_upgradeFunction = [](const float deltaTime,Tower* tower,PSManager* mgr_ps){};
+    uint64_t p_price = 0; 
     int64_t p_damage = 1;  
     Vector2 p_position = {0,0};
     float p_range = 30;

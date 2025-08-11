@@ -15,10 +15,10 @@ private:
     PSManager *mgr_ps = nullptr;
 
 private:
-    const uint16_t GetEnemyTextureIndex(uint16_t typeId) const;
-    Vector2 CalculateMovePosition(int16_t moveDirection);
-    void UpdateVisualPosition(Enemy &enemy, Vector2 &tilePosition, int16_t moveDirection);
-    void UpdateMovement(Enemy &enemy, float deltaTime);
+    const uint16_t GetEnemyTextureIndex(const uint16_t typeId) const;
+    const Vector2 CalculateMovePosition(const int16_t moveDirection) const;
+    void UpdateVisualPosition(Enemy &enemy, const Vector2 &tilePosition, const int16_t moveDirection);
+    void UpdateMovement(Enemy &enemy, const float deltaTime);
     void HandleHits(Enemy &enemy);
     void CleanEnemy(Enemy &enemy);
     void PreKillEnemy(Enemy &enemy);
@@ -28,8 +28,8 @@ public:
     bool IsEnemiesEmpty() const;
     uint32_t GetNewValidId();
     Vector2 GetCenterPosition(const Enemy &enemy) const;
-    uint32_t FindEnemyInArea(Vector2 center, float radius);
-    Enemy *GetEnemyById(uint32_t id);
+    uint32_t FindEnemyInArea(const Vector2 center,const float radius);
+    Enemy *GetEnemyById(const uint32_t id);
     void AddEnemy(Enemy enemy);
     void ClearEnemies();
     void Update(float deltaTime);

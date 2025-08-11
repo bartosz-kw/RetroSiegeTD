@@ -15,7 +15,7 @@ private:
 
 private:
     void PreKillWave(EnemyWave* wave);
-    void RemoveWave(uint32_t id);
+    void RemoveWave(const uint32_t id);
     void HandleWave();
     void LoadWaves();
 public:
@@ -25,7 +25,7 @@ public:
     TempMessage* GetWaveMessage();
     EnemyWave* GetSmallestIdWave();
     void ClearWaves();
-    void Update(float deltaTime);
+    void Update(const float deltaTime);
     void InjectDependencies(EnemyManager* enemyManager, PSManager* psManager);
     void Init();
 };

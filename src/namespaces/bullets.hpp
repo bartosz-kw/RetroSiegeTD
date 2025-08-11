@@ -12,7 +12,7 @@ namespace Bullets
         {BulletType::Shuliken, Bullet{{-1, -1}, -1, 0, 0.0f, 0.0f, 200.0f, 75.0f, BulletType::Shuliken, true, true}}
     };
 
-    inline Bullet GetBulletData(int typeId)
+    inline Bullet GetBulletData(const int typeId)
     {
         auto it = g_bulletData.find(typeId);
         if (it != g_bulletData.end())
