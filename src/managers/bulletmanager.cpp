@@ -43,11 +43,12 @@ void BulletManager::RemoveBullets()
         }
     }
     if (indexesToRemove.empty())
+    {
         return;
+    }
     for (auto it = indexesToRemove.rbegin(); it != indexesToRemove.rend(); ++it)
     {
         m_bullets.erase(m_bullets.begin() + *it);
-        //PrintDebug("Bullet removed");
     }
 }
 
@@ -64,7 +65,6 @@ std::vector<Bullet*> BulletManager::GetBulletsFromArea(const Rectangle area)
         if (CheckCollisionRecs(area, bulletRect))
         {
             detectedBullets.push_back(&bullet);
-            bullet.p_alive = false;
         }
     }
     return detectedBullets;

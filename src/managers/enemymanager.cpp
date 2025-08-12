@@ -80,8 +80,13 @@ void EnemyManager::HandleHits(Enemy &enemy)
     std::vector<Bullet*> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
     for (auto bullet : detectedBullets)
     {
+        if (!bullet->p_alive)
+        {
+            continue;
+        }
+        
         enemy.p_health -= bullet->p_damage;
-        // PrintDebug(enemy.p_health, "HIT TAKEN");
+        bullet->p_alive = false;
     }
 }
 void EnemyManager::PreKillEnemy(Enemy &enemy)
