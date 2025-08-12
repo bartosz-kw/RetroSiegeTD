@@ -13,17 +13,33 @@ namespace Bullets
         Bullet shulikenBullet = {};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
-        shulikenBullet.p_damage = 0;
+        shulikenBullet.p_damage = 0;   
         shulikenBullet.p_directionAngle = 0.0f;
         shulikenBullet.p_rotation = 0.0f;
         shulikenBullet.p_spinSpeed = 200.0f;
         shulikenBullet.p_speed = 75.0f;
         shulikenBullet.p_typeId = BulletType::Shuliken;
-        shulikenBullet.p_pierce = true;
+        shulikenBullet.p_pierce = false;
         shulikenBullet.p_spinning = true;
         shulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
+
+        // Sharp Shuliken bullet
+        Bullet sharpShulikenBullet = {};
+        sharpShulikenBullet.p_position = {-1.0f, -1.0f};
+        sharpShulikenBullet.p_id = -1;
+        sharpShulikenBullet.p_damage = 0;
+        sharpShulikenBullet.p_directionAngle = 0.0f;
+        sharpShulikenBullet.p_rotation = 0.0f;
+        sharpShulikenBullet.p_spinSpeed = 225.0f;
+        sharpShulikenBullet.p_speed = 85.0f;
+        sharpShulikenBullet.p_typeId = BulletType::SharpShuliken;
+        sharpShulikenBullet.p_pierce = true;
+        sharpShulikenBullet.p_spinning = true;
+        sharpShulikenBullet.p_alive = true;
+
+        g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
     }
 
     Bullet GetBulletData(int typeId)

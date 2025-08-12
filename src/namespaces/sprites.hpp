@@ -12,7 +12,7 @@ namespace Sprites
     inline constexpr uint8_t towerTextureOffset = 5;
     inline constexpr uint8_t buttetTextureOffset = 9;
     // texture array variables
-    inline constexpr size_t p_textureAmount = 11;
+    inline constexpr size_t p_textureAmount = 12;
     inline std::array<Texture2D,p_textureAmount> g_textures = {};
 
     inline void LoadTextures()
@@ -24,10 +24,11 @@ namespace Sprites
         g_textures[4] = LoadTexture("src/resources/sprites/GrassPathSprite4.png");
         g_textures[5] = LoadTexture("src/resources/sprites/BlueSlimeEnemy.png");
         g_textures[6] = LoadTexture("src/resources/sprites/NinjaTower1.png");
-        g_textures[7] = LoadTexture("src/resources/sprites/NinjaTower2.png");
+        g_textures[7] = LoadTexture("src/resources/sprites/NinjaTower2.png"); 
         g_textures[8] = LoadTexture("src/resources/sprites/NinjaTower3.png");
         g_textures[9] = LoadTexture("src/resources/sprites/NinjaTower4.png");
         g_textures[10] = LoadTexture("src/resources/sprites/ShulikenBullet.png");
+        g_textures[11] = LoadTexture("src/resources/sprites/SharpShulikenBullet.png");
     }
     inline void UnLoadTextures()
     {
