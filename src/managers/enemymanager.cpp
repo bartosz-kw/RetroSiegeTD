@@ -72,6 +72,23 @@ void EnemyManager::UpdateMovement(Enemy &enemy, const float deltaTime)
         return;
     }
 }
+void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
+{
+    std::vector<int> indexsToDelete = {};
+    for (size_t i = 0; i < enemy.p_hitCooldowns.size(); i++)
+    {
+        enemy.p_hitCooldowns[i].first -= deltaTime;
+        if (enemy.p_hitCooldowns[i].first <= 0)
+        {
+            indexsToDelete.push_back(i);
+        }
+        
+    }
+    for (int i = indexsToDelete.size() - 1; i >= 0; i--)
+    {
+        enemy.p_hitCooldowns.erase(enemy.p_hitCooldowns.begin() + indexsToDelete[i]);
+    }
+}
 void EnemyManager::HandleHits(Enemy &enemy)
 {
     const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
@@ -197,6 +214,7 @@ void EnemyManager::Update(const float deltaTime)
         }
 
         UpdateMovement(enemy, deltaTime);
+        UpdateCooldown(enemy,deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {

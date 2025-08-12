@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <cstdint>
+#include <vector>
 enum EnemyType
 {
     BlueSlime = 1
