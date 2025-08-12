@@ -7,6 +7,7 @@ enum EnemyType
 };
 struct Enemy
 {
+    std::vector<std::pair<float,int32_t>> p_hitCooldowns = {};
     uint64_t p_moneyDrop = 0;
     int64_t p_health = 10;
     Vector2 p_position = {0,0};
