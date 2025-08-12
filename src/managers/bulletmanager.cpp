@@ -11,7 +11,7 @@ uint16_t BulletManager::GetBulletTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::buttetTextureOffset;
 }
-void BulletManager::UpdatePosition(Bullet &bullet, float deltaTime)
+void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
 {
     bullet.p_position.x += cos(bullet.p_directionAngle) * bullet.p_speed * deltaTime;
     bullet.p_position.y += sin(bullet.p_directionAngle) * bullet.p_speed * deltaTime;

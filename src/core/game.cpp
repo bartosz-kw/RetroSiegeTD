@@ -5,6 +5,7 @@
 #include "../namespaces/settings.hpp"
 #include "../namespaces/towers.hpp"
 #include "../namespaces/enemies.hpp"
+#include "../namespaces/bullets.hpp"
 #include "game.hpp"
 
 // Private functions
@@ -118,6 +119,7 @@ void Game::InitDatas()
 {
     Towers::InitTowerData();
     Enemies::InitEnemyData();
+    Bullets::InitBulletData();
 }
 void Game::InitMembers()
 {

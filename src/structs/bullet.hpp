@@ -17,6 +17,7 @@ struct Bullet
     float p_spinSpeed = 3.0f;
     float p_speed = 1.0f;
     uint16_t p_typeId = BulletType::Shuliken;
+    bool p_pierce = false;
     bool p_spinning = true;
     bool p_alive = true;
 };

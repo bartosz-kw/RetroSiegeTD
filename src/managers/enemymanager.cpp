@@ -179,7 +179,7 @@ Enemy *EnemyManager::GetEnemyById(const uint32_t id)
     }
     return nullptr;
 }
-void EnemyManager::AddEnemy(Enemy enemy)
+void EnemyManager::AddEnemy(const Enemy enemy)
 {
     m_enemies.push_back(enemy);
 }
@@ -187,7 +187,7 @@ void EnemyManager::ClearEnemies()
 {
     m_enemies.clear();
 }
-void EnemyManager::Update(float deltaTime)
+void EnemyManager::Update(const float deltaTime)
 {
     for (auto &enemy : m_enemies)
     {
@@ -205,7 +205,7 @@ void EnemyManager::Update(float deltaTime)
     }
     RemoveEnemies();
 }
-void EnemyManager::Draw(uint8_t screenOffset) const
+void EnemyManager::Draw(const uint8_t screenOffset) const
 {
     for (auto &enemy : m_enemies)
     {

@@ -65,7 +65,7 @@ Tile TileManager::GetPathStart()
     assert(false && "getpathstart did not find the tile");
     return Tile{};
 }
-Tile TileManager::GetTile(uint16_t id) const
+Tile TileManager::GetTile(const uint16_t id) const
 {
     auto it = std::lower_bound(m_tiles.begin(), m_tiles.end(), id, [](const Tile &tile, uint16_t id)
                                { return tile.p_id < id; });
@@ -150,7 +150,7 @@ void TileManager::Draw(const uint8_t screenOffset) const
         DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
     }
 }
-void TileManager::LoadMap(GameMap gameMap)
+void TileManager::LoadMap(const GameMap gameMap)
 {
     uint16_t id = 0;
     for (size_t y = 0; y < gameMap.p_tileIdMap.size(); y++)

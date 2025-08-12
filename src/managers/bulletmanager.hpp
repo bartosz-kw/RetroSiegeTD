@@ -7,9 +7,9 @@ class BulletManager
 private:
     std::vector<Bullet> m_bullets = {};
 
-    uint16_t GetBulletTextureIndex(uint16_t typeId) const;
+    uint16_t GetBulletTextureIndex(const uint16_t typeId) const;
 private:
-    void UpdatePosition(Bullet& bullet,float deltaTime);
+    void UpdatePosition(Bullet& bullet,const float deltaTime);
     void ValidatePosition(Bullet& bullet);
     void RemoveBullets();
 public:

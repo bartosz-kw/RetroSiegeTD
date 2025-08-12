@@ -132,7 +132,7 @@ uint16_t TowerManager::GetTowerTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::towerTextureOffset;
 }
-void TowerManager::AddTower(Tower tower)
+void TowerManager::AddTower(const Tower tower)
 {
     m_towers.push_back(tower);
 }
