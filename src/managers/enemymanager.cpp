@@ -91,19 +91,42 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
+    constexpr float hitCooldown = 3.0f;
     const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
     const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
 
     std::vector<Bullet*> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
     for (auto bullet : detectedBullets)
     {
-        if (!bullet->p_alive)
+        bool bulletOnCooldown = false;
+        for (size_t i = 0; i < enemy.p_hitCooldowns.size(); i++)
+        {
+            if(enemy.p_hitCooldowns[i].second == bullet->p_id)
+            {
+                bulletOnCooldown = true;
+                continue;
+            };
+        }
+        if (bulletOnCooldown)
         {
             continue;
         }
         
+        
+        if (!bullet->p_alive)
+        {
+            continue;
+        }
+        else if (!bullet->p_pierce)
+        {
+            bullet->p_alive = false;
+        }
+        else
+        {
+            enemy.p_hitCooldowns.push_back({hitCooldown,bullet->p_id});
+        }
+        
         enemy.p_health -= bullet->p_damage;
-        bullet->p_alive = false;
     }
 }
 void EnemyManager::PreKillEnemy(Enemy &enemy)
