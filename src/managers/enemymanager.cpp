@@ -12,7 +12,7 @@
 
 const uint16_t EnemyManager::GetEnemyTextureIndex(const uint16_t typeId) const
 {
-    return typeId + Sprites::enemyTextureOffset;
+    return typeId + Sprites::g_enemyTextureOffset;
 }
 const Vector2 EnemyManager::CalculateMovePosition(const int16_t moveDirection) const
 {

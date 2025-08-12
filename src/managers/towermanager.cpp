@@ -130,7 +130,7 @@ Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 }
 uint16_t TowerManager::GetTowerTextureIndex(const uint16_t typeId) const
 {
-    return typeId + Sprites::towerTextureOffset;
+    return typeId + Sprites::g_towerTextureOffset;
 }
 void TowerManager::AddTower(const Tower tower)
 {

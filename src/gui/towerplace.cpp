@@ -46,7 +46,7 @@ void TowerPlace::InitButtons()
     ninjaButton.p_id = mgr_gui->GetAmountOfButtons();
     ninjaButton.p_isHovered = false;
     ninjaButton.p_visible = true;
-    ninjaButton.p_buttonImage = Sprites::g_textures[Sprites::towerTextureOffset + TowerType::NinjaLv1];
+    ninjaButton.p_buttonImage = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::NinjaLv1];
     ninjaButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::NinjaLv1);

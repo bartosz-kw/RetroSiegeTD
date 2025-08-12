@@ -9,7 +9,7 @@
 
 const uint16_t TileManager::GetTileTextureIndex(const uint16_t typeId) const
 {
-    return typeId + Sprites::tileTextureOffset;
+    return typeId + Sprites::g_tileTextureOffset;
 }
 bool TileManager::IsTileHovered(Tile &tile)
 {
