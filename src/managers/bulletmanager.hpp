@@ -15,7 +15,7 @@ private:
 public:
     BulletManager() = default;
 
-    std::vector<Bullet> CheckHitAtPosition(const Rectangle area);
+    std::vector<Bullet*> GetBulletsFromArea(const Rectangle area);
     void AddBullet(Bullet bullet);
     void Update(float deltaTime);
     void Draw(uint8_t screenOffset) const;

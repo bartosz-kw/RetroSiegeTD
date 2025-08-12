@@ -53,9 +53,9 @@ void BulletManager::RemoveBullets()
 
 // Public
 
-std::vector<Bullet> BulletManager::CheckHitAtPosition(const Rectangle area)
+std::vector<Bullet*> BulletManager::GetBulletsFromArea(const Rectangle area)
 {
-    std::vector<Bullet> detectedBullets = {};
+    std::vector<Bullet*> detectedBullets = {};
     for (auto &bullet : m_bullets)
     {
         const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
@@ -63,7 +63,7 @@ std::vector<Bullet> BulletManager::CheckHitAtPosition(const Rectangle area)
         const Rectangle bulletRect = {pos.x, pos.y, static_cast<float>(bulletTexture.width), static_cast<float>(bulletTexture.height)};
         if (CheckCollisionRecs(area, bulletRect))
         {
-            detectedBullets.push_back(bullet);
+            detectedBullets.push_back(&bullet);
             bullet.p_alive = false;
         }
     }

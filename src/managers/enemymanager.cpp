@@ -77,10 +77,10 @@ void EnemyManager::HandleHits(Enemy &enemy)
     const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
     const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
 
-    const std::vector<Bullet> detectedBullets = mgr_bullet->CheckHitAtPosition(enemyRect);
-    for (const auto &bullet : detectedBullets)
+    std::vector<Bullet*> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
+    for (auto bullet : detectedBullets)
     {
-        enemy.p_health -= bullet.p_damage;
+        enemy.p_health -= bullet->p_damage;
         // PrintDebug(enemy.p_health, "HIT TAKEN");
     }
 }
