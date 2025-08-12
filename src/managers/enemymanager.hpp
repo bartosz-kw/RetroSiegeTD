@@ -19,6 +19,7 @@ private:
     const Vector2 CalculateMovePosition(const int16_t moveDirection) const;
     void UpdateVisualPosition(Enemy &enemy, const Vector2 &tilePosition, const int16_t moveDirection);
     void UpdateMovement(Enemy &enemy, const float deltaTime);
+    void UpdateHitEffect(Enemy &enemy, const float deltaTime);
     void UpdateCooldown(Enemy &enemy, const float deltaTime);
     void HandleHits(Enemy &enemy);
     void CleanEnemy(Enemy &enemy);

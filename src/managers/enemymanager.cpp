@@ -72,6 +72,15 @@ void EnemyManager::UpdateMovement(Enemy &enemy, const float deltaTime)
         return;
     }
 }
+void EnemyManager::UpdateHitEffect(Enemy &enemy, const float deltaTime)
+{
+    if (enemy.p_hitEffectTime <= 0)
+    {
+        return;
+    }
+
+    enemy.p_hitEffectTime -= deltaTime;
+}
 void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
 {
     std::vector<int> indexsToDelete = {};
@@ -92,6 +101,7 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
 void EnemyManager::HandleHits(Enemy &enemy)
 {
     constexpr float hitCooldown = 3.0f;
+    constexpr float hitEffectTime = 0.4f;
     const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
     const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
 
@@ -127,6 +137,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
         }
         
         enemy.p_health -= bullet->p_damage;
+        enemy.p_hitEffectTime = hitEffectTime;
     }
 }
 void EnemyManager::PreKillEnemy(Enemy &enemy)
@@ -238,6 +249,7 @@ void EnemyManager::Update(const float deltaTime)
 
         UpdateMovement(enemy, deltaTime);
         UpdateCooldown(enemy,deltaTime);
+        UpdateHitEffect(enemy,deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {
@@ -255,7 +267,13 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
             continue;
         }
 
-        DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, WHITE);
+        Color color = WHITE;
+        if (enemy.p_hitEffectTime > 0.0f)
+        {
+            color = { 230, 41, 55, 255 };
+        }
+        
+        DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, color);
     }
 }
 void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
