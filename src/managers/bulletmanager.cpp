@@ -18,7 +18,7 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
     bullet.p_position.x += cos(bullet.p_directionAngle) * bullet.p_speed * deltaTime;
     bullet.p_position.y += sin(bullet.p_directionAngle) * bullet.p_speed * deltaTime;
 
-    if (bullet.p_spinning)
+    if (bullet.p_spinSpeed != 0)
     {
         bullet.p_rotation += bullet.p_spinSpeed * deltaTime;
     }

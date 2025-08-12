@@ -20,7 +20,6 @@ namespace Bullets
         shulikenBullet.p_speed = 75.0f;
         shulikenBullet.p_typeId = BulletType::Shuliken;
         shulikenBullet.p_pierce = false;
-        shulikenBullet.p_spinning = true;
         shulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
@@ -36,7 +35,6 @@ namespace Bullets
         sharpShulikenBullet.p_speed = 85.0f;
         sharpShulikenBullet.p_typeId = BulletType::SharpShuliken;
         sharpShulikenBullet.p_pierce = true;
-        sharpShulikenBullet.p_spinning = true;
         sharpShulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
