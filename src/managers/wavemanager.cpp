@@ -110,7 +110,7 @@ EnemyWave *WaveManager::GetSmallestIdWave()
     }
     return smallest;
 }
-void WaveManager::ClearWaves()
+void WaveManager::ClearWavesVector()
 {
     m_enemyWaves.clear();
 }

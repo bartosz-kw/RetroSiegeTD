@@ -8,9 +8,9 @@
 
 void PlayerManager::OnGameOver()
 {
-    mgr_enemy->ClearEnemies();
-    mgr_tower->ClearTowers();
-    mgr_wave->ClearWaves();
+    mgr_enemy->ClearEnemiesVector();
+    mgr_tower->ClearTowersVector();
+    mgr_wave->ClearWavesVector();
     PrintDebug("Gameover reached");
 }
 

@@ -200,7 +200,7 @@ void EnemyManager::AddEnemy(const Enemy enemy)
 {
     m_enemies.push_back(enemy);
 }
-void EnemyManager::ClearEnemies()
+void EnemyManager::ClearEnemiesVector()
 {
     m_enemies.clear();
 }

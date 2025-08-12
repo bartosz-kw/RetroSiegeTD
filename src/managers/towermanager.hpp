@@ -39,7 +39,7 @@ public:
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);
     bool CanPlaceTower(const Tile *tile) const;
-    void ClearTowers();
+    void ClearTowersVector();
     void Update(const float deltaTime);
     void DrawHover(const uint8_t screenOffset) const;
     void Draw(const uint8_t screenOffset) const;

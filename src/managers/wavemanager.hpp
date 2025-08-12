@@ -24,7 +24,7 @@ public:
     
     TempMessage* GetWaveMessage();
     EnemyWave* GetSmallestIdWave();
-    void ClearWaves();
+    void ClearWavesVector();
     void Update(const float deltaTime);
     void InjectDependencies(EnemyManager* enemyManager, PSManager* psManager);
     void Init();

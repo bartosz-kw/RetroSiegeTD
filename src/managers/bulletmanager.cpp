@@ -7,6 +7,8 @@
 
 // Private
 
+int32_t BulletManager::g_nextBulletId = -1;
+
 uint16_t BulletManager::GetBulletTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::buttetTextureOffset;
@@ -54,9 +56,9 @@ void BulletManager::RemoveBullets()
 
 // Public
 
-std::vector<Bullet*> BulletManager::GetBulletsFromArea(const Rectangle area)
+std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
 {
-    std::vector<Bullet*> detectedBullets = {};
+    std::vector<Bullet *> detectedBullets = {};
     for (auto &bullet : m_bullets)
     {
         const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
@@ -69,6 +71,10 @@ std::vector<Bullet*> BulletManager::GetBulletsFromArea(const Rectangle area)
     }
     return detectedBullets;
 }
+int32_t BulletManager::GetNewValidId()
+{
+    return g_nextBulletId++;
+}
 void BulletManager::AddBullet(const Bullet bullet)
 {
     m_bullets.push_back(bullet);
@@ -80,7 +86,6 @@ void BulletManager::Update(const float deltaTime)
         UpdatePosition(bullet, deltaTime);
         ValidatePosition(bullet);
     }
-
     RemoveBullets();
 }
 void BulletManager::Draw(const uint8_t screenOffset) const
@@ -98,5 +103,6 @@ void BulletManager::Draw(const uint8_t screenOffset) const
 }
 void BulletManager::Init()
 {
+    g_nextBulletId = 1;
     m_bullets.clear();
 }

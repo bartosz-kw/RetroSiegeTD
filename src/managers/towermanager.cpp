@@ -193,7 +193,7 @@ bool TowerManager::CanPlaceTower(const Tile *tile) const
     }
     return true;
 }
-void TowerManager::ClearTowers()
+void TowerManager::ClearTowersVector()
 {
     m_towers.clear();
 }
