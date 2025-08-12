@@ -5,7 +5,8 @@
 enum BulletType
 {
     Shuliken = 1,
-    SharpShuliken = 2
+    SharpShuliken = 2,
+    Dagger = 3
 };
 
 struct Bullet

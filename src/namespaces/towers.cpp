@@ -1,6 +1,7 @@
 #include "towers.hpp"
 #include "bullets.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../utility/mathUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/psmanager.hpp"
@@ -170,10 +171,11 @@ namespace Towers
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
             // make bullet
-            Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
+            Bullet bullet = Bullets::GetBulletData(BulletType::Dagger);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
+            bullet.p_rotation = RadiansToDegrees(angle); 
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };

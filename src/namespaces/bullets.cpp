@@ -42,6 +42,23 @@ namespace Bullets
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
 #pragma endregion
+
+#pragma region Dagger
+        // Dagger bullet
+        Bullet daggerBullet = {};
+        daggerBullet.p_position = {-1.0f, -1.0f};
+        daggerBullet.p_id = -1;
+        daggerBullet.p_damage = 0;
+        daggerBullet.p_directionAngle = 0.0f;
+        daggerBullet.p_rotation = 0.0f;
+        daggerBullet.p_spinSpeed = 0.0f;
+        daggerBullet.p_speed = 105.0f;
+        daggerBullet.p_typeId = BulletType::Dagger;
+        daggerBullet.p_pierce = true;
+        daggerBullet.p_alive = true;
+
+        g_bulletData[BulletType::Dagger] = daggerBullet;
+#pragma endregion
     }
 
     Bullet GetBulletData(int typeId)
