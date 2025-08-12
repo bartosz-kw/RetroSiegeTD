@@ -69,11 +69,11 @@ std::vector<Bullet*> BulletManager::GetBulletsFromArea(const Rectangle area)
     }
     return detectedBullets;
 }
-void BulletManager::AddBullet(Bullet bullet)
+void BulletManager::AddBullet(const Bullet bullet)
 {
     m_bullets.push_back(bullet);
 }
-void BulletManager::Update(float deltaTime)
+void BulletManager::Update(const float deltaTime)
 {
     for (auto &bullet : m_bullets)
     {
@@ -83,7 +83,7 @@ void BulletManager::Update(float deltaTime)
 
     RemoveBullets();
 }
-void BulletManager::Draw(uint8_t screenOffset) const
+void BulletManager::Draw(const uint8_t screenOffset) const
 {
     for (const auto &bullet : m_bullets)
     {
