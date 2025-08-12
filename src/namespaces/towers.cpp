@@ -91,7 +91,7 @@ namespace Towers
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
             // make bullet
-            Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
+            Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
@@ -130,7 +130,7 @@ namespace Towers
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
             // make bullet
-            Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
+            Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
@@ -170,7 +170,7 @@ namespace Towers
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
             // make bullet
-            Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
+            Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
