@@ -9,6 +9,7 @@ namespace Bullets
     {
         g_bulletData.clear();
 
+#pragma region Shuliken
         // Shuliken bullet
         Bullet shulikenBullet = {};
         shulikenBullet.p_position = {-1.0f, -1.0f};
@@ -23,7 +24,9 @@ namespace Bullets
         shulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
+#pragma endregion
 
+#pragma region SharpShuliken
         // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
@@ -38,6 +41,7 @@ namespace Bullets
         sharpShulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
+#pragma endregion
     }
 
     Bullet GetBulletData(int typeId)
