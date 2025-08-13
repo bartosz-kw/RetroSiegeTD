@@ -8,7 +8,8 @@ enum TowerType
     NinjaLv1 = 1,
     NinjaLv2 = 2,
     NinjaLv3 = 3,
-    NinjaLv4 = 4
+    NinjaLv4 = 4,
+    KnightLv1 = 5,
 };
 class TowerManager;
 class EnemyManager;
