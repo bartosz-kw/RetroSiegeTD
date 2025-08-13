@@ -72,6 +72,27 @@ namespace Bullets
 
         g_bulletData[BulletType::Dagger] = daggerBullet;
 #pragma endregion
+
+#pragma region Slash
+        // Slash bullet 
+        Bullet slashBullet = {};
+        slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        slashBullet.p_sourceRect = {0, 0, 8, 8};
+        slashBullet.p_position = {-1.0f, -1.0f};
+        slashBullet.p_id = -1;
+        slashBullet.p_damage = 0;
+        slashBullet.p_timeToNextFrame = 0.0f;
+        slashBullet.p_timePassed = 0.0f;
+        slashBullet.p_directionAngle = 0.0f;
+        slashBullet.p_rotation = 0.0f;
+        slashBullet.p_spinSpeed = 0.0f;
+        slashBullet.p_speed = 0.0f;
+        slashBullet.p_typeId = BulletType::Slash;
+        slashBullet.p_pierce = true;
+        slashBullet.p_alive = true;
+
+        g_bulletData[BulletType::Slash] = slashBullet;
+#pragma endregion
     }
 
     Bullet GetBulletData(int typeId)
