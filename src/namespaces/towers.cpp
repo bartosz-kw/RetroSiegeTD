@@ -233,7 +233,7 @@ namespace Towers
         knight1Tower.p_level = 1;
         knight1Tower.p_typeId = TowerType::KnightLv1;
         knight1Tower.p_tileId = 0;
-        knight1Tower.p_canUpgrade = true;
+        knight1Tower.p_canUpgrade = false;
         knight1Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv1] = knight1Tower;

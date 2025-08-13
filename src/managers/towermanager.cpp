@@ -119,6 +119,8 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
     case TowerType::NinjaLv3:
     case TowerType::NinjaLv4:
         return "Ninja";
+    case TowerType::KnightLv1:
+        return "Knight";
     default:
         return "Unknown";
     }
