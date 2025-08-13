@@ -11,6 +11,7 @@ private:
 private:
     uint16_t GetBulletTextureIndex(const uint16_t typeId) const;
     void UpdatePosition(Bullet& bullet,const float deltaTime);
+    void UpdateAnimations(Bullet& bullet, const float deltaTime);
     void ValidatePosition(Bullet& bullet);
     void RemoveBullets();
 public:

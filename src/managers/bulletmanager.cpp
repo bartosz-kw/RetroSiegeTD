@@ -23,6 +23,10 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
         bullet.p_rotation += bullet.p_spinSpeed * deltaTime;
     }
 }
+void BulletManager::UpdateAnimations(Bullet& bullet, const float deltaTime)
+{
+
+}
 void BulletManager::ValidatePosition(Bullet &bullet)
 {
     const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
@@ -53,7 +57,6 @@ void BulletManager::RemoveBullets()
         m_bullets.erase(m_bullets.begin() + *it);
     }
 }
-
 // Public
 
 std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
