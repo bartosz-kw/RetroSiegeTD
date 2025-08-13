@@ -12,9 +12,14 @@ namespace Bullets
 #pragma region Shuliken
         // Shuliken bullet
         Bullet shulikenBullet = {};
+        
+        shulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        shulikenBullet.p_sourceRect = {0, 0, 0, 0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
-        shulikenBullet.p_damage = 0;   
+        shulikenBullet.p_damage = 0;
+        shulikenBullet.p_timeToNextFrame = 0.0f;
+        shulikenBullet.p_timePassed = 0.0f;
         shulikenBullet.p_directionAngle = 0.0f;
         shulikenBullet.p_rotation = 0.0f;
         shulikenBullet.p_spinSpeed = 200.0f;
@@ -29,9 +34,13 @@ namespace Bullets
 #pragma region SharpShuliken
         // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
+        sharpShulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        sharpShulikenBullet.p_sourceRect = {0, 0, 0, 0};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
         sharpShulikenBullet.p_id = -1;
         sharpShulikenBullet.p_damage = 0;
+        sharpShulikenBullet.p_timeToNextFrame = 0.0f;
+        sharpShulikenBullet.p_timePassed = 0.0f;
         sharpShulikenBullet.p_directionAngle = 0.0f;
         sharpShulikenBullet.p_rotation = 0.0f;
         sharpShulikenBullet.p_spinSpeed = 225.0f;
@@ -46,9 +55,13 @@ namespace Bullets
 #pragma region Dagger
         // Dagger bullet
         Bullet daggerBullet = {};
+        daggerBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        daggerBullet.p_sourceRect = {0, 0, 0, 0};
         daggerBullet.p_position = {-1.0f, -1.0f};
         daggerBullet.p_id = -1;
         daggerBullet.p_damage = 0;
+        daggerBullet.p_timeToNextFrame = 0.0f;
+        daggerBullet.p_timePassed = 0.0f;
         daggerBullet.p_directionAngle = 0.0f;
         daggerBullet.p_rotation = 0.0f;
         daggerBullet.p_spinSpeed = 0.0f;
