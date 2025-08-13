@@ -10,9 +10,9 @@ namespace Sprites
     inline constexpr int8_t g_tileTextureOffset = -1;
     inline constexpr uint8_t g_enemyTextureOffset = 4;
     inline constexpr uint8_t g_towerTextureOffset = 5;
-    inline constexpr uint8_t g_buttetTextureOffset = 9;
+    inline constexpr uint8_t g_buttetTextureOffset = 10;
     // texture array variables
-    inline constexpr size_t g_textureAmount = 13;
+    inline constexpr size_t g_textureAmount = 15;
     inline std::array<Texture2D,g_textureAmount> g_textures = {};
 
     inline void LoadTextures()
@@ -27,9 +27,11 @@ namespace Sprites
         g_textures[7] = LoadTexture("src/resources/sprites/NinjaTower2.png"); 
         g_textures[8] = LoadTexture("src/resources/sprites/NinjaTower3.png");
         g_textures[9] = LoadTexture("src/resources/sprites/NinjaTower4.png");
-        g_textures[10] = LoadTexture("src/resources/sprites/ShulikenBullet.png");
-        g_textures[11] = LoadTexture("src/resources/sprites/SharpShulikenBullet.png");
-        g_textures[12] = LoadTexture("src/resources/sprites/DaggerBullet.png");
+        g_textures[10] = LoadTexture("src/resources/sprites/KnightTower1.png");
+        g_textures[11] = LoadTexture("src/resources/sprites/ShulikenBullet.png");
+        g_textures[12] = LoadTexture("src/resources/sprites/SharpShulikenBullet.png");
+        g_textures[13] = LoadTexture("src/resources/sprites/DaggerBullet.png");
+        g_textures[14] = LoadTexture("src/resources/sprites/SlashBullet.png");
     }
     inline void UnLoadTextures()
     {
