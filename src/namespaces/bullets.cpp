@@ -76,12 +76,32 @@ namespace Bullets
 #pragma region Slash
         // Slash bullet 
         Bullet slashBullet = {};
-        slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet)
+        { 
+            constexpr uint8_t frameOffset = 8;
+            constexpr uint8_t frameAmount = 4;
+
+            bullet.p_timePassed += deltaTime;
+            if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
+            {
+                bullet.p_timePassed = 0.0f;
+                if (bullet.p_sourceRect.x + frameOffset > frameOffset * frameAmount)
+                {
+                    bullet.p_alive = false;
+                }
+                else
+                {
+                    bullet.p_sourceRect.x += frameOffset;
+                }
+                
+            }
+            
+        };
         slashBullet.p_sourceRect = {0, 0, 8, 8};
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
-        slashBullet.p_timeToNextFrame = 0.0f;
+        slashBullet.p_timeToNextFrame = 0.2f;
         slashBullet.p_timePassed = 0.0f;
         slashBullet.p_directionAngle = 0.0f;
         slashBullet.p_rotation = 0.0f;
