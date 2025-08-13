@@ -106,7 +106,7 @@ namespace Towers
         knight1Tower.p_price = 50;
         knight1Tower.p_damage = 3;
         knight1Tower.p_position = {-1.0f, -1.0f};
-        knight1Tower.p_range = 10.0f;
+        knight1Tower.p_range = 25.0f;
         knight1Tower.p_attackSpeed = 0.5f;
         knight1Tower.p_timeToAttack = 0.0f;
         knight1Tower.p_upgradesTo = TowerType::Nothing;

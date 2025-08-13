@@ -35,7 +35,7 @@ void TowerPlace::ControlPlaceTower(const TowerType controlType)
 
 void TowerPlace::InitButtons()
 {
-    constexpr size_t amountOfButtons = 1;
+    constexpr size_t amountOfButtons = 2;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region NinjaButton
@@ -54,6 +54,32 @@ void TowerPlace::InitButtons()
     ninjaButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         if (this->mgr_tower->GetPlaceTower() == TowerType::NinjaLv1)
+        {
+            button.p_color = {202, 199, 0, 255};
+        }
+        else
+        {
+            button.p_color = YELLOW;
+        }
+    };
+#pragma endregion
+
+#pragma region KnightButton
+    Button &knightButton = mgr_gui->AddButton(Button{});
+    knightButton.p_text = "";
+    knightButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f + 30.0f), 25.0f, 25.0f, 25.0f};
+    knightButton.p_color = YELLOW;
+    knightButton.p_id = mgr_gui->GetAmountOfButtons();
+    knightButton.p_isHovered = false;
+    knightButton.p_visible = true;
+    knightButton.p_buttonImage = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::KnightLv1];
+    knightButton.p_onPressed = [this](float deltaTime, Button &button)
+    {
+        ControlPlaceTower(TowerType::KnightLv1);
+    };
+    knightButton.p_updateFunction = [this](float deltaTime, Button &button)
+    {
+        if (this->mgr_tower->GetPlaceTower() == TowerType::KnightLv1)
         {
             button.p_color = {202, 199, 0, 255};
         }
