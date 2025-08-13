@@ -23,9 +23,9 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
         bullet.p_rotation += bullet.p_spinSpeed * deltaTime;
     }
 }
-void BulletManager::UpdateAnimations(Bullet& bullet, const float deltaTime)
+void BulletManager::UpdateAnimations(Bullet &bullet, const float deltaTime)
 {
-
+    bullet.p_updateAnimation(deltaTime,bullet,this);
 }
 void BulletManager::ValidatePosition(Bullet &bullet)
 {
@@ -87,6 +87,7 @@ void BulletManager::Update(const float deltaTime)
     for (auto &bullet : m_bullets)
     {
         UpdatePosition(bullet, deltaTime);
+        UpdateAnimations(bullet,deltaTime);
         ValidatePosition(bullet);
     }
     RemoveBullets();
@@ -98,10 +99,17 @@ void BulletManager::Draw(const uint8_t screenOffset) const
         const Texture2D texture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
         const Vector2 position = {bullet.p_position.x + screenOffset, bullet.p_position.y};
         const Vector2 origin = {static_cast<float>(texture.width) / 2.0f, static_cast<float>(texture.height) / 2.0f};
-        const Rectangle source = {0.0f, 0.0f, static_cast<float>(texture.width), static_cast<float>(texture.height)};
         const Rectangle dest = {position.x, position.y, static_cast<float>(texture.width), static_cast<float>(texture.height)};
 
-        DrawTexturePro(texture, source, dest, origin, bullet.p_rotation, WHITE);
+        if (bullet.p_sourceRect.width == 0 && bullet.p_sourceRect.height == 0)
+        {
+            const Rectangle source = {0.0f, 0.0f, static_cast<float>(texture.width), static_cast<float>(texture.height)};
+            DrawTexturePro(texture, source, dest, origin, bullet.p_rotation, WHITE);
+        }
+        else
+        {
+            DrawTexturePro(texture, bullet.p_sourceRect, dest, origin, bullet.p_rotation, WHITE);
+        }
     }
 }
 void BulletManager::Init()
