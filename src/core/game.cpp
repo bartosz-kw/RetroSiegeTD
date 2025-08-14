@@ -36,6 +36,8 @@ void Game::Update()
     mgr_bullet.Update(deltaTime);
     mgr_wave.Update(deltaTime);
     mgr_player.Update();
+
+    GameMusic::UpdateMusic();
 }
 void Game::MakeTextureFrame() const
 {
@@ -119,6 +121,7 @@ void Game::InitSprites()
 void Game::InitMusic()
 {
     GameMusic::InitAudio();
+    GameMusic::LoadMusic();
     GameMusic::LoadSounds();
 }
 void Game::InitDatas()
@@ -151,6 +154,8 @@ void Game::Init()
     InitMembers();
     InitManagers();
     InitGui();
+
+    PlayMusicStream(GameMusic::g_towerDefenseMain);
 }
 void Game::Run()
 {
