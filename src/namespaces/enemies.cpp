@@ -1,4 +1,5 @@
 #include "enemies.hpp"
+#include "basics.hpp"
 #include <cassert>
 
 namespace Enemies
@@ -18,20 +19,7 @@ namespace Enemies
         {
             constexpr uint8_t frameOffset = 15;
             constexpr uint8_t frameAmount = 2;
-
-            enemy.p_timePassed += deltaTime;
-            if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
-            {
-                enemy.p_timePassed = 0.0f;
-                if (enemy.p_sourceRect.x + frameOffset > frameOffset * (frameAmount - 1))
-                {
-                    enemy.p_sourceRect = {0,0,frameOffset,enemy.p_sourceRect.height};
-                }
-                else
-                {
-                    enemy.p_sourceRect.x += frameOffset;
-                }
-            }
+            Basics::Animate(deltaTime,enemy,frameOffset,frameAmount);
         };
         blueSlime.p_sourceRect = {0, 0, 15, 15};
         blueSlime.p_moneyDrop = 10;
