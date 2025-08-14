@@ -91,7 +91,6 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
         {
             indexsToDelete.push_back(i);
         }
-        
     }
     for (int i = indexsToDelete.size() - 1; i >= 0; i--)
     {
@@ -101,7 +100,7 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
 
 void EnemyManager::UpdateAnimations(Enemy &enemy, const float deltaTime)
 {
-    enemy.p_updateAnimation(deltaTime,enemy);
+    enemy.p_updateAnimation(deltaTime, enemy);
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
@@ -110,13 +109,13 @@ void EnemyManager::HandleHits(Enemy &enemy)
     const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
     const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
 
-    std::vector<Bullet*> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
+    std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
     for (auto bullet : detectedBullets)
     {
         bool bulletOnCooldown = false;
         for (size_t i = 0; i < enemy.p_hitCooldowns.size(); i++)
         {
-            if(enemy.p_hitCooldowns[i].second == bullet->p_id)
+            if (enemy.p_hitCooldowns[i].second == bullet->p_id)
             {
                 bulletOnCooldown = true;
                 continue;
@@ -126,8 +125,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
         {
             continue;
         }
-        
-        
+
         if (!bullet->p_alive)
         {
             continue;
@@ -138,9 +136,9 @@ void EnemyManager::HandleHits(Enemy &enemy)
         }
         else
         {
-            enemy.p_hitCooldowns.push_back({hitCooldown,bullet->p_id});
+            enemy.p_hitCooldowns.push_back({hitCooldown, bullet->p_id});
         }
-        
+
         enemy.p_health -= bullet->p_damage;
         enemy.p_hitEffectTime = hitEffectTime;
     }
@@ -250,9 +248,9 @@ void EnemyManager::Update(const float deltaTime)
         }
 
         UpdateMovement(enemy, deltaTime);
-        UpdateCooldown(enemy,deltaTime);
-        UpdateHitEffect(enemy,deltaTime);
-        UpdateAnimations(enemy,deltaTime);
+        UpdateCooldown(enemy, deltaTime);
+        UpdateHitEffect(enemy, deltaTime);
+        UpdateAnimations(enemy, deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {
@@ -273,10 +271,24 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
         Color color = WHITE;
         if (enemy.p_hitEffectTime > 0.0f)
         {
-            color = { 230, 41, 55, 255 };
+            color = {230, 41, 55, 255};
         }
-        
-        DrawTexture(Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)], enemy.p_position.x + screenOffset, enemy.p_position.y, color);
+
+        const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+        const Vector2 position = {enemy.p_position.x + screenOffset, enemy.p_position.y};
+        const Vector2 origin = {0.0f, 0.0f};
+
+        if (enemy.p_sourceRect.width == 0 && enemy.p_sourceRect.height == 0)
+        {
+            const Rectangle dest = {position.x, position.y, static_cast<float>(texture.width), static_cast<float>(texture.height)};
+            const Rectangle source = {0.0f, 0.0f, static_cast<float>(texture.width), static_cast<float>(texture.height)};
+            DrawTexturePro(texture, source, dest, origin, 0.0f, color);
+        }
+        else
+        {
+            const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
+            DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
+        }
     }
 }
 void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
