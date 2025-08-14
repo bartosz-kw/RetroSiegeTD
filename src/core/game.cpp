@@ -118,6 +118,7 @@ void Game::InitSprites()
 }
 void Game::InitMusic()
 {
+    GameMusic::InitAudio();
     GameMusic::LoadSounds();
 }
 void Game::InitDatas()
@@ -159,7 +160,6 @@ void Game::Run()
         {
             continue;
         }
-
         Update();
         Draw();
     }
