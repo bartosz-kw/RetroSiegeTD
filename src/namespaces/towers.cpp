@@ -1,5 +1,6 @@
 #include "towers.hpp"
 #include "bullets.hpp"
+#include "basics.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../utility/mathUtil.hpp"
 #include "../managers/towermanager.hpp"
@@ -13,30 +14,6 @@
 namespace Towers
 {
     std::unordered_map<int, Tower> g_towerData = {};
-
-    void UpgradeTowerBasic(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType)
-    {
-        assert(upgradeType != TowerType::Nothing);
-        if (upgradeType == TowerType::Nothing)
-        {
-            return;
-        }
-        
-        Tower upgradedTower = GetTowerData(upgradeType);
-        if (!tower)
-        {
-            return;
-        }
-
-        if (mgr_ps->CanAfford(upgradedTower.p_price))
-        {
-            mgr_ps->SubMoney(upgradedTower.p_price);
-            upgradedTower.p_id = tower->p_id;
-            upgradedTower.p_tileId = tower->p_tileId;
-            upgradedTower.p_dirty = true;
-            *tower = upgradedTower;
-        }
-    }
 
     void InitTowerData()
     {
@@ -62,7 +39,7 @@ namespace Towers
         };
         ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;
@@ -101,7 +78,7 @@ namespace Towers
         };
         ninja2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja2Tower.p_price = 50;
         ninja2Tower.p_damage = 2;
@@ -140,7 +117,7 @@ namespace Towers
         };
         ninja3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         ninja3Tower.p_price = 75;
         ninja3Tower.p_damage = 3;

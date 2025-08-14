@@ -4,5 +4,5 @@ class PSManager;
 
 namespace Basics
 {
-    void UpgradeTowerBasic(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType);
+    void UpgradeTower(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType);
 }

@@ -4,7 +4,7 @@
 #include <cassert>
 namespace Basics
 {
-    void UpgradeTowerBasic(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType)
+    void UpgradeTower(const float deltaTime, Tower *tower, PSManager *mgr_ps, const TowerType upgradeType)
     {
         assert(upgradeType != TowerType::Nothing);
         if (upgradeType == TowerType::Nothing)
