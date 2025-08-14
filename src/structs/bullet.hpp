@@ -14,8 +14,8 @@ enum BulletType
 
 struct Bullet
 {
-    std::function<void(const float deltaTime, Bullet& bullet, BulletManager*mgr_bullet)>
-        p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager*mgr_bullet) {};
+    std::function<void(const float deltaTime, Bullet& bullet)>
+        p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
     int32_t p_id = -1;

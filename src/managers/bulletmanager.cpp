@@ -25,7 +25,7 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
 }
 void BulletManager::UpdateAnimations(Bullet &bullet, const float deltaTime)
 {
-    bullet.p_updateAnimation(deltaTime,bullet,this);
+    bullet.p_updateAnimation(deltaTime,bullet);
 }
 void BulletManager::ValidatePosition(Bullet &bullet)
 {

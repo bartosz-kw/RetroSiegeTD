@@ -13,12 +13,18 @@ namespace Enemies
 
         // Blue Slime
         Enemy blueSlime = {};
+        blueSlime.p_hitCooldowns = {};
+        blueSlime.p_updateAnimation = {};
+        blueSlime.p_sourceRect = {0, 0, 0, 0};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 10;
         blueSlime.p_position = {-1.0f, -1.0f};
         blueSlime.p_id = 1;
         blueSlime.p_speed = 1.5f;
+        blueSlime.p_timeToNextFrame = 0.0f;
+        blueSlime.p_timePassed = 0.0f;
         blueSlime.p_timeToMove = 0.0f;
+        blueSlime.p_hitEffectTime = 0.0f;
         blueSlime.p_typeId = EnemyType::BlueSlime;
         blueSlime.p_walked = 0;
         blueSlime.p_tileId = -1;

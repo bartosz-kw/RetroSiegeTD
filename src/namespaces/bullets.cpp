@@ -13,7 +13,7 @@ namespace Bullets
         // Shuliken bullet
         Bullet shulikenBullet = {};
         
-        shulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        shulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
         shulikenBullet.p_sourceRect = {0, 0, 0, 0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
@@ -34,7 +34,7 @@ namespace Bullets
 #pragma region SharpShuliken
         // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
-        sharpShulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        sharpShulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
         sharpShulikenBullet.p_sourceRect = {0, 0, 0, 0};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
         sharpShulikenBullet.p_id = -1;
@@ -55,7 +55,7 @@ namespace Bullets
 #pragma region Dagger
         // Dagger bullet
         Bullet daggerBullet = {};
-        daggerBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet) {};
+        daggerBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
         daggerBullet.p_sourceRect = {0, 0, 0, 0};
         daggerBullet.p_position = {-1.0f, -1.0f};
         daggerBullet.p_id = -1;
@@ -76,7 +76,7 @@ namespace Bullets
 #pragma region Slash
         // Slash bullet 
         Bullet slashBullet = {};
-        slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet, BulletManager* mgr_bullet)
+        slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet)
         { 
             constexpr uint8_t frameOffset = 8;
             constexpr uint8_t frameAmount = 4;
