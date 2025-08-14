@@ -85,7 +85,7 @@ namespace Bullets
             if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
             {
                 bullet.p_timePassed = 0.0f;
-                if (bullet.p_sourceRect.x + frameOffset > frameOffset * frameAmount)
+                if (bullet.p_sourceRect.x + frameOffset > frameOffset * (frameAmount-1))
                 {
                     bullet.p_alive = false;
                 }
