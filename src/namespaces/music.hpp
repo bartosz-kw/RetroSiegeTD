@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib.h>
 
-namespace Music
+namespace GameMusic
 {
     inline Sound g_towerPlaceSound = {};
 
@@ -14,5 +14,4 @@ namespace Music
     {
         UnloadSound(g_towerPlaceSound);
     }
-
 }

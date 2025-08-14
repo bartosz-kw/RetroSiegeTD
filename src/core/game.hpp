@@ -42,6 +42,7 @@ private: // functions
     void InitManagers();
     void InitGui();
     void InitSprites();
+    void InitMusic();
     void InitDatas();
     void InitMembers();
     void InitGame();

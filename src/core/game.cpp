@@ -116,6 +116,10 @@ void Game::InitSprites()
 {
     Sprites::LoadTextures();
 }
+void Game::InitMusic()
+{
+    GameMusic::LoadSounds();
+}
 void Game::InitDatas()
 {
     Towers::InitTowerData();
@@ -141,6 +145,7 @@ void Game::Init()
 {
     InitGame();
     InitSprites();
+    InitMusic();
     InitDatas();
     InitMembers();
     InitManagers();
@@ -163,6 +168,7 @@ void Game::Run()
 void Game::Shutdown()
 {
     Sprites::UnLoadTextures();
+    GameMusic::UnloadSounds();
     UnloadRenderTexture(m_frame);
     CloseWindow();
 }
