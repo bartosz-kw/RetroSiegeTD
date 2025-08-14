@@ -98,6 +98,11 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
         enemy.p_hitCooldowns.erase(enemy.p_hitCooldowns.begin() + indexsToDelete[i]);
     }
 }
+
+void EnemyManager::UpdateAnimations(Enemy &enemy, const float deltaTime)
+{
+    enemy.p_updateAnimation(deltaTime,enemy);
+}
 void EnemyManager::HandleHits(Enemy &enemy)
 {
     constexpr float hitCooldown = 3.0f;
@@ -153,17 +158,14 @@ void EnemyManager::PreKillEnemy(Enemy &enemy)
 }
 void EnemyManager::CleanEnemy(Enemy &enemy)
 {
-    // check if enemy has valid tile id
     if (enemy.p_tileId == -1)
     {
         enemy.p_tileId = mgr_tile->GetPathStart().p_id;
         ;
     }
 
-    // get tile
     const Tile tile = mgr_tile->GetTile(enemy.p_tileId);
 
-    // update data
     enemy.p_position = tile.p_position;
     enemy.p_dirty = false;
 
@@ -250,6 +252,7 @@ void EnemyManager::Update(const float deltaTime)
         UpdateMovement(enemy, deltaTime);
         UpdateCooldown(enemy,deltaTime);
         UpdateHitEffect(enemy,deltaTime);
+        UpdateAnimations(enemy,deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {

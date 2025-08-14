@@ -21,6 +21,7 @@ private:
     void UpdateMovement(Enemy &enemy, const float deltaTime);
     void UpdateHitEffect(Enemy &enemy, const float deltaTime);
     void UpdateCooldown(Enemy &enemy, const float deltaTime);
+    void UpdateAnimations(Enemy &enemy, const float deltaTime);
     void HandleHits(Enemy &enemy);
     void CleanEnemy(Enemy &enemy);
     void PreKillEnemy(Enemy &enemy);

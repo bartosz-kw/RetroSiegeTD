@@ -14,7 +14,7 @@ namespace Enemies
         // Blue Slime
         Enemy blueSlime = {};
         blueSlime.p_hitCooldowns = {};
-        blueSlime.p_updateAnimation = {};
+        blueSlime.p_updateAnimation = [](const float deltaTime, Enemy &enemy) {};
         blueSlime.p_sourceRect = {0, 0, 0, 0};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 10;
