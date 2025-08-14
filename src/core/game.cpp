@@ -1,6 +1,7 @@
 #include <cstddef>
 #include "../utility/debugUtil.hpp"
 #include "../utility/loadingUtil.hpp"
+#include "../namespaces/music.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "../namespaces/towers.hpp"
