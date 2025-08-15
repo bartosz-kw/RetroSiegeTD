@@ -19,6 +19,7 @@ public:
 public:
     BulletManager() = default;
 
+    Vector2 GetCenterPosition(const Bullet &bullet) const;
     std::vector<Bullet*> GetBulletsFromArea(const Rectangle area);
     void AddBullet(const Bullet bullet);
     void Update(const float deltaTime);
