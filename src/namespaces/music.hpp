@@ -6,6 +6,7 @@ namespace GameMusic
     inline Sound g_towerPlaceSound = {};
 
     inline Music g_towerDefenseMain = {};
+    inline Music g_towerDefenseBoss = {};
 
     inline void InitAudio()
     {
@@ -18,6 +19,10 @@ namespace GameMusic
         {
             UpdateMusicStream(g_towerDefenseMain);
         }
+        if (IsMusicStreamPlaying(g_towerDefenseBoss))
+        {
+            UpdateMusicStream(g_towerDefenseBoss);
+        }
     }
 
     inline void LoadSounds()
@@ -27,6 +32,7 @@ namespace GameMusic
     inline void LoadMusic()
     {
         g_towerDefenseMain = LoadMusicStream("src/resources/audio/towerdefensemain.ogg");
+        g_towerDefenseBoss = LoadMusicStream("src/resources/audio/bosstheme.wav");
     }
 
     inline void UnloadSounds()
