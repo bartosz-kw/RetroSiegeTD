@@ -5,7 +5,8 @@
 #include <vector>
 enum EnemyType
 {
-    BlueSlime = 1
+    BlueSlime = 1,
+    RedSlime = 2
 };
 struct Enemy
 {

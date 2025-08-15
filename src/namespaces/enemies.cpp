@@ -40,6 +40,37 @@ namespace Enemies
 
         g_enemyData[EnemyType::BlueSlime] = blueSlime;
 #pragma endregion
+
+#pragma region RedSlime
+
+        // Red Slime
+        Enemy redSlime = {};
+        redSlime.p_hitCooldowns = {};
+        redSlime.p_updateAnimation = [](const float deltaTime, Enemy &enemy)
+        {
+            constexpr uint8_t frameOffset = 15;
+            constexpr uint8_t frameAmount = 2;
+            Basics::Animate(deltaTime,enemy,frameOffset,frameAmount);
+        };
+        redSlime.p_sourceRect = {0, 0, 15, 15};
+        redSlime.p_moneyDrop = 15;
+        redSlime.p_health = 50;
+        redSlime.p_position = {-1.0f, -1.0f};
+        redSlime.p_id = 2;
+        redSlime.p_speed = 2.0f;
+        redSlime.p_timeToNextFrame = 1.0f;
+        redSlime.p_timePassed = 0.0f;
+        redSlime.p_timeToMove = 0.0f;
+        redSlime.p_hitEffectTime = 0.0f;
+        redSlime.p_typeId = EnemyType::RedSlime;
+        redSlime.p_walked = 0;
+        redSlime.p_tileId = -1;
+        redSlime.p_alive = true;
+        redSlime.p_survived = false;
+        redSlime.p_dirty = true;
+
+        g_enemyData[EnemyType::RedSlime] = redSlime;
+#pragma endregion
     }
 
     Enemy GetEnemyData(const int typeId)
