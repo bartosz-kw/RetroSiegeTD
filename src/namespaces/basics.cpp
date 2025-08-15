@@ -27,7 +27,7 @@ namespace Basics
             *tower = upgradedTower;
         }
     }
-    void Animate(const float deltaTime, Enemy &enemy,uint16_t frameOffset,uint16_t frameAmount)
+    void Animate(const float deltaTime, Enemy &enemy, uint16_t frameOffset, uint16_t frameAmount)
     {
         enemy.p_timePassed += deltaTime;
         if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
@@ -35,7 +35,7 @@ namespace Basics
             enemy.p_timePassed = 0.0f;
             if (enemy.p_sourceRect.x + frameOffset > frameOffset * (frameAmount - 1))
             {
-                enemy.p_sourceRect = {0, 0,static_cast<float>(frameOffset),enemy.p_sourceRect.height};
+                enemy.p_sourceRect = {0, 0, static_cast<float>(frameOffset), enemy.p_sourceRect.height};
             }
             else
             {
@@ -43,4 +43,21 @@ namespace Basics
             }
         }
     };
+
+    void Animate(const float deltaTime, Bullet &bullet, uint16_t frameOffset, uint16_t frameAmount)
+    {
+        bullet.p_timePassed += deltaTime;
+        if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
+        {
+            bullet.p_timePassed = 0.0f;
+            if (bullet.p_sourceRect.x + frameOffset > frameOffset * (frameAmount - 1))
+            {
+                bullet.p_sourceRect = {0, 0, static_cast<float>(frameOffset), bullet.p_sourceRect.height};
+            }
+            else
+            {
+                bullet.p_sourceRect.x += frameOffset;
+            }
+        }
+    }
 }
