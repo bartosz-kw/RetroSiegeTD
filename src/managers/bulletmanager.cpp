@@ -114,6 +114,12 @@ void BulletManager::Draw(const uint8_t screenOffset) const
         }
     }
 }
+Vector2 BulletManager::GetCenterPosition(const Bullet &bullet) const
+{
+    const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
+    return Vector2{bullet.p_position.x + bulletTexture.width / 2.0f, bullet.p_position.y + bulletTexture.height / 2.0f};
+}
+
 void BulletManager::Init()
 {
     g_nextBulletId = 1;

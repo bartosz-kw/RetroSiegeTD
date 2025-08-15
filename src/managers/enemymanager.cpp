@@ -2,6 +2,7 @@
 #include "tilemanager.hpp"
 #include "bulletmanager.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../namespaces/settings.hpp"
 #include "../managers/psmanager.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/enemies.hpp"
@@ -200,8 +201,7 @@ uint32_t EnemyManager::GetNewValidId()
 }
 Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
 {
-    Texture2D enemyTexture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
-    return Vector2{enemy.p_position.x + enemyTexture.width / 2.0f, enemy.p_position.y + enemyTexture.height / 2.0f};
+    return Vector2{enemy.p_position.x + enemy.p_sourceRect.width / 2.0f, enemy.p_position.y + enemy.p_sourceRect.height / 2.0f};
 }
 uint32_t EnemyManager::FindEnemyInArea(const Vector2 center, const float radius)
 {
@@ -274,21 +274,13 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
             color = {230, 41, 55, 255};
         }
 
+        constexpr Vector2 origin = {0.0f, 0.0f};
         const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
         const Vector2 position = {enemy.p_position.x + screenOffset, enemy.p_position.y};
-        const Vector2 origin = {0.0f, 0.0f};
+        const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
+        DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
 
-        if (enemy.p_sourceRect.width == 0 && enemy.p_sourceRect.height == 0)
-        {
-            const Rectangle dest = {position.x, position.y, static_cast<float>(texture.width), static_cast<float>(texture.height)};
-            const Rectangle source = {0.0f, 0.0f, static_cast<float>(texture.width), static_cast<float>(texture.height)};
-            DrawTexturePro(texture, source, dest, origin, 0.0f, color);
-        }
-        else
-        {
-            const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
-            DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
-        }
+        //DrawPixel(GetCenterPosition(enemy).x + Settings::g_boundingSize, GetCenterPosition(enemy).y, RED);
     }
 }
 void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
