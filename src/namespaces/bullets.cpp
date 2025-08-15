@@ -14,7 +14,7 @@ namespace Bullets
         Bullet shulikenBullet = {};
         
         shulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
-        shulikenBullet.p_sourceRect = {0, 0, 0, 0};
+        shulikenBullet.p_sourceRect = {0, 0, 9, 9};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
         shulikenBullet.p_damage = 0;
@@ -35,7 +35,7 @@ namespace Bullets
         // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
         sharpShulikenBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
-        sharpShulikenBullet.p_sourceRect = {0, 0, 0, 0};
+        sharpShulikenBullet.p_sourceRect = {0, 0, 9, 9};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
         sharpShulikenBullet.p_id = -1;
         sharpShulikenBullet.p_damage = 0;
@@ -56,7 +56,7 @@ namespace Bullets
         // Dagger bullet
         Bullet daggerBullet = {};
         daggerBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
-        daggerBullet.p_sourceRect = {0, 0, 0, 0};
+        daggerBullet.p_sourceRect = {0, 0, 7, 3};
         daggerBullet.p_position = {-1.0f, -1.0f};
         daggerBullet.p_id = -1;
         daggerBullet.p_damage = 0;

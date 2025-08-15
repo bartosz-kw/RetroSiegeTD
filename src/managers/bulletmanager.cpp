@@ -25,7 +25,7 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
 }
 void BulletManager::UpdateAnimations(Bullet &bullet, const float deltaTime)
 {
-    bullet.p_updateAnimation(deltaTime,bullet);
+    bullet.p_updateAnimation(deltaTime, bullet);
 }
 void BulletManager::ValidatePosition(Bullet &bullet)
 {
@@ -58,7 +58,10 @@ void BulletManager::RemoveBullets()
     }
 }
 // Public
-
+Vector2 BulletManager::GetCenterPosition(const Bullet &bullet) const
+{
+    return Vector2{bullet.p_position.x + bullet.p_sourceRect.width / 2.0f, bullet.p_position.y + bullet.p_sourceRect.height / 2.0f};
+}
 std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
 {
     std::vector<Bullet *> detectedBullets = {};
@@ -87,7 +90,7 @@ void BulletManager::Update(const float deltaTime)
     for (auto &bullet : m_bullets)
     {
         UpdatePosition(bullet, deltaTime);
-        UpdateAnimations(bullet,deltaTime);
+        UpdateAnimations(bullet, deltaTime);
         ValidatePosition(bullet);
     }
     RemoveBullets();
@@ -98,26 +101,10 @@ void BulletManager::Draw(const uint8_t screenOffset) const
     {
         const Texture2D texture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
         const Vector2 position = {bullet.p_position.x + screenOffset, bullet.p_position.y};
-
-        if (bullet.p_sourceRect.width == 0 && bullet.p_sourceRect.height == 0)
-        {
-            const Vector2 origin = {static_cast<float>(texture.width) / 2.0f, static_cast<float>(texture.height) / 2.0f};
-            const Rectangle dest = {position.x, position.y, static_cast<float>(texture.width), static_cast<float>(texture.height)};
-            const Rectangle source = {0.0f, 0.0f, static_cast<float>(texture.width), static_cast<float>(texture.height)};
-            DrawTexturePro(texture, source, dest, origin, bullet.p_rotation, WHITE);
-        }
-        else
-        {
-            const Rectangle dest = {position.x, position.y, static_cast<float>(bullet.p_sourceRect.width), static_cast<float>(bullet.p_sourceRect.width)};
-            const Vector2 origin = {static_cast<float>(bullet.p_sourceRect.width) / 2.0f, static_cast<float>(bullet.p_sourceRect.height) / 2.0f};
-            DrawTexturePro(texture, bullet.p_sourceRect, dest, origin, bullet.p_rotation, WHITE);
-        }
+        const Rectangle dest = {position.x, position.y, static_cast<float>(bullet.p_sourceRect.width), static_cast<float>(bullet.p_sourceRect.height)};
+        const Vector2 origin = {static_cast<float>(bullet.p_sourceRect.width) / 2.0f, static_cast<float>(bullet.p_sourceRect.height) / 2.0f};
+        DrawTexturePro(texture, bullet.p_sourceRect, dest, origin, bullet.p_rotation, WHITE);
     }
-}
-Vector2 BulletManager::GetCenterPosition(const Bullet &bullet) const
-{
-    const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
-    return Vector2{bullet.p_position.x + bulletTexture.width / 2.0f, bullet.p_position.y + bulletTexture.height / 2.0f};
 }
 
 void BulletManager::Init()
