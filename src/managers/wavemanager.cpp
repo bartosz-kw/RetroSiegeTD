@@ -61,19 +61,19 @@ void WaveManager::HandleWave()
 void WaveManager::LoadWaves()
 {
     std::vector<std::pair<float, int>> enemySpawns2 = {};
-    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({2.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns2.push_back({5.0f, EnemyType::RedSlime});
     EnemyWave wave2 = {};
     wave2.p_id = 2;
     wave2.p_moneyReward = 50;
     wave2.p_enemySpawns = enemySpawns2;
 
     std::vector<std::pair<float, int>> enemySpawns1 = {};
-    enemySpawns1.push_back({5.0f, EnemyType::BlueSlime});
+    enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     EnemyWave wave1 = {};
