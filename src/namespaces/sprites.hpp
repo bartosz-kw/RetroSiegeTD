@@ -23,7 +23,7 @@ namespace Sprites
         g_textures[3] = LoadTexture("src/resources/sprites/GrassPathSprite3.png");
         g_textures[4] = LoadTexture("src/resources/sprites/GrassPathSprite4.png");
         g_textures[5] = LoadTexture("src/resources/sprites/BlueSlimeEnemy.png");
-        g_textures[6] = LoadTexture("src/resources/sprites/BlueSlimeEnemy.png");
+        g_textures[6] = LoadTexture("src/resources/sprites/RedSlimeEnemy.png");
         g_textures[7] = LoadTexture("src/resources/sprites/NinjaTower1.png");
         g_textures[8] = LoadTexture("src/resources/sprites/NinjaTower2.png"); 
         g_textures[9] = LoadTexture("src/resources/sprites/NinjaTower3.png");
