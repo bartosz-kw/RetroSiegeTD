@@ -21,7 +21,7 @@ void WaveManager::KillWave(const uint32_t waveId)
         if (wave.p_id == waveId)
         {
             PreKillWave(wave);
-            RemoveActiveWave(wave.p_id);
+            RemoveActiveWave(waveId);
             return;
         }
     }
@@ -31,6 +31,14 @@ void WaveManager::RemoveEnemySpawn(EnemyWave &wave, const size_t index)
     if (index < wave.p_enemySpawns.size())
     {
         wave.p_enemySpawns.erase(wave.p_enemySpawns.begin() + index);
+    }
+}
+void WaveManager::ActivateWave(EnemyWave *wave)
+{
+    if (wave)
+    {
+        m_activeWaves.push_back(*wave);
+        RemoveUnactiveWave(wave->p_id);
     }
 }
 void WaveManager::RemoveUnactiveWave(const uint32_t id)
@@ -57,11 +65,7 @@ void WaveManager::UpdateUnactiveWaves()
     }
 
     EnemyWave *nextWave = GetNextWave();
-    if (nextWave)
-    {
-        m_activeWaves.push_back(*nextWave);
-        RemoveUnactiveWave(nextWave->p_id);
-    }
+    ActivateWave(nextWave);
 }
 void WaveManager::UpdateActiveWaves()
 {
@@ -163,6 +167,11 @@ EnemyWave *WaveManager::GetCurrentWave()
         }
     }
     return smallest;
+}
+void WaveManager::SkipWave()
+{
+    EnemyWave *nextWave = GetNextWave();
+    ActivateWave(nextWave);
 }
 void WaveManager::ClearActiveWaves()
 {

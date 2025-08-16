@@ -19,6 +19,7 @@ private:
     void PreKillWave(const EnemyWave wave);
     void KillWave(const uint32_t waveId);
     void RemoveEnemySpawn(EnemyWave &wave, const size_t index);
+    void ActivateWave(EnemyWave *wave);
     void RemoveUnactiveWave(const uint32_t id);
     void RemoveActiveWave(const uint32_t id);
     void UpdateUnactiveWaves();
@@ -32,6 +33,7 @@ public:
     TempMessage *GetWaveMessage();
     EnemyWave *GetNextWave();
     EnemyWave *GetCurrentWave();
+    void SkipWave();
     void ClearActiveWaves();
     void ClearUnactiveWaves();
     void Update(const float deltaTime);
