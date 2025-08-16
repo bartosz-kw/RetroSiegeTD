@@ -14,6 +14,25 @@ void WaveManager::PreKillWave(const EnemyWave wave)
     m_waveMessage.p_time = 3.0f;
     mgr_ps->AddMoney(wave.p_moneyReward);
 }
+void WaveManager::KillWave(const uint32_t waveId)
+{
+    for (EnemyWave &wave : m_activeWaves)
+    {
+        if (wave.p_id == waveId)
+        {
+            PreKillWave(wave);
+            RemoveActiveWave(wave.p_id);
+            return;
+        }
+    }
+}
+void WaveManager::RemoveEnemySpawn(EnemyWave &wave, const size_t index)
+{
+    if (index < wave.p_enemySpawns.size())
+    {
+        wave.p_enemySpawns.erase(wave.p_enemySpawns.begin() + index);
+    }
+}
 void WaveManager::RemoveUnactiveWave(const uint32_t id)
 {
     const auto eraseLambda = [id](const EnemyWave &wave)
@@ -69,13 +88,11 @@ void WaveManager::UpdateActiveWaves()
         }
         if (indexToDelete != -1)
         {
-            wave.p_enemySpawns.erase(wave.p_enemySpawns.begin() + indexToDelete);
+            RemoveEnemySpawn(wave, indexToDelete);
         }
         if (wave.p_enemySpawns.empty() && mgr_enemy->IsEnemiesEmpty())
         {
-
-            PreKillWave(wave);
-            RemoveActiveWave(wave.p_id);
+            KillWave(wave.p_id);
             return;
         }
     }

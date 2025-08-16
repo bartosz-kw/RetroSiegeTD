@@ -17,11 +17,14 @@ private:
 
 private:
     void PreKillWave(const EnemyWave wave);
+    void KillWave(const uint32_t waveId);
+    void RemoveEnemySpawn(EnemyWave &wave, const size_t index);
     void RemoveUnactiveWave(const uint32_t id);
     void RemoveActiveWave(const uint32_t id);
     void UpdateUnactiveWaves();
     void UpdateActiveWaves();
     void LoadWaves();
+
 
 public:
     WaveManager() = default;
