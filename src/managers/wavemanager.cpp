@@ -64,7 +64,7 @@ void WaveManager::LoadWaves()
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
-    enemySpawns2.push_back({5.0f, EnemyType::RedSlime});
+    enemySpawns2.push_back({2.0f, EnemyType::RedSlime});
     EnemyWave wave2 = {};
     wave2.p_id = 2;
     wave2.p_moneyReward = 50;
