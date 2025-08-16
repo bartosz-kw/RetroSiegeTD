@@ -7,6 +7,15 @@
 
 // Private
 
+float WaveManager::GetTotalWaveTime(const EnemyWave wave)
+{
+    float totalTime = 0.0f;
+    for (auto &enemySpawn : wave.p_enemySpawns)
+    {
+        totalTime += enemySpawn.first;
+    }
+    return totalTime;
+}
 void WaveManager::PreKillWave(const EnemyWave wave)
 {
     m_waveMessage = {};
@@ -67,25 +76,28 @@ void WaveManager::UpdateUnactiveWaves()
     EnemyWave *nextWave = GetNextWave();
     ActivateWave(nextWave);
 }
-void WaveManager::UpdateActiveWaves()
+void WaveManager::UpdateActiveWaves(const float deltaTime)
 {
     if (m_activeWaves.empty())
     {
         return;
     }
 
+    m_spawnTime += deltaTime;
+    m_waveTime += deltaTime;
+
     int indexToDelete = -1;
     for (EnemyWave &wave : m_activeWaves)
     {
         for (size_t i = 0; i < wave.p_enemySpawns.size(); i++)
         {
-            if (wave.p_enemySpawns[i].first < m_time)
+            if (wave.p_enemySpawns[i].first < m_spawnTime)
             {
                 Enemy enemy = Enemies::GetEnemyData(wave.p_enemySpawns[i].second);
                 enemy.p_tileId = -1;
                 enemy.p_id = mgr_enemy->GetNewValidId();
                 mgr_enemy->AddEnemy(enemy);
-                m_time = 0.0f;
+                m_spawnTime = 0.0f;
                 indexToDelete = i;
                 break;
             }
@@ -96,6 +108,7 @@ void WaveManager::UpdateActiveWaves()
         }
         if (wave.p_enemySpawns.empty() && mgr_enemy->IsEnemiesEmpty())
         {
+            m_waveTime = 0.0f;
             KillWave(wave.p_id);
             return;
         }
@@ -114,6 +127,7 @@ void WaveManager::LoadWaves()
     wave2.p_id = 2;
     wave2.p_moneyReward = 50;
     wave2.p_enemySpawns = enemySpawns2;
+    wave2.p_totalWaveTime = GetTotalWaveTime(wave2);
 
     std::vector<std::pair<float, int>> enemySpawns1 = {};
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
@@ -123,6 +137,7 @@ void WaveManager::LoadWaves()
     wave1.p_id = 1;
     wave1.p_moneyReward = 40;
     wave1.p_enemySpawns = enemySpawns1;
+    wave1.p_totalWaveTime = GetTotalWaveTime(wave1);
     m_unactiveWaves.push_back(wave1);
     m_unactiveWaves.push_back(wave2);
 }
@@ -168,6 +183,19 @@ EnemyWave *WaveManager::GetCurrentWave()
     }
     return smallest;
 }
+bool WaveManager::IsSkipAllowed()
+{
+    EnemyWave *currentWave = GetCurrentWave();
+    if (!currentWave)
+    {
+        return false;
+    }
+    if (m_spawnTime >= currentWave->p_totalWaveTime / 2.0f)
+    {
+        return true;
+    }
+    return false;
+}
 void WaveManager::SkipWave()
 {
     EnemyWave *nextWave = GetNextWave();
@@ -185,9 +213,8 @@ void WaveManager::Update(const float deltaTime)
 {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
 
-    m_time += deltaTime;
     UpdateUnactiveWaves();
-    UpdateActiveWaves();
+    UpdateActiveWaves(deltaTime);
 }
 void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager)
 {
@@ -198,5 +225,6 @@ void WaveManager::Init()
 {
     LoadWaves();
 
-    m_time = 0.0f;
+    m_spawnTime = 0.0f;
+    m_waveTime = 0.0f;
 };
