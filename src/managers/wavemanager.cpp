@@ -40,7 +40,6 @@ void WaveManager::HandleWave()
             enemy.p_id = mgr_enemy->GetNewValidId();
             mgr_enemy->AddEnemy(enemy);
             m_time = 0.0f;
-            // set deletion index
             indexToDelete = i;
             break;
         }
@@ -54,8 +53,7 @@ void WaveManager::HandleWave()
         
         PreKillWave(currentWave);
         RemoveWave(currentWave->p_id);
-        // PrintDebugError(currentWave->p_id); // funny undefined behavior
-        return; // safe guard, ending function after deleting used pointer
+        return; 
     }
 }
 void WaveManager::LoadWaves()

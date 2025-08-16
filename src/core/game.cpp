@@ -154,8 +154,6 @@ void Game::Init()
     InitMembers();
     InitManagers();
     InitGui();
-
-    //PlayMusicStream(GameMusic::g_towerDefenseMain);
 }
 void Game::Run()
 {

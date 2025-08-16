@@ -113,6 +113,7 @@ namespace Bullets
 
         g_bulletData[BulletType::Slash] = slashBullet;
 #pragma endregion
+
     }
 
     Bullet GetBulletData(int typeId)
