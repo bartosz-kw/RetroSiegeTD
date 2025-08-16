@@ -19,7 +19,7 @@ void WaveCounter::InitLabels()
     waveCountLabel.p_color = GREEN;
     waveCountLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
-        const EnemyWave *currentWave = mgr_wave->GetSmallestIdWave();
+        const EnemyWave *currentWave = mgr_wave->GetCurrentWave();
         TempMessage *currentMessage = mgr_wave->GetWaveMessage();
         assert(currentMessage != nullptr && "currentMessage shouldn't be a nullptr");
         if (!currentWave && mgr_player->IsGameOver())
