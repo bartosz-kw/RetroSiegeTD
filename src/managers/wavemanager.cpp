@@ -174,15 +174,15 @@ EnemyWave *WaveManager::GetCurrentWave()
     if (m_activeWaves.empty())
         return nullptr;
 
-    EnemyWave *smallest = &m_activeWaves[0];
+    EnemyWave *biggest = &m_activeWaves[0];
     for (auto &wave : m_activeWaves)
     {
-        if (wave.p_id < smallest->p_id)
+        if (wave.p_id > biggest->p_id)
         {
-            smallest = &wave;
+            biggest = &wave;
         }
     }
-    return smallest;
+    return biggest;
 }
 bool WaveManager::IsSkipAllowed()
 {
