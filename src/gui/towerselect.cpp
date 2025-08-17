@@ -166,7 +166,8 @@ void TowerSelect::InitButtons()
             button.p_text = "Max Upgrade";
             return;
         }
-        button.p_text = "Upgrade: " + std::to_string(tower->p_price) + " $";
+        Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
+        button.p_text = "Upgrade: " + std::to_string(upgradedTower.p_price) + " $";
         tower->p_isUpgradeHovered = button.p_isHovered;
         button.p_visible = true;
     };
