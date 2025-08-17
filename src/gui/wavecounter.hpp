@@ -1,4 +1,3 @@
-#include "../structs/textlabel.hpp"
 
 class PlayerManager;
 class WaveManager; 
@@ -10,7 +9,7 @@ private:
     WaveManager* mgr_wave = nullptr;
     GuiManager* mgr_gui = nullptr;
 private:
-    void InitLabels();
+    void InitButtons();
     
 public:
     void InjectDependencies(WaveManager* waveManager,GuiManager* guiManager,PlayerManager* playerManager);
