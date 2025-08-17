@@ -29,7 +29,6 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
@@ -73,7 +72,6 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
@@ -87,11 +85,11 @@ namespace Towers
         };
         ninja2Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja2Tower.p_sourceRect = {0, 0, 15, 15};
-        ninja2Tower.p_price = 50;
+        ninja2Tower.p_price = 55;
         ninja2Tower.p_damage = 2;
         ninja2Tower.p_position = {-1.0f, -1.0f};
-        ninja2Tower.p_range = 85.0f;
-        ninja2Tower.p_attackSpeed = 0.4f;
+        ninja2Tower.p_range = 75.0f;
+        ninja2Tower.p_attackSpeed = 0.5f;
         ninja2Tower.p_timeToAttack = 0.0f;
         ninja2Tower.p_timeToNextFrame = 0.0f;
         ninja2Tower.p_timePassed = 0.0f;
@@ -117,7 +115,6 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
@@ -131,11 +128,11 @@ namespace Towers
         };
         ninja3Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja3Tower.p_sourceRect = {0, 0, 15, 15};
-        ninja3Tower.p_price = 75;
-        ninja3Tower.p_damage = 3;
+        ninja3Tower.p_price = 125;
+        ninja3Tower.p_damage = 2;
         ninja3Tower.p_position = {-1.0f, -1.0f};
-        ninja3Tower.p_range = 95.0f;
-        ninja3Tower.p_attackSpeed = 0.3f;
+        ninja3Tower.p_range = 80.0f;
+        ninja3Tower.p_attackSpeed = 0.25f;
         ninja3Tower.p_timeToAttack = 0.0f;
         ninja3Tower.p_timeToNextFrame = 0.0f;
         ninja3Tower.p_timePassed = 0.0f;
@@ -162,7 +159,6 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::Dagger);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
@@ -177,10 +173,10 @@ namespace Towers
         };
         ninja4Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja4Tower.p_sourceRect = {0, 0, 15, 15};
-        ninja4Tower.p_price = 100;
-        ninja4Tower.p_damage = 4;
+        ninja4Tower.p_price = 350;
+        ninja4Tower.p_damage = 5;
         ninja4Tower.p_position = {-1.0f, -1.0f};
-        ninja4Tower.p_range = 105.0f;
+        ninja4Tower.p_range = 90.0f;
         ninja4Tower.p_attackSpeed = 0.25f;
         ninja4Tower.p_timeToAttack = 0.0f;
         ninja4Tower.p_timeToNextFrame = 0.0f;
@@ -207,7 +203,6 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            // make bullet
             Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
