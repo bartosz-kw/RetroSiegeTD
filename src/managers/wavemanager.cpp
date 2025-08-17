@@ -7,15 +7,6 @@
 
 // Private
 
-float WaveManager::GetTotalWaveTime(const EnemyWave wave)
-{
-    float totalTime = 0.0f;
-    for (auto &enemySpawn : wave.p_enemySpawns)
-    {
-        totalTime += enemySpawn.first;
-    }
-    return totalTime;
-}
 void WaveManager::PreKillWave(const EnemyWave wave)
 {
     m_waveMessage = {};
@@ -116,6 +107,16 @@ void WaveManager::UpdateActiveWaves(const float deltaTime)
 }
 void WaveManager::LoadWaves()
 {
+    auto getTotalWaveTime = [](const EnemyWave wave)
+    {
+        float totalTime = 0.0f;
+        for (auto &enemySpawn : wave.p_enemySpawns)
+        {
+            totalTime += enemySpawn.first;
+        }
+        return totalTime;
+    };
+
     std::vector<std::pair<float, int>> enemySpawns2 = {};
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
@@ -127,7 +128,7 @@ void WaveManager::LoadWaves()
     wave2.p_id = 2;
     wave2.p_moneyReward = 50;
     wave2.p_enemySpawns = enemySpawns2;
-    wave2.p_totalWaveTime = GetTotalWaveTime(wave2);
+    wave2.p_totalWaveTime = getTotalWaveTime(wave2);
 
     std::vector<std::pair<float, int>> enemySpawns1 = {};
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
@@ -137,7 +138,7 @@ void WaveManager::LoadWaves()
     wave1.p_id = 1;
     wave1.p_moneyReward = 40;
     wave1.p_enemySpawns = enemySpawns1;
-    wave1.p_totalWaveTime = GetTotalWaveTime(wave1);
+    wave1.p_totalWaveTime = getTotalWaveTime(wave1);
     m_unactiveWaves.push_back(wave1);
     m_unactiveWaves.push_back(wave2);
 }

@@ -17,7 +17,6 @@ private:
     PSManager *mgr_ps = nullptr;
 
 private:
-    float GetTotalWaveTime(const EnemyWave wave);
     void PreKillWave(const EnemyWave wave);
     void KillWave(const uint32_t waveId);
     void RemoveEnemySpawn(EnemyWave &wave, const size_t index);
