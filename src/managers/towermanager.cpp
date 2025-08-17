@@ -109,6 +109,10 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
     }
     tower.p_timeToAttack = 0.0f;
 }
+void TowerManager::UpdateAnimations(Tower &tower, const float deltaTime)
+{
+    tower.p_updateAnimation(deltaTime, tower);
+}
 
 // Public
 
@@ -222,7 +226,8 @@ void TowerManager::Update(const float deltaTime)
             tower.p_dirty = false;
         }
 
-        UpdateFight(tower, deltaTime);
+        UpdateFight(tower , deltaTime);
+        UpdateAnimations(tower , deltaTime);
         DetectTowerInput(tower);
     }
 }
@@ -259,11 +264,9 @@ void TowerManager::Draw(const uint8_t screenOffset) const
             continue;
         }
 
-        DrawTexture(
-            Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)],
-            tower.p_position.x + screenOffset,
-            tower.p_position.y,
-            WHITE);
+        Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+        Rectangle dest = {tower.p_position.x + screenOffset,tower.p_position.y,static_cast<float>(tower.p_sourceRect.width),static_cast<float>(tower.p_sourceRect.height)};
+        DrawTexturePro(texture,tower.p_sourceRect,dest,{0,0},0.0f,WHITE);
     }
     DrawHover(screenOffset);
     if (m_lastSelectedTowerId != -1)

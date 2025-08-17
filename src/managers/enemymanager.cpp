@@ -98,7 +98,6 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
         enemy.p_hitCooldowns.erase(enemy.p_hitCooldowns.begin() + indexsToDelete[i]);
     }
 }
-
 void EnemyManager::UpdateAnimations(Enemy &enemy, const float deltaTime)
 {
     enemy.p_updateAnimation(deltaTime, enemy);
