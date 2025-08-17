@@ -19,6 +19,10 @@ void Game::UpdateDebug()
     {
         ToggleFullscreen();
     }
+    if (IsKeyPressed(KEY_P))
+    {
+        mgr_ps.AddMoney(3000);
+    }
     if (IsKeyPressed(KEY_F3))
     {
         Settings::g_debugView = !Settings::g_debugView;
