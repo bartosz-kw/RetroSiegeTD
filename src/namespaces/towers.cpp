@@ -169,7 +169,6 @@ namespace Towers
         };
         ninja4Tower.p_upgradeFunction = [](const float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            // nothing since it doesn't upgrade further
         };
         ninja4Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja4Tower.p_sourceRect = {0, 0, 15, 15};
@@ -212,7 +211,7 @@ namespace Towers
         };
         knight1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
         {
-            //UpgradeTowerBasic(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
         };
         knight1Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight1Tower.p_sourceRect = {0, 0, 15, 15};
@@ -224,16 +223,187 @@ namespace Towers
         knight1Tower.p_timeToAttack = 0.0f;
         knight1Tower.p_timeToNextFrame = 0.0f;
         knight1Tower.p_timePassed = 0.0f;
-        knight1Tower.p_upgradesTo = TowerType::Nothing;
+        knight1Tower.p_upgradesTo = TowerType::KnightLv2;
         knight1Tower.p_id = -1;
         knight1Tower.p_level = 1;
         knight1Tower.p_typeId = TowerType::KnightLv1;
         knight1Tower.p_tileId = 0;
         knight1Tower.p_isUpgradeHovered = false;
-        knight1Tower.p_canUpgrade = false;
+        knight1Tower.p_canUpgrade = true;
         knight1Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv1] = knight1Tower;
+#pragma endregion
+
+#pragma region KnightLv2
+        // knight Lv 2
+        Tower knight2Tower = {};
+        knight2Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_position = enemyPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        knight2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
+        {
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+        };
+        knight2Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+        knight2Tower.p_sourceRect = {0, 0, 15, 15};
+        knight2Tower.p_price = 75;
+        knight2Tower.p_damage = 3;
+        knight2Tower.p_position = {-1.0f, -1.0f};
+        knight2Tower.p_range = 40.0f;
+        knight2Tower.p_attackSpeed = 1.5f;
+        knight2Tower.p_timeToAttack = 0.0f;
+        knight2Tower.p_timeToNextFrame = 0.0f;
+        knight2Tower.p_timePassed = 0.0f;
+        knight2Tower.p_upgradesTo = TowerType::KnightLv3;
+        knight2Tower.p_id = -1;
+        knight2Tower.p_level = 2;
+        knight2Tower.p_typeId = TowerType::KnightLv2;
+        knight2Tower.p_tileId = 0;
+        knight2Tower.p_isUpgradeHovered = false;
+        knight2Tower.p_canUpgrade = true;
+        knight2Tower.p_dirty = true;
+
+        g_towerData[TowerType::KnightLv2] = knight2Tower;
+#pragma endregion
+
+#pragma region KnightLv3
+        // knight Lv 3
+        Tower knight3Tower = {};
+        knight3Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_position = enemyPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        knight3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
+        {
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+        };
+        knight3Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+        knight3Tower.p_sourceRect = {0, 0, 15, 15};
+        knight3Tower.p_price = 200;
+        knight3Tower.p_damage = 10;
+        knight3Tower.p_position = {-1.0f, -1.0f};
+        knight3Tower.p_range = 40.0f;
+        knight3Tower.p_attackSpeed = 1.5f;
+        knight3Tower.p_timeToAttack = 0.0f;
+        knight3Tower.p_timeToNextFrame = 0.0f;
+        knight3Tower.p_timePassed = 0.0f;
+        knight3Tower.p_upgradesTo = TowerType::KnightLv4;
+        knight3Tower.p_id = -1;
+        knight3Tower.p_level = 3;
+        knight3Tower.p_typeId = TowerType::KnightLv3;
+        knight3Tower.p_tileId = 0;
+        knight3Tower.p_isUpgradeHovered = false;
+        knight3Tower.p_canUpgrade = true;
+        knight3Tower.p_dirty = true;
+
+        g_towerData[TowerType::KnightLv3] = knight3Tower;
+#pragma endregion
+
+#pragma region KnightLv4
+        // knight Lv 4
+        Tower knight4Tower = {};
+        knight4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_position = enemyPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        knight4Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
+        {
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
+        };
+        knight4Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+        knight4Tower.p_sourceRect = {0, 0, 15, 15};
+        knight4Tower.p_price = 550;
+        knight4Tower.p_damage = 15;
+        knight4Tower.p_position = {-1.0f, -1.0f};
+        knight4Tower.p_range = 45.0f;
+        knight4Tower.p_attackSpeed = 1.0f;
+        knight4Tower.p_timeToAttack = 0.0f;
+        knight4Tower.p_timeToNextFrame = 0.0f;
+        knight4Tower.p_timePassed = 0.0f;
+        knight4Tower.p_upgradesTo = TowerType::KnightLv5;
+        knight4Tower.p_id = -1;
+        knight4Tower.p_level = 4;
+        knight4Tower.p_typeId = TowerType::KnightLv4;
+        knight4Tower.p_tileId = 0;
+        knight4Tower.p_isUpgradeHovered = false;
+        knight4Tower.p_canUpgrade = true;
+        knight4Tower.p_dirty = true;
+
+        g_towerData[TowerType::KnightLv4] = knight4Tower;
+#pragma endregion
+
+#pragma region KnightLv5
+        // knight Lv 5
+        Tower knight5Tower = {};
+        knight5Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_position = enemyPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        knight5Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
+        {
+        };
+        knight5Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+        knight5Tower.p_sourceRect = {0, 0, 15, 15};
+        knight5Tower.p_price = 1050;
+        knight5Tower.p_damage = 40;
+        knight5Tower.p_position = {-1.0f, -1.0f};
+        knight5Tower.p_range = 50.0f;
+        knight5Tower.p_attackSpeed = 1.1f;
+        knight5Tower.p_timeToAttack = .0f;
+        knight5Tower.p_timeToNextFrame = 0.0f;
+        knight5Tower.p_timePassed = 0.0f;
+        knight5Tower.p_upgradesTo = TowerType::Nothing;
+        knight5Tower.p_id = -1;
+        knight5Tower.p_level = 5;
+        knight5Tower.p_typeId = TowerType::KnightLv5;
+        knight5Tower.p_tileId = 0;
+        knight5Tower.p_isUpgradeHovered = false;
+        knight5Tower.p_canUpgrade = false;
+        knight5Tower.p_dirty = true;
+
+        g_towerData[TowerType::KnightLv5] = knight5Tower;
 #pragma endregion
     }
 
