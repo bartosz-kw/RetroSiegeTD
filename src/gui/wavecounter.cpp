@@ -69,6 +69,7 @@ void WaveCounter::InitButtons()
         }
     };
 #pragma endregion
+
 }
 
 TempMessage &WaveCounter::GetMessage()

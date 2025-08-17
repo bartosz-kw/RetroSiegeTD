@@ -186,6 +186,10 @@ EnemyWave *WaveManager::GetCurrentWave()
 }
 bool WaveManager::IsSkipAllowed()
 {
+    if (m_unactiveWaves.empty())
+    {
+        return false;
+    }
     EnemyWave *currentWave = GetCurrentWave();
     if (!currentWave)
     {
