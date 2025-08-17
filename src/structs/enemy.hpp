@@ -11,8 +11,7 @@ enum EnemyType
 struct Enemy
 {
     std::vector<std::pair<float, int32_t>> p_hitCooldowns = {};
-    std::function<void(const float deltaTime, Enemy &enemy)>
-        p_updateAnimation = [](const float deltaTime, Enemy &enemy) {};
+    std::function<void(const float deltaTime, Enemy &enemy)>p_updateAnimation = [](const float deltaTime, Enemy &enemy) {};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_moneyDrop = 0;
     int64_t p_health = 10;

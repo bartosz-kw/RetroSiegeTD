@@ -23,7 +23,7 @@ struct Tower
     std::function<void(const float deltaTime,Tower* tower,PSManager* mgr_ps)> 
     p_upgradeFunction = [](const float deltaTime,Tower* tower,PSManager* mgr_ps){};
     std::function<void(const float deltaTime, Tower &tower)>
-        p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+    p_updateAnimation = [](const float deltaTime, Tower &tower) {};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_price = 0; 
     int64_t p_damage = 1;  
