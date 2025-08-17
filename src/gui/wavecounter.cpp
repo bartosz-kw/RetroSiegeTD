@@ -23,15 +23,18 @@ void WaveCounter::InitButtons()
     {
         if (mgr_wave->IsSkipAllowed())
         {
+            SetMessage("Skipped Wave " + std::to_string(this->mgr_wave->GetCurrentWave()->p_id),3.0f);
             mgr_wave->SkipWave();
         }
-        
     };
     waveCountButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         const EnemyWave *currentWave = mgr_wave->GetCurrentWave();
-        TempMessage *currentMessage = mgr_wave->GetWaveMessage();
-        assert(currentMessage != nullptr && "currentMessage shouldn't be a nullptr");
+        TempMessage *waveMessage = mgr_wave->GetWaveMessage();
+        TempMessage &waveCounterMessage = GetMessage();
+
+        assert(waveMessage != nullptr && "currentMessage shouldn't be a nullptr");
+
         if (!currentWave && mgr_player->IsGameOver())
         {
             button.p_text = "You lost.";
@@ -47,17 +50,35 @@ void WaveCounter::InitButtons()
             button.p_text = "Skip Wave " + std::to_string(currentWave->p_id);
             return;
         }
-        else if (!currentMessage->p_message.empty())
+        else if (!waveMessage->p_message.empty())
         {
-            currentMessage->p_time -= deltaTime;
-            button.p_text = currentMessage->p_message;
+            waveMessage->p_time -= deltaTime;
+            button.p_text = waveMessage->p_message;
             return;
         }
-
-        const std::string text = "Wave: " + std::to_string(currentWave->p_id);
-        button.p_text = text;
+        else if (!waveCounterMessage.p_message.empty() && waveCounterMessage.p_time > 0)
+        {
+            waveCounterMessage.p_time -= deltaTime;
+            button.p_text = waveCounterMessage.p_message;
+            return;
+        }
+        else
+        {
+            const std::string text = "Wave: " + std::to_string(currentWave->p_id);
+            button.p_text = text;
+        }
     };
 #pragma endregion
+}
+
+TempMessage &WaveCounter::GetMessage()
+{
+    return m_message;
+}
+void WaveCounter::SetMessage(const std::string message, const float time)
+{
+    m_message.p_message = message;
+    m_message.p_time = time;
 }
 void WaveCounter::InjectDependencies(WaveManager *waveManager, GuiManager *guiManager, PlayerManager *playerManager)
 {
