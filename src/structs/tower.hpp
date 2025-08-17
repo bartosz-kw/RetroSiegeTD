@@ -22,12 +22,17 @@ struct Tower
     p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower){};
     std::function<void(const float deltaTime,Tower* tower,PSManager* mgr_ps)> 
     p_upgradeFunction = [](const float deltaTime,Tower* tower,PSManager* mgr_ps){};
+    std::function<void(const float deltaTime, Tower &tower)>
+        p_updateAnimation = [](const float deltaTime, Tower &tower) {};
+    Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_price = 0; 
     int64_t p_damage = 1;  
     Vector2 p_position = {0,0};
     float p_range = 30;
     float p_attackSpeed = 1;
     float p_timeToAttack = 0;
+    float p_timeToNextFrame = 0.0f;
+    float p_timePassed = 0.0f;
     TowerType p_upgradesTo = TowerType::Nothing;
     int32_t p_id = -1;   
     uint16_t p_level = 0;

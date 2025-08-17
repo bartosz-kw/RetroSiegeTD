@@ -37,6 +37,7 @@ void PlayerStats::InitLabels()
         label.p_text = text;
     };
     #pragma endregion
+    
 }
 void PlayerStats::InjectDependencies(GuiManager* guiManager,PSManager* psManager)
 {
