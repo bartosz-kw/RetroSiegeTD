@@ -79,13 +79,13 @@ namespace Bullets
         slashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet)
         { 
             constexpr uint8_t frameOffset = 8;
-            constexpr uint8_t frameAmount = 4;
+            constexpr uint8_t frameAmount = 6;
 
             bullet.p_timePassed += deltaTime;
             if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
             {
-                bullet.p_timePassed = 0.0f;
-                if (bullet.p_sourceRect.x + frameOffset > frameOffset * (frameAmount-1))
+                bullet.p_timePassed -= bullet.p_timeToNextFrame;
+                if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
                 {
                     bullet.p_alive = false;
                 }

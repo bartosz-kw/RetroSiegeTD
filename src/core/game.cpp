@@ -147,6 +147,7 @@ void Game::InitGame()
     SetTargetFPS(120);
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
+    SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
 }
 // Public functions
 void Game::Init()

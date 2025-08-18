@@ -101,9 +101,9 @@ void BulletManager::Draw(const uint8_t screenOffset) const
     {
         const Texture2D texture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
         const Vector2 position = {bullet.p_position.x + screenOffset, bullet.p_position.y};
-        const Rectangle dest = {position.x, position.y, static_cast<float>(bullet.p_sourceRect.width), static_cast<float>(bullet.p_sourceRect.height)};
+        const Rectangle dest = {floorf(position.x), floorf(position.y), static_cast<float>(bullet.p_sourceRect.width), static_cast<float>(bullet.p_sourceRect.height)};
         const Vector2 origin = {static_cast<float>(bullet.p_sourceRect.width) / 2.0f, static_cast<float>(bullet.p_sourceRect.height) / 2.0f};
-        DrawTexturePro(texture, bullet.p_sourceRect, dest, origin, bullet.p_rotation, WHITE);
+        DrawTexturePro(texture, bullet.p_sourceRect, dest, origin, 0.0f, WHITE);
     }
 }
 
