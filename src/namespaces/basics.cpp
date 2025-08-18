@@ -33,7 +33,7 @@ namespace Basics
         if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
         {
             enemy.p_timePassed = 0.0f;
-            if (enemy.p_sourceRect.x + frameOffset > frameOffset * (frameAmount - 1))
+            if (enemy.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
             {
                 enemy.p_sourceRect = {0, 0, static_cast<float>(frameOffset), enemy.p_sourceRect.height};
             }
@@ -50,7 +50,7 @@ namespace Basics
         if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
         {
             bullet.p_timePassed = 0.0f;
-            if (bullet.p_sourceRect.x + frameOffset > frameOffset * (frameAmount - 1))
+            if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
             {
                 bullet.p_sourceRect = {0, 0, static_cast<float>(frameOffset), bullet.p_sourceRect.height};
             }
