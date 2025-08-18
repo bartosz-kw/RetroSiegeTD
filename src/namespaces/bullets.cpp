@@ -101,7 +101,7 @@ namespace Bullets
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
-        slashBullet.p_timeToNextFrame = 0.2f;
+        slashBullet.p_timeToNextFrame = 0.1f;
         slashBullet.p_timePassed = 0.0f;
         slashBullet.p_directionAngle = 0.0f;
         slashBullet.p_rotation = 0.0f;
