@@ -374,10 +374,11 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            Bullet bullet = Bullets::GetBulletData(BulletType::Slash);
+            Bullet bullet = Bullets::GetBulletData(BulletType::SpearSlash);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
+            bullet.p_rotation = RadiansToDegrees(angle);
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };

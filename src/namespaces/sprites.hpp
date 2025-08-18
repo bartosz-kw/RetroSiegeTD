@@ -37,7 +37,7 @@ namespace Sprites
         g_textures[17] = LoadTexture("src/resources/sprites/SharpShulikenBullet.png");
         g_textures[18] = LoadTexture("src/resources/sprites/DaggerBullet.png");
         g_textures[19] = LoadTexture("src/resources/sprites/SlashBullet.png");
-        g_textures[20] = LoadTexture("src/resources/sprites/SpearBullet.png");
+        g_textures[20] = LoadTexture("src/resources/sprites/SpearSlashBullet.png");
     }
     inline void UnLoadTextures()
     {

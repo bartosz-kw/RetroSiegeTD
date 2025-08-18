@@ -1,4 +1,5 @@
 #include "bullets.hpp"
+#include "basics.hpp"
 #include <cassert>
 
 namespace Bullets
@@ -112,6 +113,47 @@ namespace Bullets
         slashBullet.p_alive = true;
 
         g_bulletData[BulletType::Slash] = slashBullet;
+#pragma endregion
+
+#pragma region SpearSlash
+        // SpearSlash bullet
+        Bullet spearSlashBullet = {};
+        
+        spearSlashBullet.p_updateAnimation = [](const float deltaTime, Bullet& bullet) 
+        {
+            constexpr uint8_t frameOffset = 8;
+            constexpr uint8_t frameAmount = 6;
+
+            bullet.p_timePassed += deltaTime;
+            if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
+            {
+                bullet.p_timePassed -= bullet.p_timeToNextFrame;
+                if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
+                {
+                    bullet.p_alive = false;
+                }
+                else
+                {
+                    bullet.p_sourceRect.x += frameOffset;
+                }
+                
+            }
+        };
+        spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
+        spearSlashBullet.p_position = {-1.0f, -1.0f};
+        spearSlashBullet.p_id = -1;
+        spearSlashBullet.p_damage = 0;
+        spearSlashBullet.p_timeToNextFrame = 0.1f;
+        spearSlashBullet.p_timePassed = 0.0f;
+        spearSlashBullet.p_directionAngle = 0.0f;
+        spearSlashBullet.p_rotation = 0.0f;
+        spearSlashBullet.p_spinSpeed = 0.0f;
+        spearSlashBullet.p_speed = 0.0f;
+        spearSlashBullet.p_typeId = BulletType::SpearSlash;
+        spearSlashBullet.p_pierce = true;
+        spearSlashBullet.p_alive = true;
+
+        g_bulletData[BulletType::SpearSlash] = spearSlashBullet;
 #pragma endregion
 
     }
