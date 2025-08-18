@@ -1,10 +1,10 @@
 #include <algorithm>
+#include <cmath>
 #include <cassert>
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
-
 // Private
 
 const uint16_t TileManager::GetTileTextureIndex(const uint16_t typeId) const
@@ -147,7 +147,7 @@ void TileManager::Draw(const uint8_t screenOffset) const
         {
             color = RED;
         }
-        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], tile.p_position.x + screenOffset, tile.p_position.y, color);
+        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], floorf(tile.p_position.x + screenOffset), floorf(tile.p_position.y), color);
     }
 }
 void TileManager::LoadMap(const GameMap gameMap)

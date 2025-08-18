@@ -104,15 +104,30 @@ void GuiManager::DrawButton(const Button &button) const
 
     constexpr float segments = 4.0f;
     constexpr float roundness = 5.0f;
-    DrawRectangleRounded(button.p_rect, roundness, segments, buttonColor);
+    
+    Rectangle drawRect = button.p_rect;
+    drawRect.x = floorf(drawRect.x);
+    drawRect.y = floorf(drawRect.y);
+    drawRect.width = floorf(drawRect.width);
+    drawRect.height = floorf(drawRect.height);
+    
+    Vector2 drawTextPos = button.p_textPosition;
+    drawTextPos.x = floorf(drawTextPos.x);
+    drawTextPos.y = floorf(drawTextPos.y);
+    
+    Vector2 drawImagePos = button.p_imagePosition;
+    drawImagePos.x = floorf(drawImagePos.x);
+    drawImagePos.y = floorf(drawImagePos.y);
+    
+    DrawRectangleRounded(drawRect, roundness, segments, buttonColor);
     if (!button.p_text.empty())
     {
         DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
-                   button.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
     }
     if (button.p_buttonImage.id != 0)
     {
-        DrawTextureV(button.p_buttonImage,button.p_imagePosition,WHITE);
+        DrawTextureV(button.p_buttonImage, drawImagePos, WHITE);
     }
     
 }
@@ -123,9 +138,20 @@ void GuiManager::DrawLabel(const TextLabel &label) const
 
     constexpr float segments = 4.0f;
     constexpr float roundness = 5.0f;
-    DrawRectangleRounded(label.p_rect, roundness, segments, label.p_color);
+    
+    Rectangle drawRect = label.p_rect;
+    drawRect.x = floorf(drawRect.x);
+    drawRect.y = floorf(drawRect.y);
+    drawRect.width = floorf(drawRect.width);
+    drawRect.height = floorf(drawRect.height);
+    
+    Vector2 drawTextPos = label.p_textPosition;
+    drawTextPos.x = floorf(drawTextPos.x);
+    drawTextPos.y = floorf(drawTextPos.y);
+    
+    DrawRectangleRounded(drawRect, roundness, segments, label.p_color);
     DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
-               label.p_textPosition, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+               drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
 }
 
 /// Public
