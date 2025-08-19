@@ -3,6 +3,7 @@
 #include "../namespaces/towers.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/bullets.hpp"
+#include "../namespaces/basics.hpp"
 #include "../namespaces/music.hpp"
 #include "../namespaces/settings.hpp"
 #include "../managers/psmanager.hpp"
@@ -48,7 +49,7 @@ void TowerManager::DetectInput()
             tower.p_tileId = tile->p_id;
             tower.p_dirty = true;
             AddTower(tower);
-            
+
             PrintDebug("SoundPlayed");
             PlaySound(GameMusic::g_towerPlaceSound);
         }
@@ -88,7 +89,7 @@ void TowerManager::DetectTowerInput(Tower &tower)
         m_lastSelectedTowerId = -1;
         return;
     }
-    
+
     m_lastSelectedTowerId = tower.p_id;
 }
 void TowerManager::UpdateFight(Tower &tower, const float deltatime)
@@ -109,9 +110,9 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
     }
     tower.p_timeToAttack = 0.0f;
 }
-void TowerManager::UpdateAnimations(Tower &tower, const float deltaTime)
+void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 {
-    tower.p_updateAnimation(deltaTime, tower);
+    Basics::Animate(deltaTime, tower);
 }
 
 // Public
@@ -162,7 +163,7 @@ Tower *TowerManager::GetLastSelectedTower()
 {
     return GetTowerById(m_lastSelectedTowerId);
 }
-Tower* TowerManager::GetTowerById(const int32_t id)
+Tower *TowerManager::GetTowerById(const int32_t id)
 {
     for (auto &tower : m_towers)
     {
@@ -173,7 +174,7 @@ Tower* TowerManager::GetTowerById(const int32_t id)
     }
     return nullptr;
 }
-const Tower* TowerManager::GetReadTowerById(const int32_t id) const
+const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {
     for (const auto &tower : m_towers)
     {
@@ -230,8 +231,8 @@ void TowerManager::Update(const float deltaTime)
             tower.p_dirty = false;
         }
 
-        UpdateFight(tower , deltaTime);
-        UpdateAnimations(tower , deltaTime);
+        UpdateFight(tower, deltaTime);
+        UpdateAnimation(tower, deltaTime);
         DetectTowerInput(tower);
     }
 }
@@ -269,8 +270,8 @@ void TowerManager::Draw(const uint8_t screenOffset) const
         }
 
         Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
-        Rectangle dest = {floorf(tower.p_position.x + screenOffset),floorf(tower.p_position.y),static_cast<float>(tower.p_sourceRect.width),static_cast<float>(tower.p_sourceRect.height)};
-        DrawTexturePro(texture,tower.p_sourceRect,dest,{0,0},0.0f,WHITE);
+        Rectangle dest = {floorf(tower.p_position.x + screenOffset), floorf(tower.p_position.y), static_cast<float>(tower.p_sourceRect.width), static_cast<float>(tower.p_sourceRect.height)};
+        DrawTexturePro(texture, tower.p_sourceRect, dest, {0, 0}, 0.0f, WHITE);
     }
     DrawHover(screenOffset);
     if (m_lastSelectedTowerId != -1)
@@ -280,16 +281,14 @@ void TowerManager::Draw(const uint8_t screenOffset) const
         {
             return;
         }
-        
-        const Color color = { 0, 121, 241, 128 };
+
+        const Color color = {0, 121, 241, 128};
         const Vector2 centerPos = GetCenterPosition(*tower);
-        DrawCircle
-        (
+        DrawCircle(
             static_cast<int>(centerPos.x + screenOffset),
             static_cast<int>(centerPos.y),
             static_cast<float>(tower->p_range),
-            color
-        );
+            color);
     }
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)

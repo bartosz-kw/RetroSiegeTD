@@ -1,6 +1,7 @@
 #include "towerselect.hpp"
 #include "../namespaces/settings.hpp"
 #include "../namespaces/towers.hpp"
+#include "../namespaces/basics.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/psmanager.hpp"
@@ -181,7 +182,8 @@ void TowerSelect::InitButtons()
                 return;
             }
 
-            tower->p_upgradeFunction(deltaTime, tower, this->mgr_ps);
+            Basics::UpgradeTower(deltaTime,tower,mgr_ps);
+            //tower->p_upgradeFunction(deltaTime, tower, this->mgr_ps);
         }
     };
     #pragma endregion

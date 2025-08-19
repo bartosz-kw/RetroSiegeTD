@@ -36,11 +36,6 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        ninja1Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja1Tower.p_sourceRect = {0, 0, 15, 15};
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;
@@ -53,6 +48,8 @@ namespace Towers
         ninja1Tower.p_upgradesTo = TowerType::NinjaLv2;
         ninja1Tower.p_id = -1;
         ninja1Tower.p_level = 1;
+        ninja1Tower.p_frameOffset = 0;
+        ninja1Tower.p_frameAmount = 0;
         ninja1Tower.p_typeId = TowerType::NinjaLv1;
         ninja1Tower.p_tileId = 0;
         ninja1Tower.p_isUpgradeHovered = false;
@@ -79,11 +76,6 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        ninja2Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja2Tower.p_sourceRect = {0, 0, 15, 15};
         ninja2Tower.p_price = 55;
         ninja2Tower.p_damage = 2;
@@ -96,6 +88,8 @@ namespace Towers
         ninja2Tower.p_upgradesTo = TowerType::NinjaLv3;
         ninja2Tower.p_id = -1;
         ninja2Tower.p_level = 2;
+        ninja2Tower.p_frameOffset = 0;
+        ninja2Tower.p_frameAmount = 0;
         ninja2Tower.p_typeId = TowerType::NinjaLv2;
         ninja2Tower.p_tileId = 0;
         ninja2Tower.p_isUpgradeHovered = false;
@@ -122,11 +116,6 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        ninja3Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja3Tower.p_sourceRect = {0, 0, 15, 15};
         ninja3Tower.p_price = 125;
         ninja3Tower.p_damage = 2;
@@ -139,6 +128,8 @@ namespace Towers
         ninja3Tower.p_upgradesTo = TowerType::NinjaLv4;
         ninja3Tower.p_id = -1;
         ninja3Tower.p_level = 3;
+        ninja3Tower.p_frameOffset = 0;
+        ninja3Tower.p_frameAmount = 0;
         ninja3Tower.p_typeId = TowerType::NinjaLv3;
         ninja3Tower.p_tileId = 0;
         ninja3Tower.p_isUpgradeHovered = false;
@@ -167,10 +158,6 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
-        ninja4Tower.p_upgradeFunction = [](const float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-        };
-        ninja4Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         ninja4Tower.p_sourceRect = {0, 0, 15, 15};
         ninja4Tower.p_price = 350;
         ninja4Tower.p_damage = 5;
@@ -183,6 +170,8 @@ namespace Towers
         ninja4Tower.p_upgradesTo = TowerType::Nothing;
         ninja4Tower.p_id = -1;
         ninja4Tower.p_level = 4;
+        ninja4Tower.p_frameOffset = 0;
+        ninja4Tower.p_frameAmount = 0;
         ninja4Tower.p_typeId = TowerType::NinjaLv4;
         ninja4Tower.p_tileId = 0;
         ninja4Tower.p_isUpgradeHovered = false;
@@ -209,11 +198,6 @@ namespace Towers
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
-        knight1Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        knight1Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight1Tower.p_sourceRect = {0, 0, 15, 15};
         knight1Tower.p_price = 50;
         knight1Tower.p_damage = 3;
@@ -226,6 +210,8 @@ namespace Towers
         knight1Tower.p_upgradesTo = TowerType::KnightLv2;
         knight1Tower.p_id = -1;
         knight1Tower.p_level = 1;
+        knight1Tower.p_frameOffset = 0;
+        knight1Tower.p_frameAmount = 0;
         knight1Tower.p_typeId = TowerType::KnightLv1;
         knight1Tower.p_tileId = 0;
         knight1Tower.p_isUpgradeHovered = false;
@@ -252,11 +238,6 @@ namespace Towers
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
-        knight2Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        knight2Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight2Tower.p_sourceRect = {0, 0, 15, 15};
         knight2Tower.p_price = 75;
         knight2Tower.p_damage = 3;
@@ -269,6 +250,8 @@ namespace Towers
         knight2Tower.p_upgradesTo = TowerType::KnightLv3;
         knight2Tower.p_id = -1;
         knight2Tower.p_level = 2;
+        knight2Tower.p_frameOffset = 0;
+        knight2Tower.p_frameAmount = 0;
         knight2Tower.p_typeId = TowerType::KnightLv2;
         knight2Tower.p_tileId = 0;
         knight2Tower.p_isUpgradeHovered = false;
@@ -295,11 +278,6 @@ namespace Towers
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
-        knight3Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        knight3Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight3Tower.p_sourceRect = {0, 0, 15, 15};
         knight3Tower.p_price = 200;
         knight3Tower.p_damage = 10;
@@ -312,6 +290,8 @@ namespace Towers
         knight3Tower.p_upgradesTo = TowerType::KnightLv4;
         knight3Tower.p_id = -1;
         knight3Tower.p_level = 3;
+        knight3Tower.p_frameOffset = 0;
+        knight3Tower.p_frameAmount = 0;
         knight3Tower.p_typeId = TowerType::KnightLv3;
         knight3Tower.p_tileId = 0;
         knight3Tower.p_isUpgradeHovered = false;
@@ -338,11 +318,6 @@ namespace Towers
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
-        knight4Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps,tower->p_upgradesTo);
-        };
-        knight4Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight4Tower.p_sourceRect = {0, 0, 15, 15};
         knight4Tower.p_price = 550;
         knight4Tower.p_damage = 15;
@@ -355,6 +330,8 @@ namespace Towers
         knight4Tower.p_upgradesTo = TowerType::KnightLv5;
         knight4Tower.p_id = -1;
         knight4Tower.p_level = 4;
+        knight4Tower.p_frameOffset = 0;
+        knight4Tower.p_frameAmount = 0;
         knight4Tower.p_typeId = TowerType::KnightLv4;
         knight4Tower.p_tileId = 0;
         knight4Tower.p_isUpgradeHovered = false;
@@ -382,10 +359,6 @@ namespace Towers
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
-        knight5Tower.p_upgradeFunction = [](float deltaTime, Tower *tower, PSManager *mgr_ps)
-        {
-        };
-        knight5Tower.p_updateAnimation = [](const float deltaTime, Tower &tower) {};
         knight5Tower.p_sourceRect = {0, 0, 15, 15};
         knight5Tower.p_price = 1050;
         knight5Tower.p_damage = 40;
@@ -398,6 +371,8 @@ namespace Towers
         knight5Tower.p_upgradesTo = TowerType::Nothing;
         knight5Tower.p_id = -1;
         knight5Tower.p_level = 5;
+        knight5Tower.p_frameOffset = 0;
+        knight5Tower.p_frameAmount = 0;
         knight5Tower.p_typeId = TowerType::KnightLv5;
         knight5Tower.p_tileId = 0;
         knight5Tower.p_isUpgradeHovered = false;

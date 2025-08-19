@@ -24,10 +24,6 @@ struct Tower
 {              
     std::function<void(const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower)> 
     p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower){};
-    std::function<void(const float deltaTime,Tower* tower,PSManager* mgr_ps)> 
-    p_upgradeFunction = [](const float deltaTime,Tower* tower,PSManager* mgr_ps){};
-    std::function<void(const float deltaTime, Tower &tower)>
-    p_updateAnimation = [](const float deltaTime, Tower &tower) {};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_price = 0; 
     int64_t p_damage = 1;  
@@ -40,6 +36,8 @@ struct Tower
     TowerType p_upgradesTo = TowerType::Nothing;
     int32_t p_id = -1;   
     uint16_t p_level = 0;
+    uint16_t p_frameOffset = 0;
+    uint16_t p_frameAmount = 0;
     int16_t p_typeId = 0;
     int16_t p_tileId = 0;
     bool p_isUpgradeHovered = false;

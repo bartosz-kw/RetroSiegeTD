@@ -25,7 +25,7 @@ private:
     void DetectInput();
     void DetectTowerInput(Tower &tower);
     void UpdateFight(Tower &tower, const float deltatime);
-    void UpdateAnimations(Tower &tower, const float deltaTime);
+    void UpdateAnimation(Tower &tower, const float deltaTime);
 
 public:
     TowerManager() = default;
