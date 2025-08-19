@@ -183,7 +183,6 @@ void TowerSelect::InitButtons()
             }
 
             Basics::UpgradeTower(deltaTime,tower,mgr_ps);
-            //tower->p_upgradeFunction(deltaTime, tower, this->mgr_ps);
         }
     };
     #pragma endregion
