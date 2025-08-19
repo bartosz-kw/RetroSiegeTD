@@ -27,9 +27,9 @@ namespace Basics
             *tower = upgradedTower;
         }
     }
-    void Animate(const float deltaTime, Enemy &enemy, uint16_t frameOffset, uint16_t frameAmount)
+    void Animate(const float deltaTime, Enemy &enemy)
     {
-        if (frameAmount == 0 || frameOffset == 0)
+        if (enemy.p_frameAmount == 0 || enemy.p_frameOffset == 0)
         {
             return;
         }
@@ -38,13 +38,13 @@ namespace Basics
         if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
         {
             enemy.p_timePassed = 0.0f;
-            if (enemy.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
+            if (enemy.p_sourceRect.x + enemy.p_frameOffset >= enemy.p_frameOffset * enemy.p_frameAmount)
             {
-                enemy.p_sourceRect = {0, 0, static_cast<float>(frameOffset), enemy.p_sourceRect.height};
+                enemy.p_sourceRect = {0, 0, static_cast<float>(enemy.p_frameOffset), enemy.p_sourceRect.height};
             }
             else
             {
-                enemy.p_sourceRect.x += frameOffset;
+                enemy.p_sourceRect.x += enemy.p_frameOffset;
             }
         }
     };

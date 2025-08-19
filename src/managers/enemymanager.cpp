@@ -3,6 +3,7 @@
 #include "bulletmanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/settings.hpp"
+#include "../namespaces/basics.hpp"
 #include "../managers/psmanager.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/enemies.hpp"
@@ -98,9 +99,9 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
         enemy.p_hitCooldowns.erase(enemy.p_hitCooldowns.begin() + indexsToDelete[i]);
     }
 }
-void EnemyManager::UpdateAnimations(Enemy &enemy, const float deltaTime)
+void EnemyManager::UpdateAnimation(Enemy &enemy, const float deltaTime)
 {
-    enemy.p_updateAnimation(deltaTime, enemy);
+    Basics::Animate(deltaTime,enemy);
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
@@ -249,7 +250,7 @@ void EnemyManager::Update(const float deltaTime)
         UpdateMovement(enemy, deltaTime);
         UpdateCooldown(enemy, deltaTime);
         UpdateHitEffect(enemy, deltaTime);
-        UpdateAnimations(enemy, deltaTime);
+        UpdateAnimation(enemy, deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {

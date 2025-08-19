@@ -1,6 +1,5 @@
 #pragma once
 #include <raylib.h>
-#include <functional>
 #include <cstdint>
 
 class BulletManager;

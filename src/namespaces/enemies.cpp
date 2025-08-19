@@ -15,12 +15,6 @@ namespace Enemies
         // Blue Slime
         Enemy blueSlime = {};
         blueSlime.p_hitCooldowns = {};
-        blueSlime.p_updateAnimation = [](const float deltaTime, Enemy &enemy)
-        {
-            constexpr uint8_t frameOffset = 15;
-            constexpr uint8_t frameAmount = 2;
-            Basics::Animate(deltaTime,enemy,frameOffset,frameAmount);
-        };
         blueSlime.p_sourceRect = {0, 0, 15, 15};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 10;
@@ -34,6 +28,8 @@ namespace Enemies
         blueSlime.p_typeId = EnemyType::BlueSlime;
         blueSlime.p_walked = 0;
         blueSlime.p_tileId = -1;
+        blueSlime.p_frameOffset = 15;
+        blueSlime.p_frameAmount = 2;
         blueSlime.p_alive = true;
         blueSlime.p_survived = false;
         blueSlime.p_dirty = true;
@@ -46,12 +42,6 @@ namespace Enemies
         // Red Slime
         Enemy redSlime = {};
         redSlime.p_hitCooldowns = {};
-        redSlime.p_updateAnimation = [](const float deltaTime, Enemy &enemy)
-        {
-            constexpr uint8_t frameOffset = 15;
-            constexpr uint8_t frameAmount = 2;
-            Basics::Animate(deltaTime,enemy,frameOffset,frameAmount);
-        };
         redSlime.p_sourceRect = {0, 0, 15, 15};
         redSlime.p_moneyDrop = 15;
         redSlime.p_health = 50;
@@ -65,6 +55,8 @@ namespace Enemies
         redSlime.p_typeId = EnemyType::RedSlime;
         redSlime.p_walked = 0;
         redSlime.p_tileId = -1;
+        redSlime.p_frameOffset = 15;
+        redSlime.p_frameAmount = 2;
         redSlime.p_alive = true;
         redSlime.p_survived = false;
         redSlime.p_dirty = true;
