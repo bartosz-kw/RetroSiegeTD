@@ -85,21 +85,8 @@ namespace Bullets
             constexpr uint8_t frameOffset = 8;
             constexpr uint8_t frameAmount = 6;
 
-            bullet.p_timePassed += deltaTime;
-            if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
-            {
-                bullet.p_timePassed -= bullet.p_timeToNextFrame;
-                if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
-                {
-                    bullet.p_alive = false;
-                }
-                else
-                {
-                    bullet.p_sourceRect.x += frameOffset;
-                }
-                
-            }
             
+            Basics::Animate(deltaTime,bullet,frameOffset,frameAmount);
         };
         slashBullet.p_sourceRect = {0, 0, 8, 8};
         slashBullet.p_position = {-1.0f, -1.0f};
@@ -113,7 +100,7 @@ namespace Bullets
         slashBullet.p_speed = 0.0f;
         slashBullet.p_typeId = BulletType::Slash;
         slashBullet.p_pierce = true;
-        slashBullet.p_removeAfterAnimation = false;
+        slashBullet.p_removeAfterAnimation = true;
         slashBullet.p_alive = true;
 
         g_bulletData[BulletType::Slash] = slashBullet;
@@ -128,20 +115,7 @@ namespace Bullets
             constexpr uint8_t frameOffset = 8;
             constexpr uint8_t frameAmount = 6;
 
-            bullet.p_timePassed += deltaTime;
-            if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
-            {
-                bullet.p_timePassed -= bullet.p_timeToNextFrame;
-                if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
-                {
-                    bullet.p_alive = false;
-                }
-                else
-                {
-                    bullet.p_sourceRect.x += frameOffset;
-                }
-                
-            }
+            Basics::Animate(deltaTime,bullet,frameOffset,frameAmount);
         };
         spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
         spearSlashBullet.p_position = {-1.0f, -1.0f};
@@ -155,7 +129,7 @@ namespace Bullets
         spearSlashBullet.p_speed = 0.0f;
         spearSlashBullet.p_typeId = BulletType::SpearSlash;
         spearSlashBullet.p_pierce = true;
-        spearSlashBullet.p_removeAfterAnimation = false;
+        spearSlashBullet.p_removeAfterAnimation = true;
         spearSlashBullet.p_alive = true;
 
         g_bulletData[BulletType::SpearSlash] = spearSlashBullet;

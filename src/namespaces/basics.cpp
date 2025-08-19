@@ -52,6 +52,12 @@ namespace Basics
             bullet.p_timePassed = 0.0f;
             if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
             {
+                if (bullet.p_removeAfterAnimation)
+                {
+                    bullet.p_alive = false;
+                    return;
+                }
+                
                 bullet.p_sourceRect = {0, 0, static_cast<float>(frameOffset), bullet.p_sourceRect.height};
             }
             else
