@@ -27,6 +27,7 @@ namespace Bullets
         shulikenBullet.p_speed = 75.0f;
         shulikenBullet.p_typeId = BulletType::Shuliken;
         shulikenBullet.p_pierce = false;
+        shulikenBullet.p_removeAfterAnimation = false;
         shulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
@@ -48,6 +49,7 @@ namespace Bullets
         sharpShulikenBullet.p_speed = 85.0f;
         sharpShulikenBullet.p_typeId = BulletType::SharpShuliken;
         sharpShulikenBullet.p_pierce = true;
+        sharpShulikenBullet.p_removeAfterAnimation = false;
         sharpShulikenBullet.p_alive = true;
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
@@ -110,6 +112,7 @@ namespace Bullets
         slashBullet.p_speed = 0.0f;
         slashBullet.p_typeId = BulletType::Slash;
         slashBullet.p_pierce = true;
+        slashBullet.p_removeAfterAnimation = false;
         slashBullet.p_alive = true;
 
         g_bulletData[BulletType::Slash] = slashBullet;
@@ -144,13 +147,14 @@ namespace Bullets
         spearSlashBullet.p_id = -1;
         spearSlashBullet.p_damage = 0;
         spearSlashBullet.p_timeToNextFrame = 0.1f;
-        spearSlashBullet.p_timePassed = 0.0f;
+        spearSlashBullet.p_timePassed = 0.0f; 
         spearSlashBullet.p_directionAngle = 0.0f;
         spearSlashBullet.p_rotation = 0.0f;
         spearSlashBullet.p_spinSpeed = 0.0f;
         spearSlashBullet.p_speed = 0.0f;
         spearSlashBullet.p_typeId = BulletType::SpearSlash;
         spearSlashBullet.p_pierce = true;
+        spearSlashBullet.p_removeAfterAnimation = false;
         spearSlashBullet.p_alive = true;
 
         g_bulletData[BulletType::SpearSlash] = spearSlashBullet;
