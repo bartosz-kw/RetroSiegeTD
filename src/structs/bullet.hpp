@@ -15,8 +15,6 @@ enum BulletType
 
 struct Bullet
 {
-    std::function<void(const float deltaTime, Bullet& bullet)>
-        p_updateAnimation = [](const float deltaTime, Bullet& bullet) {};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
     int32_t p_id = -1;
@@ -28,6 +26,8 @@ struct Bullet
     float p_spinSpeed = 3.0f;
     float p_speed = 1.0f;
     uint16_t p_typeId = BulletType::Shuliken;
+    uint16_t p_frameAmount = 0;
+    uint16_t p_frameOffset = 0;
     bool p_pierce = false;
     bool p_removeAfterAnimation = false;
     bool p_alive = true;

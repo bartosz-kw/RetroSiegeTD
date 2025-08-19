@@ -29,6 +29,11 @@ namespace Basics
     }
     void Animate(const float deltaTime, Enemy &enemy, uint16_t frameOffset, uint16_t frameAmount)
     {
+        if (frameAmount == 0 || frameOffset == 0)
+        {
+            return;
+        }
+
         enemy.p_timePassed += deltaTime;
         if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
         {
@@ -44,25 +49,30 @@ namespace Basics
         }
     };
 
-    void Animate(const float deltaTime, Bullet &bullet, uint16_t frameOffset, uint16_t frameAmount)
+    void Animate(const float deltaTime, Bullet &bullet)
     {
+        if (bullet.p_frameAmount == 0 || bullet.p_frameOffset == 0)
+        {
+            return;
+        }
+
         bullet.p_timePassed += deltaTime;
         if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
         {
             bullet.p_timePassed = 0.0f;
-            if (bullet.p_sourceRect.x + frameOffset >= frameOffset * frameAmount)
+            if (bullet.p_sourceRect.x + bullet.p_frameOffset >= bullet.p_frameOffset * bullet.p_frameAmount)
             {
                 if (bullet.p_removeAfterAnimation)
                 {
                     bullet.p_alive = false;
                     return;
                 }
-                
-                bullet.p_sourceRect = {0, 0, static_cast<float>(frameOffset), bullet.p_sourceRect.height};
+
+                bullet.p_sourceRect = {0, 0, static_cast<float>(bullet.p_frameOffset), bullet.p_sourceRect.height};
             }
             else
             {
-                bullet.p_sourceRect.x += frameOffset;
+                bullet.p_sourceRect.x += bullet.p_frameOffset;
             }
         }
     }

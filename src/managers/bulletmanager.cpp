@@ -1,5 +1,6 @@
 #include "bulletmanager.hpp"
 #include "../namespaces/sprites.hpp"
+#include "../namespaces/basics.hpp"
 #include "../utility/debugUtil.hpp"
 #include <raylib.h>
 #include <cmath>
@@ -23,9 +24,9 @@ void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
         bullet.p_rotation += bullet.p_spinSpeed * deltaTime;
     }
 }
-void BulletManager::UpdateAnimations(Bullet &bullet, const float deltaTime)
+void BulletManager::UpdateAnimation(Bullet &bullet, const float deltaTime)
 {
-    bullet.p_updateAnimation(deltaTime, bullet);
+    Basics::Animate(deltaTime,bullet);
 }
 void BulletManager::ValidatePosition(Bullet &bullet)
 {
@@ -90,7 +91,7 @@ void BulletManager::Update(const float deltaTime)
     for (auto &bullet : m_bullets)
     {
         UpdatePosition(bullet, deltaTime);
-        UpdateAnimations(bullet, deltaTime);
+        UpdateAnimation(bullet, deltaTime);
         ValidatePosition(bullet);
     }
     RemoveBullets();
