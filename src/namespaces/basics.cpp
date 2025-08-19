@@ -37,7 +37,7 @@ namespace Basics
         enemy.p_timePassed += deltaTime;
         if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
         {
-            enemy.p_timePassed = enemy.p_timeToNextFrame;
+            enemy.p_timePassed -= enemy.p_timeToNextFrame;
             if (enemy.p_sourceRect.x + enemy.p_frameOffset >= enemy.p_frameOffset * enemy.p_frameAmount)
             {
                 enemy.p_sourceRect = {0, 0, static_cast<float>(enemy.p_frameOffset), enemy.p_sourceRect.height};
@@ -59,7 +59,7 @@ namespace Basics
         bullet.p_timePassed += deltaTime;
         if (bullet.p_timePassed >= bullet.p_timeToNextFrame)
         {
-            bullet.p_timePassed = bullet.p_timeToNextFrame;
+            bullet.p_timePassed -= bullet.p_timeToNextFrame;
             if (bullet.p_sourceRect.x + bullet.p_frameOffset >= bullet.p_frameOffset * bullet.p_frameAmount)
             {
                 if (bullet.p_removeAfterAnimation)
@@ -87,7 +87,7 @@ namespace Basics
         tower.p_timePassed += deltaTime;
         if (tower.p_timePassed >= tower.p_timeToNextFrame)
         {
-            tower.p_timePassed = tower.p_timeToNextFrame;
+            tower.p_timePassed -= tower.p_timeToNextFrame;
             if (tower.p_sourceRect.x + tower.p_frameOffset >= tower.p_frameOffset * tower.p_frameAmount)
             {
                 tower.p_sourceRect = {0, 0, static_cast<float>(tower.p_frameOffset), tower.p_sourceRect.height};
