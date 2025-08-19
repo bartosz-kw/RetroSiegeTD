@@ -128,6 +128,30 @@ namespace Bullets
         g_bulletData[BulletType::SpearSlash] = spearSlashBullet;
 #pragma endregion
 
+#pragma region BigSlash
+        // BigSlash bullet - same fields as SpearSlash
+        Bullet bigSlashBullet = {};
+        
+        bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
+        bigSlashBullet.p_position = {-1.0f, -1.0f};
+        bigSlashBullet.p_id = -1;
+        bigSlashBullet.p_damage = 0;
+        bigSlashBullet.p_timeToNextFrame = 0.1f;
+        bigSlashBullet.p_timePassed = 0.0f; 
+        bigSlashBullet.p_directionAngle = 0.0f;
+        bigSlashBullet.p_rotation = 0.0f;
+        bigSlashBullet.p_spinSpeed = 0.0f;
+        bigSlashBullet.p_speed = 0.0f;
+        bigSlashBullet.p_typeId = BulletType::BigSlash;
+        bigSlashBullet.p_frameAmount = 8;
+        bigSlashBullet.p_frameOffset = 8;
+        bigSlashBullet.p_pierce = true;
+        bigSlashBullet.p_removeAfterAnimation = true;
+        bigSlashBullet.p_alive = true;
+
+        g_bulletData[BulletType::BigSlash] = bigSlashBullet;
+#pragma endregion
+
     }
 
     Bullet GetBulletData(int typeId)
