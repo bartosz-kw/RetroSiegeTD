@@ -71,6 +71,7 @@ namespace Bullets
         daggerBullet.p_speed = 105.0f;
         daggerBullet.p_typeId = BulletType::Dagger;
         daggerBullet.p_pierce = true;
+        daggerBullet.p_removeAfterAnimation = false;
         daggerBullet.p_alive = true;
 
         g_bulletData[BulletType::Dagger] = daggerBullet;
