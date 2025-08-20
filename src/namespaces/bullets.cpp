@@ -94,7 +94,7 @@ namespace Bullets
         slashBullet.p_spinSpeed = 0.0f;
         slashBullet.p_speed = 0.0f;
         slashBullet.p_typeId = BulletType::Slash;
-        slashBullet.p_frameAmount = 6;
+        slashBullet.p_frameAmount = 8;
         slashBullet.p_frameOffset = 8;
         slashBullet.p_pierce = true;
         slashBullet.p_removeAfterAnimation = true;
