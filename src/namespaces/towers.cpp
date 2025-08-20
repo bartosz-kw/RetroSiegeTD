@@ -154,7 +154,7 @@ namespace Towers
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
-            bullet.p_rotation = RadiansToDegrees(angle); 
+            bullet.p_rotation = RadiansToDegrees(angle);
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
@@ -195,6 +195,7 @@ namespace Towers
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
+            bullet.p_rotation = RadiansToDegrees(angle);
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
@@ -235,6 +236,7 @@ namespace Towers
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
+            bullet.p_rotation = RadiansToDegrees(angle);
             bullet.p_position = enemyPos;
             mgr_bullet->AddBullet(bullet);
         };
