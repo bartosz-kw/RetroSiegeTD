@@ -92,10 +92,6 @@ void Game::Draw() const
 
     EndDrawing();
 }
-void Game::StartGame()
-{
-    m_gameStarted = true;
-}
 void Game::InitManagers()
 {
     mgr_ps.Init();
@@ -131,6 +127,8 @@ void Game::InitGui()
     gui_towerPlace.Init();
     gui_playerStats.InjectDependencies(&mgr_gui, &mgr_ps);
     gui_playerStats.Init();
+    gui_mainMenu.InjectDependencies(&mgr_gui,this);
+    gui_mainMenu.Init();
 }
 void Game::InitSprites()
 {
@@ -162,9 +160,13 @@ void Game::InitGame()
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
-    StartGame();
+    //StartGame();
 }
 // Public functions
+void Game::StartGame()
+{
+    m_gameStarted = true;
+}
 void Game::Init()
 {
     InitGame();

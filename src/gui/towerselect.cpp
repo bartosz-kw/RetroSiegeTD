@@ -137,6 +137,7 @@ void TowerSelect::InitLabels()
 
         label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
         label.p_visible = true;
+        label.p_menuElement = false;
     };
     #pragma endregion
 }

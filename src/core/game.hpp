@@ -12,6 +12,7 @@
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
 #include "../gui/playerstats.hpp"
+#include "../gui/mainmenu.hpp"
 
 class Game
 {
@@ -29,6 +30,7 @@ private:
     PSManager            mgr_ps = {};
     PlayerManager    mgr_player = {};
     // gui
+    MainMenu       gui_mainMenu = {};
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};
     TowerPlace   gui_towerPlace = {};
@@ -40,9 +42,6 @@ private: // functions
     void Update();
     void MakeTextureFrame() const;
     void Draw()             const;
-
-    void StartGame();
-
     void InitManagers();
     void InitGui();
     void InitSprites();
@@ -62,6 +61,8 @@ public: // variables
 public: // functions
     Game()  = default;
     ~Game() = default;
+
+    void StartGame();
 
     void Init();
     void Run();
