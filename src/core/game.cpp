@@ -82,6 +82,10 @@ void Game::Draw() const
 
     EndDrawing();
 }
+void Game::StartGame()
+{
+    m_gameStarted = true;
+}
 void Game::InitManagers()
 {
     mgr_ps.Init();
