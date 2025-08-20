@@ -17,10 +17,10 @@ private:
     void UpdateTextPosition(Button &button);
     void UpdateImagePosition(Button &button);
     void UpdatePress(const float deltaTime,Button &button);
-    void UpdateLabel(const float deltaTime,TextLabel &label);
-    void UpdateButton(const float deltaTime,Button &button);
-    void DrawButton(const Button &button) const;
-    void DrawLabel(const TextLabel &label) const;
+    void UpdateLabel(const float deltaTime,TextLabel &label,const bool gameStarted);
+    void UpdateButton(const float deltaTime,Button &button,const bool gameStarted);
+    void DrawButton(const Button &button,const bool gameStarted) const;
+    void DrawLabel(const TextLabel &label,const bool gameStarted) const;
 
 public:
     
@@ -32,8 +32,8 @@ public:
     TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(const int id);
     void RemoveLabel(const int id);
-    void Update(const float deltaTime);
-    void Draw() const;
+    void Update(const float deltaTime,const bool gameStarted);
+    void Draw(const bool gameStarted) const;
     void Init();
     
 };

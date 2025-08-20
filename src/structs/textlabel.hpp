@@ -16,4 +16,5 @@ struct TextLabel
 
     uint16_t p_id = 0;
     bool p_visible = true;
+    bool p_menuElement = false;
 };

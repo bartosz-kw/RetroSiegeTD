@@ -11,8 +11,8 @@
 void GuiManager::UpdateTextPosition(TextLabel &label)
 {
     const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
-                                            label.p_text.c_str(),
-                                            Settings::g_gameFont.baseSize, 1.0f);
+                                                  label.p_text.c_str(),
+                                                  Settings::g_gameFont.baseSize, 1.0f);
     label.p_textPosition =
         {
             std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // y
@@ -22,8 +22,8 @@ void GuiManager::UpdateTextPosition(TextLabel &label)
 void GuiManager::UpdateTextPosition(Button &button)
 {
     const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
-                                            button.p_text.c_str(),
-                                            Settings::g_gameFont.baseSize, 1.0f);
+                                                  button.p_text.c_str(),
+                                                  Settings::g_gameFont.baseSize, 1.0f);
     button.p_textPosition =
         {
             std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // x
@@ -69,16 +69,24 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
     }
     button.p_onPressed(deltaTime, button);
 }
-void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label)
+void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool gameStarted)
 {
+    if (!(label.p_menuElement && gameStarted))
+    {
+        return;
+    }
     if (label.p_updateFunction)
     {
         label.p_updateFunction(deltaTime, label);
     }
     UpdateTextPosition(label);
 }
-void GuiManager::UpdateButton(const float deltaTime, Button &button)
+void GuiManager::UpdateButton(const float deltaTime, Button &button, const bool gameStarted)
 {
+    if (!(button.p_menuElement && gameStarted))
+    {
+        return;
+    }
     if (button.p_updateFunction)
     {
         button.p_updateFunction(deltaTime, button);
@@ -87,10 +95,17 @@ void GuiManager::UpdateButton(const float deltaTime, Button &button)
     UpdateImagePosition(button);
     UpdatePress(deltaTime, button);
 }
-void GuiManager::DrawButton(const Button &button) const
+void GuiManager::DrawButton(const Button &button, const bool gameStarted) const
 {
     if (!button.p_visible)
+    {
         return;
+    }
+    if (!(button.p_menuElement && gameStarted))
+    {
+        return;
+    }
+
     Color buttonColor = button.p_color;
     if (button.p_isHovered)
     {
@@ -104,21 +119,21 @@ void GuiManager::DrawButton(const Button &button) const
 
     constexpr float segments = 4.0f;
     constexpr float roundness = 5.0f;
-    
+
     Rectangle drawRect = button.p_rect;
     drawRect.x = floorf(drawRect.x);
     drawRect.y = floorf(drawRect.y);
     drawRect.width = floorf(drawRect.width);
     drawRect.height = floorf(drawRect.height);
-    
+
     Vector2 drawTextPos = button.p_textPosition;
     drawTextPos.x = floorf(drawTextPos.x);
     drawTextPos.y = floorf(drawTextPos.y);
-    
+
     Vector2 drawImagePos = button.p_imagePosition;
     drawImagePos.x = floorf(drawImagePos.x);
     drawImagePos.y = floorf(drawImagePos.y);
-    
+
     DrawRectangleRounded(drawRect, roundness, segments, buttonColor);
     if (!button.p_text.empty())
     {
@@ -129,26 +144,31 @@ void GuiManager::DrawButton(const Button &button) const
     {
         DrawTextureV(button.p_buttonImage, drawImagePos, WHITE);
     }
-    
 }
-void GuiManager::DrawLabel(const TextLabel &label) const
+void GuiManager::DrawLabel(const TextLabel &label, const bool gameStarted) const
 {
     if (!label.p_visible)
+    {
         return;
+    }
+    if (!(label.p_menuElement && gameStarted))
+    {
+        return;
+    }
 
     constexpr float segments = 4.0f;
     constexpr float roundness = 5.0f;
-    
+
     Rectangle drawRect = label.p_rect;
     drawRect.x = floorf(drawRect.x);
     drawRect.y = floorf(drawRect.y);
     drawRect.width = floorf(drawRect.width);
     drawRect.height = floorf(drawRect.height);
-    
+
     Vector2 drawTextPos = label.p_textPosition;
     drawTextPos.x = floorf(drawTextPos.x);
     drawTextPos.y = floorf(drawTextPos.y);
-    
+
     DrawRectangleRounded(drawRect, roundness, segments, label.p_color);
     DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
                drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
@@ -199,28 +219,28 @@ void GuiManager::RemoveLabel(const int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-void GuiManager::Update(const float deltaTime)
+void GuiManager::Update(const float deltaTime, const bool gameStarted)
 {
     for (auto &label : m_labels)
     {
-        UpdateLabel(deltaTime, label);
+        UpdateLabel(deltaTime, label, gameStarted);
     }
 
     for (auto &button : m_buttons)
     {
-        UpdateButton(deltaTime, button);
+        UpdateButton(deltaTime, button, gameStarted);
     }
 }
-void GuiManager::Draw() const
+void GuiManager::Draw(const bool gameStarted) const
 {
     for (const auto &label : m_labels)
     {
-        DrawLabel(label);
+        DrawLabel(label, gameStarted);
     }
 
     for (const auto &button : m_buttons)
     {
-        DrawButton(button);
+        DrawButton(button, gameStarted);
     }
 }
 void GuiManager::Init()

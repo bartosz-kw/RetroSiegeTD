@@ -19,6 +19,10 @@ void Game::UpdateDebug()
     {
         ToggleFullscreen();
     }
+    if (IsKeyPressed(KEY_F1))
+    {
+        StartGame();
+    }
     if (IsKeyPressed(KEY_P))
     {
         mgr_ps.AddMoney(3000);
@@ -33,13 +37,16 @@ void Game::Update()
     UpdateDebug();
 
     const float deltaTime = GetFrameTime();
-    mgr_gui.Update(deltaTime);
-    mgr_enemy.Update(deltaTime);
-    mgr_tile.Update();
-    mgr_tower.Update(deltaTime);
-    mgr_bullet.Update(deltaTime);
-    mgr_wave.Update(deltaTime);
-    mgr_player.Update();
+    mgr_gui.Update(deltaTime,m_gameStarted);
+    if (m_gameStarted)
+    {
+        mgr_enemy.Update(deltaTime);
+        mgr_tile.Update();
+        mgr_tower.Update(deltaTime);
+        mgr_bullet.Update(deltaTime);
+        mgr_wave.Update(deltaTime);
+        mgr_player.Update();
+    }
 
     GameMusic::UpdateMusic();
 }
@@ -51,18 +58,21 @@ void Game::MakeTextureFrame() const
     constexpr uint8_t screenOffset = boundingWidth;
     constexpr Color boundingColor = BLACK;
 
-    Settings::g_boundingSize = boundingWidth;
-    Settings::g_gameScale = 4;
+    if (m_gameStarted)
+    {
+        Settings::g_boundingSize = boundingWidth;
+        Settings::g_gameScale = 4;
 
-    mgr_tile.Draw(screenOffset);
-    mgr_enemy.Draw(screenOffset);
-    mgr_tower.Draw(screenOffset);
-    mgr_bullet.Draw(screenOffset);
+        mgr_tile.Draw(screenOffset);
+        mgr_enemy.Draw(screenOffset);
+        mgr_tower.Draw(screenOffset);
+        mgr_bullet.Draw(screenOffset);
 
-    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
-    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
+        DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
+        DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
+    }
 
-    mgr_gui.Draw();
+    mgr_gui.Draw(m_gameStarted);
 
     EndTextureMode();
 }
@@ -108,12 +118,12 @@ void Game::InitManagers()
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps);
     mgr_wave.Init();
 
-    mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy,&mgr_wave);
+    mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave);
     mgr_player.Init();
 }
 void Game::InitGui()
 {
-    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui,&mgr_player);
+    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui, &mgr_player);
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower, &mgr_gui, &mgr_ps);
     gui_towerSelect.Init();
@@ -152,6 +162,7 @@ void Game::InitGame()
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
+    StartGame();
 }
 // Public functions
 void Game::Init()
