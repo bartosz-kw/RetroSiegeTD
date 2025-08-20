@@ -129,7 +129,7 @@ namespace Bullets
 #pragma endregion
 
 #pragma region BigSlash
-        // BigSlash bullet - same fields as SpearSlash
+        // BigSlash bullet 
         Bullet bigSlashBullet = {};
         
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
