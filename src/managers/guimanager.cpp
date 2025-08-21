@@ -67,6 +67,13 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
     {
         return;
     }
+    PrintDebug(scaledButtonRect.x, "scaledButtonRect.x");
+    PrintDebug(scaledButtonRect.y, "scaledButtonRect.y");
+    PrintDebug(scaledButtonRect.width, "scaledButtonRect.width");
+    PrintDebug(scaledButtonRect.height, "scaledButtonRect.height");
+    PrintDebug(mousePosition.x,"Mouse x");
+    PrintDebug(mousePosition.y,"Mouse y");
+    
     button.p_onPressed(deltaTime, button);
 }
 void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool gameStarted)
