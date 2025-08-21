@@ -24,6 +24,7 @@ void TowerSelect::InitLabels()
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
     nameLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
     nameLabel.p_color = BLUE;
+    nameLabel.p_visible = false;
     nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -43,6 +44,7 @@ void TowerSelect::InitLabels()
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
     levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     levelLabel.p_color = BLUE;
+    levelLabel.p_visible = false;
     levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -69,6 +71,7 @@ void TowerSelect::InitLabels()
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
     damageLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, 20};
     damageLabel.p_color = BLUE;
+    damageLabel.p_visible = false;
     damageLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -94,6 +97,7 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
     attackSpeedLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, 20};
     attackSpeedLabel.p_color = BLUE;
+    attackSpeedLabel.p_visible = false;
     attackSpeedLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -119,6 +123,7 @@ void TowerSelect::InitLabels()
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
     rangeLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, 20};
     rangeLabel.p_color = BLUE;
+    rangeLabel.p_visible = false;
     rangeLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -137,7 +142,6 @@ void TowerSelect::InitLabels()
 
         label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
         label.p_visible = true;
-        label.p_menuElement = false;
     };
     #pragma endregion
 }
@@ -152,6 +156,7 @@ void TowerSelect::InitButtons()
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
     upgradeButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, 20};
     upgradeButton.p_color = GREEN;
+    upgradeButton.p_visible = false;
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
@@ -186,6 +191,7 @@ void TowerSelect::InitButtons()
             Basics::UpgradeTower(deltaTime,tower,mgr_ps);
         }
     };
+    
     #pragma endregion
 }
 void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager* psManager)
