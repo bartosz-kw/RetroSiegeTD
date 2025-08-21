@@ -7,8 +7,8 @@ class WaveCounter
 {
 private:
     PlayerManager* mgr_player = nullptr;
-    WaveManager* mgr_wave = nullptr;
-    GuiManager* mgr_gui = nullptr;
+    WaveManager* mgr_wave     = nullptr;
+    GuiManager* mgr_gui       = nullptr;
 
     TempMessage m_message = {};
 private:

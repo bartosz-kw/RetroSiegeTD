@@ -10,8 +10,8 @@ class TowerSelect
 {
 private:
     TowerManager* mgr_tower = nullptr;
-    GuiManager* mgr_gui = nullptr;
-    PSManager* mgr_ps = nullptr;
+    GuiManager* mgr_gui     = nullptr;
+    PSManager* mgr_ps       = nullptr;
 private:
     void InitLabels();
     void InitButtons();

@@ -6,7 +6,7 @@ class PlayerStats
 {
 private:
     GuiManager* mgr_gui = nullptr;
-    PSManager* mgr_ps = nullptr;
+    PSManager* mgr_ps   = nullptr;
 private:
     void InitLabels();
     

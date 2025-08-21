@@ -12,7 +12,7 @@ class TowerPlace
 private:
 
     TowerManager* mgr_tower = nullptr;
-    GuiManager* mgr_gui = nullptr;
+    GuiManager* mgr_gui     = nullptr;
 
 private:
     void InitLabels();
