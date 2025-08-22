@@ -4,15 +4,14 @@
 #include "../structs/textlabel.hpp"
 #include "../structs/tower.hpp"
 
-class TowerManager; 
+class TowerManager;
 class GuiManager;
 
 class TowerPlace
 {
 private:
-
-    TowerManager* mgr_tower = nullptr;
-    GuiManager* mgr_gui     = nullptr;
+    TowerManager *mgr_tower = nullptr;
+    GuiManager *mgr_gui = nullptr;
 
 private:
     void InitLabels();
@@ -20,6 +19,6 @@ private:
     void InitButtons();
 
 public:
-    void InjectDependencies(TowerManager* towerManager,GuiManager* guiManager);
+    void InjectDependencies(TowerManager *towerManager, GuiManager *guiManager);
     void Init();
 };

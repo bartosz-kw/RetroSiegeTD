@@ -26,12 +26,12 @@ private:
     void CleanEnemy(Enemy &enemy);
     void PreKillEnemy(Enemy &enemy);
     void RemoveEnemies();
-public:
 
+public:
     bool IsEnemiesEmpty() const;
     uint32_t GetNewValidId();
     Vector2 GetCenterPosition(const Enemy &enemy) const;
-    uint32_t FindEnemyInArea(const Vector2 center,const float radius);
+    uint32_t FindEnemyInArea(const Vector2 center, const float radius);
     Enemy *GetEnemyById(const uint32_t id);
     void AddEnemy(const Enemy enemy);
     void ClearEnemiesVector();

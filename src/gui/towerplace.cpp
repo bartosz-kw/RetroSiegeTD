@@ -89,7 +89,6 @@ void TowerPlace::InitButtons()
         }
     };
 #pragma endregion
-
 }
 void TowerPlace::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager)
 {
