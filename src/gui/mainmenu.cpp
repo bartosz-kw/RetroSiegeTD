@@ -12,7 +12,6 @@ void MainMenu::InitLabels()
 
 #pragma region TitleLabel
     TextLabel &titleLabel = mgr_gui->AddLabel(TextLabel{});
-    ;
     titleLabel.p_text = "Untitled Tower Defense";
     titleLabel.p_updateFunction = [](float deltaTime, TextLabel &label) {};
     titleLabel.p_rect = {static_cast<float>(Settings::g_boundingSize), 10.0f, 270.0f, 50.0f};
@@ -27,7 +26,7 @@ void MainMenu::InitLabels()
 
 void MainMenu::InitButtons()
 {
-    constexpr size_t amountOfButtons = 1;
+    constexpr size_t amountOfButtons = 2;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region StartButton
@@ -52,6 +51,30 @@ void MainMenu::InitButtons()
     startButton.p_isHovered = false;
     startButton.p_visible = true;
     startButton.p_menuElement = true;
+#pragma endregion
+
+#pragma region ExitButton
+    Button &exitButton = mgr_gui->AddButton(Button{});
+    exitButton.p_text = "Exit";
+    exitButton.p_onPressed = [this](float deltaTime, Button &button)
+    {
+        if (!button.p_isHovered)
+        {
+            return;
+        }
+
+        //mgr_game->PrepareShutdown();
+    };
+    exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
+    exitButton.p_buttonImage = {0, 0, 0, 0, 0};
+    exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 140.0f, 160.0f, 30.0f};
+    exitButton.p_textPosition = {0, 0};
+    exitButton.p_imagePosition = {0, 0};
+    exitButton.p_color = RED;
+    exitButton.p_id = 1;
+    exitButton.p_isHovered = false;
+    exitButton.p_visible = true;
+    exitButton.p_menuElement = true;
 #pragma endregion
 }
 
