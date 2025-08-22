@@ -87,7 +87,7 @@ namespace Bullets
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
-        slashBullet.p_timeToNextFrame = 0.1f;
+        slashBullet.p_timeToNextFrame = 0.05f;
         slashBullet.p_timePassed = 0.0f;
         slashBullet.p_directionAngle = 0.0f;
         slashBullet.p_rotation = 0.0f;
@@ -112,7 +112,7 @@ namespace Bullets
         spearSlashBullet.p_position = {-1.0f, -1.0f};
         spearSlashBullet.p_id = -1;
         spearSlashBullet.p_damage = 0;
-        spearSlashBullet.p_timeToNextFrame = 0.1f;
+        spearSlashBullet.p_timeToNextFrame = 0.05f;
         spearSlashBullet.p_timePassed = 0.0f; 
         spearSlashBullet.p_directionAngle = 0.0f;
         spearSlashBullet.p_rotation = 0.0f;
@@ -136,7 +136,7 @@ namespace Bullets
         bigSlashBullet.p_position = {-1.0f, -1.0f};
         bigSlashBullet.p_id = -1;
         bigSlashBullet.p_damage = 0;
-        bigSlashBullet.p_timeToNextFrame = 0.1f;
+        bigSlashBullet.p_timeToNextFrame = 0.05f;
         bigSlashBullet.p_timePassed = 0.0f; 
         bigSlashBullet.p_directionAngle = 0.0f;
         bigSlashBullet.p_rotation = 0.0f;
@@ -160,7 +160,7 @@ namespace Bullets
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
         biggestSlashBullet.p_id = -1;
         biggestSlashBullet.p_damage = 0;
-        biggestSlashBullet.p_timeToNextFrame = 0.1f;
+        biggestSlashBullet.p_timeToNextFrame = 0.05f;
         biggestSlashBullet.p_timePassed = 0.0f; 
         biggestSlashBullet.p_directionAngle = 0.0f;
         biggestSlashBullet.p_rotation = 0.0f;
