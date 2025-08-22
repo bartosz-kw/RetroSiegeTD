@@ -76,6 +76,7 @@ void MainMenu::InitButtons()
     exitButton.p_visible = true;
     exitButton.p_menuElement = true;
 #pragma endregion
+
 }
 
 void MainMenu::InjectDependencies(GuiManager *guiManager, Game *game)
