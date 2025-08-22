@@ -10,7 +10,8 @@ enum BulletType
     Dagger = 3,
     Slash = 4,
     SpearSlash = 5,
-    BigSlash = 6
+    BigSlash = 6,
+    BiggestSlash = 7
 };
 
 struct Bullet

@@ -152,6 +152,30 @@ namespace Bullets
         g_bulletData[BulletType::BigSlash] = bigSlashBullet;
 #pragma endregion
 
+#pragma region BiggestSlash
+        // BiggestSlash bullet 
+        Bullet biggestSlashBullet = {};
+        
+        biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
+        biggestSlashBullet.p_position = {-1.0f, -1.0f};
+        biggestSlashBullet.p_id = -1;
+        biggestSlashBullet.p_damage = 0;
+        biggestSlashBullet.p_timeToNextFrame = 0.1f;
+        biggestSlashBullet.p_timePassed = 0.0f; 
+        biggestSlashBullet.p_directionAngle = 0.0f;
+        biggestSlashBullet.p_rotation = 0.0f;
+        biggestSlashBullet.p_spinSpeed = 0.0f;
+        biggestSlashBullet.p_speed = 0.0f;
+        biggestSlashBullet.p_typeId = BulletType::BiggestSlash;
+        biggestSlashBullet.p_frameAmount = 8;
+        biggestSlashBullet.p_frameOffset = 10;
+        biggestSlashBullet.p_pierce = true;
+        biggestSlashBullet.p_removeAfterAnimation = true;
+        biggestSlashBullet.p_alive = true;
+
+        g_bulletData[BulletType::BiggestSlash] = biggestSlashBullet;
+#pragma endregion
+
     }
 
     Bullet GetBulletData(int typeId)
