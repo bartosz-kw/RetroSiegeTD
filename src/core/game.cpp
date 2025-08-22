@@ -41,12 +41,24 @@ void Game::Update()
     mgr_gui.Update(deltaTime, gameStarted);
     if (gameStarted)
     {
+        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
+        {
+            PlayMusicStream(GameMusic::g_towerDefenseMain);
+        }
+
         mgr_enemy.Update(deltaTime);
         mgr_tile.Update();
         mgr_tower.Update(deltaTime);
         mgr_bullet.Update(deltaTime);
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
+    }
+    else
+    {
+        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
+        {
+            StopMusicStream(GameMusic::g_towerDefenseMain);
+        }
     }
 
     GameMusic::UpdateMusic();

@@ -13,6 +13,12 @@ namespace GameMusic
 
     inline void UpdateMusic()
     {
+        constexpr bool disableMusic = true;
+        if (disableMusic)
+        {
+            return;
+        }
+        
         if (IsMusicStreamPlaying(g_towerDefenseMain))
         {
             UpdateMusicStream(g_towerDefenseMain);
