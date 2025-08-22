@@ -16,7 +16,7 @@ void MainMenu::InitLabels()
     titleLabel.p_updateFunction = [](float deltaTime, TextLabel &label) {};
     titleLabel.p_rect = {static_cast<float>(Settings::g_boundingSize), 10.0f, 270.0f, 50.0f};
     titleLabel.p_textPosition = {0, 0};
-    titleLabel.p_color = WHITE;
+    titleLabel.p_color = BLUE;
     titleLabel.p_id = 0;
     titleLabel.p_visible = true;
     titleLabel.p_menuElement = true;
@@ -43,10 +43,10 @@ void MainMenu::InitButtons()
     };
     startButton.p_updateFunction = [](float deltaTime, Button &button) {};
     startButton.p_buttonImage = {0, 0, 0, 0, 0};
-    startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 100.0f, 160.0f, 30.0f};
+    startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 140.0f, 160.0f, 30.0f};
     startButton.p_textPosition = {0, 0};
     startButton.p_imagePosition = {0, 0};
-    startButton.p_color = BLUE;
+    startButton.p_color = GREEN;
     startButton.p_id = 0;
     startButton.p_isHovered = false;
     startButton.p_visible = true;
@@ -67,7 +67,7 @@ void MainMenu::InitButtons()
     };
     exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
     exitButton.p_buttonImage = {0, 0, 0, 0, 0};
-    exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 140.0f, 160.0f, 30.0f};
+    exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 180.0f, 160.0f, 30.0f};
     exitButton.p_textPosition = {0, 0};
     exitButton.p_imagePosition = {0, 0};
     exitButton.p_color = RED;
