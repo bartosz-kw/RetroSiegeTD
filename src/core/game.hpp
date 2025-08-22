@@ -14,12 +14,19 @@
 #include "../gui/playerstats.hpp"
 #include "../gui/mainmenu.hpp"
 
+enum GameState
+{
+    Starting = 0,
+    Started = 1,
+    Ended = 2
+};
+
 class Game
 {
 private:
     // variables
     RenderTexture2D m_frame = {};
-    bool m_gameStarted = false;
+    GameState m_gameState = GameState::Starting;
     // managers
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
@@ -49,6 +56,7 @@ private: // functions
     void InitMembers();
     void InitGame();
 
+    void Shutdown();
 public: // variables
     const int p_gameHeight = 270;
     const int p_gameWidth = 480;
@@ -62,8 +70,8 @@ public: // functions
     ~Game() = default;
 
     void StartGame();
+    void CloseGame();
 
     void Init();
     void Run();
-    void Shutdown();
 };

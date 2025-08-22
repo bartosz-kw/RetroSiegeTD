@@ -36,9 +36,10 @@ void Game::Update()
 {
     UpdateDebug();
 
+    const bool gameStarted = (m_gameState == GameState::Started);
     const float deltaTime = GetFrameTime();
-    mgr_gui.Update(deltaTime,m_gameStarted);
-    if (m_gameStarted)
+    mgr_gui.Update(deltaTime, gameStarted);
+    if (gameStarted)
     {
         mgr_enemy.Update(deltaTime);
         mgr_tile.Update();
@@ -54,11 +55,12 @@ void Game::MakeTextureFrame() const
 {
     BeginTextureMode(m_frame);
     ClearBackground(BLACK);
+    const bool gameStarted = (m_gameState == GameState::Started);
     constexpr uint8_t boundingWidth = 105;
     constexpr uint8_t screenOffset = boundingWidth;
     constexpr Color boundingColor = BLACK;
 
-    if (m_gameStarted)
+    if (gameStarted)
     {
         Settings::g_boundingSize = boundingWidth;
         Settings::g_gameScale = 4;
@@ -72,7 +74,7 @@ void Game::MakeTextureFrame() const
         DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     }
 
-    mgr_gui.Draw(m_gameStarted);
+    mgr_gui.Draw(gameStarted);
 
     EndTextureMode();
 }
@@ -127,7 +129,7 @@ void Game::InitGui()
     gui_towerPlace.Init();
     gui_playerStats.InjectDependencies(&mgr_gui, &mgr_ps);
     gui_playerStats.Init();
-    gui_mainMenu.InjectDependencies(&mgr_gui,this);
+    gui_mainMenu.InjectDependencies(&mgr_gui, this);
     gui_mainMenu.Init();
 }
 void Game::InitSprites()
@@ -160,12 +162,26 @@ void Game::InitGame()
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
-    //StartGame();
+
+    m_gameState = GameState::Starting;
+    // StartGame();
 }
+void Game::Shutdown()
+{
+    Sprites::UnLoadTextures();
+    GameMusic::UnloadSounds();
+    UnloadRenderTexture(m_frame);
+    CloseWindow();
+}
+
 // Public functions
 void Game::StartGame()
 {
-    m_gameStarted = true;
+    m_gameState = GameState::Started;
+}
+void Game::CloseGame()
+{
+    m_gameState = GameState::Ended;
 }
 void Game::Init()
 {
@@ -181,6 +197,12 @@ void Game::Run()
 {
     while (!WindowShouldClose())
     {
+        if (m_gameState == GameState::Ended)
+        {
+            Shutdown();
+            break;
+        }
+
         if (IsWindowMinimized())
         {
             continue;
@@ -189,11 +211,4 @@ void Game::Run()
         Draw();
     }
     Shutdown();
-}
-void Game::Shutdown()
-{
-    Sprites::UnLoadTextures();
-    GameMusic::UnloadSounds();
-    UnloadRenderTexture(m_frame);
-    CloseWindow();
 }
