@@ -17,7 +17,7 @@ void MainMenu::InitLabels()
     titleLabel.p_rect = {static_cast<float>(Settings::g_boundingSize), 10.0f, 270.0f, 50.0f};
     titleLabel.p_textPosition = {0, 0};
     titleLabel.p_color = BLUE;
-    titleLabel.p_id = 0;
+    titleLabel.p_id = mgr_gui->GetAmountOfLabels();
     titleLabel.p_visible = true;
     titleLabel.p_menuElement = true;
 
@@ -47,7 +47,7 @@ void MainMenu::InitButtons()
     startButton.p_textPosition = {0, 0};
     startButton.p_imagePosition = {0, 0};
     startButton.p_color = GREEN;
-    startButton.p_id = 0;
+    startButton.p_id = mgr_gui->GetAmountOfButtons();
     startButton.p_isHovered = false;
     startButton.p_visible = true;
     startButton.p_menuElement = true;
@@ -71,7 +71,7 @@ void MainMenu::InitButtons()
     exitButton.p_textPosition = {0, 0};
     exitButton.p_imagePosition = {0, 0};
     exitButton.p_color = RED;
-    exitButton.p_id = 1;
+    exitButton.p_id = mgr_gui->GetAmountOfButtons();
     exitButton.p_isHovered = false;
     exitButton.p_visible = true;
     exitButton.p_menuElement = true;
