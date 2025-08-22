@@ -63,7 +63,7 @@ void MainMenu::InitButtons()
             return;
         }
 
-        //mgr_game->PrepareShutdown();
+        mgr_game->CloseGame();
     };
     exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
     exitButton.p_buttonImage = {0, 0, 0, 0, 0};
