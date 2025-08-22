@@ -41,7 +41,7 @@ namespace Sprites
         g_textures[21] = LoadTexture("src/resources/sprites/BigSlashBullet.png");
         g_textures[22] = LoadTexture("src/resources/sprites/BiggestSlashBullet.png");
     }
-    inline void UnLoadTextures()
+    inline void UnloadTextures()
     {
         for (size_t i = 0; i < g_textures.size(); i++)
         {

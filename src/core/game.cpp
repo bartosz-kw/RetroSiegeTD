@@ -168,8 +168,9 @@ void Game::InitGame()
 }
 void Game::Shutdown()
 {
-    Sprites::UnLoadTextures();
+    Sprites::UnloadTextures();
     GameMusic::UnloadSounds();
+    GameMusic::UnloadMusic();
     UnloadRenderTexture(m_frame);
     CloseWindow();
 }

@@ -49,9 +49,6 @@ void TowerManager::DetectInput()
             tower.p_tileId = tile->p_id;
             tower.p_dirty = true;
             AddTower(tower);
-
-            PrintDebug("SoundPlayed");
-            PlaySound(GameMusic::g_towerPlaceSound);
         }
     }
 }
