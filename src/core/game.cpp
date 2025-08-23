@@ -38,7 +38,8 @@ void Game::Update()
 
     const bool gameStarted = (m_gameState == GameState::Started);
     const float deltaTime = GetFrameTime();
-    mgr_gui.Update(deltaTime, gameStarted);
+    mgr_gui.SyncGameState(gameStarted);
+    mgr_gui.Update(deltaTime);
     if (gameStarted)
     {
         if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
@@ -86,7 +87,7 @@ void Game::MakeTextureFrame() const
         DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     }
 
-    mgr_gui.Draw(gameStarted);
+    mgr_gui.Draw();
 
     EndTextureMode();
 }

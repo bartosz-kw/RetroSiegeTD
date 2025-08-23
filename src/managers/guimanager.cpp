@@ -71,19 +71,15 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
     PrintDebug(scaledButtonRect.y, "scaledButtonRect.y");
     PrintDebug(scaledButtonRect.width, "scaledButtonRect.width");
     PrintDebug(scaledButtonRect.height, "scaledButtonRect.height");
-    PrintDebug(mousePosition.x,"Mouse x");
-    PrintDebug(mousePosition.y,"Mouse y");
-    
+    PrintDebug(mousePosition.x, "Mouse x");
+    PrintDebug(mousePosition.y, "Mouse y");
+
     button.p_onPressed(deltaTime, button);
 }
-void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool gameStarted)
+void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label)
 {
 
-    if (!(label.p_elementType == GuiType::MenuGui) && !gameStarted)
-    {
-        return; 
-    }
-    if (label.p_elementType == GuiType::MenuGui && gameStarted)
+    if (!IsElementUsed(label))
     {
         return;
     }
@@ -93,13 +89,9 @@ void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool
     }
     UpdateTextPosition(label);
 }
-void GuiManager::UpdateButton(const float deltaTime, Button &button, const bool gameStarted)
+void GuiManager::UpdateButton(const float deltaTime, Button &button)
 {
-    if (!(button.p_elementType == GuiType::MenuGui) && !gameStarted)
-    {
-        return; 
-    }
-    if (button.p_elementType == GuiType::MenuGui && gameStarted)
+    if (!IsElementUsed(button))
     {
         return;
     }
@@ -111,17 +103,13 @@ void GuiManager::UpdateButton(const float deltaTime, Button &button, const bool 
     UpdateImagePosition(button);
     UpdatePress(deltaTime, button);
 }
-void GuiManager::DrawButton(const Button &button, const bool gameStarted) const
+void GuiManager::DrawButton(const Button &button) const
 {
     if (!button.p_visible)
     {
         return;
     }
-    if (!(button.p_elementType == GuiType::MenuGui) && !gameStarted)
-    {
-        return; 
-    }
-    if (button.p_elementType == GuiType::MenuGui && gameStarted)
+    if (!IsElementUsed(button))
     {
         return;
     }
@@ -165,17 +153,13 @@ void GuiManager::DrawButton(const Button &button, const bool gameStarted) const
         DrawTextureV(button.p_buttonImage, drawImagePos, WHITE);
     }
 }
-void GuiManager::DrawLabel(const TextLabel &label, const bool gameStarted) const
+void GuiManager::DrawLabel(const TextLabel &label) const
 {
     if (!label.p_visible)
     {
         return;
     }
-    if (!(label.p_elementType == GuiType::MenuGui) && !gameStarted)
-    {
-        return; 
-    }
-    if (label.p_elementType == GuiType::MenuGui && gameStarted)
+    if (!IsElementUsed(label))
     {
         return;
     }
@@ -197,7 +181,30 @@ void GuiManager::DrawLabel(const TextLabel &label, const bool gameStarted) const
     DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
                drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
 }
-
+const bool GuiManager::IsElementUsed(const Button &button) const
+{
+    if (!(button.p_elementType == GuiType::MenuGui) && !m_gameState)
+    {
+        return false;
+    }
+    if (button.p_elementType == GuiType::MenuGui && m_gameState)
+    {
+        return false;
+    }
+    return true;
+}
+const bool GuiManager::IsElementUsed(const TextLabel &label) const
+{
+    if (!(label.p_elementType == GuiType::MenuGui) && !m_gameState)
+    {
+        return false;
+    }
+    if (label.p_elementType == GuiType::MenuGui && m_gameState)
+    {
+        return false;
+    }
+    return true;
+}
 /// Public
 const size_t GuiManager::GetAmountOfLabels() const
 {
@@ -243,28 +250,32 @@ void GuiManager::RemoveLabel(const int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-void GuiManager::Update(const float deltaTime, const bool gameStarted)
+void GuiManager::SyncGameState(const bool gameState)
+{
+    m_gameState = gameState;
+}
+void GuiManager::Update(const float deltaTime)
 {
     for (auto &label : m_labels)
     {
-        UpdateLabel(deltaTime, label, gameStarted);
+        UpdateLabel(deltaTime, label);
     }
 
     for (auto &button : m_buttons)
     {
-        UpdateButton(deltaTime, button, gameStarted);
+        UpdateButton(deltaTime, button);
     }
 }
-void GuiManager::Draw(const bool gameStarted) const
+void GuiManager::Draw() const
 {
     for (const auto &label : m_labels)
     {
-        DrawLabel(label, gameStarted);
+        DrawLabel(label);
     }
 
     for (const auto &button : m_buttons)
     {
-        DrawButton(button, gameStarted);
+        DrawButton(button);
     }
 }
 void GuiManager::Init()

@@ -8,6 +8,7 @@ class GuiManager
 {
 private:
 
+    bool m_gameState = false;
     std::vector<TextLabel> m_labels;
     std::vector<Button> m_buttons;
 
@@ -17,10 +18,12 @@ private:
     void UpdateTextPosition(Button &button);
     void UpdateImagePosition(Button &button);
     void UpdatePress(const float deltaTime,Button &button);
-    void UpdateLabel(const float deltaTime,TextLabel &label,const bool gameStarted);
-    void UpdateButton(const float deltaTime,Button &button,const bool gameStarted);
-    void DrawButton(const Button &button,const bool gameStarted) const;
-    void DrawLabel(const TextLabel &label,const bool gameStarted) const;
+    void UpdateLabel(const float deltaTime,TextLabel &label);
+    void UpdateButton(const float deltaTime,Button &button);
+    void DrawButton(const Button &button) const;
+    void DrawLabel(const TextLabel &label) const;
+    const bool IsElementUsed(const Button &button) const;
+    const bool IsElementUsed(const TextLabel &label) const;
 
 public:
     
@@ -32,8 +35,9 @@ public:
     TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(const int id);
     void RemoveLabel(const int id);
-    void Update(const float deltaTime,const bool gameStarted);
-    void Draw(const bool gameStarted) const;
+    void SyncGameState(const bool gameState);
+    void Update(const float deltaTime);
+    void Draw() const;
     void Init();
     
 };
