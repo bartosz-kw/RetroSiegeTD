@@ -21,7 +21,7 @@ class Game
 private:
     // variables
     RenderTexture2D m_frame = {};
-    GameState m_gameState = GameState::Starting;
+    GameState m_gameState = GameState::Menu;
     // managers
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
@@ -39,6 +39,8 @@ private:
     PlayerStats gui_playerStats = {};
 
 private: // functions
+
+    void HandleInput();
     void UpdateDebug();
     void Update();
     void MakeTextureFrame() const;

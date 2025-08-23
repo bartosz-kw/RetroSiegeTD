@@ -10,6 +10,17 @@
 #include "game.hpp"
 
 // Private functions
+
+void Game::HandleInput()
+{
+    if (IsKeyPressed(KEY_P))
+    {
+        if(m_gameState == GameState::Started)
+        {
+            m_gameState = GameState::Menu;
+        }
+    }
+}
 void Game::UpdateDebug()
 {
 #ifdef RELEASE
@@ -23,7 +34,7 @@ void Game::UpdateDebug()
     {
         StartGame();
     }
-    if (IsKeyPressed(KEY_P))
+    if (IsKeyPressed(KEY_M))
     {
         mgr_ps.AddMoney(3000);
     }
@@ -38,6 +49,8 @@ void Game::Update()
 
     const bool gameStarted = (m_gameState == GameState::Started);
     const float deltaTime = GetFrameTime();
+
+    HandleInput();
     mgr_gui.SyncGameState(m_gameState);
     mgr_gui.Update(deltaTime);
     if (gameStarted)
@@ -176,7 +189,7 @@ void Game::InitGame()
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
 
-    m_gameState = GameState::Starting;
+    m_gameState = GameState::Menu;
     // StartGame();
 }
 void Game::Shutdown()

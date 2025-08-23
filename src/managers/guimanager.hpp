@@ -9,7 +9,7 @@ class GuiManager
 {
 private:
 
-    GameState m_gameState = GameState::Starting;
+    GameState m_gameState = GameState::Menu;
     std::vector<TextLabel> m_labels;
     std::vector<Button> m_buttons;
 

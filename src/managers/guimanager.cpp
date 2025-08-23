@@ -183,6 +183,10 @@ void GuiManager::DrawLabel(const TextLabel &label) const
 }
 const bool GuiManager::IsElementUsed(const Button &button) const
 {
+    if (m_gameState == GameState::Ended)
+    {
+        return false;
+    }
     if (!(button.p_elementType == GuiType::MenuGui) && !(m_gameState == GameState::Started))
     {
         return false;
@@ -195,7 +199,11 @@ const bool GuiManager::IsElementUsed(const Button &button) const
 }
 const bool GuiManager::IsElementUsed(const TextLabel &label) const
 {
-    if (!(label.p_elementType == GuiType::MenuGui) && !(m_gameState == GameState::Started))
+    if (m_gameState == GameState::Ended)
+    {
+        return false;
+    }
+    if (!(label.p_elementType == GuiType::MenuGui) && m_gameState == GameState::Menu)
     {
         return false;
     }
