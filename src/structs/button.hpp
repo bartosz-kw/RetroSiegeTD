@@ -1,4 +1,5 @@
 #pragma once
+#include "../enums/guitype.hpp"
 #include <cstdint>
 #include <string>
 #include <raylib.h>
@@ -21,5 +22,5 @@ struct Button
     uint16_t p_id = 0;
     bool p_isHovered = false;
     bool p_visible = true;
-    bool p_menuElement = false;
+    GuiType p_elementType = GuiType::GameGui;
 };

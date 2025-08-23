@@ -19,7 +19,7 @@ void MainMenu::InitLabels()
     titleLabel.p_color = BLUE;
     titleLabel.p_id = mgr_gui->GetAmountOfLabels();
     titleLabel.p_visible = true;
-    titleLabel.p_menuElement = true;
+    titleLabel.p_elementType = GuiType::MenuGui;
 
 #pragma endregion
 }
@@ -50,7 +50,7 @@ void MainMenu::InitButtons()
     startButton.p_id = mgr_gui->GetAmountOfButtons();
     startButton.p_isHovered = false;
     startButton.p_visible = true;
-    startButton.p_menuElement = true;
+    startButton.p_elementType = GuiType::MenuGui; 
 #pragma endregion
 
 #pragma region ExitButton
@@ -74,7 +74,7 @@ void MainMenu::InitButtons()
     exitButton.p_id = mgr_gui->GetAmountOfButtons();
     exitButton.p_isHovered = false;
     exitButton.p_visible = true;
-    exitButton.p_menuElement = true;
+    exitButton.p_elementType = GuiType::MenuGui;
 #pragma endregion
 
 }

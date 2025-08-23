@@ -79,11 +79,11 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
 void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool gameStarted)
 {
 
-    if (!label.p_menuElement && !gameStarted)
+    if (!(label.p_elementType == GuiType::MenuGui) && !gameStarted)
     {
         return; 
     }
-    if (label.p_menuElement && gameStarted)
+    if (label.p_elementType == GuiType::MenuGui && gameStarted)
     {
         return;
     }
@@ -95,11 +95,11 @@ void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label, const bool
 }
 void GuiManager::UpdateButton(const float deltaTime, Button &button, const bool gameStarted)
 {
-    if (!button.p_menuElement && !gameStarted)
+    if (!(button.p_elementType == GuiType::MenuGui) && !gameStarted)
     {
         return; 
     }
-    if (button.p_menuElement && gameStarted)
+    if (button.p_elementType == GuiType::MenuGui && gameStarted)
     {
         return;
     }
@@ -117,11 +117,11 @@ void GuiManager::DrawButton(const Button &button, const bool gameStarted) const
     {
         return;
     }
-    if (!button.p_menuElement && !gameStarted)
+    if (!(button.p_elementType == GuiType::MenuGui) && !gameStarted)
     {
         return; 
     }
-    if (button.p_menuElement && gameStarted)
+    if (button.p_elementType == GuiType::MenuGui && gameStarted)
     {
         return;
     }
@@ -171,11 +171,11 @@ void GuiManager::DrawLabel(const TextLabel &label, const bool gameStarted) const
     {
         return;
     }
-    if (!label.p_menuElement && !gameStarted)
+    if (!(label.p_elementType == GuiType::MenuGui) && !gameStarted)
     {
         return; 
     }
-    if (label.p_menuElement && gameStarted)
+    if (label.p_elementType == GuiType::MenuGui && gameStarted)
     {
         return;
     }
