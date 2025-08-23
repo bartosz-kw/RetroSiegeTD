@@ -38,7 +38,7 @@ void Game::Update()
 
     const bool gameStarted = (m_gameState == GameState::Started);
     const float deltaTime = GetFrameTime();
-    mgr_gui.SyncGameState(gameStarted);
+    mgr_gui.SyncGameState(m_gameState);
     mgr_gui.Update(deltaTime);
     if (gameStarted)
     {

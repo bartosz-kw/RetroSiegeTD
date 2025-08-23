@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <functional>
+#include "../enums/gamestate.hpp"
 #include "../structs/textlabel.hpp"
 #include "../structs/button.hpp"
 
@@ -8,7 +9,7 @@ class GuiManager
 {
 private:
 
-    bool m_gameState = false;
+    GameState m_gameState = GameState::Starting;
     std::vector<TextLabel> m_labels;
     std::vector<Button> m_buttons;
 
@@ -35,7 +36,7 @@ public:
     TextLabel& AddLabel(const TextLabel &label);
     void RemoveButton(const int id);
     void RemoveLabel(const int id);
-    void SyncGameState(const bool gameState);
+    void SyncGameState(const GameState gameState);
     void Update(const float deltaTime);
     void Draw() const;
     void Init();

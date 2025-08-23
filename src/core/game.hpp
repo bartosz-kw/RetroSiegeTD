@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include "../enums/gamestate.hpp"
 #include "../managers/tilemanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/towermanager.hpp"
@@ -14,12 +15,6 @@
 #include "../gui/playerstats.hpp"
 #include "../gui/mainmenu.hpp"
 
-enum GameState
-{
-    Starting = 0,
-    Started = 1,
-    Ended = 2
-};
 
 class Game
 {

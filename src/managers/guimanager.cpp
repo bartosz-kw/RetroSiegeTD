@@ -183,11 +183,11 @@ void GuiManager::DrawLabel(const TextLabel &label) const
 }
 const bool GuiManager::IsElementUsed(const Button &button) const
 {
-    if (!(button.p_elementType == GuiType::MenuGui) && !m_gameState)
+    if (!(button.p_elementType == GuiType::MenuGui) && !(m_gameState == GameState::Started))
     {
         return false;
     }
-    if (button.p_elementType == GuiType::MenuGui && m_gameState)
+    if (button.p_elementType == GuiType::MenuGui && m_gameState == GameState::Started)
     {
         return false;
     }
@@ -195,11 +195,11 @@ const bool GuiManager::IsElementUsed(const Button &button) const
 }
 const bool GuiManager::IsElementUsed(const TextLabel &label) const
 {
-    if (!(label.p_elementType == GuiType::MenuGui) && !m_gameState)
+    if (!(label.p_elementType == GuiType::MenuGui) && !(m_gameState == GameState::Started))
     {
         return false;
     }
-    if (label.p_elementType == GuiType::MenuGui && m_gameState)
+    if (label.p_elementType == GuiType::MenuGui && m_gameState == GameState::Started)
     {
         return false;
     }
@@ -250,7 +250,7 @@ void GuiManager::RemoveLabel(const int id)
                        { return label.p_id == id; }),
         m_labels.end());
 }
-void GuiManager::SyncGameState(const bool gameState)
+void GuiManager::SyncGameState(const GameState gameState)
 {
     m_gameState = gameState;
 }
