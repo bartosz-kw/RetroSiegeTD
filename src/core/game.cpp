@@ -15,7 +15,7 @@ void Game::HandleInput()
 {
     if (IsKeyPressed(KEY_P))
     {
-        if(m_gameState == GameState::Started)
+        if (m_gameState == GameState::Started)
         {
             m_gameState = GameState::Menu;
         }
@@ -84,7 +84,7 @@ void Game::MakeTextureFrame() const
     const bool gameStarted = (m_gameState == GameState::Started);
     constexpr uint8_t boundingWidth = 105;
     constexpr uint8_t screenOffset = boundingWidth;
-    constexpr Color boundingColor = BLACK;
+    constexpr Color boundingColor = DARKGRAY;
 
     if (gameStarted)
     {
@@ -95,10 +95,10 @@ void Game::MakeTextureFrame() const
         mgr_enemy.Draw(screenOffset);
         mgr_tower.Draw(screenOffset);
         mgr_bullet.Draw(screenOffset);
-
-        DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
-        DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
     }
+    
+    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
+    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
     mgr_gui.Draw();
 
