@@ -55,6 +55,10 @@ void Game::Update()
     mgr_gui.Update(deltaTime);
     if (gameStarted)
     {
+        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
+        {
+            StopMusicStream(GameMusic::g_towerDefenseMenu);
+        }
         if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
         {
             PlayMusicStream(GameMusic::g_towerDefenseMain);
@@ -69,6 +73,10 @@ void Game::Update()
     }
     else
     {
+        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
+        {
+            PlayMusicStream(GameMusic::g_towerDefenseMenu);
+        }
         if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
         {
             StopMusicStream(GameMusic::g_towerDefenseMain);
@@ -96,7 +104,7 @@ void Game::MakeTextureFrame() const
         mgr_tower.Draw(screenOffset);
         mgr_bullet.Draw(screenOffset);
     }
-    
+
     DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
     DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
 
