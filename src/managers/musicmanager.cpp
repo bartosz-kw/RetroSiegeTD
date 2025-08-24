@@ -1,14 +1,14 @@
-#include "audiomanager.hpp"
+#include "musicmanager.hpp"
 #include "../namespaces/music.hpp"
 
-void AudioManager::Init()
+void MusicManager::Init()
 {
     GameMusic::InitAudio();
     GameMusic::LoadSounds();
     GameMusic::LoadMusic();
 }
 
-void AudioManager::Update()
+void MusicManager::Update()
 {
     GameMusic::UpdateMusic();
 }
