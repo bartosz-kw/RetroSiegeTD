@@ -6,13 +6,12 @@
 
 namespace Sprites
 {
-    // offset data
     inline constexpr int8_t g_tileTextureOffset = -1;
     inline constexpr uint8_t g_enemyTextureOffset = g_tileTextureOffset + 5;
     inline constexpr uint8_t g_towerTextureOffset = g_enemyTextureOffset + 2;
-    inline constexpr uint8_t g_buttetTextureOffset = g_towerTextureOffset + 9;
-    inline constexpr uint8_t g_guiTextureOffset = g_buttetTextureOffset + 7;
-    // texture array variables
+    inline constexpr uint8_t g_bulletTextureOffset = g_towerTextureOffset + 9;
+    inline constexpr uint8_t g_guiTextureOffset = g_bulletTextureOffset + 7;
+    
     inline constexpr size_t g_textureAmount = 25;
     inline std::array<Texture2D, g_textureAmount> g_textures = {};
 

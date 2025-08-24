@@ -12,7 +12,7 @@ int32_t BulletManager::g_nextBulletId = -1;
 
 uint16_t BulletManager::GetBulletTextureIndex(const uint16_t typeId) const
 {
-    return typeId + Sprites::g_buttetTextureOffset;
+    return typeId + Sprites::g_bulletTextureOffset;
 }
 void BulletManager::UpdatePosition(Bullet &bullet, const float deltaTime)
 {
