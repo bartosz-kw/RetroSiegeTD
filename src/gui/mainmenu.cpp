@@ -2,6 +2,8 @@
 #include "../core/game.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../namespaces/settings.hpp"
+#include "../namespaces/music.hpp"
+#include "../namespaces/sprites.hpp"
 #include "../managers/guimanager.hpp"
 #include <cassert>
 
@@ -26,7 +28,7 @@ void MainMenu::InitLabels()
 
 void MainMenu::InitButtons()
 {
-    constexpr size_t amountOfButtons = 2;
+    constexpr size_t amountOfButtons = 3;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region StartButton
@@ -43,14 +45,14 @@ void MainMenu::InitButtons()
     };
     startButton.p_updateFunction = [](float deltaTime, Button &button) {};
     startButton.p_buttonImage = {0, 0, 0, 0, 0};
-    startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 140.0f, 160.0f, 30.0f};
+    startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f / 2.0f - 160.0f / 2.0f, 140.0f, 160.0f, 30.0f};
     startButton.p_textPosition = {0, 0};
     startButton.p_imagePosition = {0, 0};
     startButton.p_color = GREEN;
     startButton.p_id = mgr_gui->GetAmountOfButtons();
     startButton.p_isHovered = false;
     startButton.p_visible = true;
-    startButton.p_elementType = GuiType::MenuGui; 
+    startButton.p_elementType = GuiType::MenuGui;
 #pragma endregion
 
 #pragma region ExitButton
@@ -67,7 +69,7 @@ void MainMenu::InitButtons()
     };
     exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
     exitButton.p_buttonImage = {0, 0, 0, 0, 0};
-    exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f/2.0f - 160.0f/2.0f, 180.0f, 160.0f, 30.0f};
+    exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f / 2.0f - 160.0f / 2.0f, 180.0f, 160.0f, 30.0f};
     exitButton.p_textPosition = {0, 0};
     exitButton.p_imagePosition = {0, 0};
     exitButton.p_color = RED;
@@ -77,6 +79,38 @@ void MainMenu::InitButtons()
     exitButton.p_elementType = GuiType::MenuGui;
 #pragma endregion
 
+#pragma region MusicButton
+    Button &musicButton = mgr_gui->AddButton(Button{});
+    musicButton.p_text = "";
+    musicButton.p_onPressed = [](float deltaTime, Button &button)
+    {
+        GameMusic::g_playMusic = !GameMusic::g_playMusic;
+    };
+    musicButton.p_updateFunction = [](float deltaTime, Button &button)
+    {
+        if (GameMusic::g_playMusic)
+        {
+            button.p_buttonImage = Sprites::g_textures[Sprites::g_guiTextureOffset + 2];
+        }
+        else
+        {
+            button.p_buttonImage = Sprites::g_textures[Sprites::g_guiTextureOffset + 1];
+        }
+    };
+    musicButton.p_buttonImage = {0, 0, 0, 0, 0};
+    musicButton.p_rect = {
+        static_cast<float>(Settings::g_boundingSize) + 270.0f - 32.0f,
+        270.0f - 32.0f,
+        32.0f,
+        32.0f};
+    musicButton.p_textPosition = {0, 0};
+    musicButton.p_imagePosition = {0, 0};
+    musicButton.p_color = WHITE;
+    musicButton.p_id = mgr_gui->GetAmountOfButtons();
+    musicButton.p_isHovered = false;
+    musicButton.p_visible = true;
+    musicButton.p_elementType = GuiType::MenuGui;
+#pragma endregion
 }
 
 void MainMenu::InjectDependencies(GuiManager *guiManager, Game *game)
