@@ -3,8 +3,10 @@
 
 namespace GameMusic
 {
+    inline bool g_playMusic = true;
 
     inline Music g_towerDefenseMain = {};
+    inline Music g_towerDefenseMenu = {};
 
     inline void InitAudio()
     {
@@ -13,8 +15,7 @@ namespace GameMusic
 
     inline void UpdateMusic()
     {
-        constexpr bool disableMusic = true;
-        if (disableMusic)
+        if (g_playMusic)
         {
             return;
         }
@@ -22,6 +23,10 @@ namespace GameMusic
         if (IsMusicStreamPlaying(g_towerDefenseMain))
         {
             UpdateMusicStream(g_towerDefenseMain);
+        }
+        if (IsMusicStreamPlaying(g_towerDefenseMenu))
+        {
+            UpdateMusicStream(g_towerDefenseMenu);
         }
     }
 
@@ -31,6 +36,7 @@ namespace GameMusic
     inline void LoadMusic()
     {
         g_towerDefenseMain = LoadMusicStream("src/resources/audio/happy2.ogg");
+        g_towerDefenseMenu = LoadMusicStream("src/resources/audio/calm1.ogg");
     }
 
     inline void UnloadMusic()
