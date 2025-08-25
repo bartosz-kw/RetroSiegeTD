@@ -71,17 +71,6 @@ void Game::Update()
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
     }
-    else
-    {
-        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
-        {
-            PlayMusicStream(GameMusic::g_towerDefenseMenu);
-        }
-        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
-        {
-            StopMusicStream(GameMusic::g_towerDefenseMain);
-        }
-    }
 
     GameMusic::UpdateMusic();
 }
@@ -190,14 +179,14 @@ void Game::InitMembers()
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
-    // ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
     m_gameState = GameState::Menu;
-    // StartGame();
+
+    PlayMusicStream(GameMusic::g_towerDefenseMenu);
 }
 void Game::Shutdown()
 {
