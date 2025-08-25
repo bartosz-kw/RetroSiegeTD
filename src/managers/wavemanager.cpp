@@ -58,7 +58,7 @@ void WaveManager::RemoveActiveWave(const uint32_t id)
     m_activeWaves.erase(std::remove_if(m_activeWaves.begin(), m_activeWaves.end(), eraseLambda), m_activeWaves.end());
 }
 void WaveManager::UpdateUnactiveWaves()
-{
+{    
     if (!m_activeWaves.empty())
     {
         return;
