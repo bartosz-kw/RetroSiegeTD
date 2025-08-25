@@ -35,8 +35,10 @@ namespace GameMusic
     }
     inline void LoadMusic()
     {
-        g_towerDefenseMain = LoadMusicStream("src/resources/audio/happy2.ogg");
-        g_towerDefenseMenu = LoadMusicStream("src/resources/audio/calm1.ogg");
+        g_towerDefenseMain = LoadMusicStream("src/resources/audio/calm1.ogg");
+        SetMusicVolume(g_towerDefenseMain,0.15f);
+        g_towerDefenseMenu = LoadMusicStream("src/resources/audio/calm2.ogg");
+        SetMusicVolume(g_towerDefenseMenu,0.15f);
     }
 
     inline void UnloadMusic()
