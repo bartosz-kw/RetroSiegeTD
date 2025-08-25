@@ -50,7 +50,14 @@ void MainMenu::InitButtons()
         m_pauseMode = true;
         mgr_game->StartGame();
     };
-    startButton.p_updateFunction = [](float deltaTime, Button &button) {};
+    startButton.p_updateFunction = [this](float deltaTime, Button &button) 
+    {
+        if (m_pauseMode)
+        {
+            button.p_text = "Continue";
+        }
+        
+    };
     startButton.p_buttonImage = {0, 0, 0, 0, 0};
     startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f / 2.0f - 160.0f / 2.0f, 140.0f, 160.0f, 30.0f};
     startButton.p_textPosition = {0, 0};

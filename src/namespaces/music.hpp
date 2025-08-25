@@ -19,7 +19,7 @@ namespace GameMusic
         {
             return;
         }
-        
+
         if (IsMusicStreamPlaying(g_towerDefenseMain))
         {
             UpdateMusicStream(g_towerDefenseMain);
@@ -36,17 +36,36 @@ namespace GameMusic
     inline void LoadMusic()
     {
         g_towerDefenseMain = LoadMusicStream("src/resources/audio/calm1.ogg");
-        SetMusicVolume(g_towerDefenseMain,0.15f);
+        SetMusicVolume(g_towerDefenseMain, 0.15f);
         g_towerDefenseMenu = LoadMusicStream("src/resources/audio/calm2.ogg");
-        SetMusicVolume(g_towerDefenseMenu,0.15f);
+        SetMusicVolume(g_towerDefenseMenu, 0.15f);
     }
 
     inline void UnloadMusic()
     {
-        UnloadMusicStream(g_towerDefenseMain);
+        if (g_towerDefenseMain.ctxData)
+        {
+            if (IsMusicStreamPlaying(g_towerDefenseMain))
+                StopMusicStream(g_towerDefenseMain);
+            UnloadMusicStream(g_towerDefenseMain);
+            g_towerDefenseMain = {};
+        }
+
+        if (g_towerDefenseMenu.ctxData)
+        {
+            if (IsMusicStreamPlaying(g_towerDefenseMenu))
+                StopMusicStream(g_towerDefenseMenu);
+            UnloadMusicStream(g_towerDefenseMenu);
+            g_towerDefenseMenu = {};
+        }
     }
 
     inline void UnloadSounds()
     {
+    }
+
+    inline void UnloadAudio()
+    {
+        CloseAudioDevice();
     }
 }

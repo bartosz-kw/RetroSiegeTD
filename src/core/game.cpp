@@ -55,14 +55,6 @@ void Game::Update()
     mgr_gui.Update(deltaTime);
     if (gameStarted)
     {
-        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
-        {
-            StopMusicStream(GameMusic::g_towerDefenseMenu);
-        }
-        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
-        {
-            PlayMusicStream(GameMusic::g_towerDefenseMain);
-        }
 
         mgr_enemy.Update(deltaTime);
         mgr_tile.Update();
@@ -71,20 +63,9 @@ void Game::Update()
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
     }
-    else if(!gui_mainMenu.IsInPauseMode())
-    {
-        
-        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
-        {
-            StopMusicStream(GameMusic::g_towerDefenseMain);
-        }
-        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
-        {
-            PlayMusicStream(GameMusic::g_towerDefenseMenu);
-        }
-    }
 
-    GameMusic::UpdateMusic();
+    mgr_music.SyncGameState(m_gameState);
+    mgr_music.Update();
 }
 void Game::MakeTextureFrame() const
 {
@@ -153,6 +134,9 @@ void Game::InitManagers()
 
     mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave);
     mgr_player.Init();
+
+    mgr_music.InjectDependencies(&gui_mainMenu);
+    mgr_music.Init();
 }
 void Game::InitGui()
 {
@@ -171,11 +155,11 @@ void Game::InitSprites()
 {
     Sprites::LoadTextures();
 }
-void Game::InitMusic()
+void Game::InitAudio()
 {
     GameMusic::InitAudio();
-    GameMusic::LoadMusic();
     GameMusic::LoadSounds();
+    GameMusic::LoadMusic();
 }
 void Game::InitDatas()
 {
@@ -185,7 +169,6 @@ void Game::InitDatas()
 }
 void Game::InitMembers()
 {
-    // m_mainFont = LoadFont(R"(src\resources\fonts\VT323-Regular.ttf)");
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
 }
 void Game::InitGame()
@@ -194,17 +177,22 @@ void Game::InitGame()
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = GetFontDefault();
-    SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
-    SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
     m_gameState = GameState::Menu;
-
-    PlayMusicStream(GameMusic::g_towerDefenseMenu);
 }
 void Game::Shutdown()
 {
+    if (m_shutingDown)
+    {
+        return;
+    }
+    
+    m_shutingDown = true;
+
     Sprites::UnloadTextures();
     GameMusic::UnloadSounds();
     GameMusic::UnloadMusic();
+    GameMusic::UnloadAudio();
+
     UnloadRenderTexture(m_frame);
     CloseWindow();
 }
@@ -222,28 +210,27 @@ void Game::Init()
 {
     InitGame();
     InitSprites();
-    InitMusic();
     InitDatas();
     InitMembers();
     InitManagers();
+    InitAudio();
     InitGui();
 }
 void Game::Run()
 {
     while (!WindowShouldClose())
     {
-        if (m_gameState == GameState::Ended)
-        {
-            Shutdown();
-            break;
-        }
-
         if (IsWindowMinimized())
         {
             continue;
         }
         Update();
         Draw();
+
+        if (m_gameState == GameState::Ended)
+        {
+            Shutdown();
+        }
     }
     Shutdown();
 }

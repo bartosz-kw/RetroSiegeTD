@@ -9,6 +9,7 @@
 #include "../managers/guimanager.hpp"
 #include "../managers/psmanager.hpp"
 #include "../managers/playermanager.hpp"
+#include "../managers/musicmanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
@@ -19,10 +20,11 @@
 class Game
 {
 private:
-    // variables
+
+    bool m_shutingDown = false;
     RenderTexture2D m_frame = {};
     GameState m_gameState = GameState::Menu;
-    // managers
+
     TileManager mgr_tile = {};
     EnemyManager mgr_enemy = {};
     TowerManager mgr_tower = {};
@@ -31,14 +33,15 @@ private:
     GuiManager mgr_gui = {};
     PSManager mgr_ps = {};
     PlayerManager mgr_player = {};
-    // gui
+    MusicManager mgr_music = {};
+
     MainMenu gui_mainMenu = {};
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};
     TowerPlace gui_towerPlace = {};
     PlayerStats gui_playerStats = {};
 
-private: // functions
+private: 
 
     void HandleInput();
     void UpdateDebug();
@@ -48,13 +51,13 @@ private: // functions
     void InitManagers();
     void InitGui();
     void InitSprites();
-    void InitMusic();
+    void InitAudio();
     void InitDatas();
     void InitMembers();
     void InitGame();
 
     void Shutdown();
-public: // variables
+public: 
     const int p_gameHeight = 270;
     const int p_gameWidth = 480;
     const int p_scaledHeight = 1080;
@@ -62,7 +65,7 @@ public: // variables
     const int p_screenHeight = 1080;
     const int p_screenWidth = 1920;
 
-public: // functions
+public: 
     Game() = default;
     ~Game() = default;
 
