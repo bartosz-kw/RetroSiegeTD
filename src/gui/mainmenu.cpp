@@ -15,7 +15,13 @@ void MainMenu::InitLabels()
 #pragma region TitleLabel
     TextLabel &titleLabel = mgr_gui->AddLabel(TextLabel{});
     titleLabel.p_text = "Untitled Tower Defense";
-    titleLabel.p_updateFunction = [](float deltaTime, TextLabel &label) {};
+    titleLabel.p_updateFunction = [this](float deltaTime, TextLabel &label) 
+    {
+        if (m_pauseMode)
+        {
+            label.p_text = "Game Paused!";
+        }
+    };
     titleLabel.p_rect = {static_cast<float>(Settings::g_boundingSize), 10.0f, 270.0f, 50.0f};
     titleLabel.p_textPosition = {0, 0};
     titleLabel.p_color = BLUE;
@@ -24,6 +30,7 @@ void MainMenu::InitLabels()
     titleLabel.p_elementType = GuiType::MenuGui;
 
 #pragma endregion
+
 }
 
 void MainMenu::InitButtons()
@@ -40,7 +47,7 @@ void MainMenu::InitButtons()
         {
             return;
         }
-
+        m_pauseMode = true;
         mgr_game->StartGame();
     };
     startButton.p_updateFunction = [](float deltaTime, Button &button) {};
@@ -111,6 +118,11 @@ void MainMenu::InitButtons()
     musicButton.p_visible = true;
     musicButton.p_elementType = GuiType::MenuGui;
 #pragma endregion
+}
+
+bool MainMenu::IsInPauseMode()
+{
+    return m_pauseMode;
 }
 
 void MainMenu::InjectDependencies(GuiManager *guiManager, Game *game)

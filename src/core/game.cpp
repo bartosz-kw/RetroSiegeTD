@@ -71,6 +71,18 @@ void Game::Update()
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
     }
+    else if(!gui_mainMenu.IsInPauseMode())
+    {
+        
+        if (IsMusicStreamPlaying(GameMusic::g_towerDefenseMain))
+        {
+            StopMusicStream(GameMusic::g_towerDefenseMain);
+        }
+        if (!IsMusicStreamPlaying(GameMusic::g_towerDefenseMenu))
+        {
+            PlayMusicStream(GameMusic::g_towerDefenseMenu);
+        }
+    }
 
     GameMusic::UpdateMusic();
 }
