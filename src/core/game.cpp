@@ -196,7 +196,6 @@ void Game::InitGame()
     Settings::g_gameFont = GetFontDefault();
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     SetTextureFilter(Sprites::g_textures[19], TEXTURE_FILTER_POINT);
-printf("raylib version: %d.%d\n", RAYLIB_VERSION_MAJOR, RAYLIB_VERSION_MINOR);
     m_gameState = GameState::Menu;
     // StartGame();
 }
