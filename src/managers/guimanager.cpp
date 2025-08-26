@@ -32,15 +32,15 @@ void GuiManager::UpdateTextPosition(Button &button)
 }
 void GuiManager::UpdateImagePosition(Button &button)
 {
-    if (button.p_buttonImage.id == 0)
+    if (button.p_image.id == 0)
     {
         return;
     }
 
     button.p_imagePosition =
         {
-            button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f,
-            button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f};
+            button.p_rect.x + button.p_rect.width / 2.0f - button.p_image.width / 2.0f,
+            button.p_rect.y + button.p_rect.height / 2.0f - button.p_image.height / 2.0f};
 }
 void GuiManager::UpdateImagePosition(Label &label)
 {
@@ -164,9 +164,9 @@ void GuiManager::DrawButton(const Button &button) const
         DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
                    drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
     }
-    if (button.p_buttonImage.id != 0)
+    if (button.p_image.id != 0)
     {
-        DrawTextureV(button.p_buttonImage, drawImagePos, WHITE);
+        DrawTextureV(button.p_image, drawImagePos, WHITE);
     }
 }
 void GuiManager::DrawLabel(const Label &label) const

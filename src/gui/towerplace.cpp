@@ -46,7 +46,7 @@ void TowerPlace::InitButtons()
     ninjaButton.p_id = mgr_gui->GetAmountOfButtons();
     ninjaButton.p_isHovered = false;
     ninjaButton.p_visible = true;
-    ninjaButton.p_buttonImage = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::NinjaLv1];
+    ninjaButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::NinjaLv1];
     ninjaButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::NinjaLv1);
@@ -72,7 +72,7 @@ void TowerPlace::InitButtons()
     knightButton.p_id = mgr_gui->GetAmountOfButtons();
     knightButton.p_isHovered = false;
     knightButton.p_visible = true;
-    knightButton.p_buttonImage = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::KnightLv1];
+    knightButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::KnightLv1];
     knightButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::KnightLv1);

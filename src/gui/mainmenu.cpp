@@ -53,7 +53,7 @@ void MainMenu::InitButtons()
         }
         
     };
-    startButton.p_buttonImage = {0, 0, 0, 0, 0};
+    startButton.p_image = {0, 0, 0, 0, 0};
     startButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f / 2.0f - 160.0f / 2.0f, 140.0f, 160.0f, 30.0f};
     startButton.p_textPosition = {0, 0};
     startButton.p_imagePosition = {0, 0};
@@ -77,7 +77,7 @@ void MainMenu::InitButtons()
         mgr_game->CloseGame();
     };
     exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
-    exitButton.p_buttonImage = {0, 0, 0, 0, 0};
+    exitButton.p_image = {0, 0, 0, 0, 0};
     exitButton.p_rect = {static_cast<float>(Settings::g_boundingSize) + 270.0f / 2.0f - 160.0f / 2.0f, 180.0f, 160.0f, 30.0f};
     exitButton.p_textPosition = {0, 0};
     exitButton.p_imagePosition = {0, 0};
@@ -99,14 +99,14 @@ void MainMenu::InitButtons()
     {
         if (GameMusic::g_playMusic)
         {
-            button.p_buttonImage = Sprites::g_textures[Sprites::g_guiTextureOffset + 2];
+            button.p_image = Sprites::g_textures[Sprites::g_guiTextureOffset + 2];
         }
         else
         {
-            button.p_buttonImage = Sprites::g_textures[Sprites::g_guiTextureOffset + 1];
+            button.p_image = Sprites::g_textures[Sprites::g_guiTextureOffset + 1];
         }
     };
-    musicButton.p_buttonImage = {0, 0, 0, 0, 0};
+    musicButton.p_image = {0, 0, 0, 0, 0};
     musicButton.p_rect = {
         static_cast<float>(Settings::g_boundingSize) + 270.0f - 32.0f,
         270.0f - 32.0f,

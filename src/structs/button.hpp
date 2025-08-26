@@ -12,7 +12,7 @@ struct Button
     std::function<void(float deltaTime,Button& button)> p_onPressed = [](float deltaTime,Button& button){};
     std::function<void(float deltaTime,Button& button)> p_updateFunction = [](float deltaTime,Button& button){};
 
-    Texture p_buttonImage = { 0, 0, 0, 0, 0 };
+    Texture p_image = { 0, 0, 0, 0, 0 };
 
     Rectangle p_rect = {0, 0, 100, 30};
     GuiType p_elementType = GuiType::GameGui;
