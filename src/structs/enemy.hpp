@@ -5,7 +5,10 @@
 enum EnemyType
 {
     BlueSlime = 1,
-    RedSlime = 2
+    RedSlime = 2,
+    Zombie = 3,
+    ArmoredZombie = 4,
+    Skeleton = 5
 };
 struct Enemy
 {

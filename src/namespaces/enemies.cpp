@@ -11,15 +11,13 @@ namespace Enemies
         g_enemyData.clear();
 
 #pragma region BlueSlime
-
-        // Blue Slime
         Enemy blueSlime = {};
         blueSlime.p_hitCooldowns = {};
         blueSlime.p_sourceRect = {0, 0, 15, 15};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 10;
         blueSlime.p_position = {-1.0f, -1.0f};
-        blueSlime.p_id = 1;
+        blueSlime.p_id = 0;
         blueSlime.p_speed = 1.5f;
         blueSlime.p_timeToNextFrame = 1.0f;
         blueSlime.p_timePassed = 0.0f;
@@ -38,15 +36,13 @@ namespace Enemies
 #pragma endregion
 
 #pragma region RedSlime
-
-        // Red Slime
         Enemy redSlime = {};
         redSlime.p_hitCooldowns = {};
         redSlime.p_sourceRect = {0, 0, 15, 15};
         redSlime.p_moneyDrop = 15;
         redSlime.p_health = 50;
         redSlime.p_position = {-1.0f, -1.0f};
-        redSlime.p_id = 2;
+        redSlime.p_id = 0;
         redSlime.p_speed = 2.0f;
         redSlime.p_timeToNextFrame = 1.0f;
         redSlime.p_timePassed = 0.0f;
@@ -62,6 +58,81 @@ namespace Enemies
         redSlime.p_dirty = true;
 
         g_enemyData[EnemyType::RedSlime] = redSlime;
+#pragma endregion
+
+#pragma region Zombie
+        Enemy zombie = {};
+        zombie.p_hitCooldowns = {};
+        zombie.p_sourceRect = {0, 0, 15, 15};
+        zombie.p_moneyDrop = 25;
+        zombie.p_health = 75;
+        zombie.p_position = {-1.0f, -1.0f};
+        zombie.p_id = 0;
+        zombie.p_speed = 1.0f;
+        zombie.p_timeToNextFrame = 1.0f;
+        zombie.p_timePassed = 0.0f;
+        zombie.p_timeToMove = 0.0f;
+        zombie.p_hitEffectTime = 0.0f;
+        zombie.p_typeId = EnemyType::Zombie;
+        zombie.p_walked = 0;
+        zombie.p_tileId = -1;
+        zombie.p_frameOffset = 0;
+        zombie.p_frameAmount = 0;
+        zombie.p_alive = true;
+        zombie.p_survived = false;
+        zombie.p_dirty = true;
+
+        g_enemyData[EnemyType::Zombie] = zombie;
+#pragma endregion
+
+#pragma region ArmoredZombie
+        Enemy armoredZombie = {};
+        armoredZombie.p_hitCooldowns = {};
+        armoredZombie.p_sourceRect = {0, 0, 15, 15};
+        armoredZombie.p_moneyDrop = 35;
+        armoredZombie.p_health = 150;
+        armoredZombie.p_position = {-1.0f, -1.0f};
+        armoredZombie.p_id = 0;
+        armoredZombie.p_speed = 1.0f;
+        armoredZombie.p_timeToNextFrame = 1.0f;
+        armoredZombie.p_timePassed = 0.0f;
+        armoredZombie.p_timeToMove = 0.0f;
+        armoredZombie.p_hitEffectTime = 0.0f;
+        armoredZombie.p_typeId = EnemyType::ArmoredZombie;
+        armoredZombie.p_walked = 0;
+        armoredZombie.p_tileId = -1;
+        armoredZombie.p_frameOffset = 0;
+        armoredZombie.p_frameAmount = 0;
+        armoredZombie.p_alive = true;
+        armoredZombie.p_survived = false;
+        armoredZombie.p_dirty = true;
+
+        g_enemyData[EnemyType::ArmoredZombie] = armoredZombie;
+#pragma endregion
+
+#pragma region Skeleton
+        Enemy skeleton = {};
+        skeleton.p_hitCooldowns = {};
+        skeleton.p_sourceRect = {0, 0, 15, 15};
+        skeleton.p_moneyDrop = 25;
+        skeleton.p_health = 50;
+        skeleton.p_position = {-1.0f, -1.0f};
+        skeleton.p_id = 0;
+        skeleton.p_speed = 0.5f;
+        skeleton.p_timeToNextFrame = 1.0f;
+        skeleton.p_timePassed = 0.0f;
+        skeleton.p_timeToMove = 0.0f;
+        skeleton.p_hitEffectTime = 0.0f;
+        skeleton.p_typeId = EnemyType::Skeleton;
+        skeleton.p_walked = 0;
+        skeleton.p_tileId = -1;
+        skeleton.p_frameOffset = 0;
+        skeleton.p_frameAmount = 0;
+        skeleton.p_alive = true;
+        skeleton.p_survived = false;
+        skeleton.p_dirty = true;
+
+        g_enemyData[EnemyType::Skeleton] = skeleton;
 #pragma endregion
     }
 
