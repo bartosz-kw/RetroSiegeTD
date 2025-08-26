@@ -58,7 +58,7 @@ void WaveManager::RemoveActiveWave(const uint32_t id)
     m_activeWaves.erase(std::remove_if(m_activeWaves.begin(), m_activeWaves.end(), eraseLambda), m_activeWaves.end());
 }
 void WaveManager::UpdateUnactiveWaves()
-{    
+{
     if (!m_activeWaves.empty())
     {
         return;
@@ -117,6 +117,16 @@ void WaveManager::LoadWaves()
         return totalTime;
     };
 
+    std::vector<std::pair<float, int>> enemySpawns3 = {};
+    enemySpawns3.push_back({1.0f, EnemyType::Zombie});
+    enemySpawns3.push_back({1.0f, EnemyType::ArmoredZombie});
+    enemySpawns3.push_back({1.0f, EnemyType::Skeleton});
+    EnemyWave wave3 = {};
+    wave3.p_id = 3;
+    wave3.p_moneyReward = 150;
+    wave3.p_enemySpawns = enemySpawns3;
+    wave3.p_totalWaveTime = getTotalWaveTime(wave3);
+
     std::vector<std::pair<float, int>> enemySpawns2 = {};
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
@@ -141,6 +151,7 @@ void WaveManager::LoadWaves()
     wave1.p_totalWaveTime = getTotalWaveTime(wave1);
     m_unactiveWaves.push_back(wave1);
     m_unactiveWaves.push_back(wave2);
+    m_unactiveWaves.push_back(wave3);
 }
 
 // Public
