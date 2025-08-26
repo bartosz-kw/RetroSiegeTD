@@ -208,7 +208,7 @@ void GuiManager::DrawLabel(const Label &label) const
         DrawTextureV(label.p_image, drawImagePos, WHITE);
     }
 
-    if (label.p_text.empty())
+    if (!label.p_text.empty())
     {
         DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
                    drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
