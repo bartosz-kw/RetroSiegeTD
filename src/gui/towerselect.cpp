@@ -22,7 +22,7 @@ void TowerSelect::InitLabels()
     TextLabel &nameLabel = mgr_gui->AddLabel(TextLabel{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
-    nameLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
+    nameLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7, 95, 20};
     nameLabel.p_color = BLUE;
     nameLabel.p_visible = false;
     nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
@@ -37,11 +37,31 @@ void TowerSelect::InitLabels()
         label.p_visible = true;
     };
     #pragma endregion
+    #pragma region IdLabel
+    TextLabel &IdLabel = mgr_gui->AddLabel(TextLabel{});
+    IdLabel.p_text = "";
+    IdLabel.p_id = mgr_gui->GetAmountOfLabels();
+    IdLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
+    IdLabel.p_color = BLUE;
+    IdLabel.p_visible = false;
+    IdLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    {
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            label.p_visible = false;
+            return;
+        }
+        
+        label.p_text = "Id: " + std::to_string(tower->p_id);
+        label.p_visible = true;
+    };
+    #pragma endregion
     #pragma region LevelLabel
     TextLabel &levelLabel = mgr_gui->AddLabel(TextLabel{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
-    levelLabel.p_rect = {5 + 48, (startingPoint - offset * 4) + gap * 5, 47, 20};
+    levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     levelLabel.p_color = BLUE;
     levelLabel.p_visible = false;
     levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
@@ -61,26 +81,6 @@ void TowerSelect::InitLabels()
         }
         
         label.p_text = "Lv: " + std::to_string(tower->p_level);
-        label.p_visible = true;
-    };
-    #pragma endregion
-    #pragma region IdLabel
-    TextLabel &IdLabel = mgr_gui->AddLabel(TextLabel{});
-    IdLabel.p_text = "";
-    IdLabel.p_id = mgr_gui->GetAmountOfLabels();
-    IdLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 47, 20};
-    IdLabel.p_color = BLUE;
-    IdLabel.p_visible = false;
-    IdLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
-    {
-        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
-        if (!tower)
-        {
-            label.p_visible = false;
-            return;
-        }
-        
-        label.p_text = "Id: " + std::to_string(tower->p_id);
         label.p_visible = true;
     };
     #pragma endregion
