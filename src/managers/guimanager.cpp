@@ -125,9 +125,6 @@ void GuiManager::DrawButton(const Button &button) const
                 static_cast<unsigned char>(button.p_color.a)};
     }
 
-    constexpr float segments = 4.0f;
-    constexpr float roundness = 5.0f;
-
     Rectangle drawRect = button.p_rect;
     drawRect.x = floorf(drawRect.x);
     drawRect.y = floorf(drawRect.y);
@@ -142,7 +139,15 @@ void GuiManager::DrawButton(const Button &button) const
     drawImagePos.x = floorf(drawImagePos.x);
     drawImagePos.y = floorf(drawImagePos.y);
 
-    DrawRectangleRounded(drawRect, roundness, segments, buttonColor);
+    if (button.p_roundness != 0 && button.p_segments != 0)
+    {
+        DrawRectangleRounded(drawRect, button.p_roundness, button.p_segments, buttonColor);
+    }
+    else
+    {
+        DrawRectangleRec(drawRect,buttonColor);
+    }
+
     if (!button.p_text.empty())
     {
         DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
@@ -164,9 +169,6 @@ void GuiManager::DrawLabel(const TextLabel &label) const
         return;
     }
 
-    constexpr float segments = 4.0f;
-    constexpr float roundness = 5.0f;
-
     Rectangle drawRect = label.p_rect;
     drawRect.x = floorf(drawRect.x);
     drawRect.y = floorf(drawRect.y);
@@ -177,7 +179,15 @@ void GuiManager::DrawLabel(const TextLabel &label) const
     drawTextPos.x = floorf(drawTextPos.x);
     drawTextPos.y = floorf(drawTextPos.y);
 
-    DrawRectangleRounded(drawRect, roundness, segments, label.p_color);
+    if (label.p_segments != 0.0f && label.p_roundness != 0.0f)
+    {
+        DrawRectangleRounded(drawRect, label.p_roundness, label.p_segments, label.p_color);
+    }
+    else
+    {
+        DrawRectangleRec(drawRect, label.p_color);
+    }
+
     DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
                drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
 }

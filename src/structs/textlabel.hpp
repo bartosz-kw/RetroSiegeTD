@@ -12,11 +12,13 @@ struct TextLabel
     std::function<void(float deltaTime,TextLabel& label)> p_updateFunction = [](float deltaTime,TextLabel& label){};
 
     Rectangle p_rect = {0, 0};
+    GuiType p_elementType = GuiType::GameGui;
     Vector2 p_textPosition = {0,0};
+    float p_segments = 4.0f;
+    float p_roundness = 5.0f;
     Color p_color = WHITE;
 
     uint16_t p_id = 0;
     bool p_visible = true;
-    GuiType p_elementType = GuiType::GameGui;
     
 };
