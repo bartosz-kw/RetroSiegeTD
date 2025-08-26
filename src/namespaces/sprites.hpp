@@ -12,7 +12,7 @@ namespace Sprites
     inline constexpr uint8_t g_bulletTextureOffset = g_towerTextureOffset + 9;
     inline constexpr uint8_t g_guiTextureOffset = g_bulletTextureOffset + 7;
     
-    inline constexpr size_t g_textureAmount = 28;
+    inline constexpr size_t g_textureAmount = 29;
     inline std::array<Texture2D, g_textureAmount> g_textures = {};
 
     inline void LoadTextures()
@@ -45,6 +45,7 @@ namespace Sprites
         g_textures[25] = LoadTexture("src/resources/sprites/BiggestSlashBullet.png");
         g_textures[26] = LoadTexture("src/resources/sprites/MusicOn.png");
         g_textures[27] = LoadTexture("src/resources/sprites/MusicOff.png");
+        g_textures[28] = LoadTexture("src/resources/sprites/RetroSiegeTD.png");
 
         for (size_t i = 0; i < g_textures.size(); i++)
         {
