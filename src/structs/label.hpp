@@ -5,11 +5,11 @@
 #include <raylib.h>
 #include <functional>
 
-struct TextLabel
+struct Label
 {
     std::string p_text = "";
 
-    std::function<void(float deltaTime,TextLabel& label)> p_updateFunction = [](float deltaTime,TextLabel& label){};
+    std::function<void(float deltaTime,Label& label)> p_updateFunction = [](float deltaTime,Label& label){};
 
     Rectangle p_rect = {0, 0};
     GuiType p_elementType = GuiType::GameGui;

@@ -1,4 +1,4 @@
-#include "../structs/textlabel.hpp"
+#include "../structs/label.hpp"
 
 class PSManager;
 class GuiManager;

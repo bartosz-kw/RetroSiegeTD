@@ -2,7 +2,7 @@
 #include <vector>
 #include <functional>
 #include "../enums/gamestate.hpp"
-#include "../structs/textlabel.hpp"
+#include "../structs/label.hpp"
 #include "../structs/button.hpp"
 
 class GuiManager
@@ -10,21 +10,21 @@ class GuiManager
 private:
 
     GameState m_gameState = GameState::Menu;
-    std::vector<TextLabel> m_labels;
+    std::vector<Label> m_labels;
     std::vector<Button> m_buttons;
 
 private:
 
-    void UpdateTextPosition(TextLabel &label);
+    void UpdateTextPosition(Label &label);
     void UpdateTextPosition(Button &button);
     void UpdateImagePosition(Button &button);
     void UpdatePress(const float deltaTime,Button &button);
-    void UpdateLabel(const float deltaTime,TextLabel &label);
+    void UpdateLabel(const float deltaTime,Label &label);
     void UpdateButton(const float deltaTime,Button &button);
     void DrawButton(const Button &button) const;
-    void DrawLabel(const TextLabel &label) const;
+    void DrawLabel(const Label &label) const;
     const bool IsElementUsed(const Button &button) const;
-    const bool IsElementUsed(const TextLabel &label) const;
+    const bool IsElementUsed(const Label &label) const;
 
 public:
     
@@ -33,7 +33,7 @@ public:
     void ReserveButton(const size_t count);
     void ReserveLabel(const size_t count);
     Button& AddButton(const Button &button);
-    TextLabel& AddLabel(const TextLabel &label);
+    Label& AddLabel(const Label &label);
     void RemoveButton(const int id);
     void RemoveLabel(const int id);
     void SyncGameState(const GameState gameState);

@@ -12,12 +12,12 @@ void PlayerStats::InitLabels()
     mgr_gui->ReserveLabel(amountOfLabels);
 
 #pragma region HealthLabel
-    TextLabel &healthLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &healthLabel = mgr_gui->AddLabel(Label{});
     healthLabel.p_text = "Health:";
     healthLabel.p_id = mgr_gui->GetAmountOfLabels();
     healthLabel.p_rect = {5, 28, 95, 20};
     healthLabel.p_color = RED;
-    healthLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    healthLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const std::string text = "Hp: " + std::to_string(mgr_ps->GetHealth()) + "/" + std::to_string(mgr_ps->GetMaxHealth());
         label.p_text = text;
@@ -25,12 +25,12 @@ void PlayerStats::InitLabels()
 #pragma endregion
 
 #pragma region MoneyLabel
-    TextLabel &moneyLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &moneyLabel = mgr_gui->AddLabel(Label{});
     moneyLabel.p_text = "Wave:";
     moneyLabel.p_id = mgr_gui->GetAmountOfLabels();
     moneyLabel.p_rect = {5, 53, 95, 20};
     moneyLabel.p_color = YELLOW;
-    moneyLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    moneyLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;

@@ -13,7 +13,7 @@ void TowerPlace::InitLabels()
     mgr_gui->ReserveLabel(amountOfLabels);
 
 #pragma region HeaderLabel
-    TextLabel &headerLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &headerLabel = mgr_gui->AddLabel(Label{});
     headerLabel.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f), 3.0f, static_cast<float>(Settings::g_boundingSize - 10), 20.0f};
     headerLabel.p_id = mgr_gui->GetAmountOfLabels();
     headerLabel.p_text = "Towers: ";

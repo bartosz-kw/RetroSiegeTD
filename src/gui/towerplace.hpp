@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "../structs/button.hpp"
-#include "../structs/textlabel.hpp"
+#include "../structs/label.hpp"
 #include "../structs/tower.hpp"
 
 class TowerManager;

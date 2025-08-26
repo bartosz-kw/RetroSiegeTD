@@ -13,9 +13,9 @@ void MainMenu::InitLabels()
     mgr_gui->ReserveLabel(amountOfLabels);
 
 #pragma region TitleLabel
-    TextLabel &titleLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &titleLabel = mgr_gui->AddLabel(Label{});
     titleLabel.p_text = "Untitled Tower Defense";
-    titleLabel.p_updateFunction = [this](float deltaTime, TextLabel &label) 
+    titleLabel.p_updateFunction = [this](float deltaTime, Label &label) 
     {
         if (m_pauseMode)
         {

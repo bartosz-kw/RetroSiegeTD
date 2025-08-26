@@ -19,7 +19,7 @@ void TowerSelect::InitLabels()
     mgr_gui->ReserveLabel(amountOfLabels);
 
     #pragma region BoundingLabel
-    TextLabel &boundingLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &boundingLabel = mgr_gui->AddLabel(Label{});
     boundingLabel.p_text = "";
     boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
     boundingLabel.p_rect = {0, (startingPoint - offset * 6) + gap * 7 - 10, 105, 190};
@@ -27,7 +27,7 @@ void TowerSelect::InitLabels()
     boundingLabel.p_visible = false;
     boundingLabel.p_roundness = 0.5f;
     boundingLabel.p_segments = 3.0f;
-    boundingLabel.p_updateFunction = [this](float deltaTime, TextLabel &label) 
+    boundingLabel.p_updateFunction = [this](float deltaTime, Label &label) 
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -39,13 +39,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region NameLabel
-    TextLabel &nameLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &nameLabel = mgr_gui->AddLabel(Label{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
     nameLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7, 95, 20};
     nameLabel.p_color = BLUE;
     nameLabel.p_visible = false;
-    nameLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    nameLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -58,13 +58,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region IdLabel
-    TextLabel &IdLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &IdLabel = mgr_gui->AddLabel(Label{});
     IdLabel.p_text = "";
     IdLabel.p_id = mgr_gui->GetAmountOfLabels();
     IdLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
     IdLabel.p_color = BLUE;
     IdLabel.p_visible = false;
-    IdLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    IdLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -78,13 +78,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region LevelLabel
-    TextLabel &levelLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &levelLabel = mgr_gui->AddLabel(Label{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
     levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     levelLabel.p_color = BLUE;
     levelLabel.p_visible = false;
-    levelLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    levelLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -105,13 +105,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region DamageLabel
-    TextLabel &damageLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &damageLabel = mgr_gui->AddLabel(Label{});
     damageLabel.p_text = "";
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
     damageLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, 20};
     damageLabel.p_color = BLUE;
     damageLabel.p_visible = false;
-    damageLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    damageLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -131,13 +131,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region AttackSpeedLabel
-    TextLabel &attackSpeedLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &attackSpeedLabel = mgr_gui->AddLabel(Label{});
     attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
     attackSpeedLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, 20};
     attackSpeedLabel.p_color = BLUE;
     attackSpeedLabel.p_visible = false;
-    attackSpeedLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    attackSpeedLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -157,13 +157,13 @@ void TowerSelect::InitLabels()
     };
     #pragma endregion
     #pragma region RangeLabel
-    TextLabel &rangeLabel = mgr_gui->AddLabel(TextLabel{});
+    Label &rangeLabel = mgr_gui->AddLabel(Label{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
     rangeLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, 20};
     rangeLabel.p_color = BLUE;
     rangeLabel.p_visible = false;
-    rangeLabel.p_updateFunction = [this](float deltaTime, TextLabel &label)
+    rangeLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)

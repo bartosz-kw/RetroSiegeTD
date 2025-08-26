@@ -8,7 +8,7 @@
 
 // Private
 
-void GuiManager::UpdateTextPosition(TextLabel &label)
+void GuiManager::UpdateTextPosition(Label &label)
 {
     const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
                                                   label.p_text.c_str(),
@@ -76,7 +76,7 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
 
     button.p_onPressed(deltaTime, button);
 }
-void GuiManager::UpdateLabel(const float deltaTime, TextLabel &label)
+void GuiManager::UpdateLabel(const float deltaTime, Label &label)
 {
 
     if (!IsElementUsed(label))
@@ -158,7 +158,7 @@ void GuiManager::DrawButton(const Button &button) const
         DrawTextureV(button.p_buttonImage, drawImagePos, WHITE);
     }
 }
-void GuiManager::DrawLabel(const TextLabel &label) const
+void GuiManager::DrawLabel(const Label &label) const
 {
     if (!label.p_visible)
     {
@@ -207,7 +207,7 @@ const bool GuiManager::IsElementUsed(const Button &button) const
     }
     return true;
 }
-const bool GuiManager::IsElementUsed(const TextLabel &label) const
+const bool GuiManager::IsElementUsed(const Label &label) const
 {
     if (m_gameState == GameState::Ended)
     {
@@ -246,7 +246,7 @@ Button &GuiManager::AddButton(const Button &button)
     UpdateTextPosition(m_buttons.back());
     return m_buttons.back();
 }
-TextLabel &GuiManager::AddLabel(const TextLabel &label)
+Label &GuiManager::AddLabel(const Label &label)
 {
     m_labels.push_back(label);
     UpdateTextPosition(m_labels.back());
@@ -264,7 +264,7 @@ void GuiManager::RemoveLabel(const int id)
 {
     m_labels.erase(
         std::remove_if(m_labels.begin(), m_labels.end(),
-                       [id](const TextLabel &label)
+                       [id](const Label &label)
                        { return label.p_id == id; }),
         m_labels.end());
 }
