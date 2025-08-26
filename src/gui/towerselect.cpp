@@ -15,9 +15,29 @@ constexpr int8_t gap = -10;
 
 void TowerSelect::InitLabels()
 {
-    constexpr size_t amountOfLabels = 5;
+    constexpr size_t amountOfLabels = 6;
     mgr_gui->ReserveLabel(amountOfLabels);
 
+    #pragma region BoundingLabel
+    TextLabel &boundingLabel = mgr_gui->AddLabel(TextLabel{});
+    boundingLabel.p_text = "";
+    boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
+    boundingLabel.p_rect = {0, (startingPoint - offset * 6) + gap * 7 - 10, 105, 190};
+    boundingLabel.p_color = DARKBLUE;
+    boundingLabel.p_visible = false;
+    boundingLabel.p_roundness = 0.5f;
+    boundingLabel.p_segments = 3.0f;
+    boundingLabel.p_updateFunction = [this](float deltaTime, TextLabel &label) 
+    {
+        const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            label.p_visible = false;
+            return;
+        }
+        label.p_visible = true;
+    };
+    #pragma endregion
     #pragma region NameLabel
     TextLabel &nameLabel = mgr_gui->AddLabel(TextLabel{});
     nameLabel.p_text = "";
