@@ -1,4 +1,5 @@
 #include "loadingUtil.hpp"
+#include "../structs/tile.hpp"
 #include <tuple>
 #include <unordered_map>
 #include <cassert>
@@ -14,7 +15,6 @@ struct ColorHash
 {
     std::size_t operator()(const Color &c) const
     {
-        // Combine bytes into a 32-bit integer
         return (static_cast<std::size_t>(c.r) << 24) |
                (static_cast<std::size_t>(c.g) << 16) |
                (static_cast<std::size_t>(c.b) << 8) |
@@ -24,19 +24,19 @@ struct ColorHash
 
 std::unordered_map<Color, int16_t, ColorHash> ColorToDirectionsMap =
 {                       
-    { { 0x36, 0xff, 0x00, 255 }, -2 }, // 36ff00 - bright green
-    { { 0xff, 0x00, 0x00, 255 }, -5 }, // ff0000 - red
-    { { 0x66, 0x39, 0x31, 255 },  2 }, // 663931 - dark brown
-    { { 0x7a, 0x3c, 0x31, 255 },  3 }  // 7a3c31 - brownish red
+    { { 0x36, 0xff, 0x00, 255 }, TileDirection::StartDown }, // 36ff00 - bright green
+    { { 0xff, 0x00, 0x00, 255 }, TileDirection::End }, // ff0000 - red
+    { { 0x66, 0x39, 0x31, 255 }, TileDirection::Down }, // 663931 - dark brown
+    { { 0x7a, 0x3c, 0x31, 255 }, TileDirection::Right }  // 7a3c31 - brownish red
 };
 
 std::unordered_map<Color, int16_t, ColorHash> ColorTileType = 
 {
-    { { 0x43, 0x6e, 0x1b, 255 }, 1 },  // 436e1b - dark olive green
-    { { 0x33, 0x6b, 0x8b, 255 }, 2 },  // 336b8b - dark blue-gray
-    { { 0x2c, 0xa0, 0xe2, 255 }, 3 },   // 2ca0e2 - light azure
-    { { 0x2f, 0x7c, 0xa8, 255 }, 4 },  // 2f7ca8 - steel blue
-    { { 0x44, 0x66, 0x7a, 255 }, 5 }   // 44667a - muted slate blue
+    { { 0x43, 0x6e, 0x1b, 255 }, TileType::GrassTile },  // 436e1b - dark olive green
+    { { 0x33, 0x6b, 0x8b, 255 }, TileType::GrassPath1 },  // 336b8b - dark blue-gray
+    { { 0x2c, 0xa0, 0xe2, 255 }, TileType::GrassPath2 },   // 2ca0e2 - light azure
+    { { 0x2f, 0x7c, 0xa8, 255 }, TileType::GrassPath3 },  // 2f7ca8 - steel blue
+    { { 0x44, 0x66, 0x7a, 255 }, TileType::GrassPath4 }   // 44667a - muted slate blue
 };
 
 std::array<std::array<int16_t, 18>, 18> LoadMapDirections(const char *path)

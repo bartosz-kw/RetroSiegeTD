@@ -21,6 +21,8 @@ enum TileType
     GrassTile = 1,
     GrassPath1 = 2,
     GrassPath2 = 3,
+    GrassPath3 = 4,
+    GrassPath4 = 5
 };
 struct Tile
 {
