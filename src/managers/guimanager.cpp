@@ -39,10 +39,20 @@ void GuiManager::UpdateImagePosition(Button &button)
 
     button.p_imagePosition =
         {
-            button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f // x
-            ,
-            button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f // y
-        };
+            button.p_rect.x + button.p_rect.width / 2.0f - button.p_buttonImage.width / 2.0f,
+            button.p_rect.y + button.p_rect.height / 2.0f - button.p_buttonImage.height / 2.0f};
+}
+void GuiManager::UpdateImagePosition(Label &label)
+{
+    if (label.p_image.id == 0)
+    {
+        return;
+    }
+
+    label.p_imagePosition =
+        {
+            label.p_rect.x + label.p_rect.width / 2.0f - label.p_image.width / 2.0f,
+            label.p_rect.y + label.p_rect.height / 2.0f - label.p_image.height / 2.0f};
 }
 void GuiManager::UpdatePress(const float deltaTime, Button &button)
 {
@@ -87,6 +97,7 @@ void GuiManager::UpdateLabel(const float deltaTime, Label &label)
     {
         label.p_updateFunction(deltaTime, label);
     }
+    UpdateImagePosition(label);
     UpdateTextPosition(label);
 }
 void GuiManager::UpdateButton(const float deltaTime, Button &button)
@@ -145,7 +156,7 @@ void GuiManager::DrawButton(const Button &button) const
     }
     else
     {
-        DrawRectangleRec(drawRect,buttonColor);
+        DrawRectangleRec(drawRect, buttonColor);
     }
 
     if (!button.p_text.empty())
@@ -179,6 +190,10 @@ void GuiManager::DrawLabel(const Label &label) const
     drawTextPos.x = floorf(drawTextPos.x);
     drawTextPos.y = floorf(drawTextPos.y);
 
+    Vector2 drawImagePos = label.p_imagePosition;
+    drawImagePos.x = floorf(drawImagePos.x);
+    drawImagePos.y = floorf(drawImagePos.y);
+
     if (label.p_segments != 0.0f && label.p_roundness != 0.0f)
     {
         DrawRectangleRounded(drawRect, label.p_roundness, label.p_segments, label.p_color);
@@ -188,8 +203,16 @@ void GuiManager::DrawLabel(const Label &label) const
         DrawRectangleRec(drawRect, label.p_color);
     }
 
-    DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
-               drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+    if (label.p_image.id != 0)
+    {
+        DrawTextureV(label.p_image, drawImagePos, WHITE);
+    }
+
+    if (label.p_text.empty())
+    {
+        DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
+                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+    }
 }
 const bool GuiManager::IsElementUsed(const Button &button) const
 {

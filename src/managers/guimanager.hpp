@@ -18,6 +18,7 @@ private:
     void UpdateTextPosition(Label &label);
     void UpdateTextPosition(Button &button);
     void UpdateImagePosition(Button &button);
+    void UpdateImagePosition(Label &label);
     void UpdatePress(const float deltaTime,Button &button);
     void UpdateLabel(const float deltaTime,Label &label);
     void UpdateButton(const float deltaTime,Button &button);
