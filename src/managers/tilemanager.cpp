@@ -79,19 +79,19 @@ Tile TileManager::GetTile(const uint16_t id) const
 const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
 {
     direction = std::abs(direction);
-    if (direction == 1)
+    if (direction == TileDirection::Up)
     {
         tileid -= 18;
     }
-    else if (direction == 2)
+    else if (direction == TileDirection::Down)
     {
         tileid += 18;
     }
-    else if (direction == 3)
+    else if (direction == TileDirection::Right)
     {
         tileid += 1;
     }
-    else if (direction == 4)
+    else if (direction == TileDirection::Left)
     {
         tileid += -1;
     }
@@ -105,7 +105,6 @@ const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
         assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
-    // PrintDebug(tileid);
     return tileid;
 }
 Tile *TileManager::GetLastClickedTile()
