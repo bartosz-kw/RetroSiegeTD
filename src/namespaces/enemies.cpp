@@ -13,6 +13,7 @@ namespace Enemies
 #pragma region BlueSlime
         Enemy blueSlime = {};
         blueSlime.p_hitCooldowns = {};
+        blueSlime.p_updateFunction = [](const float deltaTime,Enemy& enemy){};
         blueSlime.p_sourceRect = {0, 0, 15, 15};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 10;
@@ -38,6 +39,7 @@ namespace Enemies
 #pragma region RedSlime
         Enemy redSlime = {};
         redSlime.p_hitCooldowns = {};
+        redSlime.p_updateFunction = [](const float deltaTime,Enemy& enemy){};
         redSlime.p_sourceRect = {0, 0, 15, 15};
         redSlime.p_moneyDrop = 15;
         redSlime.p_health = 50;
@@ -63,6 +65,7 @@ namespace Enemies
 #pragma region Zombie
         Enemy zombie = {};
         zombie.p_hitCooldowns = {};
+        zombie.p_updateFunction = [](const float deltaTime,Enemy& enemy){};
         zombie.p_sourceRect = {0, 0, 15, 15};
         zombie.p_moneyDrop = 25;
         zombie.p_health = 75;
@@ -88,6 +91,7 @@ namespace Enemies
 #pragma region ArmoredZombie
         Enemy armoredZombie = {};
         armoredZombie.p_hitCooldowns = {};
+        armoredZombie.p_updateFunction = [](const float deltaTime,Enemy& enemy){};
         armoredZombie.p_sourceRect = {0, 0, 15, 15};
         armoredZombie.p_moneyDrop = 35;
         armoredZombie.p_health = 150;
@@ -113,6 +117,7 @@ namespace Enemies
 #pragma region Skeleton
         Enemy skeleton = {};
         skeleton.p_hitCooldowns = {};
+        skeleton.p_updateFunction = [](const float deltaTime,Enemy& enemy){};
         skeleton.p_sourceRect = {0, 0, 15, 15};
         skeleton.p_moneyDrop = 25;
         skeleton.p_health = 50;
