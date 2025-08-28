@@ -101,7 +101,15 @@ void EnemyManager::UpdateCooldown(Enemy &enemy, const float deltaTime)
 }
 void EnemyManager::UpdateAnimation(Enemy &enemy, const float deltaTime)
 {
-    Basics::Animate(deltaTime,enemy);
+    Basics::Animate(deltaTime, enemy);
+}
+void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
+{
+    UpdateMovement(enemy, deltaTime);
+    UpdateCooldown(enemy, deltaTime);
+    UpdateHitEffect(enemy, deltaTime);
+    UpdateAnimation(enemy, deltaTime);
+    enemy.p_updateFunction(deltaTime,enemy);
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
@@ -246,11 +254,7 @@ void EnemyManager::Update(const float deltaTime)
         {
             enemy.p_alive = false;
         }
-
-        UpdateMovement(enemy, deltaTime);
-        UpdateCooldown(enemy, deltaTime);
-        UpdateHitEffect(enemy, deltaTime);
-        UpdateAnimation(enemy, deltaTime);
+        UpdateEnemy(enemy, deltaTime);
         HandleHits(enemy);
         if (enemy.p_dirty)
         {
@@ -276,11 +280,11 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
 
         constexpr Vector2 origin = {0.0f, 0.0f};
         const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
-        const Vector2 position = {floorf(enemy.p_position.x + screenOffset),floorf(enemy.p_position.y)};
+        const Vector2 position = {floorf(enemy.p_position.x + screenOffset), floorf(enemy.p_position.y)};
         const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
         DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
 
-        //DrawPixel(GetCenterPosition(enemy).x + Settings::g_boundingSize, GetCenterPosition(enemy).y, RED);
+        // DrawPixel(GetCenterPosition(enemy).x + Settings::g_boundingSize, GetCenterPosition(enemy).y, RED);
     }
 }
 void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
