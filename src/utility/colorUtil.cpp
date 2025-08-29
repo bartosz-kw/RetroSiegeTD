@@ -1,4 +1,4 @@
-#include "colorUtil.hpp"
+#include "colorutil.hpp"
 
 bool operator==(const Color &lhs, const Color &rhs)
 {

@@ -1,26 +1,9 @@
-#include "loadingUtil.hpp"
+#include "loadingutil.hpp"
+#include "colorutil.hpp"
 #include "../structs/tile.hpp"
 #include <tuple>
 #include <unordered_map>
 #include <cassert>
-
-bool operator==(const Color& lhs, const Color& rhs) {
-    return lhs.r == rhs.r &&
-           lhs.g == rhs.g &&
-           lhs.b == rhs.b &&
-           lhs.a == rhs.a;
-}
-
-struct ColorHash
-{
-    std::size_t operator()(const Color &c) const
-    {
-        return (static_cast<std::size_t>(c.r) << 24) |
-               (static_cast<std::size_t>(c.g) << 16) |
-               (static_cast<std::size_t>(c.b) << 8) |
-               (static_cast<std::size_t>(c.a));
-    }
-};
 
 std::unordered_map<Color, int16_t, ColorHash> ColorToDirectionsMap =
 {                       
