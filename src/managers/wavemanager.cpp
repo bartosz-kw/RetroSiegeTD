@@ -118,6 +118,7 @@ void WaveManager::LoadWaves()
     enemySpawns3.push_back({1.0f, EnemyType::Zombie});
     enemySpawns3.push_back({1.0f, EnemyType::ArmoredZombie});
     enemySpawns3.push_back({1.0f, EnemyType::Skeleton});
+    enemySpawns3.push_back({1.0f, EnemyType::Summoner});
     EnemyWave wave3 = {};
     wave3.p_id = 3;
     wave3.p_moneyReward = 150;

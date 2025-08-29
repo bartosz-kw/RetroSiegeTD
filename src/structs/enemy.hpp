@@ -9,7 +9,8 @@ enum EnemyType
     RedSlime = 2,
     Zombie = 3,
     ArmoredZombie = 4,
-    Skeleton = 5
+    Skeleton = 5,
+    Summoner = 6
 };
 struct Enemy
 {
