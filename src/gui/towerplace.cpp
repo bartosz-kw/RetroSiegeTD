@@ -18,6 +18,8 @@ void TowerPlace::InitLabels()
     headerLabel.p_id = mgr_gui->GetAmountOfLabels();
     headerLabel.p_text = "Towers: ";
     headerLabel.p_color = YELLOW;
+    headerLabel.p_boundingSize = 2.0f;
+    headerLabel.p_boundingColor = BLACK;
 #pragma endregion
 }
 

@@ -1,6 +1,7 @@
 #include "mainmenu.hpp"
 #include "../core/game.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../utility/colorUtil.hpp"
 #include "../namespaces/settings.hpp"
 #include "../namespaces/music.hpp"
 #include "../namespaces/sprites.hpp"
@@ -62,7 +63,8 @@ void MainMenu::InitButtons()
     startButton.p_isHovered = false;
     startButton.p_visible = true;
     startButton.p_elementType = GuiType::MenuGui;
-
+    startButton.p_boundingColor = GREEN * 0.8f;
+    startButton.p_boundingSize = 2.0f;
 #pragma endregion
 
 #pragma region ExitButton
@@ -87,6 +89,8 @@ void MainMenu::InitButtons()
     exitButton.p_isHovered = false;
     exitButton.p_visible = true;
     exitButton.p_elementType = GuiType::MenuGui;
+    exitButton.p_boundingColor = RED * 0.8f;
+    exitButton.p_boundingSize = 2.0f;
 #pragma endregion
 
 #pragma region MusicButton

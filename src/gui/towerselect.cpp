@@ -25,8 +25,8 @@ void TowerSelect::InitLabels()
     boundingLabel.p_rect = {0, (startingPoint - offset * 6) + gap * 7 - 10, 105, 190};
     boundingLabel.p_color = DARKBLUE;
     boundingLabel.p_visible = false;
-    boundingLabel.p_roundness = 0.5f;
-    boundingLabel.p_segments = 3.0f;
+    boundingLabel.p_roundness = 0.25f;
+    boundingLabel.p_segments = 1.0f;
     boundingLabel.p_updateFunction = [this](float deltaTime, Label &label) 
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
