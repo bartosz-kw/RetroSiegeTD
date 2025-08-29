@@ -6,7 +6,7 @@
 template <typename T>
 void PrintDebug(T message, std::string prefix = "")
 {
-// return early if release for performance
+    
 #ifdef RELEASE
     return;
 #endif
@@ -35,7 +35,7 @@ void PrintDebug(T message, std::string prefix = "")
 template <typename T>
 void PrintDebugError(T message, std::string prefix = "")
 {
-// return early if release for performance
+
 #ifdef RELEASE
     return;
 #endif
