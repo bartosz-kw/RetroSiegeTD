@@ -1,6 +1,7 @@
 #include "guimanager.hpp"
 #include "../namespaces/settings.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include <raylib.h>
 #include <cmath>
 #include <format>
@@ -126,14 +127,11 @@ void GuiManager::DrawButton(const Button &button) const
     }
 
     Color buttonColor = button.p_color;
+    Color boundingColor = button.p_boundingColor;
     if (button.p_isHovered)
     {
-        buttonColor =
-            {
-                static_cast<unsigned char>(button.p_color.r * 0.8f),
-                static_cast<unsigned char>(button.p_color.g * 0.8f),
-                static_cast<unsigned char>(button.p_color.b * 0.8f),
-                static_cast<unsigned char>(button.p_color.a)};
+        buttonColor = buttonColor * 0.8f;
+        boundingColor = boundingColor * 0.8f;
     }
 
     Rectangle drawRect = button.p_rect;
@@ -161,7 +159,7 @@ void GuiManager::DrawButton(const Button &button) const
             outlineRect.width -= button.p_boundingSize;
             outlineRect.height -= button.p_boundingSize;
 
-            DrawRectangleRoundedLinesEx(outlineRect, button.p_roundness, button.p_segments * 2.0f, button.p_boundingSize, button.p_boundingColor);
+            DrawRectangleRoundedLinesEx(outlineRect, button.p_roundness, button.p_segments * 2.0f, button.p_boundingSize, boundingColor);
         }
     }
     else
@@ -175,7 +173,7 @@ void GuiManager::DrawButton(const Button &button) const
             outlineRect.width -= button.p_boundingSize;
             outlineRect.height -= button.p_boundingSize;
 
-            DrawRectangleLinesEx(outlineRect, button.p_boundingSize, button.p_boundingColor);
+            DrawRectangleLinesEx(outlineRect, button.p_boundingSize, boundingColor);
         }
     }
 
