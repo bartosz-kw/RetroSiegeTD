@@ -152,6 +152,26 @@ void EnemyManager::HandleHits(Enemy &enemy)
         enemy.p_hitEffectTime = hitEffectTime;
     }
 }
+void EnemyManager::CheckForHover()
+{
+    const Vector2 mousePosition = GetMousePosition();
+    for (auto &enemy : m_enemies)
+    {
+        Rectangle rect = 
+        {
+            (Settings::g_boundingSize + enemy.p_position.x) * Settings::g_gameScale,
+            enemy.p_position.y * Settings::g_gameScale,
+            enemy.p_sourceRect.width * Settings::g_gameScale,
+            enemy.p_sourceRect.height * Settings::g_gameScale
+        };
+        if (CheckCollisionPointRec(mousePosition,rect))
+        {
+            m_hoveredEnemy = &enemy;
+            return;
+        }
+    }
+    m_hoveredEnemy = nullptr;
+}
 void EnemyManager::PreKillEnemy(Enemy &enemy)
 {
     if (!enemy.p_alive)
@@ -238,6 +258,10 @@ Enemy *EnemyManager::GetEnemyById(const uint32_t id)
     }
     return nullptr;
 }
+const Enemy *EnemyManager::GetHoveredEnemy() const
+{
+    return m_hoveredEnemy;
+}
 void EnemyManager::AddEnemy(const Enemy enemy)
 {
     m_enemies.push_back(enemy);
@@ -255,6 +279,7 @@ void EnemyManager::ClearEnemiesVector()
 }
 void EnemyManager::Update(const float deltaTime)
 {
+    CheckForHover();
     for (auto &enemy : m_enemies)
     {
         if (enemy.p_health <= 0)
