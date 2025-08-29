@@ -176,7 +176,8 @@ void Game::InitGame()
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
-    Settings::g_gameFont = GetFontDefault();
+    Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf",8,0,0);
+    SetTextureFilter(Settings::g_gameFont.texture,TEXTURE_FILTER_POINT);
     m_gameState = GameState::Menu;
 }
 void Game::Shutdown()
