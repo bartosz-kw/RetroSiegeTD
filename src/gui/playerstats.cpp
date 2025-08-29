@@ -1,5 +1,6 @@
 #include "playerstats.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include "../namespaces/settings.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
@@ -22,6 +23,9 @@ void PlayerStats::InitLabels()
         const std::string text = "Hp: " + std::to_string(mgr_ps->GetHealth()) + "/" + std::to_string(mgr_ps->GetMaxHealth());
         label.p_text = text;
     };
+    healthLabel.p_boundingColor = healthLabel.p_color * 0.8f;
+    healthLabel.p_boundingSize = 2.0f;
+    
 #pragma endregion
 
 #pragma region MoneyLabel
@@ -35,6 +39,8 @@ void PlayerStats::InitLabels()
         const std::string text = "$: " + std::to_string(mgr_ps->GetMoney());
         label.p_text = text;
     };
+    moneyLabel.p_boundingColor = moneyLabel.p_color * 0.8f;
+    moneyLabel.p_boundingSize = 2.0f;
 #pragma endregion
 }
 void PlayerStats::InjectDependencies(GuiManager *guiManager, PSManager *psManager)

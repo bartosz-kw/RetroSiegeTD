@@ -2,7 +2,8 @@
 #include "../namespaces/settings.hpp"
 #include "../namespaces/towers.hpp"
 #include "../namespaces/basics.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/psmanager.hpp"
 #include "../managers/guimanager.hpp"
@@ -22,8 +23,10 @@ void TowerSelect::InitLabels()
     Label &boundingLabel = mgr_gui->AddLabel(Label{});
     boundingLabel.p_text = "";
     boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
-    boundingLabel.p_rect = {0, (startingPoint - offset * 6) + gap * 7 - 10, 105, 190};
+    boundingLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7 - 10, 95, 190};
     boundingLabel.p_color = DARKBLUE;
+    boundingLabel.p_boundingSize = 2.0f;
+    boundingLabel.p_boundingColor = boundingLabel.p_color * 0.8f;
     boundingLabel.p_visible = false;
     boundingLabel.p_roundness = 0.25f;
     boundingLabel.p_segments = 1.0f;
@@ -44,6 +47,8 @@ void TowerSelect::InitLabels()
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
     nameLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7, 95, 20};
     nameLabel.p_color = BLUE;
+    nameLabel.p_boundingSize = 2.0f;
+    nameLabel.p_boundingColor = nameLabel.p_color * 0.8f;
     nameLabel.p_visible = false;
     nameLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -63,6 +68,8 @@ void TowerSelect::InitLabels()
     IdLabel.p_id = mgr_gui->GetAmountOfLabels();
     IdLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
     IdLabel.p_color = BLUE;
+    IdLabel.p_boundingSize = 2.0f;
+    IdLabel.p_boundingColor = IdLabel.p_color * 0.8f;
     IdLabel.p_visible = false;
     IdLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -83,6 +90,8 @@ void TowerSelect::InitLabels()
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
     levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
     levelLabel.p_color = BLUE;
+    levelLabel.p_boundingSize = 2.0f;
+    levelLabel.p_boundingColor = levelLabel.p_color * 0.8f;
     levelLabel.p_visible = false;
     levelLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -110,6 +119,8 @@ void TowerSelect::InitLabels()
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
     damageLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, 20};
     damageLabel.p_color = BLUE;
+    damageLabel.p_boundingSize = 2.0f;
+    damageLabel.p_boundingColor = damageLabel.p_color * 0.8f;
     damageLabel.p_visible = false;
     damageLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -136,6 +147,8 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
     attackSpeedLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, 20};
     attackSpeedLabel.p_color = BLUE;
+    attackSpeedLabel.p_boundingSize = 2.0f;
+    attackSpeedLabel.p_boundingColor = attackSpeedLabel.p_color * 0.8f;
     attackSpeedLabel.p_visible = false;
     attackSpeedLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -162,6 +175,8 @@ void TowerSelect::InitLabels()
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
     rangeLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, 20};
     rangeLabel.p_color = BLUE;
+    rangeLabel.p_boundingSize = 2.0f;
+    rangeLabel.p_boundingColor = rangeLabel.p_color * 0.8f;
     rangeLabel.p_visible = false;
     rangeLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
@@ -195,6 +210,8 @@ void TowerSelect::InitButtons()
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
     upgradeButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, 20};
     upgradeButton.p_color = GREEN;
+    upgradeButton.p_boundingSize = 2.0f;
+    upgradeButton.p_boundingColor = upgradeButton.p_color * 0.8f;
     upgradeButton.p_visible = false;
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
@@ -209,9 +226,13 @@ void TowerSelect::InitButtons()
         {
             button.p_visible = true;
             button.p_color = RED;
+            button.p_boundingColor = button.p_color * 0.8f;
             button.p_text = "Max Upgrade";
             return;
         }
+        
+        button.p_boundingColor = button.p_color * 0.8f;
+
         Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
         button.p_text = "Upgrade: " + std::to_string(upgradedTower.p_price) + " $";
         tower->p_isUpgradeHovered = button.p_isHovered;

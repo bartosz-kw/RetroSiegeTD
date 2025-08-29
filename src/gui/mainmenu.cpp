@@ -63,7 +63,7 @@ void MainMenu::InitButtons()
     startButton.p_isHovered = false;
     startButton.p_visible = true;
     startButton.p_elementType = GuiType::MenuGui;
-    startButton.p_boundingColor = GREEN * 0.8f;
+    startButton.p_boundingColor = startButton.p_color * 0.8f;
     startButton.p_boundingSize = 2.0f;
 #pragma endregion
 
@@ -89,7 +89,7 @@ void MainMenu::InitButtons()
     exitButton.p_isHovered = false;
     exitButton.p_visible = true;
     exitButton.p_elementType = GuiType::MenuGui;
-    exitButton.p_boundingColor = RED * 0.8f;
+    exitButton.p_boundingColor = exitButton.p_color * 0.8f;
     exitButton.p_boundingSize = 2.0f;
 #pragma endregion
 

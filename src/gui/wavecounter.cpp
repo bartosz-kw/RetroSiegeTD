@@ -1,6 +1,7 @@
 #include "wavecounter.hpp"
 #include "../namespaces/settings.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
 #include "../managers/playermanager.hpp"
@@ -19,6 +20,8 @@ void WaveCounter::InitButtons()
     waveCountButton.p_color = GREEN;
     waveCountButton.p_isHovered = false;
     waveCountButton.p_visible = true;
+    waveCountButton.p_boundingColor = waveCountButton.p_color * 0.8f;
+    waveCountButton.p_boundingSize = 2.0f;
     waveCountButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         if (mgr_wave->IsSkipAllowed())

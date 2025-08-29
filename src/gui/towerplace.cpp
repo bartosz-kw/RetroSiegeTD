@@ -1,7 +1,8 @@
 #include "towerplace.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/guimanager.hpp"
 #include <format>
@@ -19,7 +20,7 @@ void TowerPlace::InitLabels()
     headerLabel.p_text = "Towers: ";
     headerLabel.p_color = YELLOW;
     headerLabel.p_boundingSize = 2.0f;
-    headerLabel.p_boundingColor = BLACK;
+    headerLabel.p_boundingColor = YELLOW * 0.8f;
 #pragma endregion
 }
 
@@ -43,11 +44,13 @@ void TowerPlace::InitButtons()
 #pragma region NinjaButton
     Button &ninjaButton = mgr_gui->AddButton(Button{});
     ninjaButton.p_text = "";
-    ninjaButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f), 25.0f, 25.0f, 25.0f};
+    ninjaButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f), 30.0f, 25.0f, 25.0f};
     ninjaButton.p_color = YELLOW;
     ninjaButton.p_id = mgr_gui->GetAmountOfButtons();
     ninjaButton.p_isHovered = false;
     ninjaButton.p_visible = true;
+    ninjaButton.p_boundingColor = ninjaButton.p_color * 0.8f;
+    ninjaButton.p_boundingSize = 2.0f;
     ninjaButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::NinjaLv1];
     ninjaButton.p_onPressed = [this](float deltaTime, Button &button)
     {
@@ -57,11 +60,13 @@ void TowerPlace::InitButtons()
     {
         if (this->mgr_tower->GetPlaceTower() == TowerType::NinjaLv1)
         {
-            button.p_color = {202, 199, 0, 255};
+            button.p_color = YELLOW * 0.8f;
+            button.p_boundingColor = button.p_color * 0.8f;
         }
         else
         {
             button.p_color = YELLOW;
+            button.p_boundingColor = button.p_color * 0.8f;
         }
     };
 #pragma endregion
@@ -69,11 +74,13 @@ void TowerPlace::InitButtons()
 #pragma region KnightButton
     Button &knightButton = mgr_gui->AddButton(Button{});
     knightButton.p_text = "";
-    knightButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f + 30.0f), 25.0f, 25.0f, 25.0f};
+    knightButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f + 30.0f), 30.0f, 25.0f, 25.0f};
     knightButton.p_color = YELLOW;
     knightButton.p_id = mgr_gui->GetAmountOfButtons();
     knightButton.p_isHovered = false;
     knightButton.p_visible = true;
+    knightButton.p_boundingColor = knightButton.p_color * 0.8f;
+    knightButton.p_boundingSize = 2.0f;
     knightButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::KnightLv1];
     knightButton.p_onPressed = [this](float deltaTime, Button &button)
     {
@@ -83,11 +90,13 @@ void TowerPlace::InitButtons()
     {
         if (this->mgr_tower->GetPlaceTower() == TowerType::KnightLv1)
         {
-            button.p_color = {202, 199, 0, 255};
+            button.p_color = YELLOW * 0.8f;
+            button.p_boundingColor = button.p_color * 0.8f;
         }
         else
         {
             button.p_color = YELLOW;
+            button.p_boundingColor = button.p_color * 0.8f;
         }
     };
 #pragma endregion
