@@ -124,6 +124,8 @@ void MainMenu::InitButtons()
     musicButton.p_isHovered = false;
     musicButton.p_visible = true;
     musicButton.p_elementType = GuiType::MenuGui;
+    musicButton.p_boundingColor = musicButton.p_color * 0.8f;
+    musicButton.p_boundingSize = 2.0f;
 #pragma endregion
 }
 
