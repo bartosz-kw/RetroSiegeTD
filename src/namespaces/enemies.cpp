@@ -1,5 +1,6 @@
 #include "enemies.hpp"
 #include "basics.hpp"
+#include "../managers/enemymanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include <cassert>
 
@@ -146,14 +147,25 @@ namespace Enemies
                 summoner.p_hitCooldowns = {};
                 summoner.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy)
                 {
-                        
+                    constexpr float spawnCooldown = 2.5f;
+                    static float time = 0.0f;
+                    time += deltaTime;
+                    if (time >= spawnCooldown)
+                    {
+                       time = 0.0f;
+                       Enemy summon = GetEnemyData(EnemyType::Skeleton);
+                       summon.p_moneyDrop = 0.0f;
+                       summon.p_id = mgr_enemy->GetNewValidId();
+                       summon.p_tileId = enemy.p_tileId;
+                       mgr_enemy->AddEnemy(summon);
+                    }
                 };
                 summoner.p_sourceRect = {0, 0, 15, 15};
-                summoner.p_moneyDrop = 25;
-                summoner.p_health = 50;
+                summoner.p_moneyDrop = 100;
+                summoner.p_health = 300;
                 summoner.p_position = {-1.0f, -1.0f};
                 summoner.p_id = 0;
-                summoner.p_speed = 0.5f;
+                summoner.p_speed = 2.0f;
                 summoner.p_timeToNextFrame = 0.25f;
                 summoner.p_timePassed = 0.0f;
                 summoner.p_timeToMove = 0.0f;
