@@ -84,10 +84,7 @@ void WaveManager::UpdateActiveWaves(const float deltaTime)
         {
             if (wave.p_enemySpawns[i].first < m_spawnTime)
             {
-                Enemy enemy = Enemies::GetEnemyData(wave.p_enemySpawns[i].second);
-                enemy.p_tileId = -1;
-                enemy.p_id = mgr_enemy->GetNewValidId();
-                mgr_enemy->AddEnemy(enemy);
+                mgr_enemy->SpawnEnemy(wave.p_enemySpawns[i].second);
                 m_spawnTime = 0.0f;
                 indexToDelete = i;
                 break;
@@ -117,7 +114,7 @@ void WaveManager::LoadWaves()
         return totalTime;
     };
 
-    std::vector<std::pair<float, int>> enemySpawns3 = {};
+    std::vector<std::pair<float, EnemyType>> enemySpawns3 = {};
     enemySpawns3.push_back({1.0f, EnemyType::Zombie});
     enemySpawns3.push_back({1.0f, EnemyType::ArmoredZombie});
     enemySpawns3.push_back({1.0f, EnemyType::Skeleton});
@@ -127,7 +124,7 @@ void WaveManager::LoadWaves()
     wave3.p_enemySpawns = enemySpawns3;
     wave3.p_totalWaveTime = getTotalWaveTime(wave3);
 
-    std::vector<std::pair<float, int>> enemySpawns2 = {};
+    std::vector<std::pair<float, EnemyType>> enemySpawns2 = {};
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns2.push_back({1.0f, EnemyType::BlueSlime});
@@ -140,7 +137,7 @@ void WaveManager::LoadWaves()
     wave2.p_enemySpawns = enemySpawns2;
     wave2.p_totalWaveTime = getTotalWaveTime(wave2);
 
-    std::vector<std::pair<float, int>> enemySpawns1 = {};
+    std::vector<std::pair<float, EnemyType>> enemySpawns1 = {};
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});

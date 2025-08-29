@@ -109,7 +109,7 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     UpdateCooldown(enemy, deltaTime);
     UpdateHitEffect(enemy, deltaTime);
     UpdateAnimation(enemy, deltaTime);
-    enemy.p_updateFunction(deltaTime,enemy);
+    enemy.p_updateFunction(deltaTime, enemy);
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
@@ -241,6 +241,13 @@ Enemy *EnemyManager::GetEnemyById(const uint32_t id)
 void EnemyManager::AddEnemy(const Enemy enemy)
 {
     m_enemies.push_back(enemy);
+}
+void EnemyManager::SpawnEnemy(const EnemyType enemyType)
+{
+    Enemy enemy = Enemies::GetEnemyData(enemyType);
+    enemy.p_tileId = -1;
+    enemy.p_id = GetNewValidId();
+    AddEnemy(enemy);
 }
 void EnemyManager::ClearEnemiesVector()
 {

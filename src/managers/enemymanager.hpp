@@ -35,6 +35,7 @@ public:
     uint32_t FindEnemyInArea(const Vector2 center, const float radius);
     Enemy *GetEnemyById(const uint32_t id);
     void AddEnemy(const Enemy enemy);
+    void SpawnEnemy(const EnemyType enemy);
     void ClearEnemiesVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
