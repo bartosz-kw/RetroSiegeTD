@@ -150,6 +150,8 @@ void Game::InitGui()
     gui_playerStats.Init();
     gui_mainMenu.InjectDependencies(&mgr_gui, this);
     gui_mainMenu.Init();
+    gui_enemyHover.InjectDependencies(&mgr_enemy,&mgr_gui);
+    gui_enemyHover.Init();
 }
 void Game::InitSprites()
 {

@@ -15,6 +15,7 @@
 #include "../gui/towerplace.hpp"
 #include "../gui/playerstats.hpp"
 #include "../gui/mainmenu.hpp"
+#include "../gui/enemyhover.hpp"
 
 
 class Game
@@ -35,6 +36,7 @@ private:
     PlayerManager mgr_player = {};
     MusicManager mgr_music = {};
 
+    EnemyHover gui_enemyHover = {};
     MainMenu gui_mainMenu = {};
     WaveCounter gui_waveCounter = {};
     TowerSelect gui_towerSelect = {};
