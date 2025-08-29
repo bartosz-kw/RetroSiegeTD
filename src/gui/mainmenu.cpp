@@ -62,6 +62,7 @@ void MainMenu::InitButtons()
     startButton.p_isHovered = false;
     startButton.p_visible = true;
     startButton.p_elementType = GuiType::MenuGui;
+
 #pragma endregion
 
 #pragma region ExitButton

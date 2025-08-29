@@ -153,10 +153,30 @@ void GuiManager::DrawButton(const Button &button) const
     if (button.p_roundness != 0 && button.p_segments != 0)
     {
         DrawRectangleRounded(drawRect, button.p_roundness, button.p_segments, buttonColor);
+        if (button.p_boundingSize != 0.0f)
+        {
+            Rectangle outlineRect = drawRect;
+            outlineRect.x += button.p_boundingSize * 0.5f;
+            outlineRect.y += button.p_boundingSize * 0.5f;
+            outlineRect.width -= button.p_boundingSize;
+            outlineRect.height -= button.p_boundingSize;
+
+            DrawRectangleRoundedLinesEx(outlineRect, button.p_roundness, button.p_segments * 2.0f, button.p_boundingSize, button.p_boundingColor);
+        }
     }
     else
     {
         DrawRectangleRec(drawRect, buttonColor);
+        if (button.p_boundingSize != 0.0f)
+        {
+            Rectangle outlineRect = drawRect;
+            outlineRect.x += button.p_boundingSize * 0.5f;
+            outlineRect.y += button.p_boundingSize * 0.5f;
+            outlineRect.width -= button.p_boundingSize;
+            outlineRect.height -= button.p_boundingSize;
+
+            DrawRectangleLinesEx(outlineRect, button.p_boundingSize, button.p_boundingColor);
+        }
     }
 
     if (!button.p_text.empty())
@@ -197,10 +217,30 @@ void GuiManager::DrawLabel(const Label &label) const
     if (label.p_segments != 0.0f && label.p_roundness != 0.0f)
     {
         DrawRectangleRounded(drawRect, label.p_roundness, label.p_segments, label.p_color);
+        if (label.p_boundingSize != 0.0f)
+        {
+            Rectangle outlineRect = drawRect;
+            outlineRect.x += label.p_boundingSize * 0.5f;
+            outlineRect.y += label.p_boundingSize * 0.5f;
+            outlineRect.width -= label.p_boundingSize;
+            outlineRect.height -= label.p_boundingSize;
+
+            DrawRectangleRoundedLinesEx(outlineRect, label.p_roundness, label.p_segments * 2.0f, label.p_boundingSize, label.p_boundingColor);
+        }
     }
     else
     {
         DrawRectangleRec(drawRect, label.p_color);
+        if (label.p_boundingSize != 0.0f)
+        {
+            Rectangle outlineRect = drawRect;
+            outlineRect.x += label.p_boundingSize * 0.5f;
+            outlineRect.y += label.p_boundingSize * 0.5f;
+            outlineRect.width -= label.p_boundingSize;
+            outlineRect.height -= label.p_boundingSize;
+
+            DrawRectangleLinesEx(outlineRect, label.p_roundness, label.p_boundingColor);
+        }
     }
 
     if (label.p_image.id != 0)
