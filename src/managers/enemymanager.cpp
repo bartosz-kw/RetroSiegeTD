@@ -109,7 +109,7 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     UpdateCooldown(enemy, deltaTime);
     UpdateHitEffect(enemy, deltaTime);
     UpdateAnimation(enemy, deltaTime);
-    enemy.p_updateFunction(deltaTime, enemy);
+    enemy.p_updateFunction(deltaTime, enemy,this);
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
