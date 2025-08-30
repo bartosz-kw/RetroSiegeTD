@@ -109,7 +109,15 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     UpdateCooldown(enemy, deltaTime);
     UpdateHitEffect(enemy, deltaTime);
     UpdateAnimation(enemy, deltaTime);
-    enemy.p_updateFunction(deltaTime, enemy,this);
+    if (enemy.p_updateFunction)
+    {
+        enemy.p_updateFunction(deltaTime, enemy, this);
+    }
+    else
+    {
+        PrintDebugError(enemy.p_id,"Invalid Function Enemy ID");
+        PrintDebugError(enemy.p_typeId,"Invalid Function Enemy TypeID");
+    }
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
@@ -156,14 +164,13 @@ void EnemyManager::CheckForHover()
     const Vector2 mousePosition = GetMousePosition();
     for (auto &enemy : m_enemies)
     {
-        Rectangle rect = 
-        {
-            (Settings::g_boundingSize + enemy.p_position.x) * Settings::g_gameScale,
-            enemy.p_position.y * Settings::g_gameScale,
-            enemy.p_sourceRect.width * Settings::g_gameScale,
-            enemy.p_sourceRect.height * Settings::g_gameScale
-        };
-        if (CheckCollisionPointRec(mousePosition,rect))
+        Rectangle rect =
+            {
+                (Settings::g_boundingSize + enemy.p_position.x) * Settings::g_gameScale,
+                enemy.p_position.y * Settings::g_gameScale,
+                enemy.p_sourceRect.width * Settings::g_gameScale,
+                enemy.p_sourceRect.height * Settings::g_gameScale};
+        if (CheckCollisionPointRec(mousePosition, rect))
         {
             m_hoveredEnemy = &enemy;
             return;
@@ -263,14 +270,20 @@ const Enemy *EnemyManager::GetHoveredEnemy() const
 }
 void EnemyManager::AddEnemy(const Enemy enemy)
 {
+    ReserveEnemies(1);
     m_enemies.push_back(enemy);
 }
 void EnemyManager::SpawnEnemy(const EnemyType enemyType)
 {
+    ReserveEnemies(1);
     Enemy enemy = Enemies::GetEnemyData(enemyType);
     enemy.p_tileId = -1;
     enemy.p_id = GetNewValidId();
     AddEnemy(enemy);
+}
+void EnemyManager::ReserveEnemies(const uint16_t amount)
+{
+    m_enemies.reserve(amount);
 }
 void EnemyManager::ClearEnemiesVector()
 {
@@ -278,20 +291,20 @@ void EnemyManager::ClearEnemiesVector()
 }
 void EnemyManager::Update(const float deltaTime)
 {
-    CheckForHover();
     for (auto &enemy : m_enemies)
     {
+        if (enemy.p_dirty)
+        {
+            CleanEnemy(enemy);
+        }
         if (enemy.p_health <= 0)
         {
             enemy.p_alive = false;
         }
         UpdateEnemy(enemy, deltaTime);
         HandleHits(enemy);
-        if (enemy.p_dirty)
-        {
-            CleanEnemy(enemy);
-        }
     }
+    CheckForHover();
     RemoveEnemies();
 }
 void EnemyManager::Draw(const uint8_t screenOffset) const

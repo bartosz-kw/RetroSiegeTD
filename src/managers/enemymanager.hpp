@@ -41,6 +41,7 @@ public:
     const Enemy *GetHoveredEnemy() const;
     void AddEnemy(const Enemy enemy);
     void SpawnEnemy(const EnemyType enemy);
+    void ReserveEnemies(const uint16_t amount);
     void ClearEnemiesVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
