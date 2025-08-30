@@ -105,6 +105,13 @@ void EnemyManager::UpdateAnimation(Enemy &enemy, const float deltaTime)
 }
 void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
 {
+    if (enemy.p_dirty)
+    {
+        CleanEnemy(enemy);
+    }
+    
+
+    HandleHits(enemy);
     UpdateMovement(enemy, deltaTime);
     UpdateCooldown(enemy, deltaTime);
     UpdateHitEffect(enemy, deltaTime);
@@ -115,8 +122,8 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     }
     else
     {
-        PrintDebugError(enemy.p_id,"Invalid Function Enemy ID");
-        PrintDebugError(enemy.p_typeId,"Invalid Function Enemy TypeID");
+        PrintDebugError(enemy.p_id, "Invalid Function Enemy ID");
+        PrintDebugError(enemy.p_typeId, "Invalid Function Enemy TypeID");
     }
 }
 void EnemyManager::HandleHits(Enemy &enemy)
@@ -197,6 +204,10 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     }
 
     const Tile tile = mgr_tile->GetTile(enemy.p_tileId);
+    if (tile.p_id == -1)
+    {
+        return;
+    }
 
     enemy.p_position = tile.p_position;
     enemy.p_dirty = false;
@@ -288,16 +299,13 @@ void EnemyManager::Update(const float deltaTime)
 {
     for (auto &enemy : m_enemies)
     {
-        if (enemy.p_dirty)
-        {
-            CleanEnemy(enemy);
-        }
         if (enemy.p_health <= 0)
         {
             enemy.p_alive = false;
+            continue;
         }
+
         UpdateEnemy(enemy, deltaTime);
-        HandleHits(enemy);
     }
     CheckForHover();
     RemoveEnemies();
@@ -308,7 +316,7 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
     {
         if (enemy.p_dirty)
         {
-            continue;
+           // continue;
         }
 
         Color color = WHITE;
