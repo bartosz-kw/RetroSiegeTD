@@ -152,13 +152,20 @@ namespace Enemies
                     time += deltaTime;
                     if (time >= spawnCooldown)
                     {
+                       Basics::PlayAnimation(deltaTime,enemy,3,8);
+                       if (enemy.p_inSpecialAnim)
+                       {
+                          return;
+                       }
+                       
                        time = 0.0f;
-                       Enemy summon = GetEnemyData(EnemyType::Skeleton);
+                       /*Enemy summon = GetEnemyData(EnemyType::Skeleton);
                        summon.p_moneyDrop = 0.0f;
                        summon.p_id = mgr_enemy->GetNewValidId();
                        summon.p_tileId = enemy.p_tileId;
                        summon.p_walked = enemy.p_walked;
-                       mgr_enemy->AddEnemy(summon);
+                       mgr_enemy->ReserveEnemies(1);
+                       mgr_enemy->AddEnemy(summon);*/
                     }
                 };
                 summoner.p_sourceRect = {0, 0, 15, 15};

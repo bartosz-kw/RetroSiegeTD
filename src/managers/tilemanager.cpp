@@ -95,14 +95,21 @@ const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
     {
         tileid += -1;
     }
+    else if(direction == TileDirection::NoDirection)
+    {
+
+    }
     else
     {
-        PrintDebugError(direction, "UNKNOWN DIRECTION");
-        assert(false && "unknown direction was inputed into GetMovedId");
+        PrintDebugError(direction, "UNKNOWN DIRECTION,DIRECTION");
+        PrintDebugError(tileid, "UNKNOWN DIRECTION,TILEID");
+        //assert(false && "unknown direction was inputed into GetMovedId");
     }
     if (tileid < 0 || tileid > (18 * 18))
     {
-        assert(false && "outofbounds id in GetMovedId");
+        PrintDebugError(direction, "OUTOFBOUNDS ID,DIRECTION");
+        PrintDebugError(tileid, "OUTOFBOUNDS ID,TILEID");
+        //assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
     return tileid;

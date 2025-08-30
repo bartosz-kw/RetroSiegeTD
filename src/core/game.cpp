@@ -42,6 +42,15 @@ void Game::UpdateDebug()
     {
         Settings::g_debugView = !Settings::g_debugView;
     }
+    if (IsKeyPressed(KEY_F4))
+    {
+        if (m_gameState != GameState::Started)
+        {
+            return;
+        }
+        
+        mgr_enemy.SpawnEnemy(EnemyType::Summoner);
+    }
 }
 void Game::Update()
 {

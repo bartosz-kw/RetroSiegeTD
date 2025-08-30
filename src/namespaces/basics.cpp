@@ -29,7 +29,7 @@ namespace Basics
     }
     void Animate(const float deltaTime, Enemy &enemy)
     {
-        if (enemy.p_frameAmount == 0 || enemy.p_frameOffset == 0)
+        if (enemy.p_frameAmount == 0 || enemy.p_frameOffset == 0 || enemy.p_inSpecialAnim)
         {
             return;
         }
@@ -98,4 +98,29 @@ namespace Basics
             }
         }
     }
-}
+
+    void PlayAnimation(const float deltaTime, Enemy &enemy, uint16_t startingFrame, uint16_t amountOfFrames)
+    {
+        enemy.p_inSpecialAnim = true;
+
+        enemy.p_timePassed += deltaTime;
+
+        if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
+        {
+            enemy.p_timePassed -= enemy.p_timeToNextFrame;
+            if (enemy.p_sourceRect.x + enemy.p_frameOffset >= enemy.p_frameOffset * (amountOfFrames + startingFrame))
+            {
+                enemy.p_sourceRect = {0, 0, static_cast<float>(enemy.p_frameOffset), enemy.p_sourceRect.height};
+                enemy.p_inSpecialAnim = false;
+            }
+            else if(enemy.p_sourceRect.x < enemy.p_frameOffset*startingFrame)
+            {
+                enemy.p_sourceRect.x = enemy.p_frameOffset*startingFrame;
+            }
+            else
+            {
+                enemy.p_sourceRect.x += enemy.p_frameOffset;
+            }
+        }
+    }
+};

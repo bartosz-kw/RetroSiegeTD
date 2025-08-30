@@ -35,4 +35,5 @@ struct Enemy
     bool p_alive = true;
     bool p_survived = false;
     bool p_dirty = true;
+    bool p_inSpecialAnim = false;
 };
