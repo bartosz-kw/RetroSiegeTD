@@ -115,8 +115,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
 {
     constexpr float hitCooldown = 3.0f;
     constexpr float hitEffectTime = 0.4f;
-    const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
-    const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)texture.width, (float)texture.height};
+    const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)enemy.p_sourceRect.width, (float)enemy.p_sourceRect.height};
 
     std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
     for (auto bullet : detectedBullets)

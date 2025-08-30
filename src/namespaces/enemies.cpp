@@ -157,6 +157,7 @@ namespace Enemies
                        summon.p_moneyDrop = 0.0f;
                        summon.p_id = mgr_enemy->GetNewValidId();
                        summon.p_tileId = enemy.p_tileId;
+                       summon.p_walked = enemy.p_walked;
                        mgr_enemy->AddEnemy(summon);
                     }
                 };
