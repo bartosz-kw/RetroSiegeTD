@@ -116,7 +116,8 @@ void MainMenu::InitButtons()
         static_cast<float>(Settings::g_boundingSize) + 270.0f - 32.0f,
         270.0f - 32.0f,
         32.0f,
-        32.0f};
+        32.0f
+    };
     musicButton.p_textPosition = {0, 0};
     musicButton.p_imagePosition = {0, 0};
     musicButton.p_color = WHITE;
