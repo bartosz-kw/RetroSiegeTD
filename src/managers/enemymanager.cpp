@@ -194,15 +194,12 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     if (enemy.p_tileId == -1)
     {
         enemy.p_tileId = mgr_tile->GetPathStart().p_id;
-        ;
     }
 
     const Tile tile = mgr_tile->GetTile(enemy.p_tileId);
 
     enemy.p_position = tile.p_position;
     enemy.p_dirty = false;
-
-    assert(tile.p_id != -1);
 }
 
 // Public
@@ -270,12 +267,10 @@ const Enemy *EnemyManager::GetHoveredEnemy() const
 }
 void EnemyManager::AddEnemy(const Enemy enemy)
 {
-    ReserveEnemies(1);
     m_enemies.push_back(enemy);
 }
 void EnemyManager::SpawnEnemy(const EnemyType enemyType)
 {
-    ReserveEnemies(1);
     Enemy enemy = Enemies::GetEnemyData(enemyType);
     enemy.p_tileId = -1;
     enemy.p_id = GetNewValidId();

@@ -150,6 +150,14 @@ void WaveManager::LoadWaves()
     m_unactiveWaves.push_back(wave1);
     m_unactiveWaves.push_back(wave2);
     m_unactiveWaves.push_back(wave3);
+
+    uint32_t totalEnemies = 0;
+    for (size_t i = 0; i < m_unactiveWaves.size(); i++)
+    {
+        totalEnemies += m_unactiveWaves[i].p_enemySpawns.size();
+    }
+    mgr_enemy->ReserveEnemies(totalEnemies);
+    
 }
 
 // Public
