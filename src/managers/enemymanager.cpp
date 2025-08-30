@@ -276,8 +276,9 @@ const Enemy *EnemyManager::GetHoveredEnemy() const
 {
     return m_hoveredEnemy;
 }
-void EnemyManager::AddEnemy(const Enemy enemy)
+void EnemyManager::AddEnemy(Enemy enemy)
 {
+    CleanEnemy(enemy);
     m_enemies.push_back(enemy);
 }
 void EnemyManager::SpawnEnemy(const EnemyType enemyType)
@@ -285,6 +286,7 @@ void EnemyManager::SpawnEnemy(const EnemyType enemyType)
     Enemy enemy = Enemies::GetEnemyData(enemyType);
     enemy.p_tileId = -1;
     enemy.p_id = GetNewValidId();
+    CleanEnemy(enemy);
     AddEnemy(enemy);
 }
 void EnemyManager::ReserveEnemies(const uint16_t amount)
@@ -314,11 +316,6 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
 {
     for (auto &enemy : m_enemies)
     {
-        if (enemy.p_dirty)
-        {
-           // continue;
-        }
-
         Color color = WHITE;
         if (enemy.p_hitEffectTime > 0.0f)
         {
@@ -330,8 +327,6 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
         const Vector2 position = {floorf(enemy.p_position.x + screenOffset), floorf(enemy.p_position.y)};
         const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
         DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
-
-        // DrawPixel(GetCenterPosition(enemy).x + Settings::g_boundingSize, GetCenterPosition(enemy).y, RED);
     }
 }
 void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
