@@ -32,6 +32,7 @@ struct Enemy
     uint16_t p_frameOffset = 0;
     uint16_t p_frameAmount = 0;
     int16_t p_tileId = 0;
+    bool p_isSummon = false;
     bool p_alive = true;
     bool p_survived = false;
     bool p_dirty = true;

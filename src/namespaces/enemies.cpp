@@ -162,6 +162,7 @@ namespace Enemies
                        
                        Enemy summon = GetEnemyData(EnemyType::Skeleton);
                        summon.p_moneyDrop = 0.0f;
+                       summon.p_isSummon = true;
                        summon.p_id = mgr_enemy->GetNewValidId();
                        summon.p_tileId = enemy.p_tileId;
                        summon.p_walked = enemy.p_walked;
