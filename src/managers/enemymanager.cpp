@@ -189,6 +189,11 @@ void EnemyManager::PreKillEnemy(Enemy &enemy)
 {
     if (!enemy.p_alive)
     {
+        if (enemy.p_isSummon)
+        {
+            return;
+        }
+        
         mgr_ps->AddMoney(enemy.p_moneyDrop);
     }
     else if (enemy.p_survived)
