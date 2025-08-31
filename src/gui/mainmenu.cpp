@@ -72,11 +72,6 @@ void MainMenu::InitButtons()
     exitButton.p_text = "Exit";
     exitButton.p_onPressed = [this](float deltaTime, Button &button)
     {
-        if (!button.p_isHovered)
-        {
-            return;
-        }
-
         mgr_game->CloseGame();
     };
     exitButton.p_updateFunction = [](float deltaTime, Button &button) {};
