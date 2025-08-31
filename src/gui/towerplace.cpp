@@ -38,7 +38,7 @@ void TowerPlace::ControlPlaceTower(const TowerType controlType)
 
 void TowerPlace::InitButtons()
 {
-    constexpr size_t amountOfButtons = 2;
+    constexpr size_t amountOfButtons = 3;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region NinjaButton
@@ -89,6 +89,36 @@ void TowerPlace::InitButtons()
     knightButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         if (this->mgr_tower->GetPlaceTower() == TowerType::KnightLv1)
+        {
+            button.p_color = YELLOW * 0.8f;
+            button.p_boundingColor = button.p_color * 0.8f;
+        }
+        else
+        {
+            button.p_color = YELLOW;
+            button.p_boundingColor = button.p_color * 0.8f;
+        }
+    };
+#pragma endregion
+
+#pragma region MarketButton
+    Button &marketButton = mgr_gui->AddButton(Button{});
+    marketButton.p_text = "";
+    marketButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f + 30.0f + 30.0f), 30.0f, 25.0f, 25.0f};
+    marketButton.p_color = YELLOW;
+    marketButton.p_id = mgr_gui->GetAmountOfButtons();
+    marketButton.p_isHovered = false;
+    marketButton.p_visible = true;
+    marketButton.p_boundingColor = marketButton.p_color * 0.8f;
+    marketButton.p_boundingSize = 2.0f;
+    marketButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::MarketLv1];
+    marketButton.p_onPressed = [this](float deltaTime, Button &button)
+    {
+        ControlPlaceTower(TowerType::MarketLv1);
+    };
+    marketButton.p_updateFunction = [this](float deltaTime, Button &button)
+    {
+        if (this->mgr_tower->GetPlaceTower() == TowerType::MarketLv1)
         {
             button.p_color = YELLOW * 0.8f;
             button.p_boundingColor = button.p_color * 0.8f;

@@ -14,6 +14,7 @@ enum TowerType
     KnightLv3 = 7,
     KnightLv4 = 8,
     KnightLv5 = 9,
+    MarketLv1 = 10,
 };
 class TowerManager;
 class EnemyManager;

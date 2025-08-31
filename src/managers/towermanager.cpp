@@ -130,7 +130,9 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
     case TowerType::KnightLv3:
     case TowerType::KnightLv4:
     case TowerType::KnightLv5:
-        return "Knight";
+        return "Knight";    
+    case TowerType::MarketLv1:
+        return "Market";
     default:
         return "Unknown";
     }

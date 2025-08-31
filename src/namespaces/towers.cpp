@@ -385,6 +385,35 @@ namespace Towers
 
         g_towerData[TowerType::KnightLv5] = knight5Tower;
 #pragma endregion
+
+#pragma region MarketLv1
+        // market Lv 1
+        Tower market1Tower = {};
+        market1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+        };
+        market1Tower.p_sourceRect = {0, 0, 15, 15};
+        market1Tower.p_price = 30;
+        market1Tower.p_damage = 0;
+        market1Tower.p_position = {-1.0f, -1.0f};
+        market1Tower.p_range = 5.0f;
+        market1Tower.p_attackSpeed = 0.1f;
+        market1Tower.p_timeToAttack = 0.0f;
+        market1Tower.p_timeToNextFrame = 0.0f;
+        market1Tower.p_timePassed = 0.0f;
+        market1Tower.p_upgradesTo = TowerType::Nothing;
+        market1Tower.p_id = -1;
+        market1Tower.p_level = 1;
+        market1Tower.p_frameOffset = 0;
+        market1Tower.p_frameAmount = 0;
+        market1Tower.p_typeId = TowerType::MarketLv1;
+        market1Tower.p_tileId = 0;
+        market1Tower.p_isUpgradeHovered = false;
+        market1Tower.p_canUpgrade = false;
+        market1Tower.p_dirty = true;
+
+        g_towerData[TowerType::MarketLv1] = market1Tower;
+#pragma endregion
     }
 
     Tower GetTowerData(int typeId)
