@@ -12,6 +12,7 @@ private:
     Enemy* m_hoveredEnemy = nullptr;
 
     int32_t m_IdCounter = 1;
+    uint32_t m_killedEnemies = 0;
     
     TileManager *mgr_tile = nullptr;
     BulletManager *mgr_bullet = nullptr;
@@ -36,6 +37,7 @@ public:
     bool IsEnemiesEmpty() const;
     uint32_t GetNewValidId();
     Vector2 GetCenterPosition(const Enemy &enemy) const;
+    const uint32_t GetKilledAmount() const;
     uint32_t FindEnemyInArea(const Vector2 center, const float radius);
     Enemy *GetEnemyById(const uint32_t id);
     const Enemy *GetHoveredEnemy() const;
@@ -47,4 +49,5 @@ public:
     void Draw(const uint8_t screenOffset) const;
     void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr);
     void Init();
+
 };

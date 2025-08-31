@@ -193,7 +193,7 @@ void EnemyManager::PreKillEnemy(Enemy &enemy)
         {
             return;
         }
-        
+        m_killedEnemies += 1;
         mgr_ps->AddMoney(enemy.p_moneyDrop);
     }
     else if (enemy.p_survived)
@@ -249,6 +249,10 @@ uint32_t EnemyManager::GetNewValidId()
 Vector2 EnemyManager::GetCenterPosition(const Enemy &enemy) const
 {
     return Vector2{enemy.p_position.x + enemy.p_sourceRect.width / 2.0f, enemy.p_position.y + enemy.p_sourceRect.height / 2.0f};
+}
+const uint32_t EnemyManager::GetKilledAmount() const
+{
+    return m_killedEnemies;
 }
 uint32_t EnemyManager::FindEnemyInArea(const Vector2 center, const float radius)
 {
@@ -343,3 +347,4 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 void EnemyManager::Init()
 {
 }
+
