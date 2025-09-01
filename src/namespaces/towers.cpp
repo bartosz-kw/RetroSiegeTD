@@ -391,20 +391,7 @@ namespace Towers
         Tower market1Tower = {};
         market1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
         {
-            static std::unordered_map<int32_t,uint32_t> startingKillAmounts = {};
-            PSManager* mgr_ps = mgr_tower->GetPSManager();
-            if (!startingKillAmounts.contains(tower->p_id))
-            {
-                startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
-            }
-            
-            uint32_t difference = mgr_enemy->GetKilledAmount() - startingKillAmounts[tower->p_id];
-            if(difference != 0)
-            {
-                PrintDebug(difference*tower->p_damage,"Earned");
-                mgr_ps->AddMoney(difference*tower->p_damage);
-                startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
-            }
+            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
         };
         market1Tower.p_sourceRect = {0, 0, 15, 15};
         market1Tower.p_price = 250;

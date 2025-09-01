@@ -1,6 +1,10 @@
 #include "basics.hpp"
 #include "towers.hpp"
-#include "../managers./psmanager.hpp"
+#include "../managers/psmanager.hpp"
+#include "../managers/enemymanager.hpp"
+#include "../managers/towermanager.hpp"
+#include "../utility/debugUtil.hpp"
+#include <unordered_map>
 #include <cassert>
 namespace Basics
 {
@@ -25,6 +29,22 @@ namespace Basics
             upgradedTower.p_tileId = tower->p_tileId;
             upgradedTower.p_dirty = true;
             *tower = upgradedTower;
+        }
+    }
+    void UpdateFarmTower(Tower *tower, EnemyManager *mgr_enemy, TowerManager *mgr_tower)
+    {
+        static std::unordered_map<int32_t, uint32_t> startingKillAmounts = {};
+        PSManager *mgr_ps = mgr_tower->GetPSManager();
+        if (!startingKillAmounts.contains(tower->p_id))
+        {
+            startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
+        }
+
+        uint32_t difference = mgr_enemy->GetKilledAmount() - startingKillAmounts[tower->p_id];
+        if (difference != 0)
+        {
+            mgr_ps->AddMoney(difference * tower->p_damage);
+            startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
         }
     }
     void Animate(const float deltaTime, Enemy &enemy)
