@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <raylib.h>
-enum TileDirection
+enum TileDirection : int8_t
 {
     NoDirection = 0,
 
@@ -16,7 +16,7 @@ enum TileDirection
     Right = 3,
     Left = 4
 };
-enum TileType
+enum TileType : uint8_t
 {
     GrassTile = 1,
     GrassPath1 = 2,

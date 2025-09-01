@@ -3,7 +3,7 @@
 #include <cstdint>
 
 class BulletManager;
-enum BulletType
+enum BulletType : uint8_t
 {
     Shuliken = 1,
     SharpShuliken = 2,
