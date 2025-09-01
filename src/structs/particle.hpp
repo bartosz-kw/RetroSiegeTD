@@ -5,16 +5,21 @@
 
 enum ParticleMoveType : uint8_t
 {
-    Up = 1,
-    UpWiggle = 2
+    MoveUp = 1,
+    MoveUpWiggle = 2
 };
 
 struct Particle
 {
     std::string p_text = "";
     Rectangle p_rect = {0, 0, 0, 0};
+    Vector2 p_textPosition = {0, 0};
+    ParticleMoveType p_particleMoveType = ParticleMoveType::MoveUp;
     Color p_color = WHITE;
-    ParticleMoveType p_particleMoveType = ParticleMoveType::Up;
+    float p_speed = 1.0f;
     float p_rotation = 0.0f;
+    float p_amplitude = 1.0f;
+    float p_transparency = 1.0f;
     float p_aliveTime = 0.0f;
+    float p_startingTime = 0.0f;
 };
