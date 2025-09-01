@@ -1,9 +1,12 @@
 #include "basics.hpp"
 #include "towers.hpp"
+#include "settings.hpp"
 #include "../managers/psmanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/towermanager.hpp"
+#include "../managers/particlemanager.hpp"
 #include "../utility/debugUtil.hpp"
+#include "../structs/particle.hpp"
 #include <unordered_map>
 #include <cassert>
 namespace Basics
@@ -35,6 +38,7 @@ namespace Basics
     {
         static std::unordered_map<int32_t, uint32_t> startingKillAmounts = {};
         PSManager *mgr_ps = mgr_tower->GetPSManager();
+        ParticleManager *mgr_particle = mgr_tower->GetParticleManager();
         if (!startingKillAmounts.contains(tower->p_id))
         {
             startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
@@ -43,6 +47,23 @@ namespace Basics
         uint32_t difference = mgr_enemy->GetKilledAmount() - startingKillAmounts[tower->p_id];
         if (difference != 0)
         {
+            Vector2 pos = mgr_tower->GetCenterPosition(*tower);
+
+            Particle particle = {};
+            particle.p_text = std::to_string(difference * tower->p_damage) + "$";
+            particle.p_rect = {pos.x + Settings::g_boundingSize, pos.y, 10, 10};
+            particle.p_textPosition = {0, 0};
+            particle.p_particleMoveType = ParticleMoveType::MoveUp;
+            particle.p_color = GREEN;
+            particle.p_speed = 1.0f;
+            particle.p_rotation = 0.0f;
+            particle.p_transparency = 1.0f;
+            particle.p_aliveTime = 1.0f;
+            particle.p_startingTime = particle.p_aliveTime;
+            mgr_particle->AddParticle(particle);
+            PrintDebug("ParticleSpawned");
+            
+
             mgr_ps->AddMoney(difference * tower->p_damage);
             startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
         }
