@@ -121,21 +121,26 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
     {
     case TowerType::Nothing:
         return "Nothing";
+        break;
     case TowerType::NinjaLv1:
     case TowerType::NinjaLv2:
     case TowerType::NinjaLv3:
     case TowerType::NinjaLv4:
         return "Ninja";
+        break;
     case TowerType::KnightLv1:
     case TowerType::KnightLv2:
     case TowerType::KnightLv3:
     case TowerType::KnightLv4:
     case TowerType::KnightLv5:
-        return "Knight";    
+        return "Knight";   
+        break; 
     case TowerType::MarketLv1:
         return "Market";
+        break;
     default:
         return "Unknown";
+        break;
     }
 }
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
