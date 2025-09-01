@@ -10,6 +10,7 @@
 #include "../managers/psmanager.hpp"
 #include "../managers/playermanager.hpp"
 #include "../managers/musicmanager.hpp"
+#include "../managers/particlemanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
@@ -35,6 +36,7 @@ private:
     PSManager mgr_ps = {};
     PlayerManager mgr_player = {};
     MusicManager mgr_music = {};
+    ParticleManager mgr_particle = {};
 
     EnemyHover gui_enemyHover = {};
     MainMenu gui_mainMenu = {};

@@ -71,6 +71,7 @@ void Game::Update()
         mgr_bullet.Update(deltaTime);
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
+        mgr_particle.Update(deltaTime);
     }
 
     mgr_music.SyncGameState(m_gameState);
@@ -94,6 +95,7 @@ void Game::MakeTextureFrame() const
         mgr_enemy.Draw(screenOffset);
         mgr_tower.Draw(screenOffset);
         mgr_bullet.Draw(screenOffset);
+        mgr_particle.Draw(screenOffset);
     }
 
     DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
@@ -135,7 +137,7 @@ void Game::InitManagers()
     mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps);
     mgr_enemy.Init();
-    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps);
+    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle);
     mgr_tower.Init();
 
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps);
@@ -146,6 +148,7 @@ void Game::InitManagers()
 
     mgr_music.InjectDependencies(&gui_mainMenu);
     mgr_music.Init();
+    mgr_particle.Init();
 }
 void Game::InitGui()
 {
