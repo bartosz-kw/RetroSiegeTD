@@ -4,7 +4,7 @@
 #include <vector>
 #include <functional>
 class EnemyManager;
-enum EnemyType
+enum EnemyType : uint8_t
 {
     BlueSlime = 1,
     RedSlime = 2,

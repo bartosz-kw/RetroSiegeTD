@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <functional>
 #include <raylib.h>
-enum TowerType
+enum TowerType : uint8_t
 {
     Nothing = 0,
     NinjaLv1 = 1,

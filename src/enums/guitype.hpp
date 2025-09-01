@@ -1,6 +1,7 @@
 #pragma once
+#include <cstdint>
 
-enum GuiType
+enum GuiType : uint8_t
 {
     GameGui = 0,
     MenuGui = 1

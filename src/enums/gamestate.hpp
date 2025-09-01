@@ -1,6 +1,7 @@
 #pragma once
+#include <cstdint>
 
-enum GameState
+enum GameState : uint8_t
 {
     Menu = 0,
     Started = 1,
