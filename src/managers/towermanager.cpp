@@ -174,6 +174,10 @@ Tower *TowerManager::GetTowerById(const int32_t id)
     }
     return nullptr;
 }
+PSManager *TowerManager::GetPSManager()
+{
+    return mgr_ps;
+}
 const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {
     for (const auto &tower : m_towers)

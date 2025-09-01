@@ -37,6 +37,7 @@ public:
     void RemoveTower(const int32_t id);
     Tower *GetLastSelectedTower();
     Tower *GetTowerById(const int32_t id);
+    PSManager *GetPSManager();
     const Tower *GetReadTowerById(const int32_t id) const;
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);
