@@ -51,14 +51,14 @@ namespace Basics
 
             Particle particle = {};
             particle.p_text = std::to_string(difference * tower->p_damage) + "$";
-            particle.p_rect = {pos.x + Settings::g_boundingSize, pos.y, 10, 10};
+            particle.p_rect = {pos.x + Settings::g_boundingSize, pos.y, 0, 0};
             particle.p_textPosition = {0, 0};
             particle.p_particleMoveType = ParticleMoveType::MoveUp;
             particle.p_color = GREEN;
-            particle.p_speed = 1.0f;
+            particle.p_speed = 10.0f;
             particle.p_rotation = 0.0f;
             particle.p_transparency = 1.0f;
-            particle.p_aliveTime = 1.0f;
+            particle.p_aliveTime = 3.0f;
             particle.p_startingTime = particle.p_aliveTime;
             mgr_particle->AddParticle(particle);
             PrintDebug("ParticleSpawned");
