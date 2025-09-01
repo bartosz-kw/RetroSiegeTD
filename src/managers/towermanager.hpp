@@ -20,6 +20,7 @@ private:
     EnemyManager *mgr_enemy = nullptr;
     PSManager *mgr_ps = nullptr;
     BulletManager *mgr_bullet = nullptr;
+    ParticleManager *mgr_particle = nullptr;
 
 private:
     void DetectInput();
@@ -38,6 +39,7 @@ public:
     Tower *GetLastSelectedTower();
     Tower *GetTowerById(const int32_t id);
     PSManager *GetPSManager();
+    ParticleManager *GetParticleManager();
     const Tower *GetReadTowerById(const int32_t id) const;
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);
@@ -46,6 +48,6 @@ public:
     void Update(const float deltaTime);
     void DrawHover(const uint8_t screenOffset) const;
     void Draw(const uint8_t screenOffset) const;
-    void InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr);
+    void InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr);
     void Init();
 };

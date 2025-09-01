@@ -10,6 +10,7 @@
 #include "../managers/tilemanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
+#include "../managers/particlemanager.hpp"
 #include <cassert>
 #include <cmath>
 #include <algorithm>
@@ -183,6 +184,10 @@ PSManager *TowerManager::GetPSManager()
 {
     return mgr_ps;
 }
+ParticleManager *TowerManager::GetParticleManager()
+{
+    return mgr_particle;
+}
 const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {
     for (const auto &tower : m_towers)
@@ -300,12 +305,13 @@ void TowerManager::Draw(const uint8_t screenOffset) const
             color);
     }
 }
-void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
+void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;
     mgr_bullet = mgr_bulletPtr;
     mgr_ps = mgr_psPtr;
+    mgr_particle = mgr_particlePtr;
 }
 void TowerManager::Init()
 {
@@ -313,4 +319,5 @@ void TowerManager::Init()
     assert(mgr_enemy != nullptr && "EnemyManager wasn't injected and its dependency");
     assert(mgr_bullet != nullptr && "BulletManager wasn't injected and its dependency");
     assert(mgr_ps != nullptr && "PSManager wasn't injected and its dependency");
+    assert(mgr_particle != nullptr && "ParticleManager wasn't injected and its dependency");
 }
