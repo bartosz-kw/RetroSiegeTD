@@ -202,6 +202,10 @@ const Tower *TowerManager::GetReadTowerById(const int32_t id) const
     }
     return nullptr;
 }
+const size_t TowerManager::GetTowerCount() const
+{
+    return m_towers.size();
+}
 TowerType TowerManager::GetPlaceTower() const
 {
     return m_placeTower;

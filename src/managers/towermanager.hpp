@@ -41,6 +41,7 @@ public:
     PSManager *GetPSManager();
     ParticleManager *GetParticleManager();
     const Tower *GetReadTowerById(const int32_t id) const;
+    const size_t GetTowerCount() const;
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);
     bool CanPlaceTower(const Tile *tile) const;
