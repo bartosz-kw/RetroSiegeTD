@@ -34,11 +34,9 @@ namespace Basics
             *tower = upgradedTower;
         }
     }
-    void UpdateFarmTower(Tower *tower, EnemyManager *mgr_enemy, TowerManager *mgr_tower)
+    void UpdateFarmTower(Tower *tower, EnemyManager *mgr_enemy, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
     {
         static std::unordered_map<int32_t, uint32_t> startingKillAmounts = {};
-        PSManager *mgr_ps = mgr_tower->GetPSManager();
-        ParticleManager *mgr_particle = mgr_tower->GetParticleManager();
         if (!startingKillAmounts.contains(tower->p_id))
         {
             startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();

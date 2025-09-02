@@ -38,8 +38,6 @@ public:
     void RemoveTower(const int32_t id);
     Tower *GetLastSelectedTower();
     Tower *GetTowerById(const int32_t id);
-    PSManager *GetPSManager();
-    ParticleManager *GetParticleManager();
     const Tower *GetReadTowerById(const int32_t id) const;
     const size_t GetTowerCount() const;
     TowerType GetPlaceTower() const;

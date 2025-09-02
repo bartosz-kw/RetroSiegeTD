@@ -22,13 +22,20 @@ enum TowerType : uint8_t
 class ParticleManager;
 class TowerManager;
 class EnemyManager;
+class ParticleManager;
+class PsManager;
 class Enemy;
 class BulletManager;
 class PSManager;
 struct Tower
 {              
-    std::function<void(const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower)> 
-    p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower){};
+    std::function<void(
+                       const float deltaTime,Tower* tower,
+                       Enemy* enemy,EnemyManager* mgr_enemy,
+                       BulletManager* mgr_bullet,TowerManager* mgr_tower,
+                       PSManager* mgr_ps, ParticleManager* mgr_particle
+                      )> 
+    p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower,PSManager* mgr_ps, ParticleManager* mgr_particle){};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_price = 0; 
     int64_t p_damage = 1;  

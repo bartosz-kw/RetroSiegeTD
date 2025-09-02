@@ -105,7 +105,7 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
     Enemy *enemy = mgr_enemy->GetEnemyById(enemyId);
     if (enemy)
     {
-        tower.p_fightFunction(deltatime, &tower, enemy, mgr_enemy, mgr_bullet, this);
+        tower.p_fightFunction(deltatime, &tower, enemy, mgr_enemy, mgr_bullet, this, mgr_ps, mgr_particle);
     }
     tower.p_timeToAttack = 0.0f;
 }
@@ -182,14 +182,6 @@ Tower *TowerManager::GetTowerById(const int32_t id)
         }
     }
     return nullptr;
-}
-PSManager *TowerManager::GetPSManager()
-{
-    return mgr_ps;
-}
-ParticleManager *TowerManager::GetParticleManager()
-{
-    return mgr_particle;
 }
 const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {

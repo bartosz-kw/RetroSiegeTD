@@ -5,8 +5,9 @@
 #include "../utility/mathUtil.hpp"
 #include "../managers/towermanager.hpp"
 #include "../managers/enemymanager.hpp"
-#include "../managers/psmanager.hpp"
+#include "../managers/PSManager.hpp"
 #include "../managers/bulletmanager.hpp"
+#include "../managers/particlemanager.hpp"
 #include <unordered_map>
 #include <cassert>
 #include <cmath>
@@ -22,7 +23,7 @@ namespace Towers
 #pragma region NinjaLv1
         // ninja Lv 1
         Tower ninja1Tower = {};
-        ninja1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        ninja1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -61,7 +62,7 @@ namespace Towers
 #pragma region NinjaLv2
         // ninja Lv 2
         Tower ninja2Tower = {};
-        ninja2Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        ninja2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -100,7 +101,7 @@ namespace Towers
 #pragma region NinjaLv3
         // ninja Lv 3
         Tower ninja3Tower = {};
-        ninja3Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        ninja3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -140,7 +141,7 @@ namespace Towers
 
         // ninja Lv 4
         Tower ninja4Tower = {};
-        ninja4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        ninja4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -180,7 +181,7 @@ namespace Towers
 #pragma region KnightLv1
         // knight Lv 1
         Tower knight1Tower = {};
-        knight1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        knight1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -220,7 +221,7 @@ namespace Towers
 #pragma region KnightLv2
         // knight Lv 2
         Tower knight2Tower = {};
-        knight2Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        knight2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -260,7 +261,7 @@ namespace Towers
 #pragma region KnightLv3
         // knight Lv 3
         Tower knight3Tower = {};
-        knight3Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        knight3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -300,7 +301,7 @@ namespace Towers
 #pragma region KnightLv4
         // knight Lv 4
         Tower knight4Tower = {};
-        knight4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        knight4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -340,7 +341,7 @@ namespace Towers
 #pragma region KnightLv5
         // knight Lv 5
         Tower knight5Tower = {};
-        knight5Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        knight5Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
             Vector2 bulletPos = centerPos;
@@ -380,9 +381,9 @@ namespace Towers
 #pragma region MarketLv1
         // market Lv 1
         Tower market1Tower = {};
-        market1Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        market1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
-            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+            Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market1Tower.p_sourceRect = {0, 0, 15, 15};
         market1Tower.p_price = 250;
@@ -410,9 +411,9 @@ namespace Towers
 #pragma region MarketLv2
         // market Lv 2
         Tower market2Tower = {};
-        market2Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        market2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
-            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+            Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market2Tower.p_sourceRect = {0, 0, 15, 15};
         market2Tower.p_price = 350;
@@ -440,9 +441,9 @@ namespace Towers
 #pragma region MarketLv3
         // market Lv 3
         Tower market3Tower = {};
-        market3Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        market3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
-            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+            Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market3Tower.p_sourceRect = {0, 0, 15, 15};
         market3Tower.p_price = 1250;
@@ -470,9 +471,9 @@ namespace Towers
 #pragma region MarketLv4
         // market Lv 4
         Tower market4Tower = {};
-        market4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        market4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
-            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+            Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market4Tower.p_sourceRect = {0, 0, 15, 15};
         market4Tower.p_price = 5000;
