@@ -116,10 +116,18 @@ void WaveManager::LoadWaves()
     };
 
     std::vector<std::pair<float, EnemyType>> enemySpawns3 = {};
-    enemySpawns3.push_back({1.0f, EnemyType::Zombie});
-    enemySpawns3.push_back({1.0f, EnemyType::ArmoredZombie});
-    enemySpawns3.push_back({1.0f, EnemyType::Skeleton});
-    enemySpawns3.push_back({1.0f, EnemyType::Summoner});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});    
+    enemySpawns3.push_back({2.0f, EnemyType::RedSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::RedSlime});
+    enemySpawns3.push_back({1.0f, EnemyType::RedSlime});
     EnemyWave wave3 = {};
     wave3.p_id = 3;
     wave3.p_moneyReward = 150;

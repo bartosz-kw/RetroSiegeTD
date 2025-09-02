@@ -41,8 +41,8 @@ namespace Towers
         ninja1Tower.p_price = 25;
         ninja1Tower.p_damage = 1;
         ninja1Tower.p_position = {-1.0f, -1.0f};
-        ninja1Tower.p_range = 75.0f;
-        ninja1Tower.p_attackSpeed = 0.5f;
+        ninja1Tower.p_range = 40.0f;
+        ninja1Tower.p_attackSpeed = 1.0f;
         ninja1Tower.p_timeToAttack = 0.0f;
         ninja1Tower.p_timeToNextFrame = 0.0f;
         ninja1Tower.p_timePassed = 0.0f;
@@ -80,8 +80,8 @@ namespace Towers
         ninja2Tower.p_price = 55;
         ninja2Tower.p_damage = 2;
         ninja2Tower.p_position = {-1.0f, -1.0f};
-        ninja2Tower.p_range = 75.0f;
-        ninja2Tower.p_attackSpeed = 0.5f;
+        ninja2Tower.p_range = 45.0f;
+        ninja2Tower.p_attackSpeed = 1.0f;
         ninja2Tower.p_timeToAttack = 0.0f;
         ninja2Tower.p_timeToNextFrame = 0.0f;
         ninja2Tower.p_timePassed = 0.0f;
@@ -119,8 +119,8 @@ namespace Towers
         ninja3Tower.p_price = 125;
         ninja3Tower.p_damage = 2;
         ninja3Tower.p_position = {-1.0f, -1.0f};
-        ninja3Tower.p_range = 80.0f;
-        ninja3Tower.p_attackSpeed = 0.25f;
+        ninja3Tower.p_range = 50.0f;
+        ninja3Tower.p_attackSpeed = 0.9f;
         ninja3Tower.p_timeToAttack = 0.0f;
         ninja3Tower.p_timeToNextFrame = 0.0f;
         ninja3Tower.p_timePassed = 0.0f;
@@ -160,8 +160,8 @@ namespace Towers
         ninja4Tower.p_price = 350;
         ninja4Tower.p_damage = 5;
         ninja4Tower.p_position = {-1.0f, -1.0f};
-        ninja4Tower.p_range = 90.0f;
-        ninja4Tower.p_attackSpeed = 0.25f;
+        ninja4Tower.p_range = 60.0f;
+        ninja4Tower.p_attackSpeed = 0.5f;
         ninja4Tower.p_timeToAttack = 0.0f;
         ninja4Tower.p_timeToNextFrame = 0.0f;
         ninja4Tower.p_timePassed = 0.0f;
