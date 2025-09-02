@@ -20,8 +20,8 @@ void ParticleManager::UpdateTextPosition(Particle &particle)
                                                   Settings::g_gameFont.baseSize, 0.0f);
     particle.p_textPosition =
         {
-            particle.p_rect.x + particle.p_rect.width / 2.0f - textMeasurement.x / 2.0f,
-            particle.p_rect.y + particle.p_rect.height / 2.0f - textMeasurement.y / 2.0f
+            particle.p_drawRect.x + particle.p_drawRect.width / 2.0f - textMeasurement.x / 2.0f,
+            particle.p_drawRect.y + particle.p_drawRect.height / 2.0f - textMeasurement.y / 2.0f
         };
 }
 
@@ -40,13 +40,18 @@ void ParticleManager::UpdateTransparency(Particle &particle)
 
 void ParticleManager::UpdateMovement(Particle &particle, const float deltaTime)
 {
+
+    particle.p_drawRect.x = particle.p_position.x;
+    particle.p_drawRect.y = particle.p_position.y;
+
     switch (particle.p_particleMoveType)
     {
     case ParticleMoveType::MoveUp:
-        particle.p_rect.y -= particle.p_speed * deltaTime;
+        particle.p_position.y -= particle.p_speed * deltaTime;
         break;
     case ParticleMoveType::MoveUpWiggle:
-        particle.p_rect.y -= sin(particle.p_speed * deltaTime) * particle.p_amplitude;
+        particle.p_position.y -= particle.p_speed * deltaTime;
+        particle.p_drawRect.x = particle.p_position.x + (sin(particle.p_aliveTime * particle.p_speed ) * particle.p_amplitude);
         break;
     default:
         break;
@@ -72,7 +77,7 @@ void ParticleManager::Draw(const uint8_t screenOffset) const
 {
     for (const auto &particle : m_particles)
     {
-        Rectangle drawRect = particle.p_rect;
+        Rectangle drawRect = particle.p_drawRect;
         drawRect.x += Settings::g_boundingSize;
         Color drawColor = particle.p_color;
         drawColor.a *= particle.p_transparency;

@@ -51,10 +51,11 @@ namespace Basics
 
             Particle particle = {};
             particle.p_text = std::to_string(difference * tower->p_damage) + "$";
-            particle.p_rect = {pos.x + Settings::g_boundingSize, pos.y, 0, 0};
+            particle.p_drawRect = {0,0,0,0};
+            particle.p_position = {pos.x + Settings::g_boundingSize, pos.y};
             particle.p_textPosition = {0, 0};
             particle.p_particleMoveType = ParticleMoveType::MoveUp;
-            particle.p_color = GREEN;
+            particle.p_color = DARKGREEN;
             particle.p_speed = 10.0f;
             particle.p_rotation = 0.0f;
             particle.p_transparency = 1.0f;

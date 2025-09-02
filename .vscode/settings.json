@@ -9,5 +9,10 @@
 		"**/*.exe": true,
 	},
 	"C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
-	"C_Cpp.errorSquiggles": "enabled"
+	"C_Cpp.errorSquiggles": "enabled",
+	"files.associations": {
+		"*.txt": "plaintext",
+		"cmath": "cpp",
+		"complex": "cpp"
+	}
 }

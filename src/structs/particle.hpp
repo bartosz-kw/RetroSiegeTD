@@ -12,7 +12,8 @@ enum ParticleMoveType : uint8_t
 struct Particle
 {
     std::string p_text = "";
-    Rectangle p_rect = {0, 0, 0, 0};
+    Rectangle p_drawRect = {0, 0, 0, 0};
+    Vector2 p_position = {0,0};
     Vector2 p_textPosition = {0, 0};
     ParticleMoveType p_particleMoveType = ParticleMoveType::MoveUp;
     Color p_color = WHITE;
