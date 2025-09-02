@@ -222,7 +222,7 @@ void TowerSelect::InitButtons()
             button.p_visible = false;
             return;
         }
-        else if (!tower->p_canUpgrade)
+        else if (tower->p_upgradesTo == TowerType::Nothing)
         {
             button.p_visible = true;
             button.p_color = RED;
@@ -243,7 +243,7 @@ void TowerSelect::InitButtons()
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (tower)
         {
-            if (!tower->p_canUpgrade || tower->p_upgradesTo == TowerType::Nothing)
+            if (tower->p_upgradesTo == TowerType::Nothing)
             {
                 return;
             }

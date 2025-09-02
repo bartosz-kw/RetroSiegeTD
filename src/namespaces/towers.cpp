@@ -53,7 +53,6 @@ namespace Towers
         ninja1Tower.p_typeId = TowerType::NinjaLv1;
         ninja1Tower.p_tileId = 0;
         ninja1Tower.p_isUpgradeHovered = false;
-        ninja1Tower.p_canUpgrade = true;
         ninja1Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv1] = ninja1Tower;
@@ -93,7 +92,6 @@ namespace Towers
         ninja2Tower.p_typeId = TowerType::NinjaLv2;
         ninja2Tower.p_tileId = 0;
         ninja2Tower.p_isUpgradeHovered = false;
-        ninja2Tower.p_canUpgrade = true;
         ninja2Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv2] = ninja2Tower;
@@ -133,7 +131,6 @@ namespace Towers
         ninja3Tower.p_typeId = TowerType::NinjaLv3;
         ninja3Tower.p_tileId = 0;
         ninja3Tower.p_isUpgradeHovered = false;
-        ninja3Tower.p_canUpgrade = true;
         ninja3Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv3] = ninja3Tower;
@@ -175,7 +172,6 @@ namespace Towers
         ninja4Tower.p_typeId = TowerType::NinjaLv4;
         ninja4Tower.p_tileId = 0;
         ninja4Tower.p_isUpgradeHovered = false;
-        ninja4Tower.p_canUpgrade = false;
         ninja4Tower.p_dirty = true;
 
         g_towerData[TowerType::NinjaLv4] = ninja4Tower;
@@ -216,7 +212,6 @@ namespace Towers
         knight1Tower.p_typeId = TowerType::KnightLv1;
         knight1Tower.p_tileId = 0;
         knight1Tower.p_isUpgradeHovered = false;
-        knight1Tower.p_canUpgrade = true;
         knight1Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv1] = knight1Tower;
@@ -257,7 +252,6 @@ namespace Towers
         knight2Tower.p_typeId = TowerType::KnightLv2;
         knight2Tower.p_tileId = 0;
         knight2Tower.p_isUpgradeHovered = false;
-        knight2Tower.p_canUpgrade = true;
         knight2Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv2] = knight2Tower;
@@ -298,7 +292,6 @@ namespace Towers
         knight3Tower.p_typeId = TowerType::KnightLv3;
         knight3Tower.p_tileId = 0;
         knight3Tower.p_isUpgradeHovered = false;
-        knight3Tower.p_canUpgrade = true;
         knight3Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv3] = knight3Tower;
@@ -339,7 +332,6 @@ namespace Towers
         knight4Tower.p_typeId = TowerType::KnightLv4;
         knight4Tower.p_tileId = 0;
         knight4Tower.p_isUpgradeHovered = false;
-        knight4Tower.p_canUpgrade = true;
         knight4Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv4] = knight4Tower;
@@ -380,7 +372,6 @@ namespace Towers
         knight5Tower.p_typeId = TowerType::KnightLv5;
         knight5Tower.p_tileId = 0;
         knight5Tower.p_isUpgradeHovered = false;
-        knight5Tower.p_canUpgrade = false;
         knight5Tower.p_dirty = true;
 
         g_towerData[TowerType::KnightLv5] = knight5Tower;
@@ -410,7 +401,6 @@ namespace Towers
         market1Tower.p_typeId = TowerType::MarketLv1;
         market1Tower.p_tileId = 0;
         market1Tower.p_isUpgradeHovered = false;
-        market1Tower.p_canUpgrade = true;
         market1Tower.p_rangeless = true;
         market1Tower.p_dirty = true;
 
@@ -441,7 +431,6 @@ namespace Towers
         market2Tower.p_typeId = TowerType::MarketLv2;
         market2Tower.p_tileId = 0;
         market2Tower.p_isUpgradeHovered = false;
-        market2Tower.p_canUpgrade = true;
         market2Tower.p_rangeless = true;
         market2Tower.p_dirty = true;
 
@@ -472,7 +461,6 @@ namespace Towers
         market3Tower.p_typeId = TowerType::MarketLv3;
         market3Tower.p_tileId = 0;
         market3Tower.p_isUpgradeHovered = false;
-        market3Tower.p_canUpgrade = true;
         market3Tower.p_rangeless = true;
         market3Tower.p_dirty = true;
 
@@ -503,7 +491,6 @@ namespace Towers
         market4Tower.p_typeId = TowerType::MarketLv4;
         market4Tower.p_tileId = 0;
         market4Tower.p_isUpgradeHovered = false;
-        market4Tower.p_canUpgrade = false;
         market4Tower.p_rangeless = true;
         market4Tower.p_dirty = true;
 

@@ -46,7 +46,6 @@ struct Tower
     int16_t p_typeId = 0;
     int16_t p_tileId = 0;
     bool p_isUpgradeHovered = false;
-    bool p_canUpgrade = false;
     bool p_rangeless = false;
     bool p_dirty = true;
 };
