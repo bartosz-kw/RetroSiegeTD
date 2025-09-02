@@ -60,7 +60,7 @@ void WaveManager::RemoveActiveWave(const uint32_t id)
 }
 void WaveManager::UpdateUnactiveWaves()
 {
-    if (!m_activeWaves.empty() || mgr_tower->GetTowerCount() == 0)
+    if (!m_activeWaves.empty() || !ShouldWaveStart())
     {
         return;
     }
@@ -158,7 +158,6 @@ void WaveManager::LoadWaves()
         totalEnemies += m_unactiveWaves[i].p_enemySpawns.size();
     }
     mgr_enemy->ReserveEnemies(totalEnemies);
-    
 }
 
 // Public
@@ -201,6 +200,10 @@ EnemyWave *WaveManager::GetCurrentWave()
         }
     }
     return biggest;
+}
+const bool WaveManager::ShouldWaveStart() const
+{
+    return mgr_tower->GetTowerCount() != 0;
 }
 bool WaveManager::IsSkipAllowed()
 {

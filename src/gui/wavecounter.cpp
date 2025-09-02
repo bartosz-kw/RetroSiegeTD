@@ -40,7 +40,12 @@ void WaveCounter::InitButtons()
 
         if (!currentWave && mgr_player->IsGameOver())
         {
-            button.p_text = "You lost.";
+            button.p_text = "You lost";
+            return;
+        }
+        else if(!mgr_wave->ShouldWaveStart())
+        {
+            button.p_text = "Place a tower";
             return;
         }
         else if (!currentWave)

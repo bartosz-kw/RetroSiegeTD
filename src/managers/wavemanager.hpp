@@ -36,6 +36,7 @@ public:
     TempMessage *GetWaveMessage();
     EnemyWave *GetNextWave();
     EnemyWave *GetCurrentWave();
+    const bool ShouldWaveStart() const;
     bool IsSkipAllowed();
     void SkipWave();
     void ClearActiveWaves();
@@ -43,4 +44,5 @@ public:
     void Update(const float deltaTime);
     void InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager);
     void Init();
+
 };
