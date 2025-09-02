@@ -73,7 +73,7 @@ Tile TileManager::GetTile(const uint16_t id) const
     {
         return *it;
     }
-    PrintDebugError("Incorrect Id returned");
+    Debug::PrintError("Incorrect Id returned");
     return Tile{};
 }
 const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
@@ -101,14 +101,14 @@ const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
     }
     else
     {
-        PrintDebugError(direction, "UNKNOWN DIRECTION,DIRECTION");
-        PrintDebugError(tileid, "UNKNOWN DIRECTION,TILEID");
+        Debug::PrintError(direction, "UNKNOWN DIRECTION,DIRECTION");
+        Debug::PrintError(tileid, "UNKNOWN DIRECTION,TILEID");
         //assert(false && "unknown direction was inputed into GetMovedId");
     }
     if (tileid < 0 || tileid > (18 * 18))
     {
-        PrintDebugError(direction, "OUTOFBOUNDS ID,DIRECTION");
-        PrintDebugError(tileid, "OUTOFBOUNDS ID,TILEID");
+        Debug::PrintError(direction, "OUTOFBOUNDS ID,DIRECTION");
+        Debug::PrintError(tileid, "OUTOFBOUNDS ID,TILEID");
         //assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
@@ -168,7 +168,7 @@ void TileManager::LoadMap(const GameMap gameMap)
             tile.p_typeId = gameMap.p_tileIdMap[y][x];
             tile.p_position = {static_cast<float>(g_tileSize * x), static_cast<float>(g_tileSize * y)};
             tile.p_moveDirection = gameMap.p_pathDirections[y][x];
-            // PrintDebug(tile.p_typeId);
+            // Debug::Print(tile.p_typeId);
             m_tiles.push_back(tile);
             id++;
         }

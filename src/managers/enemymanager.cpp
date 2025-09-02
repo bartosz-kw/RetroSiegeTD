@@ -122,8 +122,8 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     }
     else
     {
-        PrintDebugError(enemy.p_id, "Invalid Function Enemy ID");
-        PrintDebugError(enemy.p_typeId, "Invalid Function Enemy TypeID");
+        Debug::PrintError(enemy.p_id, "Invalid Function Enemy ID");
+        Debug::PrintError(enemy.p_typeId, "Invalid Function Enemy TypeID");
     }
 }
 void EnemyManager::HandleHits(Enemy &enemy)

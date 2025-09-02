@@ -1,2 +1,5 @@
 
-float RadiansToDegrees(float radians);
+namespace Math
+{
+    float RadiansToDegrees(float radians);
+}

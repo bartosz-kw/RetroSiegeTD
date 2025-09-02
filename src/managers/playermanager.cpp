@@ -12,7 +12,7 @@ void PlayerManager::OnGameOver()
     mgr_tower->ClearTowersVector();
     mgr_wave->ClearActiveWaves();
     mgr_wave->ClearUnactiveWaves();
-    PrintDebug("Gameover reached");
+    Debug::Print("Gameover reached");
 }
 
 bool PlayerManager::IsGameOver() const

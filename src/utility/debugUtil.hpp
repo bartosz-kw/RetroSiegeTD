@@ -3,8 +3,13 @@
 #include <type_traits>
 #include <concepts>
 #include <iostream>
+
+
+namespace Debug
+{
+
 template <typename T>
-void PrintDebug(T message, std::string prefix = "")
+void Print(T message, std::string prefix = "")
 {
     
 #ifdef RELEASE
@@ -17,7 +22,7 @@ void PrintDebug(T message, std::string prefix = "")
     constexpr bool isString = std::same_as<T, std::string>;
     constexpr bool isCString = std::same_as<T, const char *>;
 
-    static_assert(canParse || isString || isCString, "PrintDebug input must be a string or stringable type");
+    static_assert(canParse || isString || isCString, "Debug::Print input must be a string or stringable type");
 
     if constexpr (canParse)
     {
@@ -33,7 +38,7 @@ void PrintDebug(T message, std::string prefix = "")
     }
 }
 template <typename T>
-void PrintDebugError(T message, std::string prefix = "")
+void PrintError(T message, std::string prefix = "")
 {
 
 #ifdef RELEASE
@@ -45,7 +50,7 @@ void PrintDebugError(T message, std::string prefix = "")
     constexpr bool isString = std::same_as<T, std::string>;
     constexpr bool isCString = std::same_as<T, const char *>;
 
-    static_assert(canParse || isString || isCString, "PrintDebug input must be a string or stringable type");
+    static_assert(canParse || isString || isCString, "Debug::Print input must be a string or stringable type");
 
     if constexpr (canParse)
     {
@@ -59,4 +64,6 @@ void PrintDebugError(T message, std::string prefix = "")
     {
         std::cerr << "DEBUG_ERROR: " << prefix << ": " << message << "\n";
     }
+}
+    
 }

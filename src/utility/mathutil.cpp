@@ -1,7 +1,8 @@
 #include "mathutil.hpp"
 #include <raylib.h>
 
-float RadiansToDegrees(float radians)
+
+float Math::RadiansToDegrees(float radians)
 {
     return radians * 180/PI;
 }
