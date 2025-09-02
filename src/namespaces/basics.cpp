@@ -62,7 +62,6 @@ namespace Basics
             particle.p_aliveTime = 3.0f;
             particle.p_startingTime = particle.p_aliveTime;
             mgr_particle->AddParticle(particle);
-            PrintDebug("ParticleSpawned");
             
 
             mgr_ps->AddMoney(difference * tower->p_damage);

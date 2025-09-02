@@ -53,6 +53,13 @@ void ParticleManager::UpdateMovement(Particle &particle, const float deltaTime)
         particle.p_position.y -= particle.p_speed * deltaTime;
         particle.p_drawRect.x = particle.p_position.x + (sin(particle.p_aliveTime * particle.p_speed ) * particle.p_amplitude);
         break;
+    case ParticleMoveType::MoveDown:
+        particle.p_position.y += particle.p_speed * deltaTime;
+        break;
+    case ParticleMoveType::MoveWiggleDown:
+        particle.p_position.y += particle.p_speed * deltaTime;
+        particle.p_drawRect.x = particle.p_position.x + (sin(particle.p_aliveTime * particle.p_speed ) * particle.p_amplitude);
+        break;
     default:
         break;
     }

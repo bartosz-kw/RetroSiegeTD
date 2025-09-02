@@ -6,7 +6,9 @@
 enum ParticleMoveType : uint8_t
 {
     MoveUp = 1,
-    MoveUpWiggle = 2
+    MoveUpWiggle = 2,
+    MoveDown = 3,
+    MoveWiggleDown = 4
 };
 
 struct Particle
