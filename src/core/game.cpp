@@ -140,7 +140,7 @@ void Game::InitManagers()
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle);
     mgr_tower.Init();
 
-    mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps);
+    mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower);
     mgr_wave.Init();
 
     mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave);

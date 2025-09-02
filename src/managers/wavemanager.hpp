@@ -2,6 +2,7 @@
 #include "../structs/wave.hpp"
 #include "../structs/tempmessage.hpp"
 
+class TowerManager;
 class EnemyManager;
 class PSManager;
 
@@ -15,6 +16,7 @@ private:
     float m_waveTime = 0.0f;
     EnemyManager *mgr_enemy = nullptr;
     PSManager *mgr_ps = nullptr;
+    TowerManager *mgr_tower = nullptr;
 
 private:
     void PreKillWave(const EnemyWave wave);
@@ -39,6 +41,6 @@ public:
     void ClearActiveWaves();
     void ClearUnactiveWaves();
     void Update(const float deltaTime);
-    void InjectDependencies(EnemyManager *enemyManager, PSManager *psManager);
+    void InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager);
     void Init();
 };

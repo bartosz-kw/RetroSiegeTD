@@ -2,7 +2,8 @@
 #include "enemymanager.hpp"
 #include "psmanager.hpp"
 #include "../namespaces/enemies.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../managers/towermanager.hpp"
+#include "../utility/debugutil.hpp"
 #include <cassert>
 
 // Private
@@ -59,7 +60,7 @@ void WaveManager::RemoveActiveWave(const uint32_t id)
 }
 void WaveManager::UpdateUnactiveWaves()
 {
-    if (!m_activeWaves.empty())
+    if (!m_activeWaves.empty() || mgr_tower->GetTowerCount() == 0)
     {
         return;
     }
@@ -233,20 +234,23 @@ void WaveManager::ClearUnactiveWaves()
 }
 void WaveManager::Update(const float deltaTime)
 {
-    assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
-
     UpdateUnactiveWaves();
     UpdateActiveWaves(deltaTime);
 }
-void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager)
+void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager)
 {
     mgr_enemy = enemyManager;
     mgr_ps = psManager;
+    mgr_tower = towerManager;
 }
 void WaveManager::Init()
 {
+    assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
+    assert(mgr_ps != nullptr && "psManager wasn't injected and its dependency");
+    assert(mgr_tower != nullptr && "towerManager wasn't injected and its dependency");
+
     LoadWaves();
 
     m_spawnTime = 0.0f;
     m_waveTime = 0.0f;
-};
+}
