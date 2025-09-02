@@ -402,7 +402,7 @@ namespace Towers
         market1Tower.p_timeToAttack = 0.0f;
         market1Tower.p_timeToNextFrame = 0.0f;
         market1Tower.p_timePassed = 0.0f;
-        market1Tower.p_upgradesTo = TowerType::Nothing;
+        market1Tower.p_upgradesTo = TowerType::MarketLv2;
         market1Tower.p_id = -1;
         market1Tower.p_level = 1;
         market1Tower.p_frameOffset = 0;
@@ -410,11 +410,104 @@ namespace Towers
         market1Tower.p_typeId = TowerType::MarketLv1;
         market1Tower.p_tileId = 0;
         market1Tower.p_isUpgradeHovered = false;
-        market1Tower.p_canUpgrade = false;
+        market1Tower.p_canUpgrade = true;
         market1Tower.p_rangeless = true;
         market1Tower.p_dirty = true;
 
         g_towerData[TowerType::MarketLv1] = market1Tower;
+#pragma endregion
+
+#pragma region MarketLv2
+        // market Lv 2
+        Tower market2Tower = {};
+        market2Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+        };
+        market2Tower.p_sourceRect = {0, 0, 15, 15};
+        market2Tower.p_price = 350;
+        market2Tower.p_damage = 10;
+        market2Tower.p_position = {-1.0f, -1.0f};
+        market2Tower.p_range = 5.0f;
+        market2Tower.p_attackSpeed = 3.0f;
+        market2Tower.p_timeToAttack = 0.0f;
+        market2Tower.p_timeToNextFrame = 0.0f;
+        market2Tower.p_timePassed = 0.0f;
+        market2Tower.p_upgradesTo = TowerType::MarketLv3;
+        market2Tower.p_id = -1;
+        market2Tower.p_level = 2;
+        market2Tower.p_frameOffset = 0;
+        market2Tower.p_frameAmount = 0;
+        market2Tower.p_typeId = TowerType::MarketLv2;
+        market2Tower.p_tileId = 0;
+        market2Tower.p_isUpgradeHovered = false;
+        market2Tower.p_canUpgrade = true;
+        market2Tower.p_rangeless = true;
+        market2Tower.p_dirty = true;
+
+        g_towerData[TowerType::MarketLv2] = market2Tower;
+#pragma endregion
+
+#pragma region MarketLv3
+        // market Lv 3
+        Tower market3Tower = {};
+        market3Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+        };
+        market3Tower.p_sourceRect = {0, 0, 15, 15};
+        market3Tower.p_price = 1250;
+        market3Tower.p_damage = 50;
+        market3Tower.p_position = {-1.0f, -1.0f};
+        market3Tower.p_range = 5.0f;
+        market3Tower.p_attackSpeed = 3.0f;
+        market3Tower.p_timeToAttack = 0.0f;
+        market3Tower.p_timeToNextFrame = 0.0f;
+        market3Tower.p_timePassed = 0.0f;
+        market3Tower.p_upgradesTo = TowerType::MarketLv4;
+        market3Tower.p_id = -1;
+        market3Tower.p_level = 3;
+        market3Tower.p_frameOffset = 0;
+        market3Tower.p_frameAmount = 0;
+        market3Tower.p_typeId = TowerType::MarketLv3;
+        market3Tower.p_tileId = 0;
+        market3Tower.p_isUpgradeHovered = false;
+        market3Tower.p_canUpgrade = true;
+        market3Tower.p_rangeless = true;
+        market3Tower.p_dirty = true;
+
+        g_towerData[TowerType::MarketLv3] = market3Tower;
+#pragma endregion
+
+#pragma region MarketLv4
+        // market Lv 4
+        Tower market4Tower = {};
+        market4Tower.p_fightFunction = [](float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower)
+        {
+            Basics::UpdateFarmTower(tower,mgr_enemy,mgr_tower);
+        };
+        market4Tower.p_sourceRect = {0, 0, 15, 15};
+        market4Tower.p_price = 5000;
+        market4Tower.p_damage = 100;
+        market4Tower.p_position = {-1.0f, -1.0f};
+        market4Tower.p_range = 5.0f;
+        market4Tower.p_attackSpeed = 3.0f;
+        market4Tower.p_timeToAttack = 0.0f;
+        market4Tower.p_timeToNextFrame = 0.0f;
+        market4Tower.p_timePassed = 0.0f;
+        market4Tower.p_upgradesTo = TowerType::Nothing;
+        market4Tower.p_id = -1;
+        market4Tower.p_level = 4;
+        market4Tower.p_frameOffset = 0;
+        market4Tower.p_frameAmount = 0;
+        market4Tower.p_typeId = TowerType::MarketLv4;
+        market4Tower.p_tileId = 0;
+        market4Tower.p_isUpgradeHovered = false;
+        market4Tower.p_canUpgrade = false;
+        market4Tower.p_rangeless = true;
+        market4Tower.p_dirty = true;
+
+        g_towerData[TowerType::MarketLv4] = market4Tower;
 #pragma endregion
     }
 

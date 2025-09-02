@@ -15,6 +15,9 @@ enum TowerType : uint8_t
     KnightLv4 = 8,
     KnightLv5 = 9,
     MarketLv1 = 10,
+    MarketLv2 = 11,
+    MarketLv3 = 12,
+    MarketLv4 = 13,
 };
 class ParticleManager;
 class TowerManager;

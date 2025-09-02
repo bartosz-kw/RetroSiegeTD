@@ -137,6 +137,9 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
         return "Knight";   
         break; 
     case TowerType::MarketLv1:
+    case TowerType::MarketLv2:
+    case TowerType::MarketLv3:
+    case TowerType::MarketLv4:
         return "Market";
         break;
     default:
