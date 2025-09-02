@@ -1,5 +1,5 @@
-#include "loadingutil.hpp"
-#include "colorutil.hpp"
+#include "loading.hpp"
+#include "../utility/colorutil.hpp"
 #include "../structs/tile.hpp"
 #include <tuple>
 #include <unordered_map>
@@ -22,7 +22,7 @@ std::unordered_map<Color, int16_t, ColorHash> ColorTileType =
     { { 0x44, 0x66, 0x7a, 255 }, TileType::GrassPath4 }   // 44667a - muted slate blue
 };
 
-std::array<std::array<int16_t, 18>, 18> LoadMapDirections(const char *path)
+std::array<std::array<int16_t, 18>, 18> Loading::LoadMapDirections(const char *path)
 {
     Image image = LoadImage(path);
     assert(image.width == 18 && image.height == 18 && "LoadMapDirections(const char* path) needs 18x18 image");
@@ -52,7 +52,7 @@ std::array<std::array<int16_t, 18>, 18> LoadMapDirections(const char *path)
     return directions;
 }
 
-std::array<std::array<uint16_t, 18>, 18> LoadTileTypes(const char *path)
+std::array<std::array<uint16_t, 18>, 18> Loading::LoadTileTypes(const char *path)
 {
     Image image = LoadImage(path);
     assert(image.width == 18 && image.height == 18 && "LoadTileTypes(const char* path) needs 18x18 image");

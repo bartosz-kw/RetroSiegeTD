@@ -1,6 +1,6 @@
 #include <cstddef>
 #include "../utility/debugUtil.hpp"
-#include "../utility/loadingUtil.hpp"
+#include "../namespaces/loading.hpp"
 #include "../namespaces/music.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/settings.hpp"
@@ -129,8 +129,8 @@ void Game::InitManagers()
     // loading map
     GameMap map;
     map.p_id = 1;
-    map.p_tileIdMap = LoadTileTypes("src/resources/maps/Map1Tiles.png");
-    map.p_pathDirections = LoadMapDirections("src/resources/maps/Map1Directions.png");
+    map.p_tileIdMap = Loading::LoadTileTypes("src/resources/maps/Map1Tiles.png");
+    map.p_pathDirections = Loading::LoadMapDirections("src/resources/maps/Map1Directions.png");
     mgr_tile.LoadMap(map);
     // continue with managers
 
