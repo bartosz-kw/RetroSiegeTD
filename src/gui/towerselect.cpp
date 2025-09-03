@@ -300,7 +300,6 @@ void TowerSelect::InitButtons()
     upgradeButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
-        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         
         if (tower)
         {
