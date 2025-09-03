@@ -11,8 +11,10 @@
 #include <cassert>
 
 constexpr uint16_t startingPoint = 250;
-constexpr uint8_t offset = 15;
+constexpr uint8_t offset = 10;
 constexpr int8_t gap = -10;
+constexpr uint8_t elementHeight = 15;
+constexpr uint8_t boundingHeight = 190;
 
 void TowerSelect::InitLabels()
 {
@@ -23,7 +25,7 @@ void TowerSelect::InitLabels()
     Label &boundingLabel = mgr_gui->AddLabel(Label{});
     boundingLabel.p_text = "";
     boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
-    boundingLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7 - 10, 95, 190};
+    boundingLabel.p_rect = {5, (startingPoint - offset * 7) + gap * 8 - 10, 95, boundingHeight};
     boundingLabel.p_color = DARKBLUE;
     boundingLabel.p_boundingSize = 2.0f;
     boundingLabel.p_boundingColor = boundingLabel.p_color * 0.8f;
@@ -33,7 +35,8 @@ void TowerSelect::InitLabels()
     boundingLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
-        if (!tower)
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
+        if (!tower && placeTower == TowerType::Nothing)
         {
             label.p_visible = false;
             return;
@@ -45,7 +48,7 @@ void TowerSelect::InitLabels()
     Label &nameLabel = mgr_gui->AddLabel(Label{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
-    nameLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7, 95, 20};
+    nameLabel.p_rect = {5, (startingPoint - offset * 7) + gap * 8, 95, elementHeight};
     nameLabel.p_color = BLUE;
     nameLabel.p_boundingSize = 2.0f;
     nameLabel.p_boundingColor = nameLabel.p_color * 0.8f;
@@ -76,7 +79,7 @@ void TowerSelect::InitLabels()
     Label &IdLabel = mgr_gui->AddLabel(Label{});
     IdLabel.p_text = "";
     IdLabel.p_id = mgr_gui->GetAmountOfLabels();
-    IdLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, 20};
+    IdLabel.p_rect = {5, (startingPoint - offset * 6) + gap * 7, 95, elementHeight};
     IdLabel.p_color = BLUE;
     IdLabel.p_boundingSize = 2.0f;
     IdLabel.p_boundingColor = IdLabel.p_color * 0.8f;
@@ -106,7 +109,7 @@ void TowerSelect::InitLabels()
     Label &levelLabel = mgr_gui->AddLabel(Label{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
-    levelLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, 20};
+    levelLabel.p_rect = {5, (startingPoint - offset * 5) + gap * 6, 95, elementHeight};
     levelLabel.p_color = BLUE;
     levelLabel.p_boundingSize = 2.0f;
     levelLabel.p_boundingColor = levelLabel.p_color * 0.8f;
@@ -143,7 +146,7 @@ void TowerSelect::InitLabels()
     Label &damageLabel = mgr_gui->AddLabel(Label{});
     damageLabel.p_text = "";
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
-    damageLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, 20};
+    damageLabel.p_rect = {5, (startingPoint - offset * 4) + gap * 5, 95, elementHeight};
     damageLabel.p_color = BLUE;
     damageLabel.p_boundingSize = 2.0f;
     damageLabel.p_boundingColor = damageLabel.p_color * 0.8f;
@@ -181,7 +184,7 @@ void TowerSelect::InitLabels()
     Label &attackSpeedLabel = mgr_gui->AddLabel(Label{});
     attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
-    attackSpeedLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, 20};
+    attackSpeedLabel.p_rect = {5, (startingPoint - offset * 3) + gap * 4, 95, elementHeight};
     attackSpeedLabel.p_color = BLUE;
     attackSpeedLabel.p_boundingSize = 2.0f;
     attackSpeedLabel.p_boundingColor = attackSpeedLabel.p_color * 0.8f;
@@ -217,7 +220,7 @@ void TowerSelect::InitLabels()
     Label &rangeLabel = mgr_gui->AddLabel(Label{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
-    rangeLabel.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, 20};
+    rangeLabel.p_rect = {5, (startingPoint - offset * 2) + gap * 3, 95, elementHeight};
     rangeLabel.p_color = BLUE;
     rangeLabel.p_boundingSize = 2.0f;
     rangeLabel.p_boundingColor = rangeLabel.p_color * 0.8f;
@@ -252,14 +255,14 @@ void TowerSelect::InitLabels()
 }
 void TowerSelect::InitButtons()
 {
-    constexpr size_t amountOfButtons = 1;
+    constexpr size_t amountOfButtons = 2;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region UpgradeButton
     Button &upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upgrade";
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
-    upgradeButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, 20};
+    upgradeButton.p_rect = {5, (startingPoint - offset * 1) + gap * 2, 95, elementHeight};
     upgradeButton.p_color = GREEN;
     upgradeButton.p_boundingSize = 2.0f;
     upgradeButton.p_boundingColor = upgradeButton.p_color * 0.8f;
@@ -312,6 +315,36 @@ void TowerSelect::InitButtons()
         }
     };
 
+#pragma endregion
+#pragma region SellButton
+    Button &sellButton = mgr_gui->AddButton(Button{});
+    sellButton.p_text = "Sell";
+    sellButton.p_id = mgr_gui->GetAmountOfButtons();
+    sellButton.p_rect = {5, (startingPoint - offset * 0) + gap * 1, 95, elementHeight};
+    sellButton.p_color = GREEN;
+    sellButton.p_boundingSize = 2.0f;
+    sellButton.p_boundingColor = sellButton.p_color * 0.8f;
+    sellButton.p_visible = false;
+    sellButton.p_updateFunction = [this](float deltaTime, Button &button)
+    {
+        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        button.p_color = RED;
+
+        if (!tower)
+        {
+            button.p_visible = false;
+        }
+        else
+        {
+            button.p_text = "Sell for " + std::format("{:.2f}",tower->p_price/2.0f) + " $";
+            button.p_visible = true;
+        }
+
+        button.p_boundingColor = button.p_color * 0.8f;
+    };
+    sellButton.p_onPressed = [this](float deltaTime, Button &button)
+    {
+    };
 #pragma endregion
 
 }
