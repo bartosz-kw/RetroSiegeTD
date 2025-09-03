@@ -19,7 +19,7 @@ void TowerSelect::InitLabels()
     constexpr size_t amountOfLabels = 6;
     mgr_gui->ReserveLabel(amountOfLabels);
 
-    #pragma region BoundingLabel
+#pragma region BoundingLabel
     Label &boundingLabel = mgr_gui->AddLabel(Label{});
     boundingLabel.p_text = "";
     boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -30,7 +30,7 @@ void TowerSelect::InitLabels()
     boundingLabel.p_visible = false;
     boundingLabel.p_roundness = 0.25f;
     boundingLabel.p_segments = 1.0f;
-    boundingLabel.p_updateFunction = [this](float deltaTime, Label &label) 
+    boundingLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
         if (!tower)
@@ -40,8 +40,8 @@ void TowerSelect::InitLabels()
         }
         label.p_visible = true;
     };
-    #pragma endregion
-    #pragma region NameLabel
+#pragma endregion
+#pragma region NameLabel
     Label &nameLabel = mgr_gui->AddLabel(Label{});
     nameLabel.p_text = "";
     nameLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -53,16 +53,26 @@ void TowerSelect::InitLabels()
     nameLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                label.p_text = "Type: " + this->mgr_tower->TowerTypeToString(placeTower);
+                ;
+                label.p_visible = true;
+            }
         }
-        label.p_text = "Type: " + this->mgr_tower->TowerTypeToString(static_cast<TowerType>(tower->p_typeId));
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "Type: " + this->mgr_tower->TowerTypeToString(static_cast<TowerType>(tower->p_typeId));
+            ;
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
-    #pragma region IdLabel
+#pragma endregion
+#pragma region IdLabel
     Label &IdLabel = mgr_gui->AddLabel(Label{});
     IdLabel.p_text = "";
     IdLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -74,17 +84,25 @@ void TowerSelect::InitLabels()
     IdLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
+
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                label.p_text = "Id: N/A";
+                label.p_visible = true;
+            }
         }
-        
-        label.p_text = "Id: " + std::to_string(tower->p_id);
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "Id: " + std::to_string(tower->p_id);
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
-    #pragma region LevelLabel
+#pragma endregion
+#pragma region LevelLabel
     Label &levelLabel = mgr_gui->AddLabel(Label{});
     levelLabel.p_text = "";
     levelLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -96,24 +114,32 @@ void TowerSelect::InitLabels()
     levelLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
+
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                const Tower tower = Towers::GetTowerData(placeTower);
+                label.p_text = "Lv: " + std::to_string(tower.p_level);
+                label.p_visible = true;
+            }
         }
-        if (tower->p_isUpgradeHovered)
+        else if (tower->p_isUpgradeHovered)
         {
             const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "Lv: " + std::to_string(tower->p_level) + " -> " + std::to_string(postUpgradeData.p_level);
             label.p_visible = true;
-            return;
         }
-        
-        label.p_text = "Lv: " + std::to_string(tower->p_level);
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "Lv: " + std::to_string(tower->p_level);
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
-    #pragma region DamageLabel
+#pragma endregion
+#pragma region DamageLabel
     Label &damageLabel = mgr_gui->AddLabel(Label{});
     damageLabel.p_text = "";
     damageLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -125,23 +151,33 @@ void TowerSelect::InitLabels()
     damageLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                const Tower tower = Towers::GetTowerData(placeTower);
+                label.p_text = "Dmg: " + std::to_string(tower.p_damage);
+                label.p_visible = true;
+            }
         }
-        if (tower->p_isUpgradeHovered)
+        else if (tower->p_isUpgradeHovered)
         {
             const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "Dmg: " + std::to_string(tower->p_damage) + " -> " + std::to_string(postUpgradeData.p_damage);
+            ;
             label.p_visible = true;
-            return;
         }
-        label.p_text = "Dmg: " + std::to_string(tower->p_damage);
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "Dmg: " + std::to_string(tower->p_damage);
+
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
-    #pragma region AttackSpeedLabel
+#pragma endregion
+#pragma region AttackSpeedLabel
     Label &attackSpeedLabel = mgr_gui->AddLabel(Label{});
     attackSpeedLabel.p_text = "";
     attackSpeedLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -153,23 +189,31 @@ void TowerSelect::InitLabels()
     attackSpeedLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                const Tower tower = Towers::GetTowerData(placeTower);
+                label.p_text = "As: " + std::format("{:.2f}", tower.p_attackSpeed);
+                label.p_visible = true;
+            }
         }
-        if (tower->p_isUpgradeHovered)
+        else if (tower->p_isUpgradeHovered)
         {
             const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed) + " -> " + std::format("{:.2f}", postUpgradeData.p_attackSpeed);
             label.p_visible = true;
-            return;
         }
-        label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed);
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "As: " + std::format("{:.2f}", tower->p_attackSpeed);
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
-    #pragma region RangeLabel
+#pragma endregion
+#pragma region RangeLabel
     Label &rangeLabel = mgr_gui->AddLabel(Label{});
     rangeLabel.p_text = "R: 0";
     rangeLabel.p_id = mgr_gui->GetAmountOfLabels();
@@ -181,30 +225,37 @@ void TowerSelect::InitLabels()
     rangeLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
         const Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         if (!tower)
         {
             label.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                const Tower tower = Towers::GetTowerData(placeTower);
+                label.p_text = "R: " + std::format("{:.2f}", tower.p_range);
+                label.p_visible = true;
+            }
         }
-        if (tower->p_isUpgradeHovered)
+        else if (tower->p_isUpgradeHovered)
         {
             const Tower postUpgradeData = Towers::GetTowerData(tower->p_upgradesTo);
             label.p_text = "R: " + std::format("{:.2f}", tower->p_range) + " -> " + std::format("{:.2f}", postUpgradeData.p_range);
             label.p_visible = true;
-            return;
         }
-
-        label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
-        label.p_visible = true;
+        else
+        {
+            label.p_text = "R: " + std::format("{:.2f}", tower->p_range);
+            label.p_visible = true;
+        }
     };
-    #pragma endregion
+#pragma endregion
 }
 void TowerSelect::InitButtons()
 {
     constexpr size_t amountOfButtons = 1;
     mgr_gui->ReserveButton(amountOfButtons);
 
-    #pragma region UpgradeButton
+#pragma region UpgradeButton
     Button &upgradeButton = mgr_gui->AddButton(Button{});
     upgradeButton.p_text = "Upgrade";
     upgradeButton.p_id = mgr_gui->GetAmountOfButtons();
@@ -216,11 +267,18 @@ void TowerSelect::InitButtons()
     upgradeButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
         button.p_color = GREEN;
+
         if (!tower)
         {
             button.p_visible = false;
-            return;
+            if (placeTower != TowerType::Nothing)
+            {
+                button.p_color = YELLOW;
+                button.p_text = "Preview Stats";
+                button.p_visible = true;
+            }
         }
         else if (tower->p_upgradesTo == TowerType::Nothing)
         {
@@ -228,19 +286,22 @@ void TowerSelect::InitButtons()
             button.p_color = RED;
             button.p_boundingColor = button.p_color * 0.8f;
             button.p_text = "Max Upgrade";
-            return;
         }
-        
-        button.p_boundingColor = button.p_color * 0.8f;
+        else
+        {
+            Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
+            button.p_text = "Upgrade: " + std::to_string(upgradedTower.p_price) + " $";
+            tower->p_isUpgradeHovered = button.p_isHovered;
+            button.p_visible = true;
+        }
 
-        Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
-        button.p_text = "Upgrade: " + std::to_string(upgradedTower.p_price) + " $";
-        tower->p_isUpgradeHovered = button.p_isHovered;
-        button.p_visible = true;
+        button.p_boundingColor = button.p_color * 0.8f;
     };
     upgradeButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        const TowerType placeTower = this->mgr_tower->GetPlaceTower();
+        
         if (tower)
         {
             if (tower->p_upgradesTo == TowerType::Nothing)
@@ -248,13 +309,14 @@ void TowerSelect::InitButtons()
                 return;
             }
 
-            Basics::UpgradeTower(deltaTime,tower,mgr_ps);
+            Basics::UpgradeTower(deltaTime, tower, mgr_ps);
         }
     };
-    
-    #pragma endregion
+
+#pragma endregion
+
 }
-void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager* psManager)
+void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager *psManager)
 {
     mgr_tower = towerManager;
     mgr_gui = guiManager;
