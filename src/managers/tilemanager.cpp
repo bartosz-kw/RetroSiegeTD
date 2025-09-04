@@ -67,7 +67,7 @@ Tile TileManager::GetPathStart()
 }
 Tile TileManager::GetTile(const uint16_t id) const
 {
-    auto it = std::lower_bound(m_tiles.begin(), m_tiles.end(), id, [](const Tile &tile, uint16_t id)
+    auto it = std::lower_bound(m_tiles.begin(), m_tiles.end(), id, [](const Tile &tile, const uint16_t id)
                                { return tile.p_id < id; });
     if (it != m_tiles.end() && it->p_id == id)
     {
