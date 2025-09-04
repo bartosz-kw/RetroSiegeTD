@@ -197,8 +197,8 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         knight1Tower.p_sourceRect = {0, 0, 15, 15};
-        knight1Tower.p_price = 50;
-        knight1Tower.p_damage = 3;
+        knight1Tower.p_price = 120;
+        knight1Tower.p_damage = 4;
         knight1Tower.p_position = {-1.0f, -1.0f};
         knight1Tower.p_range = 25.0f;
         knight1Tower.p_attackSpeed = 2.0f;
@@ -237,8 +237,8 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         knight2Tower.p_sourceRect = {0, 0, 15, 15};
-        knight2Tower.p_price = 75;
-        knight2Tower.p_damage = 3;
+        knight2Tower.p_price = 150;
+        knight2Tower.p_damage = 4;
         knight2Tower.p_position = {-1.0f, -1.0f};
         knight2Tower.p_range = 40.0f;
         knight2Tower.p_attackSpeed = 1.5f;
@@ -277,8 +277,8 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         knight3Tower.p_sourceRect = {0, 0, 15, 15};
-        knight3Tower.p_price = 200;
-        knight3Tower.p_damage = 10;
+        knight3Tower.p_price = 500;
+        knight3Tower.p_damage = 12;
         knight3Tower.p_position = {-1.0f, -1.0f};
         knight3Tower.p_range = 40.0f;
         knight3Tower.p_attackSpeed = 1.5f;
@@ -317,11 +317,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         knight4Tower.p_sourceRect = {0, 0, 15, 15};
-        knight4Tower.p_price = 550;
-        knight4Tower.p_damage = 15;
+        knight4Tower.p_price = 750;
+        knight4Tower.p_damage = 16;
         knight4Tower.p_position = {-1.0f, -1.0f};
         knight4Tower.p_range = 45.0f;
-        knight4Tower.p_attackSpeed = 1.0f;
+        knight4Tower.p_attackSpeed = 1.3f;
         knight4Tower.p_timeToAttack = 0.0f;
         knight4Tower.p_timeToNextFrame = 0.0f;
         knight4Tower.p_timePassed = 0.0f;
@@ -357,7 +357,7 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         knight5Tower.p_sourceRect = {0, 0, 15, 15};
-        knight5Tower.p_price = 1050;
+        knight5Tower.p_price = 1450;
         knight5Tower.p_damage = 40;
         knight5Tower.p_position = {-1.0f, -1.0f};
         knight5Tower.p_range = 50.0f;
