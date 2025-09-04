@@ -2,8 +2,9 @@
 
 namespace Settings
 {
-    bool g_debugView = false;
+    Font g_gameFont = {};
+    float g_gameSpeed = 1.0f;
     uint8_t g_boundingSize = 105;
     uint8_t g_gameScale = 4;
-    Font g_gameFont = {};
+    bool g_debugView = false;
 }

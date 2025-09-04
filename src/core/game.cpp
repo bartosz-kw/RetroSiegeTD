@@ -34,6 +34,17 @@ void Game::UpdateDebug()
     {
         StartGame();
     }
+    if (IsKeyPressed(KEY_S))
+    {
+        if (Settings::g_gameSpeed == 2.0f)
+        {
+            Settings::g_gameSpeed = 1.0f;
+        }
+        else
+        {
+            Settings::g_gameSpeed = 2.0f;
+        }
+    }
     if (IsKeyPressed(KEY_M))
     {
         mgr_ps.AddMoney(3000);
@@ -48,7 +59,7 @@ void Game::UpdateDebug()
         {
             return;
         }
-        
+
         mgr_enemy.SpawnEnemy(EnemyType::Summoner);
     }
 }
@@ -162,7 +173,7 @@ void Game::InitGui()
     gui_playerStats.Init();
     gui_mainMenu.InjectDependencies(&mgr_gui, this);
     gui_mainMenu.Init();
-    gui_enemyHover.InjectDependencies(&mgr_enemy,&mgr_gui);
+    gui_enemyHover.InjectDependencies(&mgr_enemy, &mgr_gui);
     gui_enemyHover.Init();
 }
 void Game::InitSprites()
@@ -190,8 +201,8 @@ void Game::InitGame()
     InitWindow(p_screenWidth, p_screenHeight, "Sigma Game");
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
-    Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf",8,0,0);
-    SetTextureFilter(Settings::g_gameFont.texture,TEXTURE_FILTER_POINT);
+    Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf", 8, 0, 0);
+    SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     m_gameState = GameState::Menu;
 }
 void Game::Shutdown()
@@ -200,7 +211,7 @@ void Game::Shutdown()
     {
         return;
     }
-    
+
     m_shutingDown = true;
 
     Sprites::UnloadTextures();
