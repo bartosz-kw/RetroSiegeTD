@@ -211,7 +211,7 @@ EnemyWave *WaveManager::GetCurrentWave()
 }
 const bool WaveManager::ShouldWaveStart() const
 {
-    return mgr_tower->GetTowerCount() != 0;
+    return mgr_tower->GetTowerCount() != 0 || mgr_tower->WasAnyTowerPlaced();
 }
 bool WaveManager::IsSkipAllowed()
 {
