@@ -36,9 +36,13 @@ void Game::UpdateDebug()
     }
     if (IsKeyPressed(KEY_S))
     {
-        if (Settings::g_gameSpeed == 2.0f)
+        if (Settings::g_gameSpeed == 3.0f)
         {
             Settings::g_gameSpeed = 1.0f;
+        }
+        if (Settings::g_gameSpeed == 2.0f)
+        {
+            Settings::g_gameSpeed = 3.0f;
         }
         else
         {
@@ -68,7 +72,7 @@ void Game::Update()
     UpdateDebug();
 
     const bool gameStarted = (m_gameState == GameState::Started);
-    const float deltaTime = GetFrameTime();
+    const float deltaTime = GetFrameTime() * Settings::g_gameSpeed;
 
     HandleInput();
     mgr_gui.SyncGameState(m_gameState);
