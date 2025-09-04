@@ -232,7 +232,14 @@ bool WaveManager::IsSkipAllowed()
 }
 void WaveManager::SkipWave()
 {
+    EnemyWave *currentWave = GetCurrentWave();
     EnemyWave *nextWave = GetNextWave();
+    if (!currentWave || !nextWave)
+    {
+        return;
+    }
+    
+    mgr_ps->AddMoney(currentWave->p_moneyReward);
     ActivateWave(nextWave);
 }
 void WaveManager::ClearActiveWaves()
