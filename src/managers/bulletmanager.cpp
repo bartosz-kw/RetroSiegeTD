@@ -68,9 +68,9 @@ std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
     std::vector<Bullet *> detectedBullets = {};
     for (auto &bullet : m_bullets)
     {
-        const Texture2D bulletTexture = Sprites::g_textures[GetBulletTextureIndex(bullet.p_typeId)];
         const Vector2 pos = bullet.p_position;
-        const Rectangle bulletRect = {pos.x, pos.y, static_cast<float>(bulletTexture.width), static_cast<float>(bulletTexture.height)};
+        const Rectangle rect = bullet.p_sourceRect;
+        const Rectangle bulletRect = {pos.x, pos.y, bullet.p_sourceRect.width, bullet.p_sourceRect.height};
         if (CheckCollisionRecs(area, bulletRect))
         {
             detectedBullets.push_back(&bullet);
