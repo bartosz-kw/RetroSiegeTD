@@ -70,10 +70,10 @@ namespace Enemies
                 zombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
                 zombie.p_sourceRect = {0, 0, 15, 15};
                 zombie.p_moneyDrop = 25;
-                zombie.p_health = 40;
+                zombie.p_health = 30;
                 zombie.p_position = {-1.0f, -1.0f};
                 zombie.p_id = 0;
-                zombie.p_speed = 1.0f;
+                zombie.p_speed = 1.5f;
                 zombie.p_timeToNextFrame = 0.5f;
                 zombie.p_timePassed = 0.0f;
                 zombie.p_timeToMove = 0.0f;
@@ -99,7 +99,7 @@ namespace Enemies
                 armoredZombie.p_health = 100;
                 armoredZombie.p_position = {-1.0f, -1.0f};
                 armoredZombie.p_id = 0;
-                armoredZombie.p_speed = 1.0f;
+                armoredZombie.p_speed = 1.75f;
                 armoredZombie.p_timeToNextFrame = 0.5f;
                 armoredZombie.p_timePassed = 0.0f;
                 armoredZombie.p_timeToMove = 0.0f;
@@ -122,7 +122,7 @@ namespace Enemies
                 skeleton.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
                 skeleton.p_sourceRect = {0, 0, 15, 15};
                 skeleton.p_moneyDrop = 25;
-                skeleton.p_health = 40;
+                skeleton.p_health = 25;
                 skeleton.p_position = {-1.0f, -1.0f};
                 skeleton.p_id = 0;
                 skeleton.p_speed = 0.5f;
