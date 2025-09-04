@@ -21,6 +21,7 @@ private:
     PSManager *mgr_ps = nullptr;
     BulletManager *mgr_bullet = nullptr;
     ParticleManager *mgr_particle = nullptr;
+    bool m_wasAnyTowerPlaced = false;
 
 private:
 
@@ -36,6 +37,7 @@ public:
     std::string TowerTypeToString(const TowerType type);
     Vector2 GetCenterPosition(const Tower &tower) const;
     uint16_t GetTowerTextureIndex(const uint16_t typeId) const;
+    bool WasAnyTowerPlaced() const;
     void AddTower(const Tower tower);
     void RemoveTower(const int32_t id);
     Tower *GetLastSelectedTower();

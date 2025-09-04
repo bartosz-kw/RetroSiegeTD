@@ -162,9 +162,14 @@ uint16_t TowerManager::GetTowerTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::g_towerTextureOffset;
 }
+bool TowerManager::WasAnyTowerPlaced() const
+{
+    return m_wasAnyTowerPlaced;
+}
 void TowerManager::AddTower(const Tower tower)
 {
     m_towers.push_back(tower);
+    m_wasAnyTowerPlaced = true;
 }
 void TowerManager::RemoveTower(const int32_t id)
 {
