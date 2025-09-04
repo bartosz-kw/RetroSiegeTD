@@ -23,6 +23,8 @@ private:
     ParticleManager *mgr_particle = nullptr;
 
 private:
+
+    std::vector<Tower>::iterator TryGetTowerIterator(const int32_t id);
     void DetectInput();
     void DetectTowerInput(Tower &tower);
     void UpdateFight(Tower &tower, const float deltatime);

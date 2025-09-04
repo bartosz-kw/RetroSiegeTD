@@ -17,6 +17,12 @@
 
 // Private
 
+std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
+{
+    std::vector<Tower>::iterator it = std::lower_bound(m_towers.begin(), m_towers.end(),id, [](Tower tower, const int32_t id)
+    { return tower.p_id < id; });
+    return it;
+}
 void TowerManager::DetectInput()
 {
     if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
@@ -134,8 +140,8 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
     case TowerType::KnightLv3:
     case TowerType::KnightLv4:
     case TowerType::KnightLv5:
-        return "Knight";   
-        break; 
+        return "Knight";
+        break;
     case TowerType::MarketLv1:
     case TowerType::MarketLv2:
     case TowerType::MarketLv3:
@@ -174,12 +180,14 @@ Tower *TowerManager::GetLastSelectedTower()
 }
 Tower *TowerManager::GetTowerById(const int32_t id)
 {
-    for (auto &tower : m_towers)
+    std::vector<Tower>::iterator it = TryGetTowerIterator(id);
+    if (it == m_towers.end())
     {
-        if (tower.p_id == id)
-        {
-            return &tower;
-        }
+        return nullptr;
+    }
+    if (it->p_id == id)
+    {
+        return &(*it);
     }
     return nullptr;
 }
