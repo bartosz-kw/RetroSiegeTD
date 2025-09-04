@@ -168,11 +168,13 @@ void TowerManager::AddTower(const Tower tower)
 }
 void TowerManager::RemoveTower(const int32_t id)
 {
-    m_towers.erase(
-        std::remove_if(m_towers.begin(), m_towers.end(),
-                       [id](const Tower &t)
-                       { return t.p_id == id; }),
-        m_towers.end());
+    m_towers.erase
+    (
+        std::remove_if(m_towers.begin(),m_towers.end(),[id](const Tower& tower)
+        {
+            return id == tower.p_id;
+        })
+    );
 }
 Tower *TowerManager::GetLastSelectedTower()
 {

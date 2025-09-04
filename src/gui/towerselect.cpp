@@ -344,6 +344,14 @@ void TowerSelect::InitButtons()
     };
     sellButton.p_onPressed = [this](float deltaTime, Button &button)
     {
+        Tower *tower = this->mgr_tower->GetLastSelectedTower();
+        if (!tower)
+        {
+            return;
+        }
+        mgr_ps->AddMoney(tower->p_price / 2.0f);
+        mgr_tower->RemoveTower(tower->p_id);
+        
     };
 #pragma endregion
 
