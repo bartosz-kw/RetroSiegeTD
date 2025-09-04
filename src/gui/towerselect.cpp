@@ -27,7 +27,7 @@ void TowerSelect::InitLabels()
     boundingLabel.p_id = mgr_gui->GetAmountOfLabels();
     boundingLabel.p_rect = {5, (startingPoint - offset * 7) + gap * 8 - 10, 95, boundingHeight};
     boundingLabel.p_color = DARKBLUE;
-    boundingLabel.p_boundingSize = 2.0f;
+    boundingLabel.p_boundingSize = 5.0f;
     boundingLabel.p_boundingColor = boundingLabel.p_color * 0.8f;
     boundingLabel.p_visible = false;
     boundingLabel.p_roundness = 0.25f;
