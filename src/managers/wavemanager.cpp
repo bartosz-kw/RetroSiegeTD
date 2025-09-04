@@ -125,12 +125,12 @@ void WaveManager::LoadWaves()
     enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});
     enemySpawns3.push_back({1.0f, EnemyType::BlueSlime});    
-    enemySpawns3.push_back({2.0f, EnemyType::RedSlime});
-    enemySpawns3.push_back({1.0f, EnemyType::RedSlime});
-    enemySpawns3.push_back({1.0f, EnemyType::RedSlime});
+    enemySpawns3.push_back({1.5f, EnemyType::RedSlime});
+    enemySpawns3.push_back({1.5f, EnemyType::RedSlime});
+    enemySpawns3.push_back({1.5f, EnemyType::RedSlime});
     EnemyWave wave3 = {};
     wave3.p_id = 3;
-    wave3.p_moneyReward = 150;
+    wave3.p_moneyReward = 350;
     wave3.p_enemySpawns = enemySpawns3;
     wave3.p_totalWaveTime = getTotalWaveTime(wave3);
 
@@ -143,7 +143,7 @@ void WaveManager::LoadWaves()
     enemySpawns2.push_back({2.0f, EnemyType::RedSlime});
     EnemyWave wave2 = {};
     wave2.p_id = 2;
-    wave2.p_moneyReward = 50;
+    wave2.p_moneyReward = 150;
     wave2.p_enemySpawns = enemySpawns2;
     wave2.p_totalWaveTime = getTotalWaveTime(wave2);
 
@@ -153,7 +153,7 @@ void WaveManager::LoadWaves()
     enemySpawns1.push_back({1.0f, EnemyType::BlueSlime});
     EnemyWave wave1 = {};
     wave1.p_id = 1;
-    wave1.p_moneyReward = 40;
+    wave1.p_moneyReward = 100;
     wave1.p_enemySpawns = enemySpawns1;
     wave1.p_totalWaveTime = getTotalWaveTime(wave1);
     m_unactiveWaves.push_back(wave1);
