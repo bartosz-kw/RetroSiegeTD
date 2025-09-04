@@ -191,6 +191,19 @@ Tower *TowerManager::GetTowerById(const int32_t id)
     }
     return nullptr;
 }
+size_t TowerManager::GetTowerIndexById(const int32_t id)
+{
+    std::vector<Tower>::iterator it = TryGetTowerIterator(id);
+    if (it == m_towers.end())
+    {
+        return static_cast<size_t>(-1);;
+    }
+        if (it->p_id == id)
+    {
+        return it - m_towers.begin();
+    }
+    return static_cast<size_t>(-1);;
+}
 const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {
     for (const auto &tower : m_towers)

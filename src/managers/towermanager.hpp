@@ -40,6 +40,7 @@ public:
     void RemoveTower(const int32_t id);
     Tower *GetLastSelectedTower();
     Tower *GetTowerById(const int32_t id);
+    size_t GetTowerIndexById(const int32_t id);
     const Tower *GetReadTowerById(const int32_t id) const;
     const size_t GetTowerCount() const;
     TowerType GetPlaceTower() const;
