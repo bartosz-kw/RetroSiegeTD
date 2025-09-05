@@ -40,6 +40,9 @@ namespace Sprites
         g_textures[31] = LoadTexture("src/resources/sprites/MusicOn.png");
         g_textures[32] = LoadTexture("src/resources/sprites/MusicOff.png");
         g_textures[33] = LoadTexture("src/resources/sprites/RetroSiegeTD.png");
+        g_textures[34] = LoadTexture("src/resources/sprites/SpeedButton1.png");
+        g_textures[35] = LoadTexture("src/resources/sprites/SpeedButton2.png");
+        g_textures[36] = LoadTexture("src/resources/sprites/SpeedButton3.png");
 
         for (size_t i = 0; i < g_textures.size(); i++)
         {
