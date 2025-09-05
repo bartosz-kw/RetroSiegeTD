@@ -15,6 +15,9 @@
 #include <cmath>
 #include <algorithm>
 
+
+int32_t g_nextValidId = 1;
+
 // Private
 
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
@@ -22,6 +25,11 @@ std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
     std::vector<Tower>::iterator it = std::lower_bound(m_towers.begin(), m_towers.end(),id, [](Tower tower, const int32_t id)
     { return tower.p_id < id; });
     return it;
+}
+
+int32_t TowerManager::GetNextValidId()
+{
+    return g_nextValidId++;
 }
 void TowerManager::DetectInput()
 {
@@ -52,7 +60,7 @@ void TowerManager::DetectInput()
         if (mgr_ps->CanAfford(tower.p_price))
         {
             mgr_ps->SubMoney(tower.p_price);
-            tower.p_id = static_cast<int32_t>(m_towers.size() + 1);
+            tower.p_id = static_cast<int32_t>(GetNextValidId());
             tower.p_tileId = tile->p_id;
             tower.p_dirty = true;
             AddTower(tower);
