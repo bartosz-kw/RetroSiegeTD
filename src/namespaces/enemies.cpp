@@ -19,6 +19,7 @@ namespace Enemies
                 blueSlime.p_sourceRect = {0, 0, 15, 15};
                 blueSlime.p_moneyDrop = 10;
                 blueSlime.p_health = 6;
+                blueSlime.p_defense = 0;
                 blueSlime.p_position = {-1.0f, -1.0f};
                 blueSlime.p_id = 0;
                 blueSlime.p_speed = 1.5f;
@@ -45,6 +46,7 @@ namespace Enemies
                 redSlime.p_sourceRect = {0, 0, 15, 15};
                 redSlime.p_moneyDrop = 15;
                 redSlime.p_health = 25;
+                redSlime.p_defense = 0;
                 redSlime.p_position = {-1.0f, -1.0f};
                 redSlime.p_id = 0;
                 redSlime.p_speed = 2.0f;
@@ -71,6 +73,7 @@ namespace Enemies
                 zombie.p_sourceRect = {0, 0, 15, 15};
                 zombie.p_moneyDrop = 25;
                 zombie.p_health = 30;
+                zombie.p_defense = 1;
                 zombie.p_position = {-1.0f, -1.0f};
                 zombie.p_id = 0;
                 zombie.p_speed = 1.5f;
@@ -97,6 +100,7 @@ namespace Enemies
                 armoredZombie.p_sourceRect = {0, 0, 15, 15};
                 armoredZombie.p_moneyDrop = 35;
                 armoredZombie.p_health = 100;
+                armoredZombie.p_defense = 4;
                 armoredZombie.p_position = {-1.0f, -1.0f};
                 armoredZombie.p_id = 0;
                 armoredZombie.p_speed = 1.75f;
@@ -123,6 +127,7 @@ namespace Enemies
                 skeleton.p_sourceRect = {0, 0, 15, 15};
                 skeleton.p_moneyDrop = 25;
                 skeleton.p_health = 25;
+                skeleton.p_defense = 0;
                 skeleton.p_position = {-1.0f, -1.0f};
                 skeleton.p_id = 0;
                 skeleton.p_speed = 0.5f;
@@ -171,6 +176,7 @@ namespace Enemies
                 summoner.p_sourceRect = {0, 0, 15, 15};
                 summoner.p_moneyDrop = 100;
                 summoner.p_health = 250;
+                summoner.p_defense = 2;
                 summoner.p_position = {-1.0f, -1.0f};
                 summoner.p_id = 0;
                 summoner.p_speed = 2.0f;

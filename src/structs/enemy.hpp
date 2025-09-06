@@ -20,6 +20,7 @@ struct Enemy
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_moneyDrop = 0;
     int64_t p_health = 10;
+    int64_t p_defense = 0;
     Vector2 p_position = {0, 0};
     uint32_t p_id = -1;
     float p_speed = 1;

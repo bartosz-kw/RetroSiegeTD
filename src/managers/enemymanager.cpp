@@ -109,7 +109,6 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     {
         CleanEnemy(enemy);
     }
-    
 
     HandleHits(enemy);
     UpdateMovement(enemy, deltaTime);
@@ -162,7 +161,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
             enemy.p_hitCooldowns.push_back({hitCooldown, bullet->p_id});
         }
 
-        enemy.p_health -= bullet->p_damage;
+        enemy.p_health -= Clamp(bullet->p_damage - enemy.p_defense, 0.0f, bullet->p_damage - enemy.p_defense);
         enemy.p_hitEffectTime = hitEffectTime;
     }
 }
@@ -229,13 +228,14 @@ void EnemyManager::RemoveEnemies()
         {
             indexesToRemove.push_back(i);
         }
-    }
-    if (indexesToRemove.empty())
-        return;
-    for (auto it = indexesToRemove.rbegin(); it != indexesToRemove.rend(); ++it)
-    {
-        PreKillEnemy(m_enemies.at(*it));
-        m_enemies.erase(m_enemies.begin() + *it);
+
+        if (indexesToRemove.empty())
+            return;
+        for (auto it = indexesToRemove.rbegin(); it != indexesToRemove.rend(); ++it)
+        {
+            PreKillEnemy(m_enemies.at(*it));
+            m_enemies.erase(m_enemies.begin() + *it);
+        }
     }
 }
 bool EnemyManager::IsEnemiesEmpty() const
@@ -347,4 +347,3 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 void EnemyManager::Init()
 {
 }
-
