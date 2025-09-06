@@ -125,6 +125,12 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
         Debug::PrintError(enemy.p_id, "Invalid Function Enemy ID");
         Debug::PrintError(enemy.p_typeId, "Invalid Function Enemy TypeID");
     }
+
+    if (!enemy.p_alive || enemy.p_survived)
+    {
+        PreKillEnemy(enemy);
+    }
+    
 }
 void EnemyManager::HandleHits(Enemy &enemy)
 {
