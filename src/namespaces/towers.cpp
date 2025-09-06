@@ -160,8 +160,8 @@ namespace Towers
         ninja4Tower.p_price = 550;
         ninja4Tower.p_damage = 5;
         ninja4Tower.p_position = {-1.0f, -1.0f};
-        ninja4Tower.p_range = 70.0f;
-        ninja4Tower.p_attackSpeed = 0.5f;
+        ninja4Tower.p_range = 65.0f;
+        ninja4Tower.p_attackSpeed = 0.7f;
         ninja4Tower.p_timeToAttack = 0.0f;
         ninja4Tower.p_timeToNextFrame = 0.0f;
         ninja4Tower.p_timePassed = 0.0f;
