@@ -278,8 +278,9 @@ void TowerSelect::InitButtons()
             button.p_visible = false;
             if (placeTower != TowerType::Nothing)
             {
+                Tower tower = Towers::GetTowerData(placeTower);
                 button.p_color = YELLOW;
-                button.p_text = "Preview Stats";
+                button.p_text = "Cost: " + std::to_string(tower.p_price) + " $";
                 button.p_visible = true;
             }
         }
