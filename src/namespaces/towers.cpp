@@ -386,8 +386,8 @@ namespace Towers
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market1Tower.p_sourceRect = {0, 0, 15, 15};
-        market1Tower.p_price = 250;
-        market1Tower.p_damage = 5;
+        market1Tower.p_price = 100;
+        market1Tower.p_damage = 3;
         market1Tower.p_position = {-1.0f, -1.0f};
         market1Tower.p_range = 5.0f;
         market1Tower.p_attackSpeed = 3.0f;
@@ -416,8 +416,8 @@ namespace Towers
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
         };
         market2Tower.p_sourceRect = {0, 0, 15, 15};
-        market2Tower.p_price = 350;
-        market2Tower.p_damage = 10;
+        market2Tower.p_price = 250;
+        market2Tower.p_damage = 8;
         market2Tower.p_position = {-1.0f, -1.0f};
         market2Tower.p_range = 5.0f;
         market2Tower.p_attackSpeed = 3.0f;
@@ -477,7 +477,7 @@ namespace Towers
         };
         market4Tower.p_sourceRect = {0, 0, 15, 15};
         market4Tower.p_price = 5000;
-        market4Tower.p_damage = 100;
+        market4Tower.p_damage = 150;
         market4Tower.p_position = {-1.0f, -1.0f};
         market4Tower.p_range = 5.0f;
         market4Tower.p_attackSpeed = 3.0f;

@@ -86,11 +86,18 @@ void ParticleManager::Draw(const uint8_t screenOffset) const
     {
         Rectangle drawRect = particle.p_drawRect;
         drawRect.x += Settings::g_boundingSize;
+        drawRect.x = floorf(drawRect.x);
+        drawRect.y = floorf(drawRect.y);
+        drawRect.width = floorf(drawRect.width);
+        drawRect.height = floorf(drawRect.height);
         Color drawColor = particle.p_color;
         drawColor.a *= particle.p_transparency;
         Vector2 drawOrigin = {drawRect.width/2.0f,drawRect.height/2.0f};
         if (!particle.p_text.empty())
         {
+            Vector2 textDrawPosition = particle.p_textPosition;
+            textDrawPosition.x = floorf(textDrawPosition.x);
+            textDrawPosition.y = floorf(textDrawPosition.y);
             DrawTextEx(Settings::g_gameFont,particle.p_text.c_str(),particle.p_textPosition,Settings::g_gameFont.baseSize,0.0f,drawColor);
         }
         DrawRectanglePro(drawRect,drawOrigin,particle.p_rotation,drawColor);
