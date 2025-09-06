@@ -15,6 +15,7 @@
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
 #include "../gui/playerstats.hpp"
+#include "../gui/speed.hpp"
 #include "../gui/mainmenu.hpp"
 #include "../gui/enemyhover.hpp"
 
@@ -44,6 +45,7 @@ private:
     TowerSelect gui_towerSelect = {};
     TowerPlace gui_towerPlace = {};
     PlayerStats gui_playerStats = {};
+    Speed gui_speed = {};
 
 private: 
 

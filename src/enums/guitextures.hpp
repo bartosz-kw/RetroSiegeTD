@@ -14,7 +14,7 @@ enum GuiTextures : uint8_t
 
 namespace GuiTextureUtility
 {
-    uint16_t ToTextureIndex(GuiTextures texture)
+    inline uint16_t ToTextureIndex(GuiTextures texture)
     {
         return static_cast<uint16_t>(texture) + Sprites::g_guiTextureOffset;
     }

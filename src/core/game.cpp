@@ -34,21 +34,6 @@ void Game::UpdateDebug()
     {
         StartGame();
     }
-    if (IsKeyPressed(KEY_S))
-    {
-        if (Settings::g_gameSpeed == 3.0f)
-        {
-            Settings::g_gameSpeed = 1.0f;
-        }
-        if (Settings::g_gameSpeed == 2.0f)
-        {
-            Settings::g_gameSpeed = 3.0f;
-        }
-        else
-        {
-            Settings::g_gameSpeed = 2.0f;
-        }
-    }
     if (IsKeyPressed(KEY_M))
     {
         mgr_ps.AddMoney(3000);
@@ -179,6 +164,8 @@ void Game::InitGui()
     gui_mainMenu.Init();
     gui_enemyHover.InjectDependencies(&mgr_enemy, &mgr_gui);
     gui_enemyHover.Init();
+    gui_speed.InjectDependencies(&mgr_gui);
+    gui_speed.Init();
 }
 void Game::InitSprites()
 {
