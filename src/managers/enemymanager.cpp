@@ -9,6 +9,7 @@
 #include "../namespaces/enemies.hpp"
 #include <raymath.h>
 #include <algorithm>
+#include <limits>
 #include <cassert>
 
 // Private
@@ -170,7 +171,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
             enemy.p_hitCooldowns.push_back({hitCooldown, bullet->p_id});
         }
 
-        enemy.p_health -= static_cast<uint64_t>(Clamp(bullet->p_damage - enemy.p_defense, 0.0f, bullet->p_damage - enemy.p_defense));
+        enemy.p_health -= static_cast<int64_t>(Clamp(bullet->p_damage - enemy.p_defense, 0.0f, std::numeric_limits<int64_t>::max()));
         enemy.p_hitEffectTime = hitEffectTime;
     }
 }
