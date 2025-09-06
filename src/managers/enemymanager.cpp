@@ -8,6 +8,7 @@
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/enemies.hpp"
 #include <raymath.h>
+#include <algorithm>
 #include <cassert>
 
 // Private
@@ -161,7 +162,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
             enemy.p_hitCooldowns.push_back({hitCooldown, bullet->p_id});
         }
 
-        enemy.p_health -= Clamp(bullet->p_damage - enemy.p_defense, 0.0f, bullet->p_damage - enemy.p_defense);
+        enemy.p_health -= static_cast<uint64_t>(Clamp(bullet->p_damage - enemy.p_defense, 0.0f, bullet->p_damage - enemy.p_defense));
         enemy.p_hitEffectTime = hitEffectTime;
     }
 }
@@ -221,22 +222,9 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
 
 void EnemyManager::RemoveEnemies()
 {
-    std::vector<size_t> indexesToRemove = {};
-    for (size_t i = 0; i < m_enemies.size(); i++)
-    {
-        if (!m_enemies[i].p_alive || m_enemies[i].p_survived)
-        {
-            indexesToRemove.push_back(i);
-        }
-
-        if (indexesToRemove.empty())
-            return;
-        for (auto it = indexesToRemove.rbegin(); it != indexesToRemove.rend(); ++it)
-        {
-            PreKillEnemy(m_enemies.at(*it));
-            m_enemies.erase(m_enemies.begin() + *it);
-        }
-    }
+    m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(), [](Enemy &enemy)
+                                   { return !enemy.p_alive || enemy.p_survived; }),
+                    m_enemies.end());
 }
 bool EnemyManager::IsEnemiesEmpty() const
 {
