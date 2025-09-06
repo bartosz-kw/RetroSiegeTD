@@ -1,5 +1,6 @@
 #include "mainmenu.hpp"
 #include "../core/game.hpp"
+#include "../enums/guitextures.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../utility/colorUtil.hpp"
 #include "../namespaces/settings.hpp"
@@ -16,7 +17,7 @@ void MainMenu::InitLabels()
 #pragma region TitleLabel
     Label &titleLabel = mgr_gui->AddLabel(Label{});
     titleLabel.p_text = "";
-    titleLabel.p_image = Sprites::g_textures[Sprites::g_guiTextureOffset + 3]; 
+    titleLabel.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::RetroSiegeTD)]; 
     titleLabel.p_updateFunction = [this](float deltaTime, Label &label) {};
     titleLabel.p_rect = {static_cast<float>(Settings::g_boundingSize), 10.0f, 270.0f, 50.0f};
     titleLabel.p_textPosition = {0, 0};
@@ -99,11 +100,11 @@ void MainMenu::InitButtons()
     {
         if (GameMusic::g_playMusic)
         {
-            button.p_image = Sprites::g_textures[Sprites::g_guiTextureOffset + 2];
+            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::MusicOff)];
         }
         else
         {
-            button.p_image = Sprites::g_textures[Sprites::g_guiTextureOffset + 1];
+            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::MusicOn)];
         }
     };
     musicButton.p_image = {0, 0, 0, 0, 0};
