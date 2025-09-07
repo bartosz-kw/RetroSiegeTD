@@ -226,14 +226,44 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     enemy.p_position = tile.p_position;
     enemy.p_dirty = false;
 }
+void EnemyManager::RemoveEnemies()
 
 // Public
 
-void EnemyManager::RemoveEnemies()
 {
     m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(), [](Enemy &enemy)
                                    { return !enemy.p_alive || enemy.p_survived; }),
                     m_enemies.end());
+}
+std::string EnemyManager::EnemyTypeToString(const EnemyType type)
+{
+    switch (type)
+    {
+    case EnemyType::BlueSlime:
+        return "Blue Slime";
+        break;
+    case EnemyType::RedSlime:
+        return "Red Slime";
+        break;
+    case EnemyType::Zombie:
+        return "Zombie";
+        break;
+    case EnemyType::ArmoredZombie:
+        return "Armored Zombie";
+        break;
+    case EnemyType::Skeleton:
+        return "Skeleton";
+        break;
+    case EnemyType::Summoner:
+        return "Summoner";
+        break;
+    case EnemyType::QuickSlime:
+        return "Quick Slime";
+        break;
+    default:
+        return "Unknown";
+        break;
+    }
 }
 bool EnemyManager::IsEnemiesEmpty() const
 {

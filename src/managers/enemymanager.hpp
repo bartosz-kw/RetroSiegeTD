@@ -1,4 +1,6 @@
+#pragma once
 #include <vector>
+#include <string>
 #include "../structs/enemy.hpp"
 
 class TileManager;
@@ -19,6 +21,7 @@ private:
     PSManager *mgr_ps = nullptr;
 
 private:
+
     const uint16_t GetEnemyTextureIndex(const uint16_t typeId) const;
     const Vector2 CalculateMovePosition(const int16_t moveDirection) const;
     void UpdateVisualPosition(Enemy &enemy, const Vector2 &tilePosition, const int16_t moveDirection);
@@ -34,6 +37,8 @@ private:
     void RemoveEnemies();
 
 public:
+
+    std::string EnemyTypeToString(const EnemyType type);
     bool IsEnemiesEmpty() const;
     uint32_t GetNewValidId();
     Vector2 GetCenterPosition(const Enemy &enemy) const;
