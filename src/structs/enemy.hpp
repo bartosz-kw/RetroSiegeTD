@@ -11,7 +11,8 @@ enum EnemyType : uint8_t
     Zombie = 3,
     ArmoredZombie = 4,
     Skeleton = 5,
-    Summoner = 6
+    Summoner = 6,
+    QuickSlime = 7
 };
 struct Enemy
 {

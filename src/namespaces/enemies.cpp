@@ -195,6 +195,34 @@ namespace Enemies
 
                 g_enemyData[EnemyType::Summoner] = summoner;
 #pragma endregion
+
+#pragma region QuickSlime
+                Enemy quickSlime = {};
+                quickSlime.p_hitCooldowns = {};
+                quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                quickSlime.p_sourceRect = {0, 0, 15, 15};
+                quickSlime.p_moneyDrop = 15;
+                quickSlime.p_health = 4;
+                quickSlime.p_defense = 0;
+                quickSlime.p_position = {-1.0f, -1.0f};
+                quickSlime.p_id = 0;
+                quickSlime.p_speed = 0.7f;
+                quickSlime.p_timeToNextFrame = 0.35f;
+                quickSlime.p_timePassed = 0.0f;
+                quickSlime.p_timeToMove = 0.0f;
+                quickSlime.p_hitEffectTime = 0.0f;
+                quickSlime.p_typeId = EnemyType::QuickSlime;
+                quickSlime.p_walked = 0;
+                quickSlime.p_tileId = -1;
+                quickSlime.p_frameOffset = 15;
+                quickSlime.p_frameAmount = 2;
+                quickSlime.p_alive = true;
+                quickSlime.p_survived = false;
+                quickSlime.p_dirty = true;
+
+                g_enemyData[EnemyType::QuickSlime] = quickSlime;
+#pragma endregion
+
         }
 
         Enemy GetEnemyData(const int typeId)
