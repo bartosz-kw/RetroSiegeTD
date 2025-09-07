@@ -202,7 +202,7 @@ namespace Enemies
                 quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
                 quickSlime.p_sourceRect = {0, 0, 15, 15};
                 quickSlime.p_moneyDrop = 15;
-                quickSlime.p_health = 4;
+                quickSlime.p_health = 5;
                 quickSlime.p_defense = 0;
                 quickSlime.p_position = {-1.0f, -1.0f};
                 quickSlime.p_id = 0;
