@@ -46,7 +46,7 @@ namespace Enemies
                 redSlime.p_sourceRect = {0, 0, 15, 15};
                 redSlime.p_moneyDrop = 15;
                 redSlime.p_health = 25;
-                redSlime.p_defense = 0;
+                redSlime.p_defense = 1;
                 redSlime.p_position = {-1.0f, -1.0f};
                 redSlime.p_id = 0;
                 redSlime.p_speed = 2.0f;
