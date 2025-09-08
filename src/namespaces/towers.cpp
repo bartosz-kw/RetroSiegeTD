@@ -15,6 +15,9 @@
 namespace Towers
 {
     std::unordered_map<int, Tower> g_towerData = {};
+    std::unordered_map<TowerType, uint16_t> g_towerAmountLimits = {
+        {TowerType::MarketLv1,6}
+    };
 
     void InitTowerData()
     {
