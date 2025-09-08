@@ -15,18 +15,16 @@
 #include <cmath>
 #include <algorithm>
 
-
 int32_t g_nextValidId = 1;
 
 // Private
 
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
 {
-    std::vector<Tower>::iterator it = std::lower_bound(m_towers.begin(), m_towers.end(),id, [](Tower tower, const int32_t id)
-    { return tower.p_id < id; });
+    std::vector<Tower>::iterator it = std::lower_bound(m_towers.begin(), m_towers.end(), id, [](Tower tower, const int32_t id)
+                                                       { return tower.p_id < id; });
     return it;
 }
-
 int32_t TowerManager::GetNextValidId()
 {
     return g_nextValidId++;
@@ -48,15 +46,29 @@ void TowerManager::DetectInput()
         Tile *tile = mgr_tile->GetLastClickedTile();
         Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
         if (hoveredTile == nullptr)
+        {
             return;
+        }
         if (tile == nullptr)
+        {
             return;
-        if (!CanPlaceTower(tile))
+        }
+        if (!CanPlaceTowerOnTile(tile))
+        {
             return;
+        }
         if (tile->p_id != hoveredTile->p_id)
+        {
             return;
+        }
 
         Tower tower = Towers::GetTowerData(m_placeTower);
+        if (!ValidateTowerPlacement(tower))
+        {
+            return;
+        }
+        
+
         if (mgr_ps->CanAfford(tower.p_price))
         {
             mgr_ps->SubMoney(tower.p_price);
@@ -67,29 +79,27 @@ void TowerManager::DetectInput()
         }
     }
 }
-
 uint16_t TowerManager::GetTowerTypeAmount(const TowerType type) const
 {
 
-    static std::unordered_map<TowerType,TowerType> allies = {
-        {TowerType::Nothing,TowerType::Nothing},
-        {TowerType::NinjaLv1,TowerType::NinjaLv1},
-        {TowerType::NinjaLv2,TowerType::NinjaLv1},
-        {TowerType::NinjaLv3,TowerType::NinjaLv1},
-        {TowerType::NinjaLv4,TowerType::NinjaLv1},
-        {TowerType::KnightLv1,TowerType::KnightLv1},
-        {TowerType::KnightLv2,TowerType::KnightLv1},
-        {TowerType::KnightLv3,TowerType::KnightLv1},
-        {TowerType::KnightLv4,TowerType::KnightLv1},
-        {TowerType::KnightLv5,TowerType::KnightLv1},
-        {TowerType::MarketLv1,TowerType::MarketLv1},
-        {TowerType::MarketLv2,TowerType::MarketLv1},
-        {TowerType::MarketLv3,TowerType::MarketLv1},
-        {TowerType::MarketLv4,TowerType::MarketLv1}
-    };
+    static std::unordered_map<TowerType, TowerType> allies = {
+        {TowerType::Nothing, TowerType::Nothing},
+        {TowerType::NinjaLv1, TowerType::NinjaLv1},
+        {TowerType::NinjaLv2, TowerType::NinjaLv1},
+        {TowerType::NinjaLv3, TowerType::NinjaLv1},
+        {TowerType::NinjaLv4, TowerType::NinjaLv1},
+        {TowerType::KnightLv1, TowerType::KnightLv1},
+        {TowerType::KnightLv2, TowerType::KnightLv1},
+        {TowerType::KnightLv3, TowerType::KnightLv1},
+        {TowerType::KnightLv4, TowerType::KnightLv1},
+        {TowerType::KnightLv5, TowerType::KnightLv1},
+        {TowerType::MarketLv1, TowerType::MarketLv1},
+        {TowerType::MarketLv2, TowerType::MarketLv1},
+        {TowerType::MarketLv3, TowerType::MarketLv1},
+        {TowerType::MarketLv4, TowerType::MarketLv1}};
 
     uint16_t count = 0;
-    for (const auto& tower : m_towers)
+    for (const auto &tower : m_towers)
     {
         auto towerTypeAllies = allies.find(static_cast<TowerType>(tower.p_typeId));
         auto typeAllies = allies.find(type);
@@ -97,8 +107,7 @@ uint16_t TowerManager::GetTowerTypeAmount(const TowerType type) const
         {
             continue;
         }
-        
-        
+
         if (towerTypeAllies->second == typeAllies->second)
         {
             ++count;
@@ -220,13 +229,9 @@ void TowerManager::AddTower(const Tower tower)
 }
 void TowerManager::RemoveTower(const int32_t id)
 {
-    m_towers.erase
-    (
-        std::remove_if(m_towers.begin(),m_towers.end(),[id](const Tower& tower)
-        {
-            return id == tower.p_id;
-        })
-    );
+    m_towers.erase(
+        std::remove_if(m_towers.begin(), m_towers.end(), [id](const Tower &tower)
+                       { return id == tower.p_id; }));
 }
 Tower *TowerManager::GetLastSelectedTower()
 {
@@ -250,13 +255,15 @@ size_t TowerManager::GetTowerIndexById(const int32_t id)
     std::vector<Tower>::iterator it = TryGetTowerIterator(id);
     if (it == m_towers.end())
     {
-        return static_cast<size_t>(-1);;
+        return static_cast<size_t>(-1);
+        ;
     }
-        if (it->p_id == id)
+    if (it->p_id == id)
     {
         return it - m_towers.begin();
     }
-    return static_cast<size_t>(-1);;
+    return static_cast<size_t>(-1);
+    ;
 }
 const Tower *TowerManager::GetReadTowerById(const int32_t id) const
 {
@@ -281,7 +288,7 @@ void TowerManager::SetPlaceTower(const TowerType type)
 {
     m_placeTower = type;
 }
-bool TowerManager::CanPlaceTower(const Tile *tile) const
+bool TowerManager::CanPlaceTowerOnTile(const Tile *tile) const
 {
     if (tile->p_moveDirection != 0)
     {
@@ -295,6 +302,21 @@ bool TowerManager::CanPlaceTower(const Tile *tile) const
         }
     }
     return true;
+}
+bool TowerManager::ValidateTowerPlacement(const Tower &tower) const
+{
+    TowerType towerTypeId = static_cast<TowerType>(tower.p_typeId);
+    auto limitDataIt = Towers::g_towerAmountLimits.find(towerTypeId);
+    if (limitDataIt == Towers::g_towerAmountLimits.end())
+    {
+        return true;
+    }
+    else
+    {
+        uint16_t amountOfTowers = GetTowerTypeAmount(towerTypeId);
+        return limitDataIt->second > amountOfTowers; 
+    }
+    return false;
 }
 void TowerManager::ClearTowersVector()
 {
@@ -334,7 +356,7 @@ void TowerManager::DrawHover(const uint8_t screenOffset) const
     const Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
     if (hoveredTile)
     {
-        if (m_placeTower != TowerType::Nothing && CanPlaceTower(hoveredTile))
+        if (m_placeTower != TowerType::Nothing && CanPlaceTowerOnTile(hoveredTile))
         {
             const Color towerColor = {255, 255, 255, 128};
             const Color rangeColor = {41, 154, 255, 128};
