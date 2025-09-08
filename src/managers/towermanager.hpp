@@ -45,6 +45,7 @@ public:
     size_t GetTowerIndexById(const int32_t id);
     const Tower *GetReadTowerById(const int32_t id) const;
     const size_t GetTowerCount() const;
+    uint16_t GetTowerTypeAmount(const TowerType type) const;
     int32_t GetNextValidId();
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);

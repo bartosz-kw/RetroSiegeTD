@@ -67,6 +67,45 @@ void TowerManager::DetectInput()
         }
     }
 }
+
+uint16_t TowerManager::GetTowerTypeAmount(const TowerType type) const
+{
+
+    static std::unordered_map<TowerType,TowerType> allies = {
+        {TowerType::Nothing,TowerType::Nothing},
+        {TowerType::NinjaLv1,TowerType::NinjaLv1},
+        {TowerType::NinjaLv2,TowerType::NinjaLv1},
+        {TowerType::NinjaLv3,TowerType::NinjaLv1},
+        {TowerType::NinjaLv4,TowerType::NinjaLv1},
+        {TowerType::KnightLv1,TowerType::KnightLv1},
+        {TowerType::KnightLv2,TowerType::KnightLv1},
+        {TowerType::KnightLv3,TowerType::KnightLv1},
+        {TowerType::KnightLv4,TowerType::KnightLv1},
+        {TowerType::KnightLv5,TowerType::KnightLv1},
+        {TowerType::MarketLv1,TowerType::MarketLv1},
+        {TowerType::MarketLv2,TowerType::MarketLv1},
+        {TowerType::MarketLv3,TowerType::MarketLv1},
+        {TowerType::MarketLv4,TowerType::MarketLv1}
+    };
+
+    uint16_t count = 0;
+    for (const auto& tower : m_towers)
+    {
+        auto towerTypeAllies = allies.find(static_cast<TowerType>(tower.p_typeId));
+        auto typeAllies = allies.find(type);
+        if (towerTypeAllies == allies.end() || typeAllies == allies.end())
+        {
+            continue;
+        }
+        
+        
+        if (towerTypeAllies->second == typeAllies->second)
+        {
+            ++count;
+        }
+    }
+    return count;
+}
 void TowerManager::DetectTowerInput(Tower &tower)
 {
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
