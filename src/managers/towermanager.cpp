@@ -25,9 +25,35 @@ std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
                                                        { return tower.p_id < id; });
     return it;
 }
-int32_t TowerManager::GetNextValidId()
+bool TowerManager::CanPlaceTowerOnTile(const Tile *tile) const
 {
-    return g_nextValidId++;
+    if (tile->p_moveDirection != 0)
+    {
+        return false;
+    }
+    for (auto &tower : m_towers)
+    {
+        if (tower.p_tileId == tile->p_id)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+bool TowerManager::ValidateTowerPlacement(const Tower &tower) const
+{
+    TowerType towerTypeId = static_cast<TowerType>(tower.p_typeId);
+    auto limitDataIt = Towers::g_towerAmountLimits.find(towerTypeId);
+    if (limitDataIt == Towers::g_towerAmountLimits.end())
+    {
+        return true;
+    }
+    else
+    {
+        uint16_t amountOfTowers = GetTowerTypeAmount(towerTypeId);
+        return limitDataIt->second > amountOfTowers; 
+    }
+    return false;
 }
 void TowerManager::DetectInput()
 {
@@ -175,7 +201,30 @@ void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 {
     Basics::Animate(deltaTime, tower);
 }
-
+void TowerManager::DrawHover(const uint8_t screenOffset) const
+{
+    if (m_placeTower == TowerType::Nothing)
+    {
+        return;
+    }
+    const Tower selectedTower = Towers::GetTowerData(m_placeTower);
+    const Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
+    if (hoveredTile)
+    {
+        if (m_placeTower != TowerType::Nothing && CanPlaceTowerOnTile(hoveredTile))
+        {
+            const Color towerColor = {255, 255, 255, 128};
+            const Color rangeColor = {41, 154, 255, 128};
+            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
+            Vector2 centerPos = mgr_tile->GetTileCenterPosition(*hoveredTile);
+            DrawCircle(
+                static_cast<int>(centerPos.x + screenOffset),
+                static_cast<int>(centerPos.y),
+                static_cast<float>(selectedTower.p_range),
+                rangeColor);
+        }
+    }
+}
 // Public
 
 std::string TowerManager::TowerTypeToString(const TowerType type)
@@ -280,6 +329,10 @@ const size_t TowerManager::GetTowerCount() const
 {
     return m_towers.size();
 }
+int32_t TowerManager::GetNextValidId()
+{
+    return g_nextValidId++;
+}
 TowerType TowerManager::GetPlaceTower() const
 {
     return m_placeTower;
@@ -287,36 +340,6 @@ TowerType TowerManager::GetPlaceTower() const
 void TowerManager::SetPlaceTower(const TowerType type)
 {
     m_placeTower = type;
-}
-bool TowerManager::CanPlaceTowerOnTile(const Tile *tile) const
-{
-    if (tile->p_moveDirection != 0)
-    {
-        return false;
-    }
-    for (auto &tower : m_towers)
-    {
-        if (tower.p_tileId == tile->p_id)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-bool TowerManager::ValidateTowerPlacement(const Tower &tower) const
-{
-    TowerType towerTypeId = static_cast<TowerType>(tower.p_typeId);
-    auto limitDataIt = Towers::g_towerAmountLimits.find(towerTypeId);
-    if (limitDataIt == Towers::g_towerAmountLimits.end())
-    {
-        return true;
-    }
-    else
-    {
-        uint16_t amountOfTowers = GetTowerTypeAmount(towerTypeId);
-        return limitDataIt->second > amountOfTowers; 
-    }
-    return false;
 }
 void TowerManager::ClearTowersVector()
 {
@@ -344,30 +367,6 @@ void TowerManager::Update(const float deltaTime)
         UpdateFight(tower, deltaTime);
         UpdateAnimation(tower, deltaTime);
         DetectTowerInput(tower);
-    }
-}
-void TowerManager::DrawHover(const uint8_t screenOffset) const
-{
-    if (m_placeTower == TowerType::Nothing)
-    {
-        return;
-    }
-    const Tower selectedTower = Towers::GetTowerData(m_placeTower);
-    const Tile *hoveredTile = mgr_tile->GetCurrentHoveredTile();
-    if (hoveredTile)
-    {
-        if (m_placeTower != TowerType::Nothing && CanPlaceTowerOnTile(hoveredTile))
-        {
-            const Color towerColor = {255, 255, 255, 128};
-            const Color rangeColor = {41, 154, 255, 128};
-            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
-            Vector2 centerPos = mgr_tile->GetTileCenterPosition(*hoveredTile);
-            DrawCircle(
-                static_cast<int>(centerPos.x + screenOffset),
-                static_cast<int>(centerPos.y),
-                static_cast<float>(selectedTower.p_range),
-                rangeColor);
-        }
     }
 }
 void TowerManager::Draw(const uint8_t screenOffset) const
