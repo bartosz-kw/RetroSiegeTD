@@ -2,6 +2,17 @@
 
 namespace Sprites
 {
+    const int8_t g_tileTextureOffset = -1;
+    const uint8_t g_tileTextures = 5;
+    const uint8_t g_enemyTextures = 8;
+    const uint8_t g_towerTextures = 13;
+    const uint8_t g_bulletTextures = 7;
+    const uint8_t g_guiTextures = 6;
+    const uint8_t g_enemyTextureOffset = g_tileTextureOffset + g_tileTextures;
+    const uint8_t g_towerTextureOffset = g_enemyTextureOffset + g_enemyTextures;
+    const uint8_t g_bulletTextureOffset = g_towerTextureOffset + g_towerTextures;
+    const uint8_t g_guiTextureOffset = g_bulletTextureOffset + g_bulletTextures;
+
     std::array<Texture2D, g_textureAmount> g_textures = {};
 
     void LoadTextures()
