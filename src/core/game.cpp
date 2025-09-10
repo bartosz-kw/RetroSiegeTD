@@ -72,6 +72,7 @@ void Game::Update()
         mgr_wave.Update(deltaTime);
         mgr_player.Update();
         mgr_particle.Update(deltaTime);
+        mgr_message.Update(deltaTime);
     }
 
     mgr_music.SyncGameState(m_gameState);
@@ -149,6 +150,8 @@ void Game::InitManagers()
     mgr_music.InjectDependencies(&gui_mainMenu);
     mgr_music.Init();
     mgr_particle.Init();
+
+    mgr_message.Init();
 }
 void Game::InitGui()
 {
