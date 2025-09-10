@@ -1,38 +1,9 @@
 #include "messagemanager.hpp"
 #include <vector>
 
-void MessageManager::Init()
+void MessageManager::ClearMessages()
 {
-    ClearMessages();
-}
-
-void MessageManager::Update(float deltaTime)
-{
-    std::vector<TempMessageKeys> keysToRemove;
-
-    for (auto& pair : m_tempMessages)
-    {
-        pair.second.p_time -= deltaTime;
-        if (pair.second.p_time <= 0.0f)
-        {
-            keysToRemove.push_back(pair.first);
-        }
-    }
-
-    for (const auto& key : keysToRemove)
-    {
-        m_tempMessages.erase(key);
-    }
-}
-
-void MessageManager::InsertMessage(const TempMessageKeys &key, const TempMessage& message)
-{
-    m_tempMessages[key] = message;
-}
-
-bool MessageManager::RemoveMessage(const TempMessageKeys &key)
-{
-    return m_tempMessages.erase(key) > 0;
+    m_tempMessages.clear();
 }
 
 TempMessage* MessageManager::GetMessage(const TempMessageKeys& key)
@@ -60,7 +31,36 @@ size_t MessageManager::GetMessageCount() const
     return m_tempMessages.size();
 }
 
-void MessageManager::ClearMessages()
+void MessageManager::InsertMessage(const TempMessageKeys &key, const TempMessage& message)
 {
-    m_tempMessages.clear();
+    m_tempMessages[key] = message;
+}
+
+bool MessageManager::RemoveMessage(const TempMessageKeys &key)
+{
+    return m_tempMessages.erase(key) > 0;
+}
+
+void MessageManager::Update(float deltaTime)
+{
+    std::vector<TempMessageKeys> keysToRemove;
+
+    for (auto& pair : m_tempMessages)
+    {
+        pair.second.p_time -= deltaTime;
+        if (pair.second.p_time <= 0.0f)
+        {
+            keysToRemove.push_back(pair.first);
+        }
+    }
+
+    for (const auto& key : keysToRemove)
+    {
+        m_tempMessages.erase(key);
+    }
+}
+
+void MessageManager::Init()
+{
+    ClearMessages();
 }
