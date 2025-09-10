@@ -141,7 +141,7 @@ void Game::InitManagers()
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle);
     mgr_tower.Init();
 
-    mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower);
+    mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower, &mgr_message);
     mgr_wave.Init();
 
     mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave);
@@ -155,7 +155,7 @@ void Game::InitManagers()
 }
 void Game::InitGui()
 {
-    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui, &mgr_player);
+    gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui, &mgr_player, &mgr_message);
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower, &mgr_gui, &mgr_ps);
     gui_towerSelect.Init();

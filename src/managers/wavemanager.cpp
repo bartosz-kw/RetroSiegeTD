@@ -3,6 +3,7 @@
 #include "psmanager.hpp"
 #include "../namespaces/enemies.hpp"
 #include "../managers/towermanager.hpp"
+#include "../managers/messagemanager.hpp"
 #include "../utility/debugutil.hpp"
 #include <cassert>
 
@@ -10,9 +11,7 @@
 
 void WaveManager::PreKillWave(const EnemyWave wave)
 {
-    m_waveMessage = {};
-    m_waveMessage.p_message = "Cleared: $" + std::to_string(wave.p_moneyReward) + "+";
-    m_waveMessage.p_time = 3.0f;
+    mgr_message->InsertMessage(TempMessageKeys::Mes_WaveCounter, TempMessage{"Cleared: $" + std::to_string(wave.p_moneyReward) + "+", 3.0f, 3.0f});
     mgr_ps->AddMoney(wave.p_moneyReward);
 }
 void WaveManager::KillWave(const uint32_t waveId)
@@ -344,16 +343,6 @@ void WaveManager::LoadWaves()
 }
 
 // Public
-TempMessage *WaveManager::GetWaveMessage()
-{
-    TempMessage *result = &m_waveMessage;
-    if (m_waveMessage.p_time <= 0)
-    {
-        m_waveMessage = {};
-    }
-
-    return result;
-}
 EnemyWave *WaveManager::GetNextWave()
 {
     if (m_unactiveWaves.empty())
@@ -430,17 +419,19 @@ void WaveManager::Update(const float deltaTime)
     UpdateUnactiveWaves();
     UpdateActiveWaves(deltaTime);
 }
-void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager)
+void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager, MessageManager *messageManager)
 {
     mgr_enemy = enemyManager;
     mgr_ps = psManager;
     mgr_tower = towerManager;
+    mgr_message = messageManager;
 }
 void WaveManager::Init()
 {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
     assert(mgr_ps != nullptr && "psManager wasn't injected and its dependency");
     assert(mgr_tower != nullptr && "towerManager wasn't injected and its dependency");
+    assert(mgr_message != nullptr && "messageManager wasn't injected and its dependency");
 
     LoadWaves();
 

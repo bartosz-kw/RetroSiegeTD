@@ -5,6 +5,7 @@
 #include "../managers/wavemanager.hpp"
 #include "../managers/guimanager.hpp"
 #include "../managers/playermanager.hpp"
+#include "../managers/messagemanager.hpp"
 #include <cassert>
 
 void WaveCounter::InitButtons()
@@ -26,24 +27,22 @@ void WaveCounter::InitButtons()
     {
         if (mgr_wave->IsSkipAllowed())
         {
-            SetMessage("Skipped Wave " + std::to_string(this->mgr_wave->GetCurrentWave()->p_id),3.0f);
+            TempMessage mes = {"Skipped Wave " + std::to_string(this->mgr_wave->GetCurrentWave()->p_id), 3.0f, 3.0f};
+            mgr_message->InsertMessage(TempMessageKeys::Mes_WaveCounter, mes);
             mgr_wave->SkipWave();
         }
     };
     waveCountButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
         const EnemyWave *currentWave = mgr_wave->GetCurrentWave();
-        TempMessage *waveMessage = mgr_wave->GetWaveMessage();
-        TempMessage &waveCounterMessage = GetMessage();
-
-        assert(waveMessage != nullptr && "currentMessage shouldn't be a nullptr");
+        TempMessage *message = mgr_message->GetMessage(TempMessageKeys::Mes_WaveCounter);
 
         if (!currentWave && mgr_player->IsGameOver())
         {
             button.p_text = "You lost";
             return;
         }
-        else if(!mgr_wave->ShouldWaveStart())
+        else if (!mgr_wave->ShouldWaveStart())
         {
             button.p_text = "Place a tower";
             return;
@@ -58,16 +57,10 @@ void WaveCounter::InitButtons()
             button.p_text = "Skip Wave " + std::to_string(currentWave->p_id);
             return;
         }
-        else if (!waveMessage->p_message.empty())
+        else if (message)
         {
-            waveMessage->p_time -= deltaTime;
-            button.p_text = waveMessage->p_message;
-            return;
-        }
-        else if (!waveCounterMessage.p_message.empty() && waveCounterMessage.p_time > 0)
-        {
-            waveCounterMessage.p_time -= deltaTime;
-            button.p_text = waveCounterMessage.p_message;
+
+            button.p_text = message->p_message;
             return;
         }
         else
@@ -77,27 +70,19 @@ void WaveCounter::InitButtons()
         }
     };
 #pragma endregion
-
 }
 
-TempMessage &WaveCounter::GetMessage()
-{
-    return m_message;
-}
-void WaveCounter::SetMessage(const std::string message, const float time)
-{
-    m_message.p_message = message;
-    m_message.p_time = time;
-}
-void WaveCounter::InjectDependencies(WaveManager *waveManager, GuiManager *guiManager, PlayerManager *playerManager)
+void WaveCounter::InjectDependencies(WaveManager *waveManager, GuiManager *guiManager, PlayerManager *playerManager, MessageManager *messageManager)
 {
     mgr_wave = waveManager;
     mgr_gui = guiManager;
     mgr_player = playerManager;
+    mgr_message = messageManager;
 }
 void WaveCounter::Init()
 {
     assert(mgr_gui != nullptr && "GuiManager wasn't injected and its dependency");
     assert(mgr_wave != nullptr && "WaveManager wasn't injected and its dependency");
+    assert(mgr_message != nullptr && "MessageManager wasn't injected and its dependency");
     InitButtons();
 }
