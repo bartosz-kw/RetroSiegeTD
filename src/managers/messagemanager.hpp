@@ -6,7 +6,7 @@
 
 enum TempMessageKeys : uint16_t
 {
-    WaveCounter = 1
+    WaveCounterMes = 1
 };
 
 class MessageManager
