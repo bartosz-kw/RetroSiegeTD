@@ -33,6 +33,10 @@ void Popup::InitLabels()
         {
             label.p_text = message->p_message;
         }
+        else
+        {
+            label.p_text = "";
+        }
     };
 #pragma endregion
 }
