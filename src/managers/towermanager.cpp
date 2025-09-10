@@ -11,6 +11,7 @@
 #include "../managers/enemymanager.hpp"
 #include "../managers/bulletmanager.hpp"
 #include "../managers/particlemanager.hpp"
+#include "../managers/messagemanager.hpp"
 #include <cassert>
 #include <cmath>
 #include <algorithm>
@@ -43,15 +44,15 @@ bool TowerManager::CanPlaceTowerOnTile(const Tile *tile) const
 bool TowerManager::ValidateTowerPlacement(const Tower &tower) const
 {
     TowerType towerTypeId = static_cast<TowerType>(tower.p_typeId);
-    auto limitDataIt = Towers::g_towerAmountLimits.find(towerTypeId);
-    if (limitDataIt == Towers::g_towerAmountLimits.end())
+    uint16_t limit = Towers::GetTowerLimit(towerTypeId);
+    if (limit == 0)
     {
         return true;
     }
     else
     {
         uint16_t amountOfTowers = GetTowerTypeAmount(towerTypeId);
-        return limitDataIt->second > amountOfTowers; 
+        return limit > amountOfTowers;
     }
     return false;
 }
@@ -91,9 +92,13 @@ void TowerManager::DetectInput()
         Tower tower = Towers::GetTowerData(m_placeTower);
         if (!ValidateTowerPlacement(tower))
         {
+            int limit = Towers::GetTowerLimit(static_cast<TowerType>(tower.p_typeId));
+            mgr_message->InsertMessage(
+                TempMessageKeys::Mes_PopUp,
+                {TowerTypeToString(static_cast<TowerType>(tower.p_typeId)) + " has a placement limit of " + std::to_string(limit),
+                 3.0f, 3.0f});
             return;
         }
-        
 
         if (mgr_ps->CanAfford(tower.p_price))
         {
@@ -400,13 +405,14 @@ void TowerManager::Draw(const uint8_t screenOffset) const
             color);
     }
 }
-void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr)
+void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr, MessageManager *mgr_messagePtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_enemy = mgr_enemyPtr;
     mgr_bullet = mgr_bulletPtr;
     mgr_ps = mgr_psPtr;
     mgr_particle = mgr_particlePtr;
+    mgr_message = mgr_messagePtr;
 }
 void TowerManager::Init()
 {
@@ -415,4 +421,5 @@ void TowerManager::Init()
     assert(mgr_bullet != nullptr && "BulletManager wasn't injected and its dependency");
     assert(mgr_ps != nullptr && "PSManager wasn't injected and its dependency");
     assert(mgr_particle != nullptr && "ParticleManager wasn't injected and its dependency");
+    assert(mgr_message != nullptr && "MessageManager wasn't injected and its dependency");
 }

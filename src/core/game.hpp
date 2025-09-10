@@ -19,6 +19,7 @@
 #include "../gui/speed.hpp"
 #include "../gui/mainmenu.hpp"
 #include "../gui/enemyhover.hpp"
+#include "../gui/popup.hpp"
 
 
 class Game
@@ -48,6 +49,7 @@ private:
     TowerPlace gui_towerPlace = {};
     PlayerStats gui_playerStats = {};
     Speed gui_speed = {};
+    Popup gui_popup = {};
 
 private: 
 

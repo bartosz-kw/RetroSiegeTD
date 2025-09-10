@@ -9,4 +9,5 @@ namespace Towers
 
     void InitTowerData();
     Tower GetTowerData(int typeId);
+    uint16_t GetTowerLimit(TowerType typeId);
 }

@@ -512,4 +512,14 @@ namespace Towers
         assert(false && "couldn't find requested data in towerData");
         return Tower{};
     }
+
+    uint16_t GetTowerLimit(TowerType typeId)
+    {
+        auto it = g_towerAmountLimits.find(typeId);
+        if (it != g_towerAmountLimits.end())
+        {
+            return it->second;
+        }
+        return 0;
+    }
 }

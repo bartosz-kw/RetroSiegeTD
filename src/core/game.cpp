@@ -138,8 +138,7 @@ void Game::InitManagers()
     mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps);
     mgr_enemy.Init();
-    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle);
-    mgr_tower.Init();
+    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle, &mgr_message);
 
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower, &mgr_message);
     mgr_wave.Init();
@@ -169,6 +168,8 @@ void Game::InitGui()
     gui_enemyHover.Init();
     gui_speed.InjectDependencies(&mgr_gui);
     gui_speed.Init();
+    gui_popup.InjectDependencies(&mgr_message, &mgr_gui);
+    gui_popup.Init();
 }
 void Game::InitSprites()
 {

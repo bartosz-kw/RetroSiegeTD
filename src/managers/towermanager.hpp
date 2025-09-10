@@ -9,6 +9,7 @@ class TileManager;
 class EnemyManager;
 class PSManager;
 class BulletManager;
+class MessageManager;
 
 class TowerManager
 {
@@ -21,6 +22,7 @@ private:
     PSManager *mgr_ps = nullptr;
     BulletManager *mgr_bullet = nullptr;
     ParticleManager *mgr_particle = nullptr;
+    MessageManager *mgr_message = nullptr;
     bool m_wasAnyTowerPlaced = false;
 
 private:
@@ -55,6 +57,6 @@ public:
     void ClearTowersVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
-    void InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr);
+    void InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr, MessageManager *mgr_messagePtr);
     void Init();
 };
