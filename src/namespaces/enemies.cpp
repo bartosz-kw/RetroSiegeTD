@@ -223,6 +223,33 @@ namespace Enemies
                 g_enemyData[EnemyType::QuickSlime] = quickSlime;
 #pragma endregion
 
+#pragma region ElectricSlime
+                Enemy electricSlime = {};
+                electricSlime.p_hitCooldowns = {};
+                electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                electricSlime.p_sourceRect = {0, 0, 15, 15};
+                electricSlime.p_moneyDrop = 20;
+                electricSlime.p_health = 20;
+                electricSlime.p_defense = 0;
+                electricSlime.p_position = {-1.0f, -1.0f};
+                electricSlime.p_id = 0;
+                electricSlime.p_speed = 0.2f;
+                electricSlime.p_timeToNextFrame = 0.35f;
+                electricSlime.p_timePassed = 0.0f;
+                electricSlime.p_timeToMove = 0.0f;
+                electricSlime.p_hitEffectTime = 0.0f;
+                electricSlime.p_typeId = EnemyType::ElectricSlime;
+                electricSlime.p_walked = 0;
+                electricSlime.p_tileId = -1;
+                electricSlime.p_frameOffset = 15;
+                electricSlime.p_frameAmount = 2;
+                electricSlime.p_alive = true;
+                electricSlime.p_survived = false;
+                electricSlime.p_dirty = true;
+
+                g_enemyData[EnemyType::ElectricSlime] = electricSlime;
+#pragma endregion
+
         }
 
         Enemy GetEnemyData(const int typeId)
