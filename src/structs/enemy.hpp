@@ -13,7 +13,9 @@ enum EnemyType : uint8_t
     Skeleton = 5,
     Summoner = 6,
     QuickSlime = 7,
-    ElectricSlime = 8
+    ElectricSlime = 8,
+    SmallSlime = 9,
+    BigSlime = 10
 };
 struct Enemy
 {

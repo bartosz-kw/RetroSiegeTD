@@ -250,6 +250,60 @@ namespace Enemies
                 g_enemyData[EnemyType::ElectricSlime] = electricSlime;
 #pragma endregion
 
+#pragma region SmallSlime
+                Enemy smallSlime = {};
+                smallSlime.p_hitCooldowns = {};
+                smallSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                smallSlime.p_sourceRect = {0, 0, 15, 15};
+                smallSlime.p_moneyDrop = 5;
+                smallSlime.p_health = 20;
+                smallSlime.p_defense = 1;
+                smallSlime.p_position = {-1.0f, -1.0f};
+                smallSlime.p_id = 0;
+                smallSlime.p_speed = 1.0f;
+                smallSlime.p_timeToNextFrame = 0.5f;
+                smallSlime.p_timePassed = 0.0f;
+                smallSlime.p_timeToMove = 0.0f;
+                smallSlime.p_hitEffectTime = 0.0f;
+                smallSlime.p_typeId = EnemyType::SmallSlime;
+                smallSlime.p_walked = 0;
+                smallSlime.p_tileId = -1;
+                smallSlime.p_frameOffset = 15;
+                smallSlime.p_frameAmount = 2;
+                smallSlime.p_alive = true;
+                smallSlime.p_survived = false;
+                smallSlime.p_dirty = true;
+
+                g_enemyData[EnemyType::SmallSlime] = smallSlime;
+#pragma endregion
+
+#pragma region BigSlime
+                Enemy bigSlime = {};
+                bigSlime.p_hitCooldowns = {};
+                bigSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                bigSlime.p_sourceRect = {0, 0, 15, 15};
+                bigSlime.p_moneyDrop = 30;
+                bigSlime.p_health = 125;
+                bigSlime.p_defense = 3;
+                bigSlime.p_position = {-1.0f, -1.0f};
+                bigSlime.p_id = 0;
+                bigSlime.p_speed = 3.0f;
+                bigSlime.p_timeToNextFrame = 1.5f;
+                bigSlime.p_timePassed = 0.0f;
+                bigSlime.p_timeToMove = 0.0f;
+                bigSlime.p_hitEffectTime = 0.0f;
+                bigSlime.p_typeId = EnemyType::BigSlime;
+                bigSlime.p_walked = 0;
+                bigSlime.p_tileId = -1;
+                bigSlime.p_frameOffset = 15;
+                bigSlime.p_frameAmount = 2;
+                bigSlime.p_alive = true;
+                bigSlime.p_survived = false;
+                bigSlime.p_dirty = true;
+
+                g_enemyData[EnemyType::BigSlime] = bigSlime;
+#pragma endregion
+
         }
 
         Enemy GetEnemyData(const int typeId)

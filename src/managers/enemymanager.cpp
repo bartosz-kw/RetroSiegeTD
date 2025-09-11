@@ -263,6 +263,12 @@ std::string EnemyManager::EnemyTypeToString(const EnemyType type)
     case EnemyType::ElectricSlime:
         return "Electric Slime";
         break;
+    case EnemyType::SmallSlime:
+        return "Small Slime";
+        break;
+    case EnemyType::BigSlime:
+        return "Big Slime";
+        break;
     default:
         return "Unknown";
         break;
