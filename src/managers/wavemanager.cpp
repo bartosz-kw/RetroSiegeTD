@@ -233,10 +233,10 @@ void WaveManager::LoadWaves()
     std::vector<std::pair<float, EnemyType>> enemySpawns9 = {};
     enemySpawns9.push_back({1.0f, EnemyType::RedSlime});
     enemySpawns9.push_back({1.0f, EnemyType::RedSlime});
-    enemySpawns9.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns9.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns9.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns9.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
+    enemySpawns9.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns9.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns9.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns9.push_back({1.0f, EnemyType::ElectricSlime});
     enemySpawns9.push_back({2.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
     enemySpawns9.push_back({2.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
     enemySpawns9.push_back({2.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
@@ -248,16 +248,16 @@ void WaveManager::LoadWaves()
     m_unactiveWaves.push_back(wave9);
 
     std::vector<std::pair<float, EnemyType>> enemySpawns10 = {};
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
     enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
     enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
     enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
     enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for BigSlime
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns10.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns10.push_back({1.0f, EnemyType::ElectricSlime});
     EnemyWave wave10 = {};
     wave10.p_id = 10;
     wave10.p_moneyReward = 275;
@@ -266,11 +266,11 @@ void WaveManager::LoadWaves()
     m_unactiveWaves.push_back(wave10);
 
     std::vector<std::pair<float, EnemyType>> enemySpawns11 = {};
-    enemySpawns11.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns11.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns11.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns11.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
-    enemySpawns11.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for ElectricSlime
+    enemySpawns11.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns11.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns11.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns11.push_back({1.0f, EnemyType::ElectricSlime});
+    enemySpawns11.push_back({1.0f, EnemyType::ElectricSlime});
     enemySpawns11.push_back({3.0f, EnemyType::Zombie});
     EnemyWave wave11 = {};
     wave11.p_id = 11;

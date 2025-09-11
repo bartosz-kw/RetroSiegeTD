@@ -228,13 +228,13 @@ namespace Enemies
                 electricSlime.p_hitCooldowns = {};
                 electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
                 electricSlime.p_sourceRect = {0, 0, 15, 15};
-                electricSlime.p_moneyDrop = 20;
-                electricSlime.p_health = 20;
+                electricSlime.p_moneyDrop = 15;
+                electricSlime.p_health = 15;
                 electricSlime.p_defense = 0;
                 electricSlime.p_position = {-1.0f, -1.0f};
                 electricSlime.p_id = 0;
-                electricSlime.p_speed = 0.2f;
-                electricSlime.p_timeToNextFrame = 0.35f;
+                electricSlime.p_speed = 0.35f;
+                electricSlime.p_timeToNextFrame = 0.15f;
                 electricSlime.p_timePassed = 0.0f;
                 electricSlime.p_timeToMove = 0.0f;
                 electricSlime.p_hitEffectTime = 0.0f;
