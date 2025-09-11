@@ -18,6 +18,7 @@ struct Label
     Vector2 p_imagePosition = {0, 0};
     Color p_color = WHITE;
     Color p_boundingColor = BLANK;
+    Color p_textColor = BLACK;
     float p_segments = 4.0f; 
     float p_roundness = 5.0f;
     float p_boundingSize = 0.0f;

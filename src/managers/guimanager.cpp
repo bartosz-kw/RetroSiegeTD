@@ -180,7 +180,7 @@ void GuiManager::DrawButton(const Button &button) const
     if (!button.p_text.empty())
     {
         DrawTextEx(Settings::g_gameFont, button.p_text.c_str(),
-                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, button.p_textColor);
     }
     if (button.p_image.id != 0)
     {
@@ -249,7 +249,7 @@ void GuiManager::DrawLabel(const Label &label) const
     if (!label.p_text.empty())
     {
         DrawTextEx(Settings::g_gameFont, label.p_text.c_str(),
-                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, BLACK);
+                   drawTextPos, Settings::g_gameFont.baseSize, 1.0f, label.p_textColor);
     }
 }
 const bool GuiManager::IsElementUsed(const Button &button) const
