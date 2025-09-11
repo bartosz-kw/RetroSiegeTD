@@ -77,13 +77,7 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         return;
-    }
-    Debug::Print(scaledButtonRect.x, "scaledButtonRect.x");
-    Debug::Print(scaledButtonRect.y, "scaledButtonRect.y");
-    Debug::Print(scaledButtonRect.width, "scaledButtonRect.width");
-    Debug::Print(scaledButtonRect.height, "scaledButtonRect.height");
-    Debug::Print(mousePosition.x, "Mouse x");
-    Debug::Print(mousePosition.y, "Mouse y");
+    };
 
     button.p_onPressed(deltaTime, button);
 }
