@@ -18,6 +18,7 @@ void Popup::InitLabels()
     popupLabel.p_rect = {(float)Settings::g_boundingSize, 0, 270, 20};
     popupLabel.p_color = BLANK;
     popupLabel.p_boundingColor = BLANK;
+    popupLabel.p_textColor = BLANK;
     popupLabel.p_boundingSize = 0.0f;
     popupLabel.p_segments = 0.0f;
     popupLabel.p_roundness = 0.0f;
@@ -32,10 +33,12 @@ void Popup::InitLabels()
         if (message)
         {
             label.p_text = message->p_message;
+            label.p_textColor = {230, 41, 55,static_cast<unsigned char>((message->p_time / message->p_baseTime) * 255.0f)};
         }
         else
         {
             label.p_text = "";
+            label.p_textColor = BLANK;
         }
     };
 #pragma endregion
