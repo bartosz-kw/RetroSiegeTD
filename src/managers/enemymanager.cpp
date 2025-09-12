@@ -204,6 +204,8 @@ void EnemyManager::PreKillEnemy(Enemy &enemy)
         }
         m_killedEnemies += 1;
         mgr_ps->AddMoney(enemy.p_moneyDrop);
+        
+        enemy.p_deathCallback(enemy,this);
     }
     else if (enemy.p_survived)
     {
