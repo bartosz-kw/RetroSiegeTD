@@ -227,14 +227,14 @@ void EnemyManager::CleanEnemy(Enemy &enemy)
     enemy.p_dirty = false;
 }
 void EnemyManager::RemoveEnemies()
-
-// Public
-
 {
     m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(), [](Enemy &enemy)
                                    { return !enemy.p_alive || enemy.p_survived; }),
                     m_enemies.end());
 }
+
+// Public
+
 std::string EnemyManager::EnemyTypeToString(const EnemyType type)
 {
     switch (type)
