@@ -16,6 +16,7 @@ namespace Enemies
                 Enemy blueSlime = {};
                 blueSlime.p_hitCooldowns = {};
                 blueSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                blueSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 blueSlime.p_sourceRect = {0, 0, 15, 15};
                 blueSlime.p_moneyDrop = 10;
                 blueSlime.p_health = 6;
@@ -43,6 +44,7 @@ namespace Enemies
                 Enemy redSlime = {};
                 redSlime.p_hitCooldowns = {};
                 redSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                redSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 redSlime.p_sourceRect = {0, 0, 15, 15};
                 redSlime.p_moneyDrop = 15;
                 redSlime.p_health = 25;
@@ -70,6 +72,7 @@ namespace Enemies
                 Enemy zombie = {};
                 zombie.p_hitCooldowns = {};
                 zombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                zombie.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 zombie.p_sourceRect = {0, 0, 15, 15};
                 zombie.p_moneyDrop = 25;
                 zombie.p_health = 30;
@@ -97,6 +100,7 @@ namespace Enemies
                 Enemy armoredZombie = {};
                 armoredZombie.p_hitCooldowns = {};
                 armoredZombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                armoredZombie.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 armoredZombie.p_sourceRect = {0, 0, 15, 15};
                 armoredZombie.p_moneyDrop = 35;
                 armoredZombie.p_health = 100;
@@ -124,6 +128,7 @@ namespace Enemies
                 Enemy skeleton = {};
                 skeleton.p_hitCooldowns = {};
                 skeleton.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                skeleton.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 skeleton.p_sourceRect = {0, 0, 15, 15};
                 skeleton.p_moneyDrop = 25;
                 skeleton.p_health = 25;
@@ -173,6 +178,7 @@ namespace Enemies
                        mgr_enemy->AddEnemy(summon);
                     }
                 };
+                summoner.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 summoner.p_sourceRect = {0, 0, 15, 15};
                 summoner.p_moneyDrop = 100;
                 summoner.p_health = 250;
@@ -200,6 +206,7 @@ namespace Enemies
                 Enemy quickSlime = {};
                 quickSlime.p_hitCooldowns = {};
                 quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                quickSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 quickSlime.p_sourceRect = {0, 0, 15, 15};
                 quickSlime.p_moneyDrop = 15;
                 quickSlime.p_health = 5;
@@ -227,6 +234,7 @@ namespace Enemies
                 Enemy electricSlime = {};
                 electricSlime.p_hitCooldowns = {};
                 electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                electricSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 electricSlime.p_sourceRect = {0, 0, 15, 15};
                 electricSlime.p_moneyDrop = 15;
                 electricSlime.p_health = 15;
@@ -254,6 +262,7 @@ namespace Enemies
                 Enemy smallSlime = {};
                 smallSlime.p_hitCooldowns = {};
                 smallSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                smallSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 smallSlime.p_sourceRect = {0, 0, 15, 15};
                 smallSlime.p_moneyDrop = 5;
                 smallSlime.p_health = 20;
@@ -281,6 +290,7 @@ namespace Enemies
                 Enemy bigSlime = {};
                 bigSlime.p_hitCooldowns = {};
                 bigSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager* mgr_enemy) {};
+                bigSlime.p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
                 bigSlime.p_sourceRect = {0, 0, 15, 15};
                 bigSlime.p_moneyDrop = 30;
                 bigSlime.p_health = 125;
