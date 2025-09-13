@@ -75,8 +75,8 @@ namespace Enemies
         zombie.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         zombie.p_sourceRect = {0, 0, 15, 15};
         zombie.p_moneyDrop = 25;
-        zombie.p_health = 30;
-        zombie.p_defense = 1;
+        zombie.p_health = 80;
+        zombie.p_defense = 0;
         zombie.p_position = {-1.0f, -1.0f};
         zombie.p_id = 0;
         zombie.p_speed = 1.5f;
@@ -104,7 +104,7 @@ namespace Enemies
         armoredZombie.p_sourceRect = {0, 0, 15, 15};
         armoredZombie.p_moneyDrop = 35;
         armoredZombie.p_health = 100;
-        armoredZombie.p_defense = 4;
+        armoredZombie.p_defense = 7;
         armoredZombie.p_position = {-1.0f, -1.0f};
         armoredZombie.p_id = 0;
         armoredZombie.p_speed = 1.75f;
@@ -131,8 +131,8 @@ namespace Enemies
         skeleton.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeleton.p_sourceRect = {0, 0, 15, 15};
         skeleton.p_moneyDrop = 25;
-        skeleton.p_health = 25;
-        skeleton.p_defense = 0;
+        skeleton.p_health = 75;
+        skeleton.p_defense = 1;
         skeleton.p_position = {-1.0f, -1.0f};
         skeleton.p_id = 0;
         skeleton.p_speed = 0.5f;
@@ -182,7 +182,7 @@ namespace Enemies
         summoner.p_sourceRect = {0, 0, 15, 15};
         summoner.p_moneyDrop = 100;
         summoner.p_health = 250;
-        summoner.p_defense = 2;
+        summoner.p_defense = 3;
         summoner.p_position = {-1.0f, -1.0f};
         summoner.p_id = 0;
         summoner.p_speed = 2.0f;
@@ -237,8 +237,8 @@ namespace Enemies
         electricSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         electricSlime.p_sourceRect = {0, 0, 15, 15};
         electricSlime.p_moneyDrop = 15;
-        electricSlime.p_health = 15;
-        electricSlime.p_defense = 0;
+        electricSlime.p_health = 55;
+        electricSlime.p_defense = 1;
         electricSlime.p_position = {-1.0f, -1.0f};
         electricSlime.p_id = 0;
         electricSlime.p_speed = 0.35f;
