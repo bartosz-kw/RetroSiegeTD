@@ -45,7 +45,7 @@ namespace Towers
         ninja1Tower.p_damage = 1;
         ninja1Tower.p_position = {-1.0f, -1.0f};
         ninja1Tower.p_range = 50.0f;
-        ninja1Tower.p_attackSpeed = 1.0f;
+        ninja1Tower.p_attackSpeed = 0.75f;
         ninja1Tower.p_timeToAttack = 0.0f;
         ninja1Tower.p_timeToNextFrame = 0.0f;
         ninja1Tower.p_timePassed = 0.0f;
@@ -72,7 +72,7 @@ namespace Towers
             Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
             float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
 
-            Bullet bullet = Bullets::GetBulletData(BulletType::SharpShuliken);
+            Bullet bullet = Bullets::GetBulletData(BulletType::Shuliken);
             bullet.p_id = BulletManager::GetNewValidId();
             bullet.p_damage = tower->p_damage;
             bullet.p_directionAngle = angle;
@@ -84,7 +84,7 @@ namespace Towers
         ninja2Tower.p_damage = 2;
         ninja2Tower.p_position = {-1.0f, -1.0f};
         ninja2Tower.p_range = 55.0f;
-        ninja2Tower.p_attackSpeed = 1.0f;
+        ninja2Tower.p_attackSpeed = 0.75f;
         ninja2Tower.p_timeToAttack = 0.0f;
         ninja2Tower.p_timeToNextFrame = 0.0f;
         ninja2Tower.p_timePassed = 0.0f;
@@ -119,11 +119,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         ninja3Tower.p_sourceRect = {0, 0, 15, 15};
-        ninja3Tower.p_price = 200;
+        ninja3Tower.p_price = 500;
         ninja3Tower.p_damage = 2;
         ninja3Tower.p_position = {-1.0f, -1.0f};
         ninja3Tower.p_range = 60.0f;
-        ninja3Tower.p_attackSpeed = 0.9f;
+        ninja3Tower.p_attackSpeed = 0.70f;
         ninja3Tower.p_timeToAttack = 0.0f;
         ninja3Tower.p_timeToNextFrame = 0.0f;
         ninja3Tower.p_timePassed = 0.0f;
@@ -160,11 +160,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         ninja4Tower.p_sourceRect = {0, 0, 15, 15};
-        ninja4Tower.p_price = 550;
-        ninja4Tower.p_damage = 5;
+        ninja4Tower.p_price = 1250;
+        ninja4Tower.p_damage = 7;
         ninja4Tower.p_position = {-1.0f, -1.0f};
         ninja4Tower.p_range = 65.0f;
-        ninja4Tower.p_attackSpeed = 0.7f;
+        ninja4Tower.p_attackSpeed = 0.55f;
         ninja4Tower.p_timeToAttack = 0.0f;
         ninja4Tower.p_timeToNextFrame = 0.0f;
         ninja4Tower.p_timePassed = 0.0f;
