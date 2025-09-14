@@ -450,7 +450,7 @@ namespace Towers
         };
         market3Tower.p_sourceRect = {0, 0, 15, 15};
         market3Tower.p_price = 1250;
-        market3Tower.p_damage = 50;
+        market3Tower.p_damage = 20;
         market3Tower.p_position = {-1.0f, -1.0f};
         market3Tower.p_range = 5.0f;
         market3Tower.p_attackSpeed = 3.0f;
@@ -480,7 +480,7 @@ namespace Towers
         };
         market4Tower.p_sourceRect = {0, 0, 15, 15};
         market4Tower.p_price = 5000;
-        market4Tower.p_damage = 150;
+        market4Tower.p_damage = 50;
         market4Tower.p_position = {-1.0f, -1.0f};
         market4Tower.p_range = 5.0f;
         market4Tower.p_attackSpeed = 3.0f;
