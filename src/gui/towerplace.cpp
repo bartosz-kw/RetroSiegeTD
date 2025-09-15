@@ -34,6 +34,7 @@ void TowerPlace::ControlPlaceTower(const TowerType controlType)
     {
         mgr_tower->SetPlaceTower(controlType);
     }
+    mgr_tower->ChangeLastSelectedTower(-1);
 }
 
 void TowerPlace::InitButtons()

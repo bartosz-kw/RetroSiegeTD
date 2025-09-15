@@ -181,6 +181,7 @@ void TowerManager::DetectTowerInput(Tower &tower)
         return;
     }
 
+    m_placeTower = TowerType::Nothing;
     m_lastSelectedTowerId = tower.p_id;
 }
 void TowerManager::UpdateFight(Tower &tower, const float deltatime)
@@ -345,6 +346,11 @@ TowerType TowerManager::GetPlaceTower() const
 void TowerManager::SetPlaceTower(const TowerType type)
 {
     m_placeTower = type;
+}
+
+void TowerManager::ChangeLastSelectedTower(const int32_t id)
+{
+    m_lastSelectedTowerId = id;
 }
 void TowerManager::ClearTowersVector()
 {

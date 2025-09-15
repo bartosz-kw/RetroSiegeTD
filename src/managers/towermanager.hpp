@@ -54,6 +54,7 @@ public:
     int32_t GetNextValidId();
     TowerType GetPlaceTower() const;
     void SetPlaceTower(const TowerType type);
+    void ChangeLastSelectedTower(const int32_t id);
     void ClearTowersVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
