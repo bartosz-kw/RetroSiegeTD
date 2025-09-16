@@ -272,14 +272,21 @@ void TowerSelect::InitButtons()
         TowerType placeTower = this->mgr_tower->GetPlaceTower();
         button.p_color = GREEN;
 
-        if (!tower && placeTower == TowerType::Nothing)
+        if (tower)
         {
-            button.p_visible = false;
+            button.p_text = "T: " + TargetingTypeUtility::ToString(tower->p_targetting);
+            button.p_visible = true;
+        }
+        else if (placeTower != TowerType::Nothing)
+        {
+            Tower placeTowerData = Towers::GetTowerData(placeTower);
+
+            button.p_text = "T: " + TargetingTypeUtility::ToString(placeTowerData.p_targetting);
+            button.p_visible = true;
         }
         else
         {
-            button.p_text = "T:";
-            button.p_visible = true;
+            button.p_visible = false;
         }
 
         button.p_boundingColor = button.p_color * 0.8f;
@@ -290,6 +297,15 @@ void TowerSelect::InitButtons()
         if (!tower)
         {
             return;
+        }
+
+        if (tower->p_targetting != TargetingType::Weakest)
+        {
+            tower->p_targetting = static_cast<TargetingType>(static_cast<uint8_t>(tower->p_targetting) + 1);
+        }
+        else
+        {
+            tower->p_targetting = TargetingType::First;
         }
     };
 #pragma endregion
@@ -339,7 +355,7 @@ void TowerSelect::InitButtons()
     upgradeButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         Tower *tower = this->mgr_tower->GetLastSelectedTower();
-        
+
         if (tower)
         {
             if (tower->p_upgradesTo == TowerType::Nothing)
@@ -372,7 +388,7 @@ void TowerSelect::InitButtons()
         }
         else
         {
-            button.p_text = "Sell for " + std::format("{:.2f}",tower->p_price/2.0f) + " $";
+            button.p_text = "Sell for " + std::format("{:.2f}", tower->p_price / 2.0f) + " $";
             button.p_visible = true;
         }
 
@@ -387,10 +403,8 @@ void TowerSelect::InitButtons()
         }
         mgr_ps->AddMoney(tower->p_price / 2.0f);
         mgr_tower->RemoveTower(tower->p_id);
-        
     };
 #pragma endregion
-
 }
 void TowerSelect::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager, PSManager *psManager)
 {

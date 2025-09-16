@@ -31,6 +31,7 @@ namespace Basics
             upgradedTower.p_id = tower->p_id;
             upgradedTower.p_tileId = tower->p_tileId;
             upgradedTower.p_dirty = true;
+            upgradedTower.p_targetting = tower->p_targetting;
             *tower = upgradedTower;
         }
     }

@@ -5,7 +5,7 @@
 #include "../structs/enemy.hpp"
 
 class TileManager;
-class BulletManager;
+class BulletManager; 
 class PSManager;
 
 class EnemyManager
