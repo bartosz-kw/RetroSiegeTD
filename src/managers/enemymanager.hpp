@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "../structs/tower.hpp"
+#include "../enums/targetingtype.hpp"
 #include "../structs/enemy.hpp"
 
 class TileManager;
