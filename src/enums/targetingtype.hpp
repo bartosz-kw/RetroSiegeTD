@@ -1,4 +1,7 @@
+#pragma once
+#include <cstdint>
 #include <string>
+
 
 enum TargetingType : uint8_t
 {
