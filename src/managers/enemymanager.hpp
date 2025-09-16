@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "../structs/tower.hpp"
 #include "../structs/enemy.hpp"
 
 class TileManager;
@@ -43,7 +44,7 @@ public:
     uint32_t GetNewValidId();
     Vector2 GetCenterPosition(const Enemy &enemy) const;
     const uint32_t GetKilledAmount() const;
-    uint32_t FindEnemyInArea(const Vector2 center, const float radius);
+    uint32_t FindEnemyInArea(const Vector2 center, const float radius, const TargetingType targetingType);
     Enemy *GetEnemyById(const uint32_t id);
     const Enemy *GetHoveredEnemy() const;
     void AddEnemy(Enemy enemy);

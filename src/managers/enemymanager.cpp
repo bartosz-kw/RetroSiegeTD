@@ -204,8 +204,8 @@ void EnemyManager::PreKillEnemy(Enemy &enemy)
         }
         m_killedEnemies += 1;
         mgr_ps->AddMoney(enemy.p_moneyDrop);
-        
-        enemy.p_deathCallback(enemy,this);
+
+        enemy.p_deathCallback(enemy, this);
     }
     else if (enemy.p_survived)
     {
@@ -292,23 +292,58 @@ const uint32_t EnemyManager::GetKilledAmount() const
 {
     return m_killedEnemies;
 }
-uint32_t EnemyManager::FindEnemyInArea(const Vector2 center, const float radius)
+uint32_t EnemyManager::FindEnemyInArea(const Vector2 center, const float radius, const TargetingType targetingType)
 {
-    int32_t biggestWalked = -10000;
-    uint32_t biggestWalkedId = 0;
+    int64_t enemyHealth = -1;
+    int32_t enemyWalked = -1;
+    uint32_t enemyId = 0;
     for (auto &enemy : m_enemies)
     {
         Vector2 enemyCenter = GetCenterPosition(enemy);
         if (CheckCollisionPointCircle(enemyCenter, center, radius))
         {
-            if (biggestWalked < enemy.p_walked)
+            if (enemyHealth == -1 && enemyWalked == -1)
             {
-                biggestWalked = enemy.p_walked;
-                biggestWalkedId = enemy.p_id;
+                enemyHealth = enemy.p_health;
+                enemyWalked = enemy.p_walked;
+                enemyId = enemy.p_id;
+            }
+
+            if (targetingType == TargetingType::First)
+            {
+                if (enemyWalked < enemy.p_walked)
+                {
+                    enemyWalked = enemy.p_walked;
+                    enemyId = enemy.p_id;
+                }
+            }
+            else if (targetingType == TargetingType::Last)
+            {
+                if (enemyWalked > enemy.p_walked)
+                {
+                    enemyWalked = enemy.p_walked;
+                    enemyId = enemy.p_id;
+                }
+            }
+            else if (targetingType == TargetingType::Strongest)
+            {
+                if (enemyHealth < enemy.p_health)
+                {
+                    enemyHealth = enemy.p_health;
+                    enemyId = enemy.p_id;
+                }
+            }
+            else if (targetingType == TargetingType::Weakest)
+            {
+                if (enemyHealth > enemy.p_health)
+                {
+                    enemyHealth = enemy.p_health;
+                    enemyId = enemy.p_id;
+                }
             }
         }
     }
-    return biggestWalkedId;
+    return enemyId;
 }
 Enemy *EnemyManager::GetEnemyById(const uint32_t id)
 {

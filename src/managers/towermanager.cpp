@@ -190,7 +190,7 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
 
     float range = tower.p_rangeless ? 9999.9f : tower.p_range;
     Vector2 centerPos = GetCenterPosition(tower);
-    uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos, range);
+    uint32_t enemyId = mgr_enemy->FindEnemyInArea(centerPos, range, tower.p_targetting);
 
     if (enemyId == 0 || tower.p_timeToAttack < tower.p_attackSpeed)
     {
