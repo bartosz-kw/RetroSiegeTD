@@ -13,7 +13,6 @@ void PlayerManager::OnGameOver()
     mgr_wave->ClearActiveWaves();
     mgr_wave->ClearUnactiveWaves();
     mgr_ps->SetMoney(0);
-    Debug::Print("Gameover reached");
 }
 
 bool PlayerManager::IsGameOver() const
