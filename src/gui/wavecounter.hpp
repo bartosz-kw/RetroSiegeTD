@@ -1,9 +1,11 @@
+#pragma once
 #include "../structs/tempmessage.hpp"
 
 class PlayerManager;
 class WaveManager;
 class GuiManager;
 class MessageManager;
+
 class WaveCounter
 {
 private:

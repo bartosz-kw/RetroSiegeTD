@@ -83,5 +83,6 @@ public:
     void CloseGame();
 
     void Init();
+    void Restart();
     void Run();
 };

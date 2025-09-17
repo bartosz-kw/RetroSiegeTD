@@ -237,7 +237,11 @@ void Game::Init()
     InitAudio();
     InitGui();
 }
-void Game::Run()
+void Game::Restart()
+{
+    InitManagers();
+}
+void Game::Run() 
 {
     while (!WindowShouldClose())
     {
