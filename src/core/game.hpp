@@ -20,6 +20,7 @@
 #include "../gui/mainmenu.hpp"
 #include "../gui/enemyhover.hpp"
 #include "../gui/popup.hpp"
+#include "../gui/endgame.hpp"
 
 
 class Game
@@ -50,6 +51,7 @@ private:
     PlayerStats gui_playerStats = {};
     Speed gui_speed = {};
     Popup gui_popup = {};
+    EndGame gui_endGame = {};
 
 private: 
 

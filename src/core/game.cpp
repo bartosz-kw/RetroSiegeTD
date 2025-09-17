@@ -170,6 +170,8 @@ void Game::InitGui()
     gui_speed.Init();
     gui_popup.InjectDependencies(&mgr_message, &mgr_gui);
     gui_popup.Init();
+    gui_endGame.InjectDependencies(this, &mgr_player, &mgr_gui);
+    gui_endGame.Init();
 }
 void Game::InitSprites()
 {
