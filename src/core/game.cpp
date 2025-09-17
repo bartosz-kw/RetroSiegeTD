@@ -241,9 +241,14 @@ void Game::Init()
 }
 void Game::Restart()
 {
+    mgr_enemy.ClearEnemiesVector();
+    mgr_tower.ClearTowersVector();
+    mgr_wave.ClearActiveWaves();
+    mgr_wave.ClearUnactiveWaves();
+    mgr_ps.SetMoney(0);
     InitManagers();
 }
-void Game::Run() 
+void Game::Run()
 {
     while (!WindowShouldClose())
     {
