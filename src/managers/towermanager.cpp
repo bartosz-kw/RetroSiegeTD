@@ -428,4 +428,9 @@ void TowerManager::Init()
     assert(mgr_ps != nullptr && "PSManager wasn't injected and its dependency");
     assert(mgr_particle != nullptr && "ParticleManager wasn't injected and its dependency");
     assert(mgr_message != nullptr && "MessageManager wasn't injected and its dependency");
+
+    ClearTowersVector();
+    m_lastSelectedTowerId = -1;
+    m_placeTower = TowerType::Nothing;
+    m_wasAnyTowerPlaced = false;
 }
