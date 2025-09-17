@@ -231,7 +231,7 @@ void GuiManager::DrawLabel(const Label &label) const
             outlineRect.width -= label.p_boundingSize;
             outlineRect.height -= label.p_boundingSize;
 
-            DrawRectangleLinesEx(outlineRect, label.p_roundness, label.p_boundingColor);
+            DrawRectangleLinesEx(outlineRect, label.p_boundingSize, label.p_boundingColor);
         }
     }
 
