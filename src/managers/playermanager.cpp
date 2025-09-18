@@ -29,7 +29,7 @@ PlayerState PlayerManager::GetPlayerState() const
 
 void PlayerManager::Update()
 {
-    if (!mgr_wave->GetCurrentWave() && !IsGameOver())
+    if (!mgr_wave->GetCurrentWave() && !mgr_wave->GetNextWave() && !IsGameOver())
     {
         m_playerState = PlayerState::Victory;
     }
