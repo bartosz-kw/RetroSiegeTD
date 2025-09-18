@@ -20,8 +20,22 @@ bool PlayerManager::IsGameOver() const
     return !mgr_ps->IsAlive();
 }
 
+PlayerState PlayerManager::GetPlayerState() const
+{
+    return m_playerState;
+}
+
 void PlayerManager::Update()
 {
+    if (!mgr_wave->GetCurrentWave() && !IsGameOver())
+    {
+        m_playerState = PlayerState::Victory;
+    }
+    else
+    {
+        m_playerState = IsGameOver() ? PlayerState::Dead : PlayerState::Alive;
+    }
+   
     if (IsGameOver())
     {
         OnGameOver();
