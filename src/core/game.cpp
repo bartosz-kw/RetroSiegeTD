@@ -143,7 +143,7 @@ void Game::InitManagers()
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower, &mgr_message);
     mgr_wave.Init();
 
-    mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave);
+    mgr_player.InjectDependencies(&mgr_ps, &mgr_tower, &mgr_enemy, &mgr_wave, &mgr_bullet);
     mgr_player.Init();
 
     mgr_music.InjectDependencies(&gui_mainMenu);
@@ -244,6 +244,7 @@ void Game::Restart()
     mgr_enemy.ClearEnemiesVector();
     mgr_wave.ClearActiveWaves();
     mgr_wave.ClearUnactiveWaves();
+    mgr_bullet.ClearBulletsVector();
     mgr_ps.SetMoney(0);
     InitManagers();
 }

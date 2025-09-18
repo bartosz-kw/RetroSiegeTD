@@ -5,6 +5,7 @@ class PSManager;
 class TowerManager;
 class EnemyManager;
 class WaveManager;
+class BulletManager;
 
 enum PlayerState 
 {
@@ -21,6 +22,7 @@ private:
     TowerManager *mgr_tower = nullptr;
     EnemyManager *mgr_enemy = nullptr;
     WaveManager *mgr_wave = nullptr;
+    BulletManager *mgr_bullet = nullptr;
 
     PlayerState m_playerState = PlayerState::Alive;
 
@@ -32,6 +34,6 @@ public:
     bool IsGameOver() const;
     PlayerState GetPlayerState() const;
     void Update();
-    void InjectDependencies(PSManager *psManager, TowerManager *towerManager, EnemyManager *enemyManager, WaveManager *waveManager);
+    void InjectDependencies(PSManager *psManager, TowerManager *towerManager, EnemyManager *enemyManager, WaveManager *waveManager, BulletManager *bulletManager);
     void Init();
 };
