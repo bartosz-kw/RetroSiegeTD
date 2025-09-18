@@ -22,6 +22,7 @@ public:
     Vector2 GetCenterPosition(const Bullet &bullet) const;
     std::vector<Bullet*> GetBulletsFromArea(const Rectangle area);
     void AddBullet(const Bullet bullet);
+    void ClearBulletsVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
     void Init();

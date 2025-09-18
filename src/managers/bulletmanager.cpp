@@ -86,6 +86,12 @@ void BulletManager::AddBullet(const Bullet bullet)
 {
     m_bullets.push_back(bullet);
 }
+
+void BulletManager::ClearBulletsVector()
+{
+    m_bullets.clear();
+}
+
 void BulletManager::Update(const float deltaTime)
 {
     for (auto &bullet : m_bullets)
