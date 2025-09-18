@@ -168,7 +168,6 @@ void TileManager::LoadMap(const GameMap gameMap)
             tile.p_typeId = gameMap.p_tileIdMap[y][x];
             tile.p_position = {static_cast<float>(g_tileSize * x), static_cast<float>(g_tileSize * y)};
             tile.p_moveDirection = gameMap.p_pathDirections[y][x];
-            // Debug::Print(tile.p_typeId);
             m_tiles.push_back(tile);
             id++;
         }
