@@ -24,10 +24,23 @@ void EndGame::InitLabels()
     endGameLabel.p_roundness = 0.0f;
     endGameLabel.p_updateFunction = [this](float deltaTime, Label &label)
     {
-        label.p_visible = mgr_player->IsGameOver();
+        PlayerState playerState = mgr_player->GetPlayerState();
+        label.p_visible = (playerState == PlayerState::Dead || playerState == PlayerState::Victory);
+
+        if (playerState == PlayerState::Dead)
+        {
+            label.p_color = RED;
+            label.p_text = "You lost...";
+        }
+        else if (playerState == PlayerState::Victory)
+        {
+            label.p_color = GREEN;
+            label.p_text = "You won!!!, Thanks for playing RETRO SIEGE TD!";
+        }
+
+        label.p_boundingColor = label.p_color * 0.8f;
     };
 #pragma endregion
-
 }
 
 void EndGame::InitButtons()
@@ -47,14 +60,25 @@ void EndGame::InitButtons()
     restartButton.p_roundness = 0.0f;
     restartButton.p_updateFunction = [this](float deltaTime, Button &button)
     {
-        button.p_visible = mgr_player->IsGameOver();
+        PlayerState playerState = mgr_player->GetPlayerState();
+        button.p_visible = (playerState == PlayerState::Dead || playerState == PlayerState::Victory);
+
+        if (playerState == PlayerState::Dead)
+        {
+            button.p_color = RED;
+        }
+        else if (playerState == PlayerState::Victory)
+        {
+            button.p_color = GREEN;
+        }
+
+        button.p_boundingColor = button.p_color * 0.8f;
     };
     restartButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         mgr_game->Restart();
     };
 #pragma endregion
-
 }
 
 void EndGame::InjectDependencies(Game *game, PlayerManager *playerManager, GuiManager *guiManager)
