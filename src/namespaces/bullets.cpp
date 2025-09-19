@@ -15,6 +15,7 @@ namespace Bullets
         Bullet shulikenBullet = {};
         
         shulikenBullet.p_sourceRect = {0, 0, 9, 9};
+        shulikenBullet.p_hitboxBonus = {0,0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
         shulikenBullet.p_damage = 0;
@@ -38,6 +39,7 @@ namespace Bullets
         // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
         sharpShulikenBullet.p_sourceRect = {0, 0, 9, 9};
+        sharpShulikenBullet.p_hitboxBonus = {0,0};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
         sharpShulikenBullet.p_id = -1;
         sharpShulikenBullet.p_damage = 0;
@@ -61,6 +63,7 @@ namespace Bullets
         // Dagger bullet
         Bullet daggerBullet = {};
         daggerBullet.p_sourceRect = {0, 0, 7, 3};
+        daggerBullet.p_hitboxBonus = {0,0};
         daggerBullet.p_position = {-1.0f, -1.0f};
         daggerBullet.p_id = -1;
         daggerBullet.p_damage = 0;
@@ -84,6 +87,7 @@ namespace Bullets
         // Slash bullet 
         Bullet slashBullet = {};
         slashBullet.p_sourceRect = {0, 0, 8, 8};
+        slashBullet.p_hitboxBonus = {5.0f,5.0f};
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
@@ -109,6 +113,7 @@ namespace Bullets
         
 
         spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
+        spearSlashBullet.p_hitboxBonus = {0,0};
         spearSlashBullet.p_position = {-1.0f, -1.0f};
         spearSlashBullet.p_id = -1;
         spearSlashBullet.p_damage = 0;
@@ -133,6 +138,7 @@ namespace Bullets
         Bullet bigSlashBullet = {};
         
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
+        bigSlashBullet.p_hitboxBonus = {10.0f,10.0f};
         bigSlashBullet.p_position = {-1.0f, -1.0f};
         bigSlashBullet.p_id = -1;
         bigSlashBullet.p_damage = 0;
@@ -157,6 +163,7 @@ namespace Bullets
         Bullet biggestSlashBullet = {};
         
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
+        biggestSlashBullet.p_hitboxBonus = {15.0f,15.0f};
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
         biggestSlashBullet.p_id = -1;
         biggestSlashBullet.p_damage = 0;
