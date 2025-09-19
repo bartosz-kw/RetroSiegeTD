@@ -57,6 +57,12 @@ void GuiManager::UpdateImagePosition(Label &label)
 }
 void GuiManager::UpdatePress(const float deltaTime, Button &button)
 {
+    if (!button.p_visible)
+    {
+        return;
+    }
+    
+
     const Vector2 mousePosition = GetMousePosition();
     const Rectangle scaledButtonRect =
         {
