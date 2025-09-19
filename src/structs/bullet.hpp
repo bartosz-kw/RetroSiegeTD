@@ -18,6 +18,7 @@ struct Bullet
 {
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
+    Vector2 p_hitboxBonus = {0, 0};
     int32_t p_id = -1;
     int32_t p_damage = 1;
     float p_timeToNextFrame = 0.0f;
