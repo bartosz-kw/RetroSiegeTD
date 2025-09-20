@@ -13,7 +13,7 @@ namespace Bullets
 #pragma region Shuliken
         // Shuliken bullet
         Bullet shulikenBullet = {};
-        
+
         shulikenBullet.p_sourceRect = {0, 0, 9, 9};
         shulikenBullet.p_hitboxBonus = {0,0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
@@ -84,7 +84,7 @@ namespace Bullets
 #pragma endregion
 
 #pragma region Slash
-        // Slash bullet 
+        // Slash bullet
         Bullet slashBullet = {};
         slashBullet.p_sourceRect = {0, 0, 8, 8};
         slashBullet.p_hitboxBonus = {5.0f,5.0f};
@@ -110,7 +110,7 @@ namespace Bullets
 #pragma region SpearSlash
         // SpearSlash bullet
         Bullet spearSlashBullet = {};
-        
+
 
         spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
         spearSlashBullet.p_hitboxBonus = {0,0};
@@ -118,7 +118,7 @@ namespace Bullets
         spearSlashBullet.p_id = -1;
         spearSlashBullet.p_damage = 0;
         spearSlashBullet.p_timeToNextFrame = 0.05f;
-        spearSlashBullet.p_timePassed = 0.0f; 
+        spearSlashBullet.p_timePassed = 0.0f;
         spearSlashBullet.p_directionAngle = 0.0f;
         spearSlashBullet.p_rotation = 0.0f;
         spearSlashBullet.p_spinSpeed = 0.0f;
@@ -134,16 +134,16 @@ namespace Bullets
 #pragma endregion
 
 #pragma region BigSlash
-        // BigSlash bullet 
+        // BigSlash bullet
         Bullet bigSlashBullet = {};
-        
+
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
         bigSlashBullet.p_hitboxBonus = {10.0f,10.0f};
         bigSlashBullet.p_position = {-1.0f, -1.0f};
         bigSlashBullet.p_id = -1;
         bigSlashBullet.p_damage = 0;
         bigSlashBullet.p_timeToNextFrame = 0.05f;
-        bigSlashBullet.p_timePassed = 0.0f; 
+        bigSlashBullet.p_timePassed = 0.0f;
         bigSlashBullet.p_directionAngle = 0.0f;
         bigSlashBullet.p_rotation = 0.0f;
         bigSlashBullet.p_spinSpeed = 0.0f;
@@ -159,16 +159,16 @@ namespace Bullets
 #pragma endregion
 
 #pragma region BiggestSlash
-        // BiggestSlash bullet 
+        // BiggestSlash bullet
         Bullet biggestSlashBullet = {};
-        
+
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
         biggestSlashBullet.p_hitboxBonus = {15.0f,15.0f};
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
         biggestSlashBullet.p_id = -1;
         biggestSlashBullet.p_damage = 0;
         biggestSlashBullet.p_timeToNextFrame = 0.05f;
-        biggestSlashBullet.p_timePassed = 0.0f; 
+        biggestSlashBullet.p_timePassed = 0.0f;
         biggestSlashBullet.p_directionAngle = 0.0f;
         biggestSlashBullet.p_rotation = 0.0f;
         biggestSlashBullet.p_spinSpeed = 0.0f;
@@ -181,6 +181,31 @@ namespace Bullets
         biggestSlashBullet.p_alive = true;
 
         g_bulletData[BulletType::BiggestSlash] = biggestSlashBullet;
+#pragma endregion
+
+#pragma region SniperBullet
+        // SniperBullet bullet
+        Bullet sniperBullet = {};
+
+        sniperBullet.p_sourceRect = {0, 0, 10, 1};
+        sniperBullet.p_hitboxBonus = {0,0};
+        sniperBullet.p_position = {-1.0f, -1.0f};
+        sniperBullet.p_id = -1;
+        sniperBullet.p_damage = 0;
+        sniperBullet.p_timeToNextFrame = 0.0f;
+        sniperBullet.p_timePassed = 0.0f;
+        sniperBullet.p_directionAngle = 0.0f;
+        sniperBullet.p_rotation = 0.0f;
+        sniperBullet.p_spinSpeed = 0.0f;
+        sniperBullet.p_speed = 500.0f;
+        sniperBullet.p_typeId = BulletType::SniperBullet;
+        sniperBullet.p_frameAmount = 0;
+        sniperBullet.p_frameOffset = 0;
+        sniperBullet.p_pierce = false;
+        sniperBullet.p_removeAfterAnimation = false;
+        sniperBullet.p_alive = true;
+
+        g_bulletData[BulletType::SniperBullet] = sniperBullet;
 #pragma endregion
 
     }

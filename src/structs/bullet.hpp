@@ -11,7 +11,8 @@ enum BulletType : uint8_t
     Slash = 4,
     SpearSlash = 5,
     BigSlash = 6,
-    BiggestSlash = 7
+    BiggestSlash = 7,
+    SniperBullet = 8
 };
 
 struct Bullet
