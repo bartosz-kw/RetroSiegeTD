@@ -24,7 +24,6 @@ namespace Towers
         g_towerData.clear();
 
 #pragma region NinjaLv1
-        // ninja Lv 1
         Tower ninja1Tower = {};
         ninja1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -64,7 +63,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region NinjaLv2
-        // ninja Lv 2
         Tower ninja2Tower = {};
         ninja2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -104,7 +102,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region NinjaLv3
-        // ninja Lv 3
         Tower ninja3Tower = {};
         ninja3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -144,8 +141,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region NinjaLv4
-
-        // ninja Lv 4
         Tower ninja4Tower = {};
         ninja4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -185,7 +180,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region KnightLv1
-        // knight Lv 1
         Tower knight1Tower = {};
         knight1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -225,7 +219,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region KnightLv2
-        // knight Lv 2
         Tower knight2Tower = {};
         knight2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -265,7 +258,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region KnightLv3
-        // knight Lv 3
         Tower knight3Tower = {};
         knight3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -305,7 +297,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region KnightLv4
-        // knight Lv 4
         Tower knight4Tower = {};
         knight4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -345,7 +336,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region KnightLv5
-        // knight Lv 5
         Tower knight5Tower = {};
         knight5Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -385,7 +375,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region MarketLv1
-        // market Lv 1
         Tower market1Tower = {};
         market1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -415,7 +404,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region MarketLv2
-        // market Lv 2
         Tower market2Tower = {};
         market2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -445,7 +433,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region MarketLv3
-        // market Lv 3
         Tower market3Tower = {};
         market3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -475,7 +462,6 @@ namespace Towers
 #pragma endregion
 
 #pragma region MarketLv4
-        // market Lv 4
         Tower market4Tower = {};
         market4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
@@ -502,6 +488,162 @@ namespace Towers
         market4Tower.p_dirty = true;
 
         g_towerData[TowerType::MarketLv4] = market4Tower;
+#pragma endregion
+
+#pragma region SniperLv1
+        Tower sniper1Tower = {};
+        sniper1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::SniperBullet);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_rotation = Math::RadiansToDegrees(angle);
+            bullet.p_position = bulletPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        sniper1Tower.p_sourceRect = {0, 0, 15, 15};
+        sniper1Tower.p_price = 50;
+        sniper1Tower.p_damage = 1;
+        sniper1Tower.p_position = {-1.0f, -1.0f};
+        sniper1Tower.p_range = 70.0f;
+        sniper1Tower.p_attackSpeed = 0.70f;
+        sniper1Tower.p_timeToAttack = 0.0f;
+        sniper1Tower.p_timeToNextFrame = 0.0f;
+        sniper1Tower.p_timePassed = 0.0f;
+        sniper1Tower.p_upgradesTo = TowerType::SniperLv2;
+        sniper1Tower.p_id = -1;
+        sniper1Tower.p_level = 1;
+        sniper1Tower.p_frameOffset = 0;
+        sniper1Tower.p_frameAmount = 0;
+        sniper1Tower.p_typeId = TowerType::SniperLv1;
+        sniper1Tower.p_tileId = 0;
+        sniper1Tower.p_isUpgradeHovered = false;
+        sniper1Tower.p_dirty = true;
+
+        g_towerData[TowerType::SniperLv1] = sniper1Tower;
+#pragma endregion
+
+#pragma region SniperLv2
+        Tower sniper2Tower = {};
+        sniper2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::SniperBullet);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_rotation = Math::RadiansToDegrees(angle);
+            bullet.p_position = bulletPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        sniper2Tower.p_sourceRect = {0, 0, 15, 15};
+        sniper2Tower.p_price = 50;
+        sniper2Tower.p_damage = 1;
+        sniper2Tower.p_position = {-1.0f, -1.0f};
+        sniper2Tower.p_range = 70.0f;
+        sniper2Tower.p_attackSpeed = 0.70f;
+        sniper2Tower.p_timeToAttack = 0.0f;
+        sniper2Tower.p_timeToNextFrame = 0.0f;
+        sniper2Tower.p_timePassed = 0.0f;
+        sniper2Tower.p_upgradesTo = TowerType::SniperLv3;
+        sniper2Tower.p_id = -1;
+        sniper2Tower.p_level = 2;
+        sniper2Tower.p_frameOffset = 0;
+        sniper2Tower.p_frameAmount = 0;
+        sniper2Tower.p_typeId = TowerType::SniperLv2;
+        sniper2Tower.p_tileId = 0;
+        sniper2Tower.p_isUpgradeHovered = false;
+        sniper2Tower.p_dirty = true;
+
+        g_towerData[TowerType::SniperLv2] = sniper2Tower;
+#pragma endregion
+
+#pragma region SniperLv3
+        Tower sniper3Tower = {};
+        sniper3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::SniperBullet);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_rotation = Math::RadiansToDegrees(angle);
+            bullet.p_position = bulletPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        sniper3Tower.p_sourceRect = {0, 0, 15, 15};
+        sniper3Tower.p_price = 50;
+        sniper3Tower.p_damage = 1;
+        sniper3Tower.p_position = {-1.0f, -1.0f};
+        sniper3Tower.p_range = 70.0f;
+        sniper3Tower.p_attackSpeed = 0.70f;
+        sniper3Tower.p_timeToAttack = 0.0f;
+        sniper3Tower.p_timeToNextFrame = 0.0f;
+        sniper3Tower.p_timePassed = 0.0f;
+        sniper3Tower.p_upgradesTo = TowerType::SniperLv4;
+        sniper3Tower.p_id = -1;
+        sniper3Tower.p_level = 3;
+        sniper3Tower.p_frameOffset = 0;
+        sniper3Tower.p_frameAmount = 0;
+        sniper3Tower.p_typeId = TowerType::SniperLv3;
+        sniper3Tower.p_tileId = 0;
+        sniper3Tower.p_isUpgradeHovered = false;
+        sniper3Tower.p_dirty = true;
+
+        g_towerData[TowerType::SniperLv3] = sniper3Tower;
+#pragma endregion
+
+#pragma region SniperLv4
+        Tower sniper4Tower = {};
+        sniper4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
+        {
+            Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
+            Vector2 bulletPos = centerPos;
+            Vector2 enemyPos = mgr_enemy->GetCenterPosition(*enemy);
+            float angle = atan2(enemyPos.y - bulletPos.y, enemyPos.x - bulletPos.x);
+
+            Bullet bullet = Bullets::GetBulletData(BulletType::SniperBullet);
+            bullet.p_id = BulletManager::GetNewValidId();
+            bullet.p_damage = tower->p_damage;
+            bullet.p_directionAngle = angle;
+            bullet.p_rotation = Math::RadiansToDegrees(angle);
+            bullet.p_position = bulletPos;
+            mgr_bullet->AddBullet(bullet);
+        };
+        sniper4Tower.p_sourceRect = {0, 0, 15, 15};
+        sniper4Tower.p_price = 50;
+        sniper4Tower.p_damage = 1;
+        sniper4Tower.p_position = {-1.0f, -1.0f};
+        sniper4Tower.p_range = 70.0f;
+        sniper4Tower.p_attackSpeed = 0.70f;
+        sniper4Tower.p_timeToAttack = 0.0f;
+        sniper4Tower.p_timeToNextFrame = 0.0f;
+        sniper4Tower.p_timePassed = 0.0f;
+        sniper4Tower.p_upgradesTo = TowerType::Nothing;
+        sniper4Tower.p_id = -1;
+        sniper4Tower.p_level = 4;
+        sniper4Tower.p_frameOffset = 0;
+        sniper4Tower.p_frameAmount = 0;
+        sniper4Tower.p_typeId = TowerType::SniperLv4;
+        sniper4Tower.p_tileId = 0;
+        sniper4Tower.p_isUpgradeHovered = false;
+        sniper4Tower.p_dirty = true;
+
+        g_towerData[TowerType::SniperLv4] = sniper4Tower;
 #pragma endregion
 
     }
