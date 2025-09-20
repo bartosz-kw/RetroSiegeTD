@@ -11,7 +11,6 @@ namespace Bullets
         g_bulletData.clear();
 
 #pragma region Shuliken
-        // Shuliken bullet
         Bullet shulikenBullet = {};
 
         shulikenBullet.p_sourceRect = {0, 0, 9, 9};
@@ -36,7 +35,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region SharpShuliken
-        // Sharp Shuliken bullet
         Bullet sharpShulikenBullet = {};
         sharpShulikenBullet.p_sourceRect = {0, 0, 9, 9};
         sharpShulikenBullet.p_hitboxBonus = {0,0};
@@ -60,7 +58,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region Dagger
-        // Dagger bullet
         Bullet daggerBullet = {};
         daggerBullet.p_sourceRect = {0, 0, 7, 3};
         daggerBullet.p_hitboxBonus = {0,0};
@@ -84,7 +81,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region Slash
-        // Slash bullet
         Bullet slashBullet = {};
         slashBullet.p_sourceRect = {0, 0, 8, 8};
         slashBullet.p_hitboxBonus = {5.0f,5.0f};
@@ -108,7 +104,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region SpearSlash
-        // SpearSlash bullet
         Bullet spearSlashBullet = {};
 
 
@@ -134,7 +129,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region BigSlash
-        // BigSlash bullet
         Bullet bigSlashBullet = {};
 
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
@@ -159,7 +153,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region BiggestSlash
-        // BiggestSlash bullet
         Bullet biggestSlashBullet = {};
 
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
@@ -184,7 +177,6 @@ namespace Bullets
 #pragma endregion
 
 #pragma region SniperBullet
-        // SniperBullet bullet
         Bullet sniperBullet = {};
 
         sniperBullet.p_sourceRect = {0, 0, 10, 1};
