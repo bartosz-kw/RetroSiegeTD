@@ -17,7 +17,7 @@ namespace Sprites
     extern const uint8_t g_bulletTextureOffset;
     extern const uint8_t g_guiTextureOffset;
 
-    inline constexpr size_t g_textureAmount = 41;
+    inline constexpr size_t g_textureAmount = 46;
     extern std::array<Texture2D, g_textureAmount> g_textures;
 
     void LoadTextures();

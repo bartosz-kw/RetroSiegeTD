@@ -258,6 +258,7 @@ void Game::Run()
         {
             continue;
         }
+        
         Update();
         Draw();
 
