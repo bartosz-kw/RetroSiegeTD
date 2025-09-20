@@ -39,7 +39,7 @@ void TowerPlace::ControlPlaceTower(const TowerType controlType)
 
 void TowerPlace::InitButtons()
 {
-    constexpr size_t amountOfButtons = 3;
+    constexpr size_t amountOfButtons = 4;
     mgr_gui->ReserveButton(amountOfButtons);
 
 #pragma region NinjaButton
@@ -131,6 +131,37 @@ void TowerPlace::InitButtons()
         }
     };
 #pragma endregion
+
+#pragma region SniperButton
+    Button &sniperButton = mgr_gui->AddButton(Button{});
+    sniperButton.p_text = "";
+    sniperButton.p_rect = {static_cast<float>(Settings::g_boundingSize + 270.0f + 5.0f), 60.0f, 25.0f, 25.0f};
+    sniperButton.p_color = YELLOW;
+    sniperButton.p_id = mgr_gui->GetAmountOfButtons();
+    sniperButton.p_isHovered = false;
+    sniperButton.p_visible = true;
+    sniperButton.p_boundingColor = sniperButton.p_color * 0.8f;
+    sniperButton.p_boundingSize = 2.0f;
+    sniperButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + TowerType::SniperLv1];
+    sniperButton.p_onPressed = [this](float deltaTime, Button &button)
+    {
+        ControlPlaceTower(TowerType::SniperLv1);
+    };
+    sniperButton.p_updateFunction = [this](float deltaTime, Button &button)
+    {
+        if (this->mgr_tower->GetPlaceTower() == TowerType::SniperLv1)
+        {
+            button.p_color = YELLOW * 0.8f;
+            button.p_boundingColor = button.p_color * 0.8f;
+        }
+        else
+        {
+            button.p_color = YELLOW;
+            button.p_boundingColor = button.p_color * 0.8f;
+        }
+    };
+#pragma endregion
+
 }
 void TowerPlace::InjectDependencies(TowerManager *towerManager, GuiManager *guiManager)
 {
