@@ -503,6 +503,7 @@ namespace Towers
 
         g_towerData[TowerType::MarketLv4] = market4Tower;
 #pragma endregion
+
     }
 
     Tower GetTowerData(int typeId)
