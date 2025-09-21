@@ -57,12 +57,6 @@ void GuiManager::UpdateImagePosition(Label &label)
 }
 void GuiManager::UpdatePress(const float deltaTime, Button &button)
 {
-    if (!button.p_visible)
-    {
-        return;
-    }
-    
-
     const Vector2 mousePosition = GetMousePosition();
     const Rectangle scaledButtonRect =
         {
@@ -89,7 +83,6 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
 }
 void GuiManager::UpdateLabel(const float deltaTime, Label &label)
 {
-
     if (!IsElementUsed(label))
     {
         return;
@@ -98,6 +91,11 @@ void GuiManager::UpdateLabel(const float deltaTime, Label &label)
     {
         label.p_updateFunction(deltaTime, label);
     }
+    if (!label.p_visible)
+    {
+        return;
+    }
+
     UpdateImagePosition(label);
     UpdateTextPosition(label);
 }
@@ -111,6 +109,11 @@ void GuiManager::UpdateButton(const float deltaTime, Button &button)
     {
         button.p_updateFunction(deltaTime, button);
     }
+    if (!button.p_visible)
+    {
+        return;
+    }
+
     UpdateTextPosition(button);
     UpdateImagePosition(button);
     UpdatePress(deltaTime, button);

@@ -127,7 +127,11 @@ uint16_t TowerManager::GetTowerTypeAmount(const TowerType type) const
         {TowerType::MarketLv1, TowerType::MarketLv1},
         {TowerType::MarketLv2, TowerType::MarketLv1},
         {TowerType::MarketLv3, TowerType::MarketLv1},
-        {TowerType::MarketLv4, TowerType::MarketLv1}};
+        {TowerType::MarketLv4, TowerType::MarketLv1},
+        {TowerType::SniperLv1, TowerType::SniperLv1},
+        {TowerType::SniperLv2, TowerType::SniperLv1},
+        {TowerType::SniperLv3, TowerType::SniperLv1},
+        {TowerType::SniperLv4, TowerType::SniperLv1}};
 
     uint16_t count = 0;
     for (const auto &tower : m_towers)
@@ -258,6 +262,12 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
     case TowerType::MarketLv3:
     case TowerType::MarketLv4:
         return "Market";
+        break;
+    case TowerType::SniperLv1:
+    case TowerType::SniperLv2:
+    case TowerType::SniperLv3:
+    case TowerType::SniperLv4:
+        return "Sniper";
         break;
     default:
         return "Unknown";
