@@ -16,7 +16,8 @@ namespace Towers
 {
     std::unordered_map<int, Tower> g_towerData = {};
     std::unordered_map<TowerType, uint16_t> g_towerAmountLimits = {
-        {TowerType::MarketLv1,6}
+        {TowerType::MarketLv1,6},
+        {TowerType::SniperLv1,1}
     };
 
     void InitTowerData()
@@ -508,11 +509,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         sniper1Tower.p_sourceRect = {0, 0, 15, 15};
-        sniper1Tower.p_price = 50;
-        sniper1Tower.p_damage = 1;
+        sniper1Tower.p_price = 900;
+        sniper1Tower.p_damage = 14;
         sniper1Tower.p_position = {-1.0f, -1.0f};
-        sniper1Tower.p_range = 70.0f;
-        sniper1Tower.p_attackSpeed = 0.70f;
+        sniper1Tower.p_range = 110.0f;
+        sniper1Tower.p_attackSpeed = 3.0f;
         sniper1Tower.p_timeToAttack = 0.0f;
         sniper1Tower.p_timeToNextFrame = 0.0f;
         sniper1Tower.p_timePassed = 0.0f;
@@ -547,11 +548,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         sniper2Tower.p_sourceRect = {0, 0, 15, 15};
-        sniper2Tower.p_price = 50;
-        sniper2Tower.p_damage = 1;
+        sniper2Tower.p_price = 2200;
+        sniper2Tower.p_damage = 34;
         sniper2Tower.p_position = {-1.0f, -1.0f};
-        sniper2Tower.p_range = 70.0f;
-        sniper2Tower.p_attackSpeed = 0.70f;
+        sniper2Tower.p_range = 110.0f;
+        sniper2Tower.p_attackSpeed = 2.9f;
         sniper2Tower.p_timeToAttack = 0.0f;
         sniper2Tower.p_timeToNextFrame = 0.0f;
         sniper2Tower.p_timePassed = 0.0f;
@@ -586,11 +587,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         sniper3Tower.p_sourceRect = {0, 0, 15, 15};
-        sniper3Tower.p_price = 50;
-        sniper3Tower.p_damage = 1;
+        sniper3Tower.p_price = 3650;
+        sniper3Tower.p_damage = 60;
         sniper3Tower.p_position = {-1.0f, -1.0f};
-        sniper3Tower.p_range = 70.0f;
-        sniper3Tower.p_attackSpeed = 0.70f;
+        sniper3Tower.p_range = 110.0f;
+        sniper3Tower.p_attackSpeed = 2.8f;
         sniper3Tower.p_timeToAttack = 0.0f;
         sniper3Tower.p_timeToNextFrame = 0.0f;
         sniper3Tower.p_timePassed = 0.0f;
@@ -625,11 +626,11 @@ namespace Towers
             mgr_bullet->AddBullet(bullet);
         };
         sniper4Tower.p_sourceRect = {0, 0, 15, 15};
-        sniper4Tower.p_price = 50;
-        sniper4Tower.p_damage = 1;
+        sniper4Tower.p_price = 5850;
+        sniper4Tower.p_damage = 80;
         sniper4Tower.p_position = {-1.0f, -1.0f};
-        sniper4Tower.p_range = 70.0f;
-        sniper4Tower.p_attackSpeed = 0.70f;
+        sniper4Tower.p_range = 110.0f;
+        sniper4Tower.p_attackSpeed = 2.7f;
         sniper4Tower.p_timeToAttack = 0.0f;
         sniper4Tower.p_timeToNextFrame = 0.0f;
         sniper4Tower.p_timePassed = 0.0f;

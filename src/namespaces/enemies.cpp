@@ -131,8 +131,8 @@ namespace Enemies
         skeleton.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeleton.p_sourceRect = {0, 0, 15, 15};
         skeleton.p_moneyDrop = 25;
-        skeleton.p_health = 75;
-        skeleton.p_defense = 1;
+        skeleton.p_health = 65;
+        skeleton.p_defense = 0;
         skeleton.p_position = {-1.0f, -1.0f};
         skeleton.p_id = 0;
         skeleton.p_speed = 0.5f;
