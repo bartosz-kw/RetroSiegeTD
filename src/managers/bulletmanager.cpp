@@ -8,7 +8,7 @@
 
 // Private
 
-int32_t BulletManager::g_nextBulletId = -1;
+int32_t BulletManager::g_idCounter = 1;
 
 uint16_t BulletManager::GetBulletTextureIndex(const uint16_t typeId) const
 {
@@ -82,7 +82,7 @@ std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
 }
 int32_t BulletManager::GetNewValidId()
 {
-    return g_nextBulletId++;
+    return BulletManager::g_idCounter++;
 }
 void BulletManager::AddBullet(const Bullet bullet)
 {
@@ -118,6 +118,6 @@ void BulletManager::Draw(const uint8_t screenOffset) const
 
 void BulletManager::Init()
 {
-    g_nextBulletId = 1;
+    BulletManager::g_idCounter = 1;
     m_bullets.clear();
 }

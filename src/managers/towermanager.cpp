@@ -16,8 +16,6 @@
 #include <cmath>
 #include <algorithm>
 
-int32_t g_nextValidId = 1;
-
 // Private
 
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
@@ -347,7 +345,7 @@ const size_t TowerManager::GetTowerCount() const
 }
 int32_t TowerManager::GetNextValidId()
 {
-    return g_nextValidId++;
+    return m_idCounter++;
 }
 TowerType TowerManager::GetPlaceTower() const
 {
@@ -440,6 +438,7 @@ void TowerManager::Init()
     assert(mgr_message != nullptr && "MessageManager wasn't injected and its dependency");
 
     ClearTowersVector();
+    m_idCounter = 1;
     m_lastSelectedTowerId = -1;
     m_placeTower = TowerType::Nothing;
     m_wasAnyTowerPlaced = false;

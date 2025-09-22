@@ -413,4 +413,6 @@ void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *m
 }
 void EnemyManager::Init()
 {
+    m_IdCounter = 1;
+    m_hoveredEnemy = nullptr;
 }

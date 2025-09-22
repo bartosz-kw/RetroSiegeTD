@@ -5,7 +5,8 @@
 class BulletManager
 {
 private:
-    static int32_t g_nextBulletId;
+    static int32_t g_idCounter;
+
 private:
     std::vector<Bullet> m_bullets = {};
 private:

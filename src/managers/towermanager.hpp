@@ -14,6 +14,9 @@ class MessageManager;
 class TowerManager
 {
 private:
+
+    int32_t m_idCounter = 1;
+
     std::vector<Tower> m_towers = {};
     int32_t m_lastSelectedTowerId = -1;
     TowerType m_placeTower = TowerType::Nothing;
