@@ -1,5 +1,6 @@
 #include "towermanager.hpp"
-#include "../utility/debugUtil.hpp"
+#include "../utility/debugutil.hpp"
+#include "../utility/colorutil.hpp"
 #include "../namespaces/towers.hpp"
 #include "../namespaces/sprites.hpp"
 #include "../namespaces/bullets.hpp"
@@ -412,11 +413,36 @@ void TowerManager::Draw(const uint8_t screenOffset) const
 
         const Color color = {0, 121, 241, 128};
         const Vector2 centerPos = GetCenterPosition(*tower);
-        DrawCircle(
-            static_cast<int>(centerPos.x + screenOffset),
-            static_cast<int>(centerPos.y),
-            static_cast<float>(tower->p_range),
-            color);
+        const Vector2 offsetCenter = {centerPos.x + screenOffset, centerPos.y};
+
+        DrawCircleV
+        (
+            offsetCenter,
+            tower->p_range,
+            color
+        );
+        if (tower->p_upgradesTo != TowerType::Nothing && tower->p_isUpgradeHovered)
+        {
+            const Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
+            const Color upgradedRangeColor = {200, 122, 255, 128};
+
+            const float innerRadius = tower->p_range;
+            const float outerRadius = upgradedTower.p_range;
+            const float startingAngle = 0;
+            const float endAngle = 360;
+            const int segments = 100;
+
+            DrawRing
+            (
+                offsetCenter,
+                innerRadius,
+                outerRadius,
+                startingAngle,
+                endAngle,
+                segments,
+                upgradedRangeColor
+            );
+        }
     }
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr, MessageManager *mgr_messagePtr)
