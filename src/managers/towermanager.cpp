@@ -210,7 +210,7 @@ void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 {
     Basics::Animate(deltaTime, tower);
 }
-void TowerManager::DrawHover(const uint8_t screenOffset) const
+void TowerManager::DrawSelectedTower(const uint8_t screenOffset) const
 {
     if (m_placeTower == TowerType::Nothing)
     {
@@ -231,6 +231,50 @@ void TowerManager::DrawHover(const uint8_t screenOffset) const
                 static_cast<int>(centerPos.y),
                 static_cast<float>(selectedTower.p_range),
                 rangeColor);
+        }
+    }
+}
+void TowerManager::DrawHover(const uint8_t screenOffset) const
+{
+    if (m_lastSelectedTowerId != -1)
+    {
+        const Tower *tower = GetReadTowerById(m_lastSelectedTowerId);
+        if (!tower)
+        {
+            return;
+        }
+
+        const Color color = {0, 121, 241, 128};
+        const Vector2 centerPos = GetCenterPosition(*tower);
+        const Vector2 offsetCenter = {centerPos.x + screenOffset, centerPos.y};
+
+        DrawCircleV
+        (
+            offsetCenter,
+            tower->p_range,
+            color
+        );
+        if (tower->p_upgradesTo != TowerType::Nothing && tower->p_isUpgradeHovered)
+        {
+            const Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
+            const Color upgradedRangeColor = {200, 122, 255, 128};
+
+            const float innerRadius = tower->p_range;
+            const float outerRadius = upgradedTower.p_range;
+            const float startingAngle = 0;
+            const float endAngle = 360;
+            const int segments = 100;
+
+            DrawRing
+            (
+                offsetCenter,
+                innerRadius,
+                outerRadius,
+                startingAngle,
+                endAngle,
+                segments,
+                upgradedRangeColor
+            );
         }
     }
 }
@@ -401,49 +445,11 @@ void TowerManager::Draw(const uint8_t screenOffset) const
         Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
         Rectangle dest = {floorf(tower.p_position.x + screenOffset), floorf(tower.p_position.y), static_cast<float>(tower.p_sourceRect.width), static_cast<float>(tower.p_sourceRect.height)};
         DrawTexturePro(texture, tower.p_sourceRect, dest, {0, 0}, 0.0f, WHITE);
+        
     }
+    DrawSelectedTower(screenOffset);
     DrawHover(screenOffset);
-    if (m_lastSelectedTowerId != -1)
-    {
-        const Tower *tower = GetReadTowerById(m_lastSelectedTowerId);
-        if (!tower)
-        {
-            return;
-        }
-
-        const Color color = {0, 121, 241, 128};
-        const Vector2 centerPos = GetCenterPosition(*tower);
-        const Vector2 offsetCenter = {centerPos.x + screenOffset, centerPos.y};
-
-        DrawCircleV
-        (
-            offsetCenter,
-            tower->p_range,
-            color
-        );
-        if (tower->p_upgradesTo != TowerType::Nothing && tower->p_isUpgradeHovered)
-        {
-            const Tower upgradedTower = Towers::GetTowerData(tower->p_upgradesTo);
-            const Color upgradedRangeColor = {200, 122, 255, 128};
-
-            const float innerRadius = tower->p_range;
-            const float outerRadius = upgradedTower.p_range;
-            const float startingAngle = 0;
-            const float endAngle = 360;
-            const int segments = 100;
-
-            DrawRing
-            (
-                offsetCenter,
-                innerRadius,
-                outerRadius,
-                startingAngle,
-                endAngle,
-                segments,
-                upgradedRangeColor
-            );
-        }
-    }
+  
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr, MessageManager *mgr_messagePtr)
 {
