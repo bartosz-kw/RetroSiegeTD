@@ -370,6 +370,7 @@ void WaveManager::LoadWaves()
     wave14.p_moneyReward = 375;
     wave14.p_enemySpawns = enemySpawns14;
     wave14.p_totalWaveTime = getTotalWaveTime(wave14);
+    m_unactiveWaves.push_back(wave14);
 
     std::vector<std::pair<float, EnemyType>> enemySpawns15 = {};
     enemySpawns15.push_back({1.5f, EnemyType::Skeleton});
@@ -414,8 +415,7 @@ void WaveManager::LoadWaves()
     wave16.p_id = 16;
     wave16.p_moneyReward = 425;
     wave16.p_enemySpawns = enemySpawns16;
-    wave16.p_totalWaveTime = 0.0f;
-    for (auto &spawn : enemySpawns16) wave16.p_totalWaveTime += spawn.first;
+    wave16.p_totalWaveTime = getTotalWaveTime(wave16);
     m_unactiveWaves.push_back(wave16);
 
     // Wave 17
@@ -446,8 +446,7 @@ void WaveManager::LoadWaves()
     wave17.p_id = 17;
     wave17.p_moneyReward = 450;
     wave17.p_enemySpawns = enemySpawns17;
-    wave17.p_totalWaveTime = 0.0f;
-    for (auto &spawn : enemySpawns17) wave17.p_totalWaveTime += spawn.first;
+    wave17.p_totalWaveTime = getTotalWaveTime(wave17);
     m_unactiveWaves.push_back(wave17);
 
     // Wave 18
@@ -475,8 +474,7 @@ void WaveManager::LoadWaves()
     wave18.p_id = 18;
     wave18.p_moneyReward = 475;
     wave18.p_enemySpawns = enemySpawns18;
-    wave18.p_totalWaveTime = 0.0f;
-    for (auto &spawn : enemySpawns18) wave18.p_totalWaveTime += spawn.first;
+    wave18.p_totalWaveTime = getTotalWaveTime(wave18);
     m_unactiveWaves.push_back(wave18);
 
     // Wave 19
@@ -506,8 +504,7 @@ void WaveManager::LoadWaves()
     wave19.p_id = 19;
     wave19.p_moneyReward = 500;
     wave19.p_enemySpawns = enemySpawns19;
-    wave19.p_totalWaveTime = 0.0f;
-    for (auto &spawn : enemySpawns19) wave19.p_totalWaveTime += spawn.first;
+    wave19.p_totalWaveTime = getTotalWaveTime(wave19);
     m_unactiveWaves.push_back(wave19);
 
     // Wave 20
@@ -522,8 +519,7 @@ void WaveManager::LoadWaves()
     wave20.p_id = 20;
     wave20.p_moneyReward = 525;
     wave20.p_enemySpawns = enemySpawns20;
-    wave20.p_totalWaveTime = 0.0f;
-    for (auto &spawn : enemySpawns20) wave20.p_totalWaveTime += spawn.first;
+    wave20.p_totalWaveTime = getTotalWaveTime(wave20);
     m_unactiveWaves.push_back(wave20);
 
     uint32_t totalEnemies = 0;
