@@ -271,6 +271,15 @@ std::string EnemyManager::EnemyTypeToString(const EnemyType type)
     case EnemyType::BigSlime:
         return "Big Slime";
         break;
+    case EnemyType::SkeletonWarrior:
+        return "Skeleton Warrior";
+        break;
+    case EnemyType::SkeletonGuardian:
+        return "Skeleton Guardian";
+        break;
+    case EnemyType::SkeletonKing:
+        return "Skeleton King";
+        break;
     default:
         return "Unknown";
         break;

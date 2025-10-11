@@ -393,9 +393,9 @@ void WaveManager::LoadWaves()
 
     // Wave 16
     std::vector<std::pair<float, EnemyType>> enemySpawns16 = {};
-    enemySpawns16.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns16.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns16.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
+    enemySpawns16.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns16.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns16.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns16.push_back({5.0f, EnemyType::Skeleton});
     enemySpawns16.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns16.push_back({1.0f, EnemyType::Skeleton});
@@ -420,13 +420,13 @@ void WaveManager::LoadWaves()
 
     // Wave 17
     std::vector<std::pair<float, EnemyType>> enemySpawns17 = {};
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns17.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns17.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns17.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns17.push_back({1.0f, EnemyType::Skeleton});
@@ -452,11 +452,11 @@ void WaveManager::LoadWaves()
 
     // Wave 18
     std::vector<std::pair<float, EnemyType>> enemySpawns18 = {};
-    enemySpawns18.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns18.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns18.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns18.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns18.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
+    enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns18.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns18.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns18.push_back({1.0f, EnemyType::Skeleton});
@@ -490,18 +490,18 @@ void WaveManager::LoadWaves()
     enemySpawns19.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns19.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns19.push_back({1.0f, EnemyType::Skeleton});
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({1.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton Warior
-    enemySpawns19.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns19.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns19.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({1.0f, EnemyType::SkeletonWarrior});
+    enemySpawns19.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns19.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns19.push_back({2.5f, EnemyType::SkeletonGuardian});
     EnemyWave wave19 = {};
     wave19.p_id = 19;
     wave19.p_moneyReward = 500;
@@ -512,12 +512,12 @@ void WaveManager::LoadWaves()
 
     // Wave 20
     std::vector<std::pair<float, EnemyType>> enemySpawns20 = {};
-    enemySpawns20.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns20.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns20.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns20.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns20.push_back({2.5f, EnemyType::BlueSlime}); // Placeholder for Skeleton Guardian
-    enemySpawns20.push_back({5.0f, EnemyType::BlueSlime}); // Placeholder for Skeleton King
+    enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
+    enemySpawns20.push_back({5.0f, EnemyType::SkeletonKing});
     EnemyWave wave20 = {};
     wave20.p_id = 20;
     wave20.p_moneyReward = 525;

@@ -324,6 +324,90 @@ namespace Enemies
 
         g_enemyData[EnemyType::BigSlime] = bigSlime;
 #pragma endregion
+
+#pragma region SkeletonWarrior
+        Enemy skeletonWarrior = {};
+        skeletonWarrior.p_hitCooldowns = {};
+        skeletonWarrior.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonWarrior.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonWarrior.p_sourceRect = {0, 0, 15, 15};
+        skeletonWarrior.p_moneyDrop = 25;
+        skeletonWarrior.p_health = 80;
+        skeletonWarrior.p_defense = 0;
+        skeletonWarrior.p_position = {-1.0f, -1.0f};
+        skeletonWarrior.p_id = 0;
+        skeletonWarrior.p_speed = 1.5f;
+        skeletonWarrior.p_timeToNextFrame = 0.5f;
+        skeletonWarrior.p_timePassed = 0.0f;
+        skeletonWarrior.p_timeToMove = 0.0f;
+        skeletonWarrior.p_hitEffectTime = 0.0f;
+        skeletonWarrior.p_typeId = EnemyType::SkeletonWarrior;
+        skeletonWarrior.p_walked = 0;
+        skeletonWarrior.p_tileId = -1;
+        skeletonWarrior.p_frameOffset = 15;
+        skeletonWarrior.p_frameAmount = 2;
+        skeletonWarrior.p_alive = true;
+        skeletonWarrior.p_survived = false;
+        skeletonWarrior.p_dirty = true;
+
+        g_enemyData[EnemyType::SkeletonWarrior] = skeletonWarrior;
+#pragma endregion
+
+#pragma region SkeletonGuardian
+        Enemy skeletonGuardian = {};
+        skeletonGuardian.p_hitCooldowns = {};
+        skeletonGuardian.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonGuardian.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonGuardian.p_sourceRect = {0, 0, 15, 15};
+        skeletonGuardian.p_moneyDrop = 25;
+        skeletonGuardian.p_health = 80;
+        skeletonGuardian.p_defense = 0;
+        skeletonGuardian.p_position = {-1.0f, -1.0f};
+        skeletonGuardian.p_id = 0;
+        skeletonGuardian.p_speed = 1.5f;
+        skeletonGuardian.p_timeToNextFrame = 0.5f;
+        skeletonGuardian.p_timePassed = 0.0f;
+        skeletonGuardian.p_timeToMove = 0.0f;
+        skeletonGuardian.p_hitEffectTime = 0.0f;
+        skeletonGuardian.p_typeId = EnemyType::SkeletonGuardian;
+        skeletonGuardian.p_walked = 0;
+        skeletonGuardian.p_tileId = -1;
+        skeletonGuardian.p_frameOffset = 15;
+        skeletonGuardian.p_frameAmount = 2;
+        skeletonGuardian.p_alive = true;
+        skeletonGuardian.p_survived = false;
+        skeletonGuardian.p_dirty = true;
+
+        g_enemyData[EnemyType::SkeletonGuardian] = skeletonGuardian;
+#pragma endregion
+
+#pragma region SkeletonKing
+        Enemy skeletonKing = {};
+        skeletonKing.p_hitCooldowns = {};
+        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonKing.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonKing.p_sourceRect = {0, 0, 15, 15};
+        skeletonKing.p_moneyDrop = 25;
+        skeletonKing.p_health = 80;
+        skeletonKing.p_defense = 0;
+        skeletonKing.p_position = {-1.0f, -1.0f};
+        skeletonKing.p_id = 0;
+        skeletonKing.p_speed = 1.5f;
+        skeletonKing.p_timeToNextFrame = 0.5f;
+        skeletonKing.p_timePassed = 0.0f;
+        skeletonKing.p_timeToMove = 0.0f;
+        skeletonKing.p_hitEffectTime = 0.0f;
+        skeletonKing.p_typeId = EnemyType::SkeletonKing;
+        skeletonKing.p_walked = 0;
+        skeletonKing.p_tileId = -1;
+        skeletonKing.p_frameOffset = 15;
+        skeletonKing.p_frameAmount = 2;
+        skeletonKing.p_alive = true;
+        skeletonKing.p_survived = false;
+        skeletonKing.p_dirty = true;
+
+        g_enemyData[EnemyType::SkeletonKing] = skeletonKing;
+#pragma endregion
     }
 
     Enemy GetEnemyData(const int typeId)
