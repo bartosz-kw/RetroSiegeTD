@@ -39,7 +39,7 @@ private:
     void UpdateFight(Tower &tower, const float deltatime);
     void UpdateAnimation(Tower &tower, const float deltaTime);
     void DrawSelectedTower(const uint8_t screenOffset) const;
-    void DrawHover(const Tower& tower,const uint8_t screenOffset) const;
+    void DrawHoverRange(const Tower& tower,const uint8_t screenOffset) const;
 
 public:
     TowerManager() = default;
