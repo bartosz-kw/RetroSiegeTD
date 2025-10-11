@@ -83,7 +83,7 @@ namespace Bullets
 #pragma region Slash
         Bullet slashBullet = {};
         slashBullet.p_sourceRect = {0, 0, 8, 8};
-        slashBullet.p_hitboxBonus = {5.0f,5.0f};
+        slashBullet.p_hitboxBonus = {10.0f,10.0f};
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
@@ -132,7 +132,7 @@ namespace Bullets
         Bullet bigSlashBullet = {};
 
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
-        bigSlashBullet.p_hitboxBonus = {10.0f,10.0f};
+        bigSlashBullet.p_hitboxBonus = {17.5f,15.0f};
         bigSlashBullet.p_position = {-1.0f, -1.0f};
         bigSlashBullet.p_id = -1;
         bigSlashBullet.p_damage = 0;
@@ -156,7 +156,7 @@ namespace Bullets
         Bullet biggestSlashBullet = {};
 
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
-        biggestSlashBullet.p_hitboxBonus = {15.0f,15.0f};
+        biggestSlashBullet.p_hitboxBonus = {25.0f,20.0f};
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
         biggestSlashBullet.p_id = -1;
         biggestSlashBullet.p_damage = 0;

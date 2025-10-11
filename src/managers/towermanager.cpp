@@ -230,8 +230,7 @@ void TowerManager::DrawSelectedTower(const uint8_t screenOffset) const
                 static_cast<int>(centerPos.x + screenOffset),
                 static_cast<int>(centerPos.y),
                 static_cast<float>(selectedTower.p_range),
-                rangeColor
-            );
+                rangeColor);
         }
     }
 }
@@ -438,8 +437,12 @@ void TowerManager::Draw(const uint8_t screenOffset) const
     DrawSelectedTower(screenOffset);
     if (m_lastSelectedTowerId != -1)
     {
-        const Tower &tower = *GetReadTowerById(m_lastSelectedTowerId);
-        DrawHoverRange(tower, screenOffset);
+        const Tower *towerPtr = GetReadTowerById(m_lastSelectedTowerId);
+        if (towerPtr)
+        {
+            const Tower &tower = *GetReadTowerById(m_lastSelectedTowerId);
+            DrawHoverRange(tower, screenOffset);
+        }
     }
 }
 void TowerManager::InjectDependencies(TileManager *mgr_tilePtr, EnemyManager *mgr_enemyPtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, ParticleManager *mgr_particlePtr, MessageManager *mgr_messagePtr)
