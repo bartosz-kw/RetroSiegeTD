@@ -46,7 +46,7 @@ namespace Enemies
         redSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         redSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         redSlime.p_sourceRect = {0, 0, 15, 15};
-        redSlime.p_moneyDrop = 15;
+        redSlime.p_moneyDrop = 20;
         redSlime.p_health = 25;
         redSlime.p_defense = 1;
         redSlime.p_position = {-1.0f, -1.0f};
@@ -180,7 +180,7 @@ namespace Enemies
         };
         summoner.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         summoner.p_sourceRect = {0, 0, 15, 15};
-        summoner.p_moneyDrop = 100;
+        summoner.p_moneyDrop = 200;
         summoner.p_health = 250;
         summoner.p_defense = 3;
         summoner.p_position = {-1.0f, -1.0f};
@@ -236,8 +236,8 @@ namespace Enemies
         electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         electricSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         electricSlime.p_sourceRect = {0, 0, 15, 15};
-        electricSlime.p_moneyDrop = 15;
-        electricSlime.p_health = 55;
+        electricSlime.p_moneyDrop = 35;
+        electricSlime.p_health = 34;
         electricSlime.p_defense = 1;
         electricSlime.p_position = {-1.0f, -1.0f};
         electricSlime.p_id = 0;
@@ -303,7 +303,7 @@ namespace Enemies
             }
         };
         bigSlime.p_sourceRect = {0, 0, 15, 15};
-        bigSlime.p_moneyDrop = 30;
+        bigSlime.p_moneyDrop = 35;
         bigSlime.p_health = 125;
         bigSlime.p_defense = 3;
         bigSlime.p_position = {-1.0f, -1.0f};
@@ -331,9 +331,9 @@ namespace Enemies
         skeletonWarrior.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonWarrior.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonWarrior.p_sourceRect = {0, 0, 15, 15};
-        skeletonWarrior.p_moneyDrop = 25;
-        skeletonWarrior.p_health = 80;
-        skeletonWarrior.p_defense = 0;
+        skeletonWarrior.p_moneyDrop = 45;
+        skeletonWarrior.p_health = 125;
+        skeletonWarrior.p_defense = 6;
         skeletonWarrior.p_position = {-1.0f, -1.0f};
         skeletonWarrior.p_id = 0;
         skeletonWarrior.p_speed = 1.5f;
@@ -359,12 +359,12 @@ namespace Enemies
         skeletonGuardian.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonGuardian.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonGuardian.p_sourceRect = {0, 0, 15, 15};
-        skeletonGuardian.p_moneyDrop = 25;
-        skeletonGuardian.p_health = 80;
-        skeletonGuardian.p_defense = 0;
+        skeletonGuardian.p_moneyDrop = 305;
+        skeletonGuardian.p_health = 500;
+        skeletonGuardian.p_defense = 10;
         skeletonGuardian.p_position = {-1.0f, -1.0f};
         skeletonGuardian.p_id = 0;
-        skeletonGuardian.p_speed = 1.5f;
+        skeletonGuardian.p_speed = 2.5f;
         skeletonGuardian.p_timeToNextFrame = 0.5f;
         skeletonGuardian.p_timePassed = 0.0f;
         skeletonGuardian.p_timeToMove = 0.0f;
@@ -384,15 +384,26 @@ namespace Enemies
 #pragma region SkeletonKing
         Enemy skeletonKing = {};
         skeletonKing.p_hitCooldowns = {};
-        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) 
+        {
+            constexpr float timeToStun = 30.0f;
+            static float time = 0.0f;
+
+            if (time >= timeToStun)
+            {
+                /// placeholder 
+                time = 0.0f;
+            }
+            time += deltaTime;
+        };
         skeletonKing.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonKing.p_sourceRect = {0, 0, 15, 15};
-        skeletonKing.p_moneyDrop = 25;
-        skeletonKing.p_health = 80;
-        skeletonKing.p_defense = 0;
+        skeletonKing.p_moneyDrop = 2500;
+        skeletonKing.p_health = 3500;
+        skeletonKing.p_defense = 5;
         skeletonKing.p_position = {-1.0f, -1.0f};
         skeletonKing.p_id = 0;
-        skeletonKing.p_speed = 1.5f;
+        skeletonKing.p_speed = 7.0f;
         skeletonKing.p_timeToNextFrame = 0.5f;
         skeletonKing.p_timePassed = 0.0f;
         skeletonKing.p_timeToMove = 0.0f;
