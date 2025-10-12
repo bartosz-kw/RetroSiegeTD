@@ -1,6 +1,7 @@
 #include "towers.hpp"
 #include "bullets.hpp"
 #include "basics.hpp"
+#include "sprites.hpp"
 #include "../utility/debugUtil.hpp"
 #include "../utility/mathUtil.hpp"
 #include "../managers/towermanager.hpp"
@@ -41,6 +42,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
+        ninja1Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::NinjaTower1];
         ninja1Tower.p_sourceRect = {0, 0, 15, 15};
         ninja1Tower.p_price = 50;
         ninja1Tower.p_damage = 1;
@@ -80,6 +82,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
+        ninja2Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::NinjaTower2];
         ninja2Tower.p_sourceRect = {0, 0, 15, 15};
         ninja2Tower.p_price = 125;
         ninja2Tower.p_damage = 2;
@@ -119,6 +122,7 @@ namespace Towers
             bullet.p_position = bulletPos;
             mgr_bullet->AddBullet(bullet);
         };
+        ninja3Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::NinjaTower3];
         ninja3Tower.p_sourceRect = {0, 0, 15, 15};
         ninja3Tower.p_price = 500;
         ninja3Tower.p_damage = 2;
@@ -143,6 +147,7 @@ namespace Towers
 
 #pragma region NinjaLv4
         Tower ninja4Tower = {};
+        ninja4Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::NinjaTower4];
         ninja4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -182,6 +187,7 @@ namespace Towers
 
 #pragma region KnightLv1
         Tower knight1Tower = {};
+        knight1Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::KnightTower1];
         knight1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -221,6 +227,7 @@ namespace Towers
 
 #pragma region KnightLv2
         Tower knight2Tower = {};
+        knight2Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::KnightTower2];
         knight2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -260,6 +267,7 @@ namespace Towers
 
 #pragma region KnightLv3
         Tower knight3Tower = {};
+        knight3Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::KnightTower3];
         knight3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -299,6 +307,7 @@ namespace Towers
 
 #pragma region KnightLv4
         Tower knight4Tower = {};
+        knight4Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::KnightTower4];
         knight4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -338,6 +347,7 @@ namespace Towers
 
 #pragma region KnightLv5
         Tower knight5Tower = {};
+        knight5Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::KnightTower5];
         knight5Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -377,6 +387,7 @@ namespace Towers
 
 #pragma region MarketLv1
         Tower market1Tower = {};
+        market1Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::MarketTower1];
         market1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
@@ -406,6 +417,7 @@ namespace Towers
 
 #pragma region MarketLv2
         Tower market2Tower = {};
+        market2Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::MarketTower2];
         market2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
@@ -435,6 +447,7 @@ namespace Towers
 
 #pragma region MarketLv3
         Tower market3Tower = {};
+        market3Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::MarketTower3];
         market3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
@@ -464,6 +477,7 @@ namespace Towers
 
 #pragma region MarketLv4
         Tower market4Tower = {};
+        market4Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::MarketTower4];
         market4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Basics::UpdateFarmTower(tower, mgr_enemy, mgr_tower, mgr_ps, mgr_particle);
@@ -493,6 +507,7 @@ namespace Towers
 
 #pragma region SniperLv1
         Tower sniper1Tower = {};
+        sniper1Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperTower1];
         sniper1Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -532,6 +547,7 @@ namespace Towers
 
 #pragma region SniperLv2
         Tower sniper2Tower = {};
+        sniper2Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperTower2];
         sniper2Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -571,6 +587,7 @@ namespace Towers
 
 #pragma region SniperLv3
         Tower sniper3Tower = {};
+        sniper3Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperTower3];
         sniper3Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);
@@ -610,6 +627,7 @@ namespace Towers
 
 #pragma region SniperLv4
         Tower sniper4Tower = {};
+        sniper4Tower.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperTower4];
         sniper4Tower.p_fightFunction = [](const float deltaTime, Tower *tower, Enemy *enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, TowerManager *mgr_tower, PSManager *mgr_ps, ParticleManager *mgr_particle)
         {
             Vector2 centerPos = mgr_tower->GetCenterPosition(*tower);

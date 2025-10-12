@@ -52,7 +52,7 @@ void TowerPlace::InitButtons()
     ninjaButton.p_visible = true;
     ninjaButton.p_boundingColor = ninjaButton.p_color * 0.8f;
     ninjaButton.p_boundingSize = 2.0f;
-    ninjaButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + (int8_t)TowerType::NinjaLv1];
+    ninjaButton.p_image = Sprites::g_textures[Sprites::TextureIndex::NinjaTower1];
     ninjaButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::NinjaLv1);
@@ -82,7 +82,7 @@ void TowerPlace::InitButtons()
     knightButton.p_visible = true;
     knightButton.p_boundingColor = knightButton.p_color * 0.8f;
     knightButton.p_boundingSize = 2.0f;
-    knightButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + (int8_t)TowerType::KnightLv1];
+    knightButton.p_image = Sprites::g_textures[Sprites::TextureIndex::KnightTower1];
     knightButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::KnightLv1);
@@ -112,7 +112,7 @@ void TowerPlace::InitButtons()
     marketButton.p_visible = true;
     marketButton.p_boundingColor = marketButton.p_color * 0.8f;
     marketButton.p_boundingSize = 2.0f;
-    marketButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + (int8_t)TowerType::MarketLv1];
+    marketButton.p_image = Sprites::g_textures[Sprites::TextureIndex::MarketTower1];
     marketButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::MarketLv1);
@@ -142,7 +142,7 @@ void TowerPlace::InitButtons()
     sniperButton.p_visible = true;
     sniperButton.p_boundingColor = sniperButton.p_color * 0.8f;
     sniperButton.p_boundingSize = 2.0f;
-    sniperButton.p_image = Sprites::g_textures[Sprites::g_towerTextureOffset + (int8_t)TowerType::SniperLv1];
+    sniperButton.p_image = Sprites::g_textures[Sprites::TextureIndex::SniperTower1];
     sniperButton.p_onPressed = [this](float deltaTime, Button &button)
     {
         ControlPlaceTower(TowerType::SniperLv1);

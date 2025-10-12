@@ -13,7 +13,6 @@ private:
     Tile* m_lastHoveredTile = nullptr;
     int16_t m_startPathId = -1;
 private:
-    const uint16_t GetTileTextureIndex(const uint16_t typeId) const;
     bool IsTileHovered(Tile& tile);
     bool IsTileClicked(Tile& tile);
 public:

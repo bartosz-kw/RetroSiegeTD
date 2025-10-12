@@ -26,6 +26,7 @@ enum class TileType : uint8_t
 };
 struct Tile
 {
+    Texture2D p_texture = {0, 0, 0, 0, 0};
     Vector2 p_position = {0,0};
     TileDirection p_moveDirection = TileDirection::NoDirection;
     uint16_t p_id = -1;

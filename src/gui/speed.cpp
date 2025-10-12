@@ -5,7 +5,6 @@
 #include "../utility/colorutil.hpp"
 #include "../structs/button.hpp"
 #include "../enums/guitype.hpp"
-#include "../enums/guitextures.hpp"
 #include <cassert>
 
 void Speed::InjectDependencies(GuiManager *guiManager)
@@ -41,16 +40,16 @@ void Speed::InitButtons()
         switch (static_cast<int>(Settings::g_gameSpeed))
         {
         case 1:
-            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::SpeedButton1)];
+            button.p_image = Sprites::g_textures[Sprites::TextureIndex::SpeedButton1];
             break;
         case 2:
-            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::SpeedButton2)];
+            button.p_image = Sprites::g_textures[Sprites::TextureIndex::SpeedButton2];
             break;
         case 3:
-            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::SpeedButton3)];
+            button.p_image = Sprites::g_textures[Sprites::TextureIndex::SpeedButton3];
             break;
         default:
-            button.p_image = Sprites::g_textures[GuiTextureUtility::ToTextureIndex(GuiTextures::SpeedButton1)];
+            button.p_image = Sprites::g_textures[Sprites::TextureIndex::SpeedButton1];
             break;
         }
     };

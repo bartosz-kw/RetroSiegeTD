@@ -26,6 +26,7 @@ struct Enemy
     std::vector<std::pair<float, int32_t>> p_hitCooldowns = {};
     std::function<void(const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy)> p_updateFunction = [](const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy){};
     std::function<void(Enemy& enemy, EnemyManager* mgr_enemy)> p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
+    Texture2D p_texture = {0, 0, 0, 0, 0};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_moneyDrop = 0;
     int64_t p_health = 10;

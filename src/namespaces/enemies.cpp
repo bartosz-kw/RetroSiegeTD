@@ -1,5 +1,6 @@
 #include "enemies.hpp"
 #include "basics.hpp"
+#include "sprites.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include <cassert>
@@ -17,6 +18,7 @@ namespace Enemies
         blueSlime.p_hitCooldowns = {};
         blueSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         blueSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        blueSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::BlueSlimeEnemy];
         blueSlime.p_sourceRect = {0, 0, 15, 15};
         blueSlime.p_moneyDrop = 10;
         blueSlime.p_health = 6;
@@ -45,6 +47,7 @@ namespace Enemies
         redSlime.p_hitCooldowns = {};
         redSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         redSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        redSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::RedSlimeEnemy];
         redSlime.p_sourceRect = {0, 0, 15, 15};
         redSlime.p_moneyDrop = 20;
         redSlime.p_health = 25;
@@ -73,6 +76,7 @@ namespace Enemies
         zombie.p_hitCooldowns = {};
         zombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         zombie.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        zombie.p_texture = Sprites::g_textures[Sprites::TextureIndex::ZombieEnemy];
         zombie.p_sourceRect = {0, 0, 15, 15};
         zombie.p_moneyDrop = 25;
         zombie.p_health = 80;
@@ -101,6 +105,7 @@ namespace Enemies
         armoredZombie.p_hitCooldowns = {};
         armoredZombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         armoredZombie.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        armoredZombie.p_texture = Sprites::g_textures[Sprites::TextureIndex::ArmoredZombieEnemy];
         armoredZombie.p_sourceRect = {0, 0, 15, 15};
         armoredZombie.p_moneyDrop = 35;
         armoredZombie.p_health = 100;
@@ -129,6 +134,7 @@ namespace Enemies
         skeleton.p_hitCooldowns = {};
         skeleton.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeleton.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeleton.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonEnemy];
         skeleton.p_sourceRect = {0, 0, 15, 15};
         skeleton.p_moneyDrop = 25;
         skeleton.p_health = 65;
@@ -179,6 +185,7 @@ namespace Enemies
             }
         };
         summoner.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        summoner.p_texture = Sprites::g_textures[Sprites::TextureIndex::SummonerEnemy];
         summoner.p_sourceRect = {0, 0, 15, 15};
         summoner.p_moneyDrop = 200;
         summoner.p_health = 250;
@@ -207,6 +214,7 @@ namespace Enemies
         quickSlime.p_hitCooldowns = {};
         quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         quickSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        quickSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::QuickSlimeEnemy];
         quickSlime.p_sourceRect = {0, 0, 15, 15};
         quickSlime.p_moneyDrop = 15;
         quickSlime.p_health = 5;
@@ -235,6 +243,7 @@ namespace Enemies
         electricSlime.p_hitCooldowns = {};
         electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         electricSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        electricSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::ElectricSlimeEnemy];
         electricSlime.p_sourceRect = {0, 0, 15, 15};
         electricSlime.p_moneyDrop = 35;
         electricSlime.p_health = 34;
@@ -263,6 +272,7 @@ namespace Enemies
         smallSlime.p_hitCooldowns = {};
         smallSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         smallSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        smallSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::SmallSlimeEnemy];
         smallSlime.p_sourceRect = {0, 0, 15, 15};
         smallSlime.p_moneyDrop = 5;
         smallSlime.p_health = 20;
@@ -302,6 +312,7 @@ namespace Enemies
                 mgr_enemy->AddEnemy(smallSlime);
             }
         };
+        bigSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::BigSlimeEnemy];
         bigSlime.p_sourceRect = {0, 0, 15, 15};
         bigSlime.p_moneyDrop = 35;
         bigSlime.p_health = 125;
@@ -330,6 +341,7 @@ namespace Enemies
         skeletonWarrior.p_hitCooldowns = {};
         skeletonWarrior.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonWarrior.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonWarrior.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonWarriorEnemy];
         skeletonWarrior.p_sourceRect = {0, 0, 15, 15};
         skeletonWarrior.p_moneyDrop = 45;
         skeletonWarrior.p_health = 125;
@@ -358,6 +370,7 @@ namespace Enemies
         skeletonGuardian.p_hitCooldowns = {};
         skeletonGuardian.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonGuardian.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonGuardian.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonGuardianEnemy];
         skeletonGuardian.p_sourceRect = {0, 0, 15, 15};
         skeletonGuardian.p_moneyDrop = 305;
         skeletonGuardian.p_health = 500;
@@ -384,19 +397,20 @@ namespace Enemies
 #pragma region SkeletonKing
         Enemy skeletonKing = {};
         skeletonKing.p_hitCooldowns = {};
-        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) 
+        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy)
         {
             constexpr float timeToStun = 30.0f;
             static float time = 0.0f;
 
             if (time >= timeToStun)
             {
-                /// placeholder 
+                /// placeholder
                 time = 0.0f;
             }
             time += deltaTime;
         };
         skeletonKing.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonKing.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonKingEnemy];
         skeletonKing.p_sourceRect = {0, 0, 15, 15};
         skeletonKing.p_moneyDrop = 2500;
         skeletonKing.p_health = 3500;

@@ -46,7 +46,6 @@ public:
 
     std::string TowerTypeToString(const TowerType type);
     Vector2 GetCenterPosition(const Tower &tower) const;
-    uint16_t GetTowerTextureIndex(const uint16_t typeId) const;
     bool WasAnyTowerPlaced() const;
     void AddTower(const Tower tower);
     void RemoveTower(const int32_t id);

@@ -1,4 +1,5 @@
 #include "bullets.hpp"
+#include "sprites.hpp"
 #include "basics.hpp"
 #include <cassert>
 
@@ -13,6 +14,7 @@ namespace Bullets
 #pragma region Shuliken
         Bullet shulikenBullet = {};
 
+        shulikenBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::ShulikenBullet];
         shulikenBullet.p_sourceRect = {0, 0, 9, 9};
         shulikenBullet.p_hitboxBonus = {0,0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
@@ -36,6 +38,7 @@ namespace Bullets
 
 #pragma region SharpShuliken
         Bullet sharpShulikenBullet = {};
+        sharpShulikenBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SharpShulikenBullet];
         sharpShulikenBullet.p_sourceRect = {0, 0, 9, 9};
         sharpShulikenBullet.p_hitboxBonus = {0,0};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
@@ -59,6 +62,7 @@ namespace Bullets
 
 #pragma region Dagger
         Bullet daggerBullet = {};
+        daggerBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::DaggerBullet];
         daggerBullet.p_sourceRect = {0, 0, 7, 3};
         daggerBullet.p_hitboxBonus = {0,0};
         daggerBullet.p_position = {-1.0f, -1.0f};
@@ -82,6 +86,7 @@ namespace Bullets
 
 #pragma region Slash
         Bullet slashBullet = {};
+        slashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SlashBullet];
         slashBullet.p_sourceRect = {0, 0, 8, 8};
         slashBullet.p_hitboxBonus = {10.0f,10.0f};
         slashBullet.p_position = {-1.0f, -1.0f};
@@ -106,7 +111,7 @@ namespace Bullets
 #pragma region SpearSlash
         Bullet spearSlashBullet = {};
 
-
+        spearSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SpearSlashBullet];
         spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
         spearSlashBullet.p_hitboxBonus = {0,0};
         spearSlashBullet.p_position = {-1.0f, -1.0f};
@@ -131,6 +136,7 @@ namespace Bullets
 #pragma region BigSlash
         Bullet bigSlashBullet = {};
 
+        bigSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::BigSlashBullet];
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
         bigSlashBullet.p_hitboxBonus = {17.5f,15.0f};
         bigSlashBullet.p_position = {-1.0f, -1.0f};
@@ -155,6 +161,7 @@ namespace Bullets
 #pragma region BiggestSlash
         Bullet biggestSlashBullet = {};
 
+        biggestSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::BiggestSlashBullet];
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
         biggestSlashBullet.p_hitboxBonus = {25.0f,20.0f};
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
@@ -179,6 +186,7 @@ namespace Bullets
 #pragma region SniperBullet
         Bullet sniperBullet = {};
 
+        sniperBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperBullet];
         sniperBullet.p_sourceRect = {0, 0, 10, 1};
         sniperBullet.p_hitboxBonus = {0,0};
         sniperBullet.p_position = {-1.0f, -1.0f};

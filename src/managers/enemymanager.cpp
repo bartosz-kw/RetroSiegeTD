@@ -12,10 +12,7 @@
 #include <limits>
 #include <cassert>
 
-const uint16_t EnemyManager::GetEnemyTextureIndex(const uint16_t typeId) const
-{
-    return typeId + Sprites::g_enemyTextureOffset;
-}
+
 const Vector2 EnemyManager::CalculateMovePosition(const int16_t moveDirection) const
 {
     float dy = 0.0f;
@@ -404,7 +401,7 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
         }
 
         constexpr Vector2 origin = {0.0f, 0.0f};
-        const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex((uint16_t)enemy.p_typeId)];
+        const Texture2D texture = enemy.p_texture;
         const Vector2 position = {floorf(enemy.p_position.x + screenOffset), floorf(enemy.p_position.y)};
         const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
         DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);

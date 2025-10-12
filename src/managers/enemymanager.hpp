@@ -23,7 +23,6 @@ private:
 
 private:
 
-    const uint16_t GetEnemyTextureIndex(const uint16_t typeId) const;
     const Vector2 CalculateMovePosition(const int16_t moveDirection) const;
     void UpdateVisualPosition(Enemy &enemy, const Vector2 &tilePosition, const int16_t moveDirection);
     void UpdateMovement(Enemy &enemy, const float deltaTime);

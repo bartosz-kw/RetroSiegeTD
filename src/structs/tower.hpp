@@ -33,14 +33,15 @@ class Enemy;
 class BulletManager;
 class PSManager;
 struct Tower
-{              
+{
     std::function<void(
                        const float deltaTime,Tower* tower,
                        Enemy* enemy,EnemyManager* mgr_enemy,
                        BulletManager* mgr_bullet,TowerManager* mgr_tower,
                        PSManager* mgr_ps, ParticleManager* mgr_particle
-                      )> 
+                      )>
     p_fightFunction = [](const float deltaTime,Tower* tower,Enemy* enemy,EnemyManager* mgr_enemy,BulletManager* mgr_bullet,TowerManager* mgr_tower,PSManager* mgr_ps, ParticleManager* mgr_particle){};
+    Texture2D p_texture = {0, 0, 0, 0, 0};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     uint64_t p_price = 0; 
     int64_t p_damage = 1;  

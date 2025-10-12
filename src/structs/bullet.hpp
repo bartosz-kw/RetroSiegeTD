@@ -18,6 +18,7 @@ enum class BulletType : uint8_t
 
 struct Bullet
 {
+    Texture2D p_texture = {0,0,0,0,0};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
     Vector2 p_hitboxBonus = {0, 0};

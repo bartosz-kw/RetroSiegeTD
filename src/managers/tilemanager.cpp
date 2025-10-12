@@ -6,10 +6,6 @@
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
 
-const uint16_t TileManager::GetTileTextureIndex(const uint16_t typeId) const
-{
-    return typeId + Sprites::g_tileTextureOffset;
-}
 bool TileManager::IsTileHovered(Tile &tile)
 {
     const Vector2 mousePosition = GetMousePosition();
@@ -151,7 +147,7 @@ void TileManager::Draw(const uint8_t screenOffset) const
         {
             color = RED;
         }
-        DrawTexture(Sprites::g_textures[GetTileTextureIndex((uint16_t)tile.p_typeId)], floorf(tile.p_position.x + screenOffset), floorf(tile.p_position.y), color);
+        DrawTexture(tile.p_texture, floorf(tile.p_position.x + screenOffset), floorf(tile.p_position.y), color);
     }
 }
 void TileManager::LoadMap(const GameMap gameMap)
@@ -164,6 +160,7 @@ void TileManager::LoadMap(const GameMap gameMap)
             Tile tile = {};
             tile.p_id = id;
             tile.p_typeId = gameMap.p_tileIdMap[y][x];
+            tile.p_texture = Sprites::g_textures[static_cast<uint16_t>(gameMap.p_tileIdMap[y][x]) - 1];
             tile.p_position = {static_cast<float>(g_tileSize * x), static_cast<float>(g_tileSize * y)};
             tile.p_moveDirection = gameMap.p_pathDirections[y][x];
             m_tiles.push_back(tile);
