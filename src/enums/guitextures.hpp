@@ -2,7 +2,7 @@
 #include <cstdint>
 #include "../namespaces/sprites.hpp"
 
-enum GuiTextures : uint8_t
+enum class GuiTextures : uint8_t
 {
     MusicOn = 1,
     MusicOff = 2,

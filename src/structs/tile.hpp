@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <raylib.h>
-enum TileDirection : int8_t
+enum class TileDirection : int8_t
 {
     NoDirection = 0,
 
@@ -16,7 +16,7 @@ enum TileDirection : int8_t
     Right = 3,
     Left = 4
 };
-enum TileType : uint8_t
+enum class TileType : uint8_t
 {
     GrassTile = 1,
     GrassPath1 = 2,
@@ -27,7 +27,7 @@ enum TileType : uint8_t
 struct Tile
 {
     Vector2 p_position = {0,0};
-    int16_t p_moveDirection = TileDirection::NoDirection;
+    TileDirection p_moveDirection = TileDirection::NoDirection;
     uint16_t p_id = -1;
-    uint16_t p_typeId = 0;
+    TileType p_typeId = TileType(0);
 };

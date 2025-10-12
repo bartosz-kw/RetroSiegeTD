@@ -4,7 +4,7 @@
 
 namespace Bullets
 {
-    std::unordered_map<int, Bullet> g_bulletData = {};
+    std::unordered_map<BulletType, Bullet> g_bulletData = {};
 
     void InitBulletData()
     {
@@ -202,7 +202,7 @@ namespace Bullets
 
     }
 
-    Bullet GetBulletData(int typeId)
+    Bullet GetBulletData(BulletType typeId)
     {
         auto it = g_bulletData.find(typeId);
         if (it != g_bulletData.end())

@@ -58,7 +58,7 @@ void EnemyManager::UpdateMovement(Enemy &enemy, const float deltaTime)
     enemy.p_timeToMove += deltaTime;
 
     Tile positionTile = mgr_tile->GetTile(enemy.p_tileId);
-    int16_t moveDirection = positionTile.p_moveDirection;
+    int16_t moveDirection = (uint16_t)positionTile.p_moveDirection;
     if (moveDirection != -5)
     {
         UpdateVisualPosition(enemy, positionTile.p_position, moveDirection);
@@ -124,7 +124,7 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     else
     {
         Debug::PrintError(enemy.p_id, "Invalid Function Enemy ID");
-        Debug::PrintError(enemy.p_typeId, "Invalid Function Enemy TypeID");
+        Debug::PrintError((int)enemy.p_typeId, "Invalid Function Enemy TypeID");
     }
     if (enemy.p_health <= 0)
     {
@@ -408,7 +408,7 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
         }
 
         constexpr Vector2 origin = {0.0f, 0.0f};
-        const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex(enemy.p_typeId)];
+        const Texture2D texture = Sprites::g_textures[GetEnemyTextureIndex((uint16_t)enemy.p_typeId)];
         const Vector2 position = {floorf(enemy.p_position.x + screenOffset), floorf(enemy.p_position.y)};
         const Rectangle dest = {position.x, position.y, static_cast<float>(enemy.p_sourceRect.width), static_cast<float>(enemy.p_sourceRect.height)};
         DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);

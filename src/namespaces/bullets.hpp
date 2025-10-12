@@ -4,8 +4,8 @@
 
 namespace Bullets
 {
-    extern std::unordered_map<int, Bullet> g_bulletData;
+    extern std::unordered_map<BulletType,Bullet> g_bulletData;
 
     void InitBulletData();
-    Bullet GetBulletData(int typeId);
+    Bullet GetBulletData(BulletType typeId);
 }

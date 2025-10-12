@@ -3,7 +3,7 @@
 #include <string>
 
 
-enum TargetingType : uint8_t
+enum class TargetingType : uint8_t
 {
     First = 0,
     Last = 1,

@@ -6,7 +6,7 @@
 
 namespace Enemies
 {
-    std::unordered_map<int, Enemy> g_enemyData = {};
+    std::unordered_map<EnemyType, Enemy> g_enemyData = {};
 
     void InitEnemyData()
     {
@@ -421,7 +421,7 @@ namespace Enemies
 #pragma endregion
     }
 
-    Enemy GetEnemyData(const int typeId)
+    Enemy GetEnemyData(const EnemyType typeId)
     {
         auto it = g_enemyData.find(typeId);
         if (it != g_enemyData.end())

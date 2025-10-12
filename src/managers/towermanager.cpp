@@ -27,7 +27,7 @@ std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
 }
 bool TowerManager::CanPlaceTowerOnTile(const Tile *tile) const
 {
-    if (tile->p_moveDirection != 0)
+    if ((int)tile->p_moveDirection != 0)
     {
         return false;
     }
@@ -157,7 +157,7 @@ void TowerManager::DetectTowerInput(Tower &tower)
     }
 
     Vector2 mousePosition = GetMousePosition();
-    Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+    Texture2D texture = Sprites::g_textures[GetTowerTextureIndex((uint16_t)tower.p_typeId)];
     Rectangle towerRect =
         {
             tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale // x
@@ -224,7 +224,7 @@ void TowerManager::DrawSelectedTower(const uint8_t screenOffset) const
         {
             const Color towerColor = {255, 255, 255, 128};
             const Color rangeColor = {41, 154, 255, 128};
-            DrawTexture(Sprites::g_textures[GetTowerTextureIndex(selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
+            DrawTexture(Sprites::g_textures[GetTowerTextureIndex((uint16_t)selectedTower.p_typeId)], hoveredTile->p_position.x + screenOffset, hoveredTile->p_position.y, towerColor);
             Vector2 centerPos = mgr_tile->GetTileCenterPosition(*hoveredTile);
             DrawCircle(
                 static_cast<int>(centerPos.x + screenOffset),
@@ -307,7 +307,7 @@ std::string TowerManager::TowerTypeToString(const TowerType type)
 }
 Vector2 TowerManager::GetCenterPosition(const Tower &tower) const
 {
-    const Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+    const Texture2D towerTexture = Sprites::g_textures[GetTowerTextureIndex((uint16_t)tower.p_typeId)];
     return Vector2{tower.p_position.x + towerTexture.width / 2.0f, tower.p_position.y + towerTexture.height / 2.0f};
 }
 uint16_t TowerManager::GetTowerTextureIndex(const uint16_t typeId) const
@@ -430,7 +430,7 @@ void TowerManager::Draw(const uint8_t screenOffset) const
             continue;
         }
 
-        Texture2D texture = Sprites::g_textures[GetTowerTextureIndex(tower.p_typeId)];
+        Texture2D texture = Sprites::g_textures[GetTowerTextureIndex((uint16_t)tower.p_typeId)];
         Rectangle dest = {floorf(tower.p_position.x + screenOffset), floorf(tower.p_position.y), static_cast<float>(tower.p_sourceRect.width), static_cast<float>(tower.p_sourceRect.height)};
         DrawTexturePro(texture, tower.p_sourceRect, dest, {0, 0}, 0.0f, WHITE);
     }

@@ -47,11 +47,14 @@ bool TileManager::IsTileClicked(Tile &tile)
 
 Tile TileManager::GetPathStart()
 {
+
     if (m_startPathId == -1)
     {
         for (auto &tile : m_tiles)
         {
-            if (tile.p_moveDirection <= -1 && tile.p_moveDirection >= -4)
+
+            int16_t moveDirectionInt = (int16_t)tile.p_moveDirection;
+            if (moveDirectionInt <= -1 && moveDirectionInt >= -4)
             {
                 m_startPathId = static_cast<float>(tile.p_id);
                 return tile;
@@ -76,40 +79,39 @@ Tile TileManager::GetTile(const uint16_t id) const
     Debug::PrintError("Incorrect Id returned");
     return Tile{};
 }
-const int16_t TileManager::GetMovedId(uint16_t tileid,int8_t direction) const
+const int16_t TileManager::GetMovedId(uint16_t tileid, int8_t direction) const
 {
     direction = std::abs(direction);
-    if (direction == TileDirection::Up)
+    if (direction == (int8_t)TileDirection::Up)
     {
         tileid -= 18;
     }
-    else if (direction == TileDirection::Down)
+    else if (direction == (int8_t)TileDirection::Down)
     {
         tileid += 18;
     }
-    else if (direction == TileDirection::Right)
+    else if (direction == (int8_t)TileDirection::Right)
     {
         tileid += 1;
     }
-    else if (direction == TileDirection::Left)
+    else if (direction == (int8_t)TileDirection::Left)
     {
         tileid += -1;
     }
-    else if(direction == TileDirection::NoDirection)
+    else if (direction == (int8_t)TileDirection::NoDirection)
     {
-
     }
     else
     {
         Debug::PrintError(direction, "UNKNOWN DIRECTION,DIRECTION");
         Debug::PrintError(tileid, "UNKNOWN DIRECTION,TILEID");
-        //assert(false && "unknown direction was inputed into GetMovedId");
+        // assert(false && "unknown direction was inputed into GetMovedId");
     }
     if (tileid < 0 || tileid > (18 * 18))
     {
         Debug::PrintError(direction, "OUTOFBOUNDS ID,DIRECTION");
         Debug::PrintError(tileid, "OUTOFBOUNDS ID,TILEID");
-        //assert(false && "outofbounds id in GetMovedId");
+        // assert(false && "outofbounds id in GetMovedId");
         tileid = 0;
     }
     return tileid;
@@ -118,21 +120,20 @@ Tile *TileManager::GetLastClickedTile()
 {
     return m_lastClickedTile;
 }
-Tile* TileManager::GetLastHoveredTile()
+Tile *TileManager::GetLastHoveredTile()
 {
     return m_lastHoveredTile;
 }
-Tile* TileManager::GetCurrentHoveredTile()
+Tile *TileManager::GetCurrentHoveredTile()
 {
     return m_currentHoveredTile;
 }
-const Vector2 TileManager::GetTileCenterPosition(const Tile& tile) const
+const Vector2 TileManager::GetTileCenterPosition(const Tile &tile) const
 {
-    constexpr float offset = g_tileSize/2.0f;
+    constexpr float offset = g_tileSize / 2.0f;
     return Vector2{
         tile.p_position.x + offset,
-        tile.p_position.y + offset
-    };
+        tile.p_position.y + offset};
 }
 void TileManager::Update()
 {
@@ -149,11 +150,11 @@ void TileManager::Draw(const uint8_t screenOffset) const
     for (auto &&tile : m_tiles)
     {
         Color color = WHITE;
-        if (Settings::g_debugView && tile.p_moveDirection != 0)
+        if (Settings::g_debugView && (int8_t)tile.p_moveDirection != 0)
         {
             color = RED;
         }
-        DrawTexture(Sprites::g_textures[GetTileTextureIndex(tile.p_typeId)], floorf(tile.p_position.x + screenOffset), floorf(tile.p_position.y), color);
+        DrawTexture(Sprites::g_textures[GetTileTextureIndex((uint16_t)tile.p_typeId)], floorf(tile.p_position.x + screenOffset), floorf(tile.p_position.y), color);
     }
 }
 void TileManager::LoadMap(const GameMap gameMap)

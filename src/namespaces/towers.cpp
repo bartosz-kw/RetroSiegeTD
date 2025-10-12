@@ -14,7 +14,7 @@
 
 namespace Towers
 {
-    std::unordered_map<int, Tower> g_towerData = {};
+    std::unordered_map<TowerType, Tower> g_towerData = {};
     std::unordered_map<TowerType, uint16_t> g_towerAmountLimits = {
         {TowerType::MarketLv1,6},
         {TowerType::SniperLv1,1}
@@ -649,7 +649,7 @@ namespace Towers
 
     }
 
-    Tower GetTowerData(int typeId)
+    Tower GetTowerData(TowerType typeId)
     {
         auto it = g_towerData.find(typeId);
         if (it != g_towerData.end())

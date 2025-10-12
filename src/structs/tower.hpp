@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <functional>
 #include <raylib.h>
-enum TowerType : uint8_t
+enum class TowerType : uint8_t
 {
     Nothing = 0,
     NinjaLv1 = 1,
@@ -55,7 +55,7 @@ struct Tower
     uint16_t p_level = 0;
     uint16_t p_frameOffset = 0;
     uint16_t p_frameAmount = 0;
-    int16_t p_typeId = 0;
+    TowerType p_typeId = TowerType(0);
     int16_t p_tileId = 0;
     TargetingType p_targetting = TargetingType::First;
     bool p_isUpgradeHovered = false;

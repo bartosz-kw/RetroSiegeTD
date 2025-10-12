@@ -3,7 +3,7 @@
 #include <raylib.h>
 #include <cstdint>
 
-enum ParticleMoveType : uint8_t
+enum class ParticleMoveType : uint8_t
 {
     MoveUp = 1,
     MoveUpWiggle = 2,

@@ -1,9 +1,10 @@
 #pragma once
 #include <raylib.h>
+#include <functional>
 #include <cstdint>
 
 class BulletManager;
-enum BulletType : uint8_t
+enum class BulletType : uint8_t
 {
     Shuliken = 1,
     SharpShuliken = 2,
@@ -28,7 +29,7 @@ struct Bullet
     float p_rotation = 0.0f;
     float p_spinSpeed = 3.0f;
     float p_speed = 1.0f;
-    uint16_t p_typeId = BulletType::Shuliken;
+    BulletType p_typeId = BulletType::Shuliken;
     uint16_t p_frameAmount = 0;
     uint16_t p_frameOffset = 0;
     bool p_pierce = false;

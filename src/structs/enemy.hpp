@@ -5,7 +5,7 @@
 #include <vector>
 #include <functional>
 class EnemyManager;
-enum EnemyType : uint8_t
+enum class EnemyType : uint8_t
 {
     BlueSlime = 1,
     RedSlime = 2,
@@ -37,7 +37,7 @@ struct Enemy
     float p_timePassed = 0.0f;
     float p_timeToMove = 0.0f;
     float p_hitEffectTime = 0.0f;
-    uint16_t p_typeId = 0;
+    EnemyType p_typeId = EnemyType(0);
     uint16_t p_walked = 0;
     uint16_t p_frameOffset = 0;
     uint16_t p_frameAmount = 0;
