@@ -9,8 +9,6 @@
 #include "../namespaces/bullets.hpp"
 #include "game.hpp"
 
-// Private functions
-
 void Game::HandleInput()
 {
     if (IsKeyPressed(KEY_P))
@@ -127,13 +125,11 @@ void Game::InitManagers()
     mgr_ps.Init();
     mgr_tile.Init();
 
-    // loading map
     GameMap map;
     map.p_id = 1;
     map.p_tileIdMap = Loading::LoadTileTypes("src/resources/maps/Map1Tiles.png");
     map.p_pathDirections = Loading::LoadMapDirections("src/resources/maps/Map1Directions.png");
     mgr_tile.LoadMap(map);
-    // continue with managers
 
     mgr_bullet.Init();
     mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps);
@@ -222,7 +218,6 @@ void Game::Shutdown()
     CloseWindow();
 }
 
-// Public functions
 void Game::StartGame()
 {
     m_gameState = GameState::Started;

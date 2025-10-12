@@ -7,8 +7,6 @@
 #include <format>
 #include <algorithm>
 
-// Private
-
 void GuiManager::UpdateTextPosition(Label &label)
 {
     const Vector2 textMeasurement = MeasureTextEx(Settings::g_gameFont,
@@ -16,8 +14,8 @@ void GuiManager::UpdateTextPosition(Label &label)
                                                   Settings::g_gameFont.baseSize, 1.0f);
     label.p_textPosition =
         {
-            std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // y
-            std::round(label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // x
+            std::round(label.p_rect.x + label.p_rect.width / 2.0f - textMeasurement.x / 2.0f), 
+            std::round(label.p_rect.y + label.p_rect.height / 2.0f - textMeasurement.y / 2.0f) 
         };
 }
 void GuiManager::UpdateTextPosition(Button &button)
@@ -27,8 +25,8 @@ void GuiManager::UpdateTextPosition(Button &button)
                                                   Settings::g_gameFont.baseSize, 1.0f);
     button.p_textPosition =
         {
-            std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f), // x
-            std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f) // y
+            std::round(button.p_rect.x + button.p_rect.width / 2.0f - textMeasurement.x / 2.0f),  
+            std::round(button.p_rect.y + button.p_rect.height / 2.0f - textMeasurement.y / 2.0f)
         };
 }
 void GuiManager::UpdateImagePosition(Button &button)
@@ -60,13 +58,13 @@ void GuiManager::UpdatePress(const float deltaTime, Button &button)
     const Vector2 mousePosition = GetMousePosition();
     const Rectangle scaledButtonRect =
         {
-            button.p_rect.x * Settings::g_gameScale // x
+            button.p_rect.x * Settings::g_gameScale
             ,
-            button.p_rect.y * Settings::g_gameScale // y
+            button.p_rect.y * Settings::g_gameScale
             ,
-            button.p_rect.width * Settings::g_gameScale // width
+            button.p_rect.width * Settings::g_gameScale 
             ,
-            button.p_rect.height * Settings::g_gameScale // height
+            button.p_rect.height * Settings::g_gameScale
         };
     button.p_isHovered = false;
     if (!CheckCollisionPointRec(mousePosition, scaledButtonRect))
@@ -287,7 +285,6 @@ const bool GuiManager::IsElementUsed(const Label &label) const
     }
     return true;
 }
-/// Public
 const size_t GuiManager::GetAmountOfLabels() const
 {
     return m_labels.size();

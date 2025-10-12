@@ -12,8 +12,6 @@
 #include <limits>
 #include <cassert>
 
-// Private
-
 const uint16_t EnemyManager::GetEnemyTextureIndex(const uint16_t typeId) const
 {
     return typeId + Sprites::g_enemyTextureOffset;
@@ -234,8 +232,6 @@ void EnemyManager::RemoveEnemies()
                                    { return !enemy.p_alive || enemy.p_survived; }),
                     m_enemies.end());
 }
-
-// Public
 
 std::string EnemyManager::EnemyTypeToString(const EnemyType type)
 {

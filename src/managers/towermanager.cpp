@@ -17,7 +17,6 @@
 #include <cmath>
 #include <algorithm>
 
-// Private
 
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
 {
@@ -160,13 +159,13 @@ void TowerManager::DetectTowerInput(Tower &tower)
     Texture2D texture = Sprites::g_textures[GetTowerTextureIndex((uint16_t)tower.p_typeId)];
     Rectangle towerRect =
         {
-            tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale // x
+            tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale
             ,
-            tower.p_position.y * Settings::g_gameScale // y
+            tower.p_position.y * Settings::g_gameScale
             ,
-            static_cast<float>(texture.width * Settings::g_gameScale) // width
+            static_cast<float>(texture.width * Settings::g_gameScale) 
             ,
-            static_cast<float>(texture.height * Settings::g_gameScale) // height
+            static_cast<float>(texture.height * Settings::g_gameScale) 
         };
 
     if (!CheckCollisionPointRec(mousePosition, towerRect))
@@ -266,7 +265,6 @@ void TowerManager::DrawHoverRange(const Tower &tower, const uint8_t screenOffset
             upgradedRangeColor);
     }
 }
-// Public
 
 std::string TowerManager::TowerTypeToString(const TowerType type)
 {

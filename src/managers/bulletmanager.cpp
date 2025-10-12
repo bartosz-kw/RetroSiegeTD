@@ -6,8 +6,6 @@
 #include <cmath>
 #include <algorithm>
 
-// Private
-
 int32_t BulletManager::g_idCounter = 1;
 
 uint16_t BulletManager::GetBulletTextureIndex(const uint16_t typeId) const
@@ -58,7 +56,7 @@ void BulletManager::RemoveBullets()
         m_bullets.erase(m_bullets.begin() + *it);
     }
 }
-// Public
+
 Vector2 BulletManager::GetCenterPosition(const Bullet &bullet) const
 {
     return Vector2{bullet.p_position.x + bullet.p_sourceRect.width / 2.0f, bullet.p_position.y + bullet.p_sourceRect.height / 2.0f};

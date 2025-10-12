@@ -5,7 +5,6 @@
 #include "../namespaces/settings.hpp"
 #include "../utility/debugUtil.hpp"
 #include "tilemanager.hpp"
-// Private
 
 const uint16_t TileManager::GetTileTextureIndex(const uint16_t typeId) const
 {
@@ -16,10 +15,10 @@ bool TileManager::IsTileHovered(Tile &tile)
     const Vector2 mousePosition = GetMousePosition();
     const Rectangle tileRect =
         {
-            tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale, // x
-            tile.p_position.y * Settings::g_gameScale,                                                    // y
-            static_cast<float>(g_tileSize * Settings::g_gameScale),                                       // width
-            static_cast<float>(g_tileSize * Settings::g_gameScale)                                        // height
+            tile.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale,  
+            tile.p_position.y * Settings::g_gameScale,                                                    
+            static_cast<float>(g_tileSize * Settings::g_gameScale),                                       
+            static_cast<float>(g_tileSize * Settings::g_gameScale)                                        
         };
     if (!CheckCollisionPointRec(mousePosition, tileRect))
     {
@@ -42,8 +41,6 @@ bool TileManager::IsTileClicked(Tile &tile)
     m_lastClickedTile = &tile;
     return true;
 }
-
-// Public
 
 Tile TileManager::GetPathStart()
 {

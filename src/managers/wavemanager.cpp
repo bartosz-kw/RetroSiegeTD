@@ -7,7 +7,6 @@
 #include "../utility/debugutil.hpp"
 #include <cassert>
 
-// Private
 
 void WaveManager::PreKillWave(const EnemyWave wave)
 {
@@ -392,7 +391,6 @@ void WaveManager::LoadWaves()
     wave15.p_totalWaveTime = getTotalWaveTime(wave15);
     m_unactiveWaves.push_back(wave15);
 
-    // Wave 16
     std::vector<std::pair<float, EnemyType>> enemySpawns16 = {};
     enemySpawns16.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns16.push_back({1.0f, EnemyType::SkeletonWarrior});
@@ -418,7 +416,6 @@ void WaveManager::LoadWaves()
     wave16.p_totalWaveTime = getTotalWaveTime(wave16);
     m_unactiveWaves.push_back(wave16);
 
-    // Wave 17
     std::vector<std::pair<float, EnemyType>> enemySpawns17 = {};
     enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns17.push_back({1.0f, EnemyType::SkeletonWarrior});
@@ -449,7 +446,6 @@ void WaveManager::LoadWaves()
     wave17.p_totalWaveTime = getTotalWaveTime(wave17);
     m_unactiveWaves.push_back(wave17);
 
-    // Wave 18
     std::vector<std::pair<float, EnemyType>> enemySpawns18 = {};
     enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
     enemySpawns18.push_back({1.0f, EnemyType::SkeletonWarrior});
@@ -477,7 +473,6 @@ void WaveManager::LoadWaves()
     wave18.p_totalWaveTime = getTotalWaveTime(wave18);
     m_unactiveWaves.push_back(wave18);
 
-    // Wave 19
     std::vector<std::pair<float, EnemyType>> enemySpawns19 = {};
     enemySpawns19.push_back({1.0f, EnemyType::Skeleton});
     enemySpawns19.push_back({1.0f, EnemyType::Skeleton});
@@ -507,7 +502,6 @@ void WaveManager::LoadWaves()
     wave19.p_totalWaveTime = getTotalWaveTime(wave19);
     m_unactiveWaves.push_back(wave19);
 
-    // Wave 20
     std::vector<std::pair<float, EnemyType>> enemySpawns20 = {};
     enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
     enemySpawns20.push_back({2.5f, EnemyType::SkeletonGuardian});
@@ -530,7 +524,6 @@ void WaveManager::LoadWaves()
     mgr_enemy->ReserveEnemies(totalEnemies);
 }
 
-// Public
 EnemyWave *WaveManager::GetNextWave()
 {
     if (m_unactiveWaves.empty())
