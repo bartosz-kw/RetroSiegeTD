@@ -49,6 +49,15 @@ void Game::UpdateDebug()
 
         mgr_enemy.SpawnEnemy(EnemyType::Summoner);
     }
+    if (IsKeyPressed(KEY_F5))
+    {
+        if (m_gameState != GameState::Started)
+        {
+            return;
+        }
+
+        mgr_enemy.SpawnEnemy(EnemyType::SkeletonKing);
+    }
 }
 void Game::Update()
 {
