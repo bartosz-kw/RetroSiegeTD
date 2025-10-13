@@ -17,7 +17,6 @@
 #include <cmath>
 #include <algorithm>
 
-
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id)
 {
     std::vector<Tower>::iterator it = std::lower_bound(m_towers.begin(), m_towers.end(), id, [](Tower tower, const int32_t id)
@@ -159,14 +158,10 @@ void TowerManager::DetectTowerInput(Tower &tower)
     Texture2D texture = tower.p_texture;
     Rectangle towerRect =
         {
-            tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale
-            ,
-            tower.p_position.y * Settings::g_gameScale
-            ,
-            static_cast<float>(texture.width * Settings::g_gameScale) 
-            ,
-            static_cast<float>(texture.height * Settings::g_gameScale) 
-        };
+            tower.p_position.x * Settings::g_gameScale + Settings::g_boundingSize * Settings::g_gameScale,
+            tower.p_position.y * Settings::g_gameScale,
+            static_cast<float>(texture.width * Settings::g_gameScale),
+            static_cast<float>(texture.height * Settings::g_gameScale)};
 
     if (!CheckCollisionPointRec(mousePosition, towerRect))
     {
@@ -188,6 +183,12 @@ void TowerManager::DetectTowerInput(Tower &tower)
 }
 void TowerManager::UpdateFight(Tower &tower, const float deltatime)
 {
+    if (tower.p_stun > 0)
+    {
+        return;
+    }
+    
+
     tower.p_timeToAttack += deltatime;
 
     float range = tower.p_rangeless ? 9999.9f : tower.p_range;
@@ -208,6 +209,24 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
 void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 {
     Basics::Animate(deltaTime, tower);
+}
+void TowerManager::HandleHits(Tower &tower)
+{
+    if(tower.p_stun > 0.0f)
+    {
+        return;
+    }
+
+    const Rectangle towerRect = {tower.p_position.x, tower.p_position.y, (float)tower.p_sourceRect.width, (float)tower.p_sourceRect.height};
+
+    std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(towerRect, BulletOwner::Enemy);
+
+    if (detectedBullets.size() != 0)
+    {
+        Bullet* firstBullet = detectedBullets[0];
+        tower.p_stun = firstBullet->p_damage;
+    }
+    
 }
 void TowerManager::DrawSelectedTower(const uint8_t screenOffset) const
 {
@@ -409,7 +428,12 @@ void TowerManager::Update(const float deltaTime)
             tower.p_position = tile.p_position;
             tower.p_dirty = false;
         }
-
+        if (tower.p_stun > 0)
+        {
+            tower.p_stun -= deltaTime;
+        }
+        
+        HandleHits(tower);
         UpdateFight(tower, deltaTime);
         UpdateAnimation(tower, deltaTime);
         DetectTowerInput(tower);

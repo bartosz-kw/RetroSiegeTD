@@ -51,6 +51,7 @@ struct Tower
     float p_timeToAttack = 0;
     float p_timeToNextFrame = 0.0f;
     float p_timePassed = 0.0f;
+    float p_stun = 0.0f;
     TowerType p_upgradesTo = TowerType::Nothing;
     int32_t p_id = -1;   
     uint16_t p_level = 0;
