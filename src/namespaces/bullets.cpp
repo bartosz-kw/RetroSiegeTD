@@ -32,6 +32,9 @@ namespace Bullets
         shulikenBullet.p_pierce = false;
         shulikenBullet.p_removeAfterAnimation = false;
         shulikenBullet.p_alive = true;
+        shulikenBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        shulikenBullet.p_onDeathCallback = [](Bullet& bullet){};
+        shulikenBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
 #pragma endregion
@@ -56,6 +59,9 @@ namespace Bullets
         sharpShulikenBullet.p_pierce = true;
         sharpShulikenBullet.p_removeAfterAnimation = false;
         sharpShulikenBullet.p_alive = true;
+        sharpShulikenBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        sharpShulikenBullet.p_onDeathCallback = [](Bullet& bullet){};
+        sharpShulikenBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
 #pragma endregion
@@ -80,6 +86,9 @@ namespace Bullets
         daggerBullet.p_pierce = true;
         daggerBullet.p_removeAfterAnimation = false;
         daggerBullet.p_alive = true;
+        daggerBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        daggerBullet.p_onDeathCallback = [](Bullet& bullet){};
+        daggerBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Dagger] = daggerBullet;
 #pragma endregion
@@ -104,6 +113,9 @@ namespace Bullets
         slashBullet.p_pierce = true;
         slashBullet.p_removeAfterAnimation = true;
         slashBullet.p_alive = true;
+        slashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        slashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        slashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Slash] = slashBullet;
 #pragma endregion
@@ -129,6 +141,9 @@ namespace Bullets
         spearSlashBullet.p_pierce = true;
         spearSlashBullet.p_removeAfterAnimation = true;
         spearSlashBullet.p_alive = true;
+        spearSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        spearSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        spearSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SpearSlash] = spearSlashBullet;
 #pragma endregion
@@ -154,6 +169,9 @@ namespace Bullets
         bigSlashBullet.p_pierce = true;
         bigSlashBullet.p_removeAfterAnimation = true;
         bigSlashBullet.p_alive = true;
+        bigSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        bigSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        bigSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::BigSlash] = bigSlashBullet;
 #pragma endregion
@@ -179,6 +197,9 @@ namespace Bullets
         biggestSlashBullet.p_pierce = true;
         biggestSlashBullet.p_removeAfterAnimation = true;
         biggestSlashBullet.p_alive = true;
+        biggestSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        biggestSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        biggestSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::BiggestSlash] = biggestSlashBullet;
 #pragma endregion
@@ -204,6 +225,9 @@ namespace Bullets
         sniperBullet.p_pierce = false;
         sniperBullet.p_removeAfterAnimation = false;
         sniperBullet.p_alive = true;
+        sniperBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+        sniperBullet.p_onDeathCallback = [](Bullet& bullet){};
+        sniperBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SniperBullet] = sniperBullet;
 #pragma endregion
