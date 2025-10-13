@@ -136,7 +136,7 @@ void EnemyManager::HandleHits(Enemy &enemy)
     constexpr float hitEffectTime = 0.4f;
     const Rectangle enemyRect = {enemy.p_position.x, enemy.p_position.y, (float)enemy.p_sourceRect.width, (float)enemy.p_sourceRect.height};
 
-    std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect);
+    std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(enemyRect,BulletOwner::Tower);
     for (auto bullet : detectedBullets)
     {
         bool bulletOnCooldown = false;

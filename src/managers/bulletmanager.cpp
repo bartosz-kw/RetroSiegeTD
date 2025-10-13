@@ -40,6 +40,7 @@ void BulletManager::RemoveBullets()
     {
         if (!m_bullets[i].p_alive)
         {
+            m_bullets[i].p_onDeathCallback(m_bullets[i]);
             indexesToRemove.push_back(i);
         }
     }
@@ -57,11 +58,16 @@ Vector2 BulletManager::GetCenterPosition(const Bullet &bullet) const
 {
     return Vector2{bullet.p_position.x + bullet.p_sourceRect.width / 2.0f, bullet.p_position.y + bullet.p_sourceRect.height / 2.0f};
 }
-std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area)
+std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area,const BulletOwner owner)
 {
     std::vector<Bullet *> detectedBullets = {};
     for (auto &bullet : m_bullets)
     {
+        if (bullet.p_owner != owner)
+        {
+            return detectedBullets;
+        }
+        
         const Vector2 pos = bullet.p_position;
         const Rectangle rect = bullet.p_sourceRect;
         const float hitboxBonusX = bullet.p_hitboxBonus.x/2.0f;
@@ -95,6 +101,7 @@ void BulletManager::Update(const float deltaTime)
         UpdatePosition(bullet, deltaTime);
         UpdateAnimation(bullet, deltaTime);
         ValidatePosition(bullet);
+        bullet.p_updateFunction(deltaTime,bullet);
     }
     RemoveBullets();
 }
