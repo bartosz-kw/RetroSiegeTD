@@ -25,7 +25,7 @@ enum class BulletOwner : uint8_t
 
 struct Bullet
 {
-    std::function<void(const float deltaTime,Bullet& bullet)> p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+    std::function<void(const float deltaTime,Bullet& bullet)> p_updateFunction = [](const float deltaTime,Bullet& bullet){}; 
     std::function<void(Bullet& bullet)> p_onDeathCallback = [](Bullet& bullet){};
     Texture2D p_texture = {0,0,0,0,0};
     Rectangle p_sourceRect = {0, 0, 0, 0};

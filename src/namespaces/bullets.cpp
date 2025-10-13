@@ -232,6 +232,38 @@ namespace Bullets
         g_bulletData[BulletType::SniperBullet] = sniperBullet;
 #pragma endregion
 
+#pragma region ShockWave
+        Bullet shockWaveBullet = {};
+        shockWaveBullet.p_texture = {0,0,0,0,0};
+        shockWaveBullet.p_sourceRect = {0, 0, 8, 8};
+        shockWaveBullet.p_hitboxBonus = {0.0f,0.0f};
+        shockWaveBullet.p_position = {-1.0f, -1.0f};
+        shockWaveBullet.p_id = -1;
+        shockWaveBullet.p_damage = 0;
+        shockWaveBullet.p_timeToNextFrame = 0.05f;
+        shockWaveBullet.p_timePassed = 0.0f;
+        shockWaveBullet.p_directionAngle = 0.0f;
+        shockWaveBullet.p_rotation = 0.0f;
+        shockWaveBullet.p_spinSpeed = 0.0f;
+        shockWaveBullet.p_speed = 0.0f;
+        shockWaveBullet.p_typeId = BulletType::ShockWave;
+        shockWaveBullet.p_frameAmount = 8;
+        shockWaveBullet.p_frameOffset = 8;
+        shockWaveBullet.p_pierce = true;
+        shockWaveBullet.p_removeAfterAnimation = true;
+        shockWaveBullet.p_alive = true;
+        shockWaveBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet)
+        {
+                
+        };
+        shockWaveBullet.p_onDeathCallback = [](Bullet& bullet)
+        {
+
+        };
+        shockWaveBullet.p_owner = BulletOwner::Enemy;
+
+        g_bulletData[BulletType::ShockWave] = shockWaveBullet;
+#pragma endregion
     }
 
     Bullet GetBulletData(BulletType typeId)
