@@ -13,11 +13,20 @@ enum class BulletType : uint8_t
     SpearSlash = 5,
     BigSlash = 6,
     BiggestSlash = 7,
-    SniperBullet = 8
+    SniperBullet = 8,
+    ShockWave = 9
+};
+
+enum class BulletOwner : uint8_t
+{
+    Tower = 1,
+    Enemy = 2
 };
 
 struct Bullet
 {
+    std::function<void(const float deltaTime,Bullet& bullet)> p_updateFunction = [](const float deltaTime,Bullet& bullet){};
+    std::function<void(Bullet& bullet)> p_onDeathCallback = [](Bullet& bullet){};
     Texture2D p_texture = {0,0,0,0,0};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
@@ -33,6 +42,7 @@ struct Bullet
     BulletType p_typeId = BulletType::Shuliken;
     uint16_t p_frameAmount = 0;
     uint16_t p_frameOffset = 0;
+    BulletOwner p_owner = BulletOwner::Tower;
     bool p_pierce = false;
     bool p_removeAfterAnimation = false;
     bool p_alive = true;
