@@ -1,6 +1,8 @@
 #include "bullets.hpp"
 #include "sprites.hpp"
 #include "basics.hpp"
+#include <unordered_map>
+#include <raymath.h>
 #include <cassert>
 
 namespace Bullets
@@ -235,7 +237,7 @@ namespace Bullets
 #pragma region ShockWave
         Bullet shockWaveBullet = {};
         shockWaveBullet.p_texture = {0,0,0,0,0};
-        shockWaveBullet.p_sourceRect = {0, 0, 8, 8};
+        shockWaveBullet.p_sourceRect = {0, 0, 0, 0};
         shockWaveBullet.p_hitboxBonus = {0.0f,0.0f};
         shockWaveBullet.p_position = {-1.0f, -1.0f};
         shockWaveBullet.p_id = -1;
@@ -254,7 +256,43 @@ namespace Bullets
         shockWaveBullet.p_alive = true;
         shockWaveBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet)
         {
-                
+        constexpr Vector2 startingSize = {10.0f,10.0f};
+        constexpr Vector2 endSize = {50.0f,50.0f};
+        constexpr float finishTime = 5.0f;
+
+        static std::unordered_map<int32_t,std::pair<float,RenderTexture2D>> shockwaveVars = {};        
+
+        if (!shockwaveVars.contains(bullet.p_id))
+        {
+            shockwaveVars[bullet.p_id] = {0.0f,LoadRenderTexture(endSize.x,endSize.y)};
+        }
+        
+        float& time = shockwaveVars[bullet.p_id].first;
+        RenderTexture2D& bulletTex = shockwaveVars[bullet.p_id].second;
+        const Vector2 size = Vector2Lerp(startingSize,endSize,time/finishTime);
+        const Vector2 center = {endSize.x/2.0f,endSize.y/2.0f};
+        
+        time += deltaTime;
+
+        if (time >= finishTime)
+        {
+            bullet.p_alive = false;
+            UnloadRenderTexture(bulletTex);
+            shockwaveVars.erase(bullet.p_id);
+            return;
+        }
+        
+
+        BeginTextureMode(bulletTex);
+
+                ClearBackground(BLANK);
+                DrawCircleV(center,size.y/2.0f,WHITE);
+
+        EndTextureMode();
+
+        bullet.p_sourceRect = {center.x - size.x/2.0f,center.y - size.y/2.0f,(float)size.x,(float)size.y};
+        bullet.p_texture = bulletTex.texture;
+
         };
         shockWaveBullet.p_onDeathCallback = [](Bullet& bullet)
         {
