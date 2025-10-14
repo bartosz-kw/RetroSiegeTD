@@ -16,7 +16,7 @@ namespace Enemies
 #pragma region BlueSlime
         Enemy blueSlime = {};
         blueSlime.p_hitCooldowns = {};
-        blueSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        blueSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         blueSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         blueSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::BlueSlimeEnemy];
         blueSlime.p_sourceRect = {0, 0, 15, 15};
@@ -45,7 +45,7 @@ namespace Enemies
 #pragma region RedSlime
         Enemy redSlime = {};
         redSlime.p_hitCooldowns = {};
-        redSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        redSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         redSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         redSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::RedSlimeEnemy];
         redSlime.p_sourceRect = {0, 0, 15, 15};
@@ -74,7 +74,7 @@ namespace Enemies
 #pragma region Zombie
         Enemy zombie = {};
         zombie.p_hitCooldowns = {};
-        zombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        zombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         zombie.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         zombie.p_texture = Sprites::g_textures[Sprites::TextureIndex::ZombieEnemy];
         zombie.p_sourceRect = {0, 0, 15, 15};
@@ -103,7 +103,7 @@ namespace Enemies
 #pragma region ArmoredZombie
         Enemy armoredZombie = {};
         armoredZombie.p_hitCooldowns = {};
-        armoredZombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        armoredZombie.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         armoredZombie.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         armoredZombie.p_texture = Sprites::g_textures[Sprites::TextureIndex::ArmoredZombieEnemy];
         armoredZombie.p_sourceRect = {0, 0, 15, 15};
@@ -132,7 +132,7 @@ namespace Enemies
 #pragma region Skeleton
         Enemy skeleton = {};
         skeleton.p_hitCooldowns = {};
-        skeleton.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeleton.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         skeleton.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeleton.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonEnemy];
         skeleton.p_sourceRect = {0, 0, 15, 15};
@@ -161,7 +161,7 @@ namespace Enemies
 #pragma region Summoner
         Enemy summoner = {};
         summoner.p_hitCooldowns = {};
-        summoner.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy)
+        summoner.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet)
         {
             constexpr float spawnCooldown = 2.5f;
             static float time = 0.0f;
@@ -212,7 +212,7 @@ namespace Enemies
 #pragma region QuickSlime
         Enemy quickSlime = {};
         quickSlime.p_hitCooldowns = {};
-        quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        quickSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         quickSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         quickSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::QuickSlimeEnemy];
         quickSlime.p_sourceRect = {0, 0, 15, 15};
@@ -241,7 +241,7 @@ namespace Enemies
 #pragma region ElectricSlime
         Enemy electricSlime = {};
         electricSlime.p_hitCooldowns = {};
-        electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        electricSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         electricSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         electricSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::ElectricSlimeEnemy];
         electricSlime.p_sourceRect = {0, 0, 15, 15};
@@ -270,7 +270,7 @@ namespace Enemies
 #pragma region SmallSlime
         Enemy smallSlime = {};
         smallSlime.p_hitCooldowns = {};
-        smallSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        smallSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         smallSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         smallSlime.p_texture = Sprites::g_textures[Sprites::TextureIndex::SmallSlimeEnemy];
         smallSlime.p_sourceRect = {0, 0, 15, 15};
@@ -299,7 +299,7 @@ namespace Enemies
 #pragma region BigSlime
         Enemy bigSlime = {};
         bigSlime.p_hitCooldowns = {};
-        bigSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        bigSlime.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         bigSlime.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy)
         {
             for (int i = 0; i < 5; i++)
@@ -339,7 +339,7 @@ namespace Enemies
 #pragma region SkeletonWarrior
         Enemy skeletonWarrior = {};
         skeletonWarrior.p_hitCooldowns = {};
-        skeletonWarrior.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonWarrior.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         skeletonWarrior.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonWarrior.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonWarriorEnemy];
         skeletonWarrior.p_sourceRect = {0, 0, 15, 15};
@@ -368,7 +368,7 @@ namespace Enemies
 #pragma region SkeletonGuardian
         Enemy skeletonGuardian = {};
         skeletonGuardian.p_hitCooldowns = {};
-        skeletonGuardian.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy) {};
+        skeletonGuardian.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet) {};
         skeletonGuardian.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
         skeletonGuardian.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonGuardianEnemy];
         skeletonGuardian.p_sourceRect = {0, 0, 15, 15};
@@ -397,14 +397,14 @@ namespace Enemies
 #pragma region SkeletonKing
         Enemy skeletonKing = {};
         skeletonKing.p_hitCooldowns = {};
-        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy)
+        skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet)
         {
             constexpr float timeToStun = 30.0f;
             static float time = 0.0f;
 
             if (time >= timeToStun)
             {
-                /// placeholder
+
                 time = 0.0f;
             }
             time += deltaTime;

@@ -114,7 +114,7 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     UpdateAnimation(enemy, deltaTime);
     if (enemy.p_updateFunction)
     {
-        enemy.p_updateFunction(deltaTime, enemy, this);
+        enemy.p_updateFunction(deltaTime, enemy, this, mgr_bullet);
     }
     else
     {
