@@ -65,7 +65,7 @@ std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area,con
     {
         if (bullet.p_owner != owner)
         {
-            return detectedBullets;
+            continue;
         }
         
         const Vector2 pos = bullet.p_position;
