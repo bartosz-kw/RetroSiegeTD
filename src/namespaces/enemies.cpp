@@ -404,7 +404,7 @@ namespace Enemies
 
             if (time >= timeToStun)
             {
-
+                mgr_bullet
                 time = 0.0f;
             }
             time += deltaTime;
