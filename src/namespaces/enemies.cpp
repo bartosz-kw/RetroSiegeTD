@@ -1,6 +1,8 @@
 #include "enemies.hpp"
 #include "basics.hpp"
+#include "bullets.hpp"
 #include "sprites.hpp"
+#include "../managers/bulletmanager.hpp"
 #include "../managers/enemymanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include <cassert>
@@ -400,11 +402,12 @@ namespace Enemies
         skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet)
         {
             constexpr float timeToStun = 30.0f;
+            constexpr int32_t stunTime = 10;
             static float time = 0.0f;
 
             if (time >= timeToStun)
             {
-                mgr_bullet
+
                 time = 0.0f;
             }
             time += deltaTime;
