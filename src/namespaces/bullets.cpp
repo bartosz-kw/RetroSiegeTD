@@ -256,6 +256,8 @@ namespace Bullets
         shockWaveBullet.p_alive = true;
         shockWaveBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet)
         {
+
+        constexpr Color stunColor = { 0, 121, 241, 128 };
         constexpr Vector2 startingSize = {10.0f,10.0f};
         constexpr Vector2 endSize = {50.0f,50.0f};
         constexpr float finishTime = 5.0f;
@@ -286,7 +288,8 @@ namespace Bullets
         BeginTextureMode(bulletTex);
 
                 ClearBackground(BLANK);
-                DrawCircleV(center,size.y/2.0f,WHITE);
+                
+                DrawCircleV(center,size.y/2.0f,stunColor);
 
         EndTextureMode();
 
