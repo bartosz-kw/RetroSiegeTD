@@ -296,7 +296,7 @@ namespace Bullets
                 }
                 else
                 {
-                        DrawRing(center,(radius - visibleRadius)/2.0f,visibleRadius,0,360,36,stunColor);
+                        DrawRing(center,(radius - visibleRadius)/2.0f,(radius)/2.0f,0,360,36,stunColor);
                 }
                  
         EndTextureMode();
