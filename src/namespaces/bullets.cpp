@@ -258,21 +258,22 @@ namespace Bullets
         {
 
         constexpr Color stunColor = { 0, 121, 241, 128 };
-        constexpr Vector2 startingSize = {10.0f,10.0f};
-        constexpr Vector2 endSize = {50.0f,50.0f};
+        constexpr float startingRadius = 10.0f;
+        constexpr float endRadius = 50.0f;
+        constexpr float visibleRadius = 5.0f;
         constexpr float finishTime = 5.0f;
 
         static std::unordered_map<int32_t,std::pair<float,RenderTexture2D>> shockwaveVars = {};        
 
         if (!shockwaveVars.contains(bullet.p_id))
         {
-            shockwaveVars[bullet.p_id] = {0.0f,LoadRenderTexture(endSize.x,endSize.y)};
+            shockwaveVars[bullet.p_id] = {0.0f,LoadRenderTexture(endRadius,endRadius)};
         }
         
         float& time = shockwaveVars[bullet.p_id].first;
         RenderTexture2D& bulletTex = shockwaveVars[bullet.p_id].second;
-        const Vector2 size = Vector2Lerp(startingSize,endSize,time/finishTime);
-        const Vector2 center = {endSize.x/2.0f,endSize.y/2.0f};
+        const float radius = Lerp(startingRadius,endRadius,time/finishTime);
+        const Vector2 center = {endRadius/2.0f,endRadius/2.0f};
         
         time += deltaTime;
 
@@ -288,12 +289,19 @@ namespace Bullets
         BeginTextureMode(bulletTex);
 
                 ClearBackground(BLANK);
-                
-                DrawCircleV(center,size.y/2.0f,stunColor);
-
+               
+                if (radius < visibleRadius)
+                {
+                        DrawCircleV(center,radius,stunColor);
+                }
+                else
+                {
+                        DrawRing(center,(radius - visibleRadius)/2.0f,visibleRadius,0,360,36,stunColor);
+                }
+                 
         EndTextureMode();
 
-        bullet.p_sourceRect = {center.x - size.x/2.0f,center.y - size.y/2.0f,(float)size.x,(float)size.y};
+        bullet.p_sourceRect = {center.x - radius/2.0f,center.y - radius/2.0f,radius,radius};
         bullet.p_texture = bulletTex.texture;
 
         };
