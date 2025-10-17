@@ -446,10 +446,11 @@ void TowerManager::Draw(const uint8_t screenOffset) const
         {
             continue;
         }
+        const Color towerColor = tower.p_stun <= 0 ? WHITE : YELLOW;
 
         Texture2D texture = tower.p_texture;
         Rectangle dest = {floorf(tower.p_position.x + screenOffset), floorf(tower.p_position.y), static_cast<float>(tower.p_sourceRect.width), static_cast<float>(tower.p_sourceRect.height)};
-        DrawTexturePro(texture, tower.p_sourceRect, dest, {0, 0}, 0.0f, WHITE);
+        DrawTexturePro(texture, tower.p_sourceRect, dest, {0, 0}, 0.0f, towerColor);
     }
     DrawSelectedTower(screenOffset);
     if (m_lastSelectedTowerId != -1)
