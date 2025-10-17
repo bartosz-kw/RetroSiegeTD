@@ -401,7 +401,7 @@ namespace Enemies
         skeletonKing.p_hitCooldowns = {};
         skeletonKing.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet)
         {
-            constexpr float timeToStun = 10.0f;
+            constexpr float timeToStun = 40.0f;
             constexpr int32_t stunTime = 10;
             static float time = 0.0f;
 

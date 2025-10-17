@@ -258,10 +258,10 @@ namespace Bullets
         {
 
         constexpr Color stunColor = { 0, 121, 241, 128 };
-        constexpr float startingRadius = 10.0f;
-        constexpr float endRadius = 50.0f;
-        constexpr float visibleRadius = 5.0f;
-        constexpr float finishTime = 5.0f;
+        constexpr float startingRadius = 15.0f;
+        constexpr float endRadius = 125.0f;
+        constexpr float visibleRadius = 15.0f;
+        constexpr float finishTime = 7.5f;
 
         static std::unordered_map<int32_t,std::pair<float,RenderTexture2D>> shockwaveVars = {};        
 

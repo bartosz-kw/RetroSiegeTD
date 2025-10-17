@@ -187,7 +187,6 @@ void TowerManager::UpdateFight(Tower &tower, const float deltatime)
     {
         return;
     }
-    
 
     tower.p_timeToAttack += deltatime;
 
@@ -212,7 +211,7 @@ void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 }
 void TowerManager::HandleHits(Tower &tower)
 {
-    if(tower.p_stun > 0.0f)
+    if (tower.p_stun > 0.0f)
     {
         return;
     }
@@ -223,13 +222,13 @@ void TowerManager::HandleHits(Tower &tower)
 
     if (detectedBullets.size() != 0)
     {
-        Bullet* firstBullet = detectedBullets[0];
+        Bullet *firstBullet = detectedBullets[0];
         tower.p_stun = firstBullet->p_damage;
     }
-    
 }
 void TowerManager::DrawSelectedTower(const uint8_t screenOffset) const
 {
+
     if (m_placeTower == TowerType::Nothing)
     {
         return;
@@ -432,7 +431,7 @@ void TowerManager::Update(const float deltaTime)
         {
             tower.p_stun -= deltaTime;
         }
-        
+
         HandleHits(tower);
         UpdateFight(tower, deltaTime);
         UpdateAnimation(tower, deltaTime);
