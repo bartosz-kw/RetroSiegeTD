@@ -211,11 +211,6 @@ void TowerManager::UpdateAnimation(Tower &tower, const float deltaTime)
 }
 void TowerManager::HandleHits(Tower &tower)
 {
-    if (tower.p_stun > 0.0f)
-    {
-        return;
-    }
-
     const Rectangle towerRect = {tower.p_position.x, tower.p_position.y, (float)tower.p_sourceRect.width, (float)tower.p_sourceRect.height};
 
     std::vector<Bullet *> detectedBullets = mgr_bullet->GetBulletsFromArea(towerRect, BulletOwner::Enemy);

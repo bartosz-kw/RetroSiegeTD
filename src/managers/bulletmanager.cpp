@@ -72,7 +72,7 @@ std::vector<Bullet *> BulletManager::GetBulletsFromArea(const Rectangle area,con
         const Rectangle rect = bullet.p_sourceRect;
         const float hitboxBonusX = bullet.p_hitboxBonus.x/2.0f;
         const float hitboxBonuxY = bullet.p_hitboxBonus.y/2.0f;
-        const Rectangle bulletRect = {pos.x - hitboxBonusX, pos.y - hitboxBonuxY, rect.width + hitboxBonusX, rect.height + hitboxBonuxY};
+        const Rectangle bulletRect = {pos.x - bullet.p_sourceRect.x - hitboxBonusX, pos.y - bullet.p_sourceRect.y - hitboxBonuxY, rect.width + hitboxBonusX, rect.height + hitboxBonuxY};
         if (CheckCollisionRecs(area, bulletRect))
         {
             detectedBullets.push_back(&bullet);
