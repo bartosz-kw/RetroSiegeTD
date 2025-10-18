@@ -12,6 +12,7 @@
 #include "../managers/musicmanager.hpp"
 #include "../managers/particlemanager.hpp"
 #include "../managers/messagemanager.hpp"
+#include "../managers/animationmanager.hpp"
 #include "../gui/wavecounter.hpp"
 #include "../gui/towerselect.hpp"
 #include "../gui/towerplace.hpp"
@@ -42,6 +43,7 @@ private:
     MusicManager mgr_music = {};
     ParticleManager mgr_particle = {};
     MessageManager mgr_message = {};
+    AnimationManager mgr_animation = {};
 
     EnemyHover gui_enemyHover = {};
     MainMenu gui_mainMenu = {};
