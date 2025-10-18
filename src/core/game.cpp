@@ -142,7 +142,7 @@ void Game::InitManagers()
     mgr_tile.LoadMap(map);
 
     mgr_bullet.Init();
-    mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps);
+    mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps, &mgr_animation);
     mgr_enemy.Init();
 
     mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle, &mgr_message);

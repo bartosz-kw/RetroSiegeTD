@@ -5,8 +5,9 @@
 #include "../structs/enemy.hpp"
 
 class TileManager;
-class BulletManager; 
+class BulletManager;
 class PSManager;
+class AnimationManager;
 
 class EnemyManager
 {
@@ -20,6 +21,7 @@ private:
     TileManager *mgr_tile = nullptr;
     BulletManager *mgr_bullet = nullptr;
     PSManager *mgr_ps = nullptr;
+    AnimationManager *mgr_animation = nullptr;
 
 private:
 
@@ -52,7 +54,7 @@ public:
     void ClearEnemiesVector();
     void Update(const float deltaTime);
     void Draw(const uint8_t screenOffset) const;
-    void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr);
+    void InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, AnimationManager *mgr_animationPtr);
     void Init();
 
 };

@@ -6,6 +6,7 @@
 #include <functional>
 class EnemyManager;
 class BulletManager;
+class AnimationManager;
 enum class EnemyType : uint8_t
 {
     BlueSlime = 1,
@@ -25,7 +26,7 @@ enum class EnemyType : uint8_t
 struct Enemy
 {
     std::vector<std::pair<float, int32_t>> p_hitCooldowns = {};
-    std::function<void(const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy, BulletManager* mgr_bullet)> p_updateFunction = [](const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy, BulletManager* mgr_bullet){};
+    std::function<void(const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy, BulletManager* mgr_bullet, AnimationManager* mgr_animation)> p_updateFunction = [](const float deltaTime,Enemy& enemy, EnemyManager* mgr_enemy, BulletManager* mgr_bullet, AnimationManager* mgr_animation){};
     std::function<void(Enemy& enemy, EnemyManager* mgr_enemy)> p_deathCallback = [](Enemy& enemy, EnemyManager* mgr_enemy){};
     Texture2D p_texture = {0, 0, 0, 0, 0};
     Rectangle p_sourceRect = {0, 0, 0, 0};

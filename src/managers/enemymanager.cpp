@@ -114,7 +114,7 @@ void EnemyManager::UpdateEnemy(Enemy &enemy, const float deltaTime)
     UpdateAnimation(enemy, deltaTime);
     if (enemy.p_updateFunction)
     {
-        enemy.p_updateFunction(deltaTime, enemy, this, mgr_bullet);
+        enemy.p_updateFunction(deltaTime, enemy, this, mgr_bullet, mgr_animation);
     }
     else
     {
@@ -407,11 +407,12 @@ void EnemyManager::Draw(const uint8_t screenOffset) const
         DrawTexturePro(texture, enemy.p_sourceRect, dest, origin, 0.0f, color);
     }
 }
-void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr)
+void EnemyManager::InjectDependencies(TileManager *mgr_tilePtr, BulletManager *mgr_bulletPtr, PSManager *mgr_psPtr, AnimationManager *mgr_animationPtr)
 {
     mgr_tile = mgr_tilePtr;
     mgr_bullet = mgr_bulletPtr;
     mgr_ps = mgr_psPtr;
+    mgr_animation = mgr_animationPtr;
 }
 void EnemyManager::Init()
 {
