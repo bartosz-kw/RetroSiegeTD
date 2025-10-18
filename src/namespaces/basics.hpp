@@ -12,4 +12,5 @@ namespace Basics
     void Animate(const float deltaTime, Bullet &bullet);
     void Animate(const float deltaTime, Tower &tower);
     void PlayAnimation(const float deltaTime, Enemy& enemy, uint16_t startingFrame, uint16_t amountOfFrames);
+    void PlayAnimation(const float deltaTime, Enemy& enemy, uint16_t startingFrame, uint16_t amountOfFrames, bool instantStart, bool autoRevert);
 };

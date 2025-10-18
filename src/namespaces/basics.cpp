@@ -50,7 +50,7 @@ namespace Basics
 
             Particle particle = {};
             particle.p_text = std::to_string(difference * tower->p_damage) + "$";
-            particle.p_drawRect = {0,0,0,0};
+            particle.p_drawRect = {0, 0, 0, 0};
             particle.p_position = {pos.x + Settings::g_boundingSize, pos.y};
             particle.p_textPosition = {0, 0};
             particle.p_particleMoveType = ParticleMoveType::MoveUp;
@@ -61,14 +61,13 @@ namespace Basics
             particle.p_aliveTime = 3.0f;
             particle.p_startingTime = particle.p_aliveTime;
             mgr_particle->AddParticle(particle);
-            
 
             mgr_ps->AddMoney(difference * tower->p_damage);
             startingKillAmounts[tower->p_id] = mgr_enemy->GetKilledAmount();
         }
     }
     void Animate(const float deltaTime, Enemy &enemy)
-    {
+    {   
         if (enemy.p_frameAmount == 0 || enemy.p_frameOffset == 0 || enemy.p_inSpecialAnim)
         {
             return;
@@ -139,6 +138,39 @@ namespace Basics
         }
     }
 
+    void PlayAnimation(const float deltaTime, Enemy &enemy, uint16_t startingFrame, uint16_t amountOfFrames, bool instantStart, bool autoRevert)
+    {
+        if (instantStart && !enemy.p_inSpecialAnim)
+        {
+            enemy.p_sourceRect = {static_cast<float>(enemy.p_frameOffset * startingFrame), 0, static_cast<float>(enemy.p_frameOffset), enemy.p_sourceRect.height};
+        }
+
+        enemy.p_inSpecialAnim = true;
+
+        enemy.p_timePassed += deltaTime;
+
+        if (enemy.p_timePassed >= enemy.p_timeToNextFrame)
+        {
+            enemy.p_timePassed -= enemy.p_timeToNextFrame;
+            if (enemy.p_sourceRect.x + enemy.p_frameOffset >= enemy.p_frameOffset * (amountOfFrames + startingFrame))
+            {
+                if (autoRevert)
+                {
+                    enemy.p_sourceRect = {0, 0, static_cast<float>(enemy.p_frameOffset), enemy.p_sourceRect.height};
+                }
+
+                enemy.p_inSpecialAnim = false;
+            }
+            else if (enemy.p_sourceRect.x < enemy.p_frameOffset * startingFrame)
+            {
+                enemy.p_sourceRect.x = enemy.p_frameOffset * startingFrame;
+            }
+            else
+            {
+                enemy.p_sourceRect.x += enemy.p_frameOffset;
+            }
+        }
+    }
     void PlayAnimation(const float deltaTime, Enemy &enemy, uint16_t startingFrame, uint16_t amountOfFrames)
     {
         enemy.p_inSpecialAnim = true;
