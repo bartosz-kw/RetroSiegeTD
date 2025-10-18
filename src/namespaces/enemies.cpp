@@ -420,7 +420,7 @@ namespace Enemies
             }
             if (summonTimer >= summonCooldown)
             {
-                // Basics::PlayAnimation(deltaTime, enemy, 3, 8);
+                Basics::PlayAnimation(deltaTime, enemy, 3, 9);
                 if (enemy.p_inSpecialAnim)
                 {
                     return;
