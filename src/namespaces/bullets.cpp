@@ -18,7 +18,7 @@ namespace Bullets
 
         shulikenBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::ShulikenBullet];
         shulikenBullet.p_sourceRect = {0, 0, 9, 9};
-        shulikenBullet.p_hitboxBonus = {0,0};
+        shulikenBullet.p_hitboxBonus = {0, 0};
         shulikenBullet.p_position = {-1.0f, -1.0f};
         shulikenBullet.p_id = -1;
         shulikenBullet.p_damage = 0;
@@ -34,8 +34,8 @@ namespace Bullets
         shulikenBullet.p_pierce = false;
         shulikenBullet.p_removeAfterAnimation = false;
         shulikenBullet.p_alive = true;
-        shulikenBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        shulikenBullet.p_onDeathCallback = [](Bullet& bullet){};
+        shulikenBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        shulikenBullet.p_onDeathCallback = [](Bullet &bullet) {};
         shulikenBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Shuliken] = shulikenBullet;
@@ -45,7 +45,7 @@ namespace Bullets
         Bullet sharpShulikenBullet = {};
         sharpShulikenBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SharpShulikenBullet];
         sharpShulikenBullet.p_sourceRect = {0, 0, 9, 9};
-        sharpShulikenBullet.p_hitboxBonus = {0,0};
+        sharpShulikenBullet.p_hitboxBonus = {0, 0};
         sharpShulikenBullet.p_position = {-1.0f, -1.0f};
         sharpShulikenBullet.p_id = -1;
         sharpShulikenBullet.p_damage = 0;
@@ -61,8 +61,8 @@ namespace Bullets
         sharpShulikenBullet.p_pierce = true;
         sharpShulikenBullet.p_removeAfterAnimation = false;
         sharpShulikenBullet.p_alive = true;
-        sharpShulikenBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        sharpShulikenBullet.p_onDeathCallback = [](Bullet& bullet){};
+        sharpShulikenBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        sharpShulikenBullet.p_onDeathCallback = [](Bullet &bullet) {};
         sharpShulikenBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SharpShuliken] = sharpShulikenBullet;
@@ -72,7 +72,7 @@ namespace Bullets
         Bullet daggerBullet = {};
         daggerBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::DaggerBullet];
         daggerBullet.p_sourceRect = {0, 0, 7, 3};
-        daggerBullet.p_hitboxBonus = {0,0};
+        daggerBullet.p_hitboxBonus = {0, 0};
         daggerBullet.p_position = {-1.0f, -1.0f};
         daggerBullet.p_id = -1;
         daggerBullet.p_damage = 0;
@@ -88,8 +88,8 @@ namespace Bullets
         daggerBullet.p_pierce = true;
         daggerBullet.p_removeAfterAnimation = false;
         daggerBullet.p_alive = true;
-        daggerBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        daggerBullet.p_onDeathCallback = [](Bullet& bullet){};
+        daggerBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        daggerBullet.p_onDeathCallback = [](Bullet &bullet) {};
         daggerBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Dagger] = daggerBullet;
@@ -99,7 +99,7 @@ namespace Bullets
         Bullet slashBullet = {};
         slashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SlashBullet];
         slashBullet.p_sourceRect = {0, 0, 8, 8};
-        slashBullet.p_hitboxBonus = {10.0f,10.0f};
+        slashBullet.p_hitboxBonus = {10.0f, 10.0f};
         slashBullet.p_position = {-1.0f, -1.0f};
         slashBullet.p_id = -1;
         slashBullet.p_damage = 0;
@@ -115,8 +115,8 @@ namespace Bullets
         slashBullet.p_pierce = true;
         slashBullet.p_removeAfterAnimation = true;
         slashBullet.p_alive = true;
-        slashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        slashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        slashBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        slashBullet.p_onDeathCallback = [](Bullet &bullet) {};
         slashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::Slash] = slashBullet;
@@ -127,7 +127,7 @@ namespace Bullets
 
         spearSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SpearSlashBullet];
         spearSlashBullet.p_sourceRect = {0, 0, 8, 8};
-        spearSlashBullet.p_hitboxBonus = {0,0};
+        spearSlashBullet.p_hitboxBonus = {0, 0};
         spearSlashBullet.p_position = {-1.0f, -1.0f};
         spearSlashBullet.p_id = -1;
         spearSlashBullet.p_damage = 0;
@@ -143,8 +143,8 @@ namespace Bullets
         spearSlashBullet.p_pierce = true;
         spearSlashBullet.p_removeAfterAnimation = true;
         spearSlashBullet.p_alive = true;
-        spearSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        spearSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        spearSlashBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        spearSlashBullet.p_onDeathCallback = [](Bullet &bullet) {};
         spearSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SpearSlash] = spearSlashBullet;
@@ -155,7 +155,7 @@ namespace Bullets
 
         bigSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::BigSlashBullet];
         bigSlashBullet.p_sourceRect = {0, 0, 8, 8};
-        bigSlashBullet.p_hitboxBonus = {17.5f,15.0f};
+        bigSlashBullet.p_hitboxBonus = {17.5f, 15.0f};
         bigSlashBullet.p_position = {-1.0f, -1.0f};
         bigSlashBullet.p_id = -1;
         bigSlashBullet.p_damage = 0;
@@ -171,8 +171,8 @@ namespace Bullets
         bigSlashBullet.p_pierce = true;
         bigSlashBullet.p_removeAfterAnimation = true;
         bigSlashBullet.p_alive = true;
-        bigSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        bigSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        bigSlashBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        bigSlashBullet.p_onDeathCallback = [](Bullet &bullet) {};
         bigSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::BigSlash] = bigSlashBullet;
@@ -183,7 +183,7 @@ namespace Bullets
 
         biggestSlashBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::BiggestSlashBullet];
         biggestSlashBullet.p_sourceRect = {0, 0, 10, 10};
-        biggestSlashBullet.p_hitboxBonus = {25.0f,20.0f};
+        biggestSlashBullet.p_hitboxBonus = {25.0f, 20.0f};
         biggestSlashBullet.p_position = {-1.0f, -1.0f};
         biggestSlashBullet.p_id = -1;
         biggestSlashBullet.p_damage = 0;
@@ -199,8 +199,8 @@ namespace Bullets
         biggestSlashBullet.p_pierce = true;
         biggestSlashBullet.p_removeAfterAnimation = true;
         biggestSlashBullet.p_alive = true;
-        biggestSlashBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        biggestSlashBullet.p_onDeathCallback = [](Bullet& bullet){};
+        biggestSlashBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        biggestSlashBullet.p_onDeathCallback = [](Bullet &bullet) {};
         biggestSlashBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::BiggestSlash] = biggestSlashBullet;
@@ -211,7 +211,7 @@ namespace Bullets
 
         sniperBullet.p_texture = Sprites::g_textures[Sprites::TextureIndex::SniperBullet];
         sniperBullet.p_sourceRect = {0, 0, 10, 1};
-        sniperBullet.p_hitboxBonus = {0,0};
+        sniperBullet.p_hitboxBonus = {0, 0};
         sniperBullet.p_position = {-1.0f, -1.0f};
         sniperBullet.p_id = -1;
         sniperBullet.p_damage = 0;
@@ -227,8 +227,8 @@ namespace Bullets
         sniperBullet.p_pierce = false;
         sniperBullet.p_removeAfterAnimation = false;
         sniperBullet.p_alive = true;
-        sniperBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet){};
-        sniperBullet.p_onDeathCallback = [](Bullet& bullet){};
+        sniperBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet) {};
+        sniperBullet.p_onDeathCallback = [](Bullet &bullet) {};
         sniperBullet.p_owner = BulletOwner::Tower;
 
         g_bulletData[BulletType::SniperBullet] = sniperBullet;
@@ -236,9 +236,9 @@ namespace Bullets
 
 #pragma region ShockWave
         Bullet shockWaveBullet = {};
-        shockWaveBullet.p_texture = {0,0,0,0,0};
+        shockWaveBullet.p_texture = {0, 0, 0, 0, 0};
         shockWaveBullet.p_sourceRect = {0, 0, 0, 0};
-        shockWaveBullet.p_hitboxBonus = {0.0f,0.0f};
+        shockWaveBullet.p_hitboxBonus = {0.0f, 0.0f};
         shockWaveBullet.p_position = {-1.0f, -1.0f};
         shockWaveBullet.p_id = -1;
         shockWaveBullet.p_damage = 0;
@@ -254,59 +254,55 @@ namespace Bullets
         shockWaveBullet.p_pierce = true;
         shockWaveBullet.p_removeAfterAnimation = true;
         shockWaveBullet.p_alive = true;
-        shockWaveBullet.p_updateFunction = [](const float deltaTime,Bullet& bullet)
+        shockWaveBullet.p_updateFunction = [](const float deltaTime, Bullet &bullet)
         {
+            constexpr Color stunColor = {0, 121, 241, 128};
+            constexpr float startingRadius = 15.0f;
+            constexpr float endRadius = 125.0f;
+            constexpr float visibleRadius = 15.0f;
+            constexpr float finishTime = 7.5f;
 
-        constexpr Color stunColor = { 0, 121, 241, 128 };
-        constexpr float startingRadius = 15.0f;
-        constexpr float endRadius = 125.0f;
-        constexpr float visibleRadius = 15.0f;
-        constexpr float finishTime = 7.5f;
+            static std::unordered_map<int32_t, std::pair<float, RenderTexture2D>> shockwaveVars = {};
 
-        static std::unordered_map<int32_t,std::pair<float,RenderTexture2D>> shockwaveVars = {};        
+            if (!shockwaveVars.contains(bullet.p_id))
+            {
+                shockwaveVars[bullet.p_id] = {0.0f, LoadRenderTexture(endRadius, endRadius)};
+            }
 
-        if (!shockwaveVars.contains(bullet.p_id))
-        {
-            shockwaveVars[bullet.p_id] = {0.0f,LoadRenderTexture(endRadius,endRadius)};
-        }
-        
-        float& time = shockwaveVars[bullet.p_id].first;
-        RenderTexture2D& bulletTex = shockwaveVars[bullet.p_id].second;
-        const float radius = Lerp(startingRadius,endRadius,time/finishTime);
-        const Vector2 center = {endRadius/2.0f,endRadius/2.0f};
-        
-        time += deltaTime;
+            float &time = shockwaveVars[bullet.p_id].first;
+            RenderTexture2D &bulletTex = shockwaveVars[bullet.p_id].second;
+            const float radius = Lerp(startingRadius, endRadius, time / finishTime);
+            const Vector2 center = {endRadius / 2.0f, endRadius / 2.0f};
 
-        if (time >= finishTime)
-        {
-            bullet.p_alive = false;
-            UnloadRenderTexture(bulletTex);
-            shockwaveVars.erase(bullet.p_id);
-            return;
-        }
-        
+            time += deltaTime;
 
-        BeginTextureMode(bulletTex);
+            if (time >= finishTime)
+            {
+                bullet.p_alive = false;
+                UnloadRenderTexture(bulletTex);
+                shockwaveVars.erase(bullet.p_id);
+                return;
+            }
 
-                ClearBackground(BLANK);
-               
-                if (radius < visibleRadius)
-                {
-                        DrawCircleV(center,radius,stunColor);
-                }
-                else
-                {
-                        DrawRing(center,(radius - visibleRadius)/2.0f,(radius)/2.0f,0,360,36,stunColor);
-                }
-                 
-        EndTextureMode();
+            BeginTextureMode(bulletTex);
 
-        bullet.p_sourceRect = {center.x - radius/2.0f,center.y - radius/2.0f,radius,radius};
-        bullet.p_texture = bulletTex.texture;
+            ClearBackground(BLANK);
 
+            if (radius < visibleRadius)
+            {
+                DrawCircleV(center, radius, stunColor);
+            }
+            else
+            {
+                DrawRing(center, (radius - visibleRadius) / 2.0f, (radius) / 2.0f, 0, 360, 36, stunColor);
+            }
+
+            EndTextureMode();
+
+            bullet.p_sourceRect = {center.x - radius / 2.0f, center.y - radius / 2.0f, radius, radius};
+            bullet.p_texture = bulletTex.texture;
         };
-        shockWaveBullet.p_onDeathCallback = [](Bullet& bullet)
-        {
+        shockWaveBullet.p_onDeathCallback = [](Bullet &bullet) {
 
         };
         shockWaveBullet.p_owner = BulletOwner::Enemy;
