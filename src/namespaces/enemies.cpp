@@ -4,6 +4,7 @@
 #include "sprites.hpp"
 #include "../managers/bulletmanager.hpp"
 #include "../managers/enemymanager.hpp"
+#include "../managers/animationmanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include <cassert>
 
@@ -167,16 +168,24 @@ namespace Enemies
         {
             constexpr float spawnCooldown = 2.5f;
             static float time = 0.0f;
+            static bool wasAnimationRun = false;
             time += deltaTime;
             if (time >= spawnCooldown)
             {
-                Basics::PlayAnimation(deltaTime, enemy, 3, 8);
+
                 if (enemy.p_inSpecialAnim)
                 {
                     return;
                 }
+                else if (!wasAnimationRun)
+                {
+                    mgr_animation->RunAnimation(&enemy, 3, 5, true, false);
+                    wasAnimationRun = true;
+                    return;
+                }
 
                 time = 0.0f;
+                wasAnimationRun = false;
 
                 Enemy summon = GetEnemyData(EnemyType::Skeleton);
                 summon.p_isSummon = true;
@@ -185,7 +194,7 @@ namespace Enemies
                 summon.p_walked = enemy.p_walked;
                 mgr_enemy->AddEnemy(summon);
 
-                //Basics::PlayAnimation(deltaTime,enemy,7,2);
+                mgr_animation->RunAnimation(&enemy, 7, 2, true, true);
             }
         };
         summoner.p_deathCallback = [](Enemy &enemy, EnemyManager *mgr_enemy) {};
@@ -408,6 +417,7 @@ namespace Enemies
             constexpr int32_t stunTime = 10;
             static float stunTimer = 0.0f;
             static float summonTimer = 0.0f;
+            static float wasSummonAnimationRun = false;
 
             if (stunTimer >= stunCooldown)
             {
@@ -422,13 +432,23 @@ namespace Enemies
             }
             if (summonTimer >= summonCooldown)
             {
-                Basics::PlayAnimation(deltaTime, enemy, 3, 9);
+                if (enemy.p_inSpecialAnim)
+                {
+                    return;
+                }
+                else if (!wasSummonAnimationRun)
+                {
+                    mgr_animation->RunAnimation(&enemy, 3, 5, true, false);
+                    wasSummonAnimationRun = true;
+                    return;
+                }
                 if (enemy.p_inSpecialAnim)
                 {
                     return;
                 }
 
                 summonTimer = 0.0f;
+                wasSummonAnimationRun = false;
 
                 Enemy summon = GetEnemyData(EnemyType::SkeletonGuardian);
                 summon.p_isSummon = true;
@@ -436,6 +456,9 @@ namespace Enemies
                 summon.p_tileId = enemy.p_tileId;
                 summon.p_walked = enemy.p_walked;
                 mgr_enemy->AddEnemy(summon);
+
+                
+                mgr_animation->RunAnimation(&enemy, 7, 3, true, true);
             }
             summonTimer += deltaTime;
             stunTimer += deltaTime;
