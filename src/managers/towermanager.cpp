@@ -284,6 +284,13 @@ uint64_t TowerManager::CalculateSellPrice(const Tower& tower)
 
     Tower currentTower = tower;
     uint64_t sellPrice = currentTower.p_price / 2.0f;
+
+    while (currentTower.p_previousUpgrade != TowerType::Nothing)
+    {
+        currentTower = Towers::GetTowerData(currentTower.p_previousUpgrade);
+        sellPrice += currentTower.p_price / 2.0f;
+    }
+
     return sellPrice;
 
 }
