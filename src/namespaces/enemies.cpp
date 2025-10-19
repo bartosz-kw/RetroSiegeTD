@@ -477,7 +477,7 @@ namespace Enemies
         skeletonKing.p_texture = Sprites::g_textures[Sprites::TextureIndex::SkeletonKingEnemy];
         skeletonKing.p_sourceRect = {0, 0, 15, 15};
         skeletonKing.p_moneyDrop = 2500;
-        skeletonKing.p_health = 3500;
+        skeletonKing.p_health = 3000;
         skeletonKing.p_defense = 5;
         skeletonKing.p_position = {-1.0f, -1.0f};
         skeletonKing.p_id = 0;
