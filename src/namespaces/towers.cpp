@@ -53,6 +53,7 @@ namespace Towers
         ninja1Tower.p_timeToNextFrame = 0.0f;
         ninja1Tower.p_timePassed = 0.0f;
         ninja1Tower.p_upgradesTo = TowerType::NinjaLv2;
+        ninja1Tower.p_previousUpgrade = TowerType::Nothing;
         ninja1Tower.p_id = -1;
         ninja1Tower.p_level = 1;
         ninja1Tower.p_frameOffset = 0;
@@ -93,6 +94,7 @@ namespace Towers
         ninja2Tower.p_timeToNextFrame = 0.0f;
         ninja2Tower.p_timePassed = 0.0f;
         ninja2Tower.p_upgradesTo = TowerType::NinjaLv3;
+        ninja2Tower.p_previousUpgrade = TowerType::NinjaLv1;
         ninja2Tower.p_id = -1;
         ninja2Tower.p_level = 2;
         ninja2Tower.p_frameOffset = 0;
@@ -133,6 +135,7 @@ namespace Towers
         ninja3Tower.p_timeToNextFrame = 0.0f;
         ninja3Tower.p_timePassed = 0.0f;
         ninja3Tower.p_upgradesTo = TowerType::NinjaLv4;
+        ninja3Tower.p_previousUpgrade = TowerType::NinjaLv2;
         ninja3Tower.p_id = -1;
         ninja3Tower.p_level = 3;
         ninja3Tower.p_frameOffset = 0;
@@ -173,6 +176,7 @@ namespace Towers
         ninja4Tower.p_timeToNextFrame = 0.0f;
         ninja4Tower.p_timePassed = 0.0f;
         ninja4Tower.p_upgradesTo = TowerType::Nothing;
+        ninja4Tower.p_previousUpgrade = TowerType::NinjaLv3;
         ninja4Tower.p_id = -1;
         ninja4Tower.p_level = 4;
         ninja4Tower.p_frameOffset = 0;
@@ -213,6 +217,7 @@ namespace Towers
         knight1Tower.p_timeToNextFrame = 0.0f;
         knight1Tower.p_timePassed = 0.0f;
         knight1Tower.p_upgradesTo = TowerType::KnightLv2;
+        knight1Tower.p_previousUpgrade = TowerType::Nothing;
         knight1Tower.p_id = -1;
         knight1Tower.p_level = 1;
         knight1Tower.p_frameOffset = 0;
@@ -253,6 +258,7 @@ namespace Towers
         knight2Tower.p_timeToNextFrame = 0.0f;
         knight2Tower.p_timePassed = 0.0f;
         knight2Tower.p_upgradesTo = TowerType::KnightLv3;
+        knight2Tower.p_previousUpgrade = TowerType::KnightLv1;
         knight2Tower.p_id = -1;
         knight2Tower.p_level = 2;
         knight2Tower.p_frameOffset = 0;
@@ -293,6 +299,7 @@ namespace Towers
         knight3Tower.p_timeToNextFrame = 0.0f;
         knight3Tower.p_timePassed = 0.0f;
         knight3Tower.p_upgradesTo = TowerType::KnightLv4;
+        knight3Tower.p_previousUpgrade = TowerType::KnightLv2;
         knight3Tower.p_id = -1;
         knight3Tower.p_level = 3;
         knight3Tower.p_frameOffset = 0;
@@ -333,6 +340,7 @@ namespace Towers
         knight4Tower.p_timeToNextFrame = 0.0f;
         knight4Tower.p_timePassed = 0.0f;
         knight4Tower.p_upgradesTo = TowerType::KnightLv5;
+        knight4Tower.p_previousUpgrade = TowerType::KnightLv3;
         knight4Tower.p_id = -1;
         knight4Tower.p_level = 4;
         knight4Tower.p_frameOffset = 0;
@@ -373,6 +381,7 @@ namespace Towers
         knight5Tower.p_timeToNextFrame = 0.0f;
         knight5Tower.p_timePassed = 0.0f;
         knight5Tower.p_upgradesTo = TowerType::Nothing;
+        knight5Tower.p_previousUpgrade = TowerType::KnightLv4;
         knight5Tower.p_id = -1;
         knight5Tower.p_level = 5;
         knight5Tower.p_frameOffset = 0;
@@ -402,6 +411,7 @@ namespace Towers
         market1Tower.p_timeToNextFrame = 0.0f;
         market1Tower.p_timePassed = 0.0f;
         market1Tower.p_upgradesTo = TowerType::MarketLv2;
+        market1Tower.p_previousUpgrade = TowerType::Nothing;
         market1Tower.p_id = -1;
         market1Tower.p_level = 1;
         market1Tower.p_frameOffset = 0;
@@ -432,6 +442,7 @@ namespace Towers
         market2Tower.p_timeToNextFrame = 0.0f;
         market2Tower.p_timePassed = 0.0f;
         market2Tower.p_upgradesTo = TowerType::MarketLv3;
+        market2Tower.p_previousUpgrade = TowerType::MarketLv1;
         market2Tower.p_id = -1;
         market2Tower.p_level = 2;
         market2Tower.p_frameOffset = 0;
@@ -462,6 +473,7 @@ namespace Towers
         market3Tower.p_timeToNextFrame = 0.0f;
         market3Tower.p_timePassed = 0.0f;
         market3Tower.p_upgradesTo = TowerType::MarketLv4;
+        market3Tower.p_previousUpgrade = TowerType::MarketLv2;
         market3Tower.p_id = -1;
         market3Tower.p_level = 3;
         market3Tower.p_frameOffset = 0;
@@ -492,6 +504,7 @@ namespace Towers
         market4Tower.p_timeToNextFrame = 0.0f;
         market4Tower.p_timePassed = 0.0f;
         market4Tower.p_upgradesTo = TowerType::Nothing;
+        market4Tower.p_previousUpgrade = TowerType::MarketLv3;
         market4Tower.p_id = -1;
         market4Tower.p_level = 4;
         market4Tower.p_frameOffset = 0;
@@ -533,6 +546,7 @@ namespace Towers
         sniper1Tower.p_timeToNextFrame = 0.0f;
         sniper1Tower.p_timePassed = 0.0f;
         sniper1Tower.p_upgradesTo = TowerType::SniperLv2;
+        sniper1Tower.p_previousUpgrade = TowerType::Nothing;
         sniper1Tower.p_id = -1;
         sniper1Tower.p_level = 1;
         sniper1Tower.p_frameOffset = 0;
@@ -573,6 +587,7 @@ namespace Towers
         sniper2Tower.p_timeToNextFrame = 0.0f;
         sniper2Tower.p_timePassed = 0.0f;
         sniper2Tower.p_upgradesTo = TowerType::SniperLv3;
+        sniper2Tower.p_previousUpgrade = TowerType::SniperLv1;
         sniper2Tower.p_id = -1;
         sniper2Tower.p_level = 2;
         sniper2Tower.p_frameOffset = 0;
@@ -613,6 +628,7 @@ namespace Towers
         sniper3Tower.p_timeToNextFrame = 0.0f;
         sniper3Tower.p_timePassed = 0.0f;
         sniper3Tower.p_upgradesTo = TowerType::SniperLv4;
+        sniper3Tower.p_previousUpgrade = TowerType::SniperLv2;
         sniper3Tower.p_id = -1;
         sniper3Tower.p_level = 3;
         sniper3Tower.p_frameOffset = 0;
@@ -653,6 +669,7 @@ namespace Towers
         sniper4Tower.p_timeToNextFrame = 0.0f;
         sniper4Tower.p_timePassed = 0.0f;
         sniper4Tower.p_upgradesTo = TowerType::Nothing;
+        sniper4Tower.p_previousUpgrade = TowerType::SniperLv3;
         sniper4Tower.p_id = -1;
         sniper4Tower.p_level = 4;
         sniper4Tower.p_frameOffset = 0;
