@@ -13,7 +13,8 @@ void Game::HandleInput()
 {
     if (IsKeyPressed(KEY_F11))
     {
-        ToggleFullscreen();
+        ToggleBorderlessWindowed();
+        //ToggleFullscreen();
     }
     if (IsKeyPressed(KEY_P))
     {
@@ -205,7 +206,8 @@ void Game::InitMembers()
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Retro Siege TD");
-    ToggleFullscreen();
+    //ToggleFullscreen();
+    ToggleBorderlessWindowed();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf", 8, 0, 0);
