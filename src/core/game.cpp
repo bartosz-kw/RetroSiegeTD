@@ -11,6 +11,10 @@
 
 void Game::HandleInput()
 {
+    if (IsKeyPressed(KEY_F11))
+    {
+        ToggleFullscreen();
+    }
     if (IsKeyPressed(KEY_P))
     {
         if (m_gameState == GameState::Started)
@@ -24,10 +28,6 @@ void Game::UpdateDebug()
 #ifdef RELEASE
     return;
 #endif
-    if (IsKeyPressed(KEY_F11))
-    {
-        ToggleFullscreen();
-    }
     if (IsKeyPressed(KEY_F1))
     {
         StartGame();
