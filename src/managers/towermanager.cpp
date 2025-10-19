@@ -59,6 +59,10 @@ void TowerManager::DetectInput()
     {
         m_placeTower = TowerType::Nothing;
     }
+    else if(IsKeyPressed(KEY_KP_1))
+    {
+        m_placeTower = TowerType::NinjaLv1;
+    }
 
     if (m_placeTower != TowerType::Nothing)
     {
