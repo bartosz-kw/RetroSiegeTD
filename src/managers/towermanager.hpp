@@ -45,6 +45,8 @@ private:
 public:
     TowerManager() = default;
 
+    
+    uint64_t CalculateSellPrice(const Tower& tower);
     std::string TowerTypeToString(const TowerType type);
     Vector2 GetCenterPosition(const Tower &tower) const;
     bool WasAnyTowerPlaced() const;

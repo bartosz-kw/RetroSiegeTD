@@ -388,7 +388,8 @@ void TowerSelect::InitButtons()
         }
         else
         {
-            button.p_text = "Sell for " + std::format("{:.2f}", tower->p_price / 2.0f) + " $";
+            uint64_t sellPrice = this->mgr_tower->CalculateSellPrice(*tower);
+            button.p_text = "Sell for " + std::to_string(sellPrice) + " $";
             button.p_visible = true;
         }
 
@@ -401,7 +402,8 @@ void TowerSelect::InitButtons()
         {
             return;
         }
-        mgr_ps->AddMoney(tower->p_price / 2.0f);
+        uint64_t sellPrice = this->mgr_tower->CalculateSellPrice(*tower);
+        mgr_ps->AddMoney(sellPrice);
         mgr_tower->RemoveTower(tower->p_id);
     };
 #pragma endregion

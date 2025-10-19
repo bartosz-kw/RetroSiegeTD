@@ -279,6 +279,15 @@ void TowerManager::DrawHoverRange(const Tower &tower, const uint8_t screenOffset
     }
 }
 
+uint64_t TowerManager::CalculateSellPrice(const Tower& tower)
+{
+
+    Tower currentTower = tower;
+    uint64_t sellPrice = currentTower.p_price / 2.0f;
+    return sellPrice;
+
+}
+
 std::string TowerManager::TowerTypeToString(const TowerType type)
 {
     switch (type)
