@@ -7,6 +7,7 @@
 #include "../managers/animationmanager.hpp"
 #include "../utility/debugUtil.hpp"
 #include <cassert>
+#include <tuple>
 
 namespace Enemies
 {
@@ -167,8 +168,13 @@ namespace Enemies
         summoner.p_updateFunction = [](const float deltaTime, Enemy &enemy, EnemyManager *mgr_enemy, BulletManager *mgr_bullet, AnimationManager *mgr_animation)
         {
             constexpr float spawnCooldown = 2.5f;
-            static float time = 0.0f;
-            static bool wasAnimationRun = false;
+            static std::unordered_map<uint32_t,std::tuple<bool,float>> summonerVariables = {};
+            if (!summonerVariables.contains(enemy.p_id))
+            {
+                summonerVariables[enemy.p_id] = {false,0.0f};
+            }
+
+            auto& [wasAnimationRun,time] = summonerVariables[enemy.p_id];
             time += deltaTime;
             if (time >= spawnCooldown)
             {
@@ -415,9 +421,13 @@ namespace Enemies
             constexpr float stunCooldown = 40.0f;
             constexpr float summonCooldown = 50.0f;
             constexpr int32_t stunTime = 10;
-            static float stunTimer = 0.0f;
-            static float summonTimer = 0.0f;
-            static float wasSummonAnimationRun = false;
+            static std::unordered_map<uint32_t,std::tuple<bool,float,float>> skeletonKingVariables = {};
+            if (!skeletonKingVariables.contains(enemy.p_id))
+            {
+                skeletonKingVariables[enemy.p_id] = {false,0.0f,0.0f};
+            }
+            auto& [wasSummonAnimationRun, summonTimer, stunTimer] = skeletonKingVariables[enemy.p_id];
+            
 
             if (stunTimer >= stunCooldown)
             {
