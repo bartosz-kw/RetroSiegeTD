@@ -59,10 +59,23 @@ void TowerManager::DetectInput()
     {
         m_placeTower = TowerType::Nothing;
     }
-    else if(IsKeyPressed(KEY_KP_1))
+    else if(IsKeyPressed(KEY_ONE))
     {
         m_placeTower = TowerType::NinjaLv1;
+    }    
+    else if(IsKeyPressed(KEY_TWO))
+    {
+        m_placeTower = TowerType::KnightLv1;
     }
+    else if(IsKeyPressed(KEY_THREE))
+    {
+        m_placeTower = TowerType::MarketLv1;
+    }
+    else if(IsKeyPressed(KEY_FOUR))
+    {
+        m_placeTower = TowerType::SniperLv1;
+    }
+
 
     if (m_placeTower != TowerType::Nothing)
     {

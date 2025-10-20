@@ -199,7 +199,7 @@
     ifeq ($(BUILD_MODE),DEBUG)
         CFLAGS += -g -O0 -DDEBUG
     else
-        CFLAGS += -s -O1 -DRELEASE
+        CFLAGS += -s -O1 -DRELEASE -mwindows
     endif
 
     # Additional flags for compiler (if desired)
