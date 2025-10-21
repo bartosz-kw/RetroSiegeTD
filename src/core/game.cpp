@@ -205,7 +205,7 @@ void Game::InitMembers()
 void Game::InitGame()
 {
     InitWindow(p_screenWidth, p_screenHeight, "Retro Siege TD");
-    ToggleFullscreen();
+    //ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf", 8, 0, 0);
@@ -261,7 +261,7 @@ void Game::Run()
 {
     while (!WindowShouldClose())
     {
-        if (IsWindowMinimized())
+        if (IsWindowMinimized() || !IsWindowReady() || IsWindowResized())
         {
             continue;
         }
