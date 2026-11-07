@@ -1,11 +1,11 @@
 #pragma once
-#include <raylib.h>
-#include <functional>
 #include <cstdint>
+#include <functional>
+
+#include <raylib.h>
 
 class BulletManager;
-enum class BulletType : uint8_t
-{
+enum class BulletType : uint8_t {
     Shuliken = 1,
     SharpShuliken = 2,
     Dagger = 3,
@@ -17,17 +17,18 @@ enum class BulletType : uint8_t
     ShockWave = 9
 };
 
-enum class BulletOwner : uint8_t
-{
+enum class BulletOwner : uint8_t {
     Tower = 1,
     Enemy = 2
 };
 
-struct Bullet
-{
-    std::function<void(const float deltaTime,Bullet& bullet)> p_updateFunction = [](const float deltaTime,Bullet& bullet){}; 
-    std::function<void(Bullet& bullet)> p_onDeathCallback = [](Bullet& bullet){};
-    Texture2D p_texture = {0,0,0,0,0};
+struct Bullet {
+    std::function<void(const float deltaTime, Bullet& bullet)> p_updateFunction
+        = [](const float deltaTime, Bullet& bullet) {
+          };
+    std::function<void(Bullet& bullet)> p_onDeathCallback = [](Bullet& bullet) {
+    };
+    Texture2D p_texture = {0, 0, 0, 0, 0};
     Rectangle p_sourceRect = {0, 0, 0, 0};
     Vector2 p_position = {0, 0};
     Vector2 p_hitboxBonus = {0, 0};

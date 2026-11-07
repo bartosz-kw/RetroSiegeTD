@@ -1,0 +1,3 @@
+/home/user/Projects/cpp/RetroSiegeTD/build/CMakeFiles/RetroSiegeTD.dir
+/home/user/Projects/cpp/RetroSiegeTD/build/CMakeFiles/edit_cache.dir
+/home/user/Projects/cpp/RetroSiegeTD/build/CMakeFiles/rebuild_cache.dir

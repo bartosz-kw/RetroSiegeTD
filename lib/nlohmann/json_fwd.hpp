@@ -36,21 +36,22 @@ struct adl_serializer;
 
 /// a class to store JSON values
 /// @sa https://json.nlohmann.me/api/basic_json/
-template<template<typename U, typename V, typename... Args> class ObjectType =
-         std::map,
-         template<typename U, typename... Args> class ArrayType = std::vector,
-         class StringType = std::string, class BooleanType = bool,
-         class NumberIntegerType = std::int64_t,
-         class NumberUnsignedType = std::uint64_t,
-         class NumberFloatType = double,
-         template<typename U> class AllocatorType = std::allocator,
-         template<typename T, typename SFINAE = void> class JSONSerializer =
-         adl_serializer,
-         class BinaryType = std::vector<std::uint8_t>, // cppcheck-suppress syntaxError
-         class CustomBaseClass = void>
+template<
+    template<typename U, typename V, typename... Args> class ObjectType = std::map,
+    template<typename U, typename... Args> class ArrayType = std::vector,
+    class StringType = std::string,
+    class BooleanType = bool,
+    class NumberIntegerType = std::int64_t,
+    class NumberUnsignedType = std::uint64_t,
+    class NumberFloatType = double,
+    template<typename U> class AllocatorType = std::allocator,
+    template<typename T, typename SFINAE = void> class JSONSerializer = adl_serializer,
+    class BinaryType = std::vector<std::uint8_t>, // cppcheck-suppress syntaxError
+    class CustomBaseClass = void>
 class basic_json;
 
-/// @brief JSON Pointer defines a string syntax for identifying a specific value within a JSON document
+/// @brief JSON Pointer defines a string syntax for identifying a specific value within a JSON
+/// document
 /// @sa https://json.nlohmann.me/api/json_pointer/
 template<typename RefStringType>
 class json_pointer;
@@ -72,4 +73,4 @@ using ordered_json = basic_json<nlohmann::ordered_map>;
 
 NLOHMANN_JSON_NAMESPACE_END
 
-#endif  // INCLUDE_NLOHMANN_JSON_FWD_HPP_
+#endif // INCLUDE_NLOHMANN_JSON_FWD_HPP_

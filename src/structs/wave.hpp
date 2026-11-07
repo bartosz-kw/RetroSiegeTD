@@ -1,7 +1,8 @@
 #pragma once
-#include "enemy.hpp"
 #include <cstdint>
 #include <utility>
+
+#include "enemy.hpp"
 
 struct EnemyWave {
     std::vector<std::pair<float, EnemyType>> p_enemySpawns = {};

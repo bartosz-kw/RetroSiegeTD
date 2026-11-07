@@ -1,75 +1,75 @@
 #include "wavemanager.hpp"
-#include "enemymanager.hpp"
-#include "psmanager.hpp"
-#include "../namespaces/enemies.hpp"
-#include "../managers/towermanager.hpp"
-#include "../managers/messagemanager.hpp"
-#include "../utility/debugutil.hpp"
+
+#include <algorithm>
 #include <cassert>
 
+#include "../managers/messagemanager.hpp"
+#include "../managers/towermanager.hpp"
+#include "enemymanager.hpp"
+#include "psmanager.hpp"
 
-void WaveManager::PreKillWave(const EnemyWave wave)
-{
-    mgr_message->InsertMessage(TempMessageKeys::Mes_WaveCounter, TempMessage{"Cleared: $" + std::to_string(wave.p_moneyReward) + "+", 3.0f, 3.0f});
+void WaveManager::PreKillWave(const EnemyWave wave) {
+    mgr_message->InsertMessage(
+        TempMessageKeys::Mes_WaveCounter,
+        TempMessage {"Cleared: $" + std::to_string(wave.p_moneyReward) + "+", 3.0f, 3.0f}
+    );
     mgr_ps->AddMoney(wave.p_moneyReward);
 }
-void WaveManager::KillWave(const uint32_t waveId)
-{
-    for (EnemyWave &wave : m_activeWaves)
-    {
-        if (wave.p_id == waveId)
-        {
+
+void WaveManager::KillWave(const uint32_t waveId) {
+    for (EnemyWave& wave : m_activeWaves) {
+        if (wave.p_id == waveId) {
             PreKillWave(wave);
             RemoveActiveWave(waveId);
             return;
         }
     }
 }
-void WaveManager::RemoveEnemySpawn(EnemyWave &wave, const size_t index)
-{
-    if (index < wave.p_enemySpawns.size())
-    {
+
+void WaveManager::RemoveEnemySpawn(EnemyWave& wave, const size_t index) {
+    if (index < wave.p_enemySpawns.size()) {
         wave.p_enemySpawns.erase(wave.p_enemySpawns.begin() + index);
     }
 }
-void WaveManager::ActivateWave(EnemyWave *wave)
-{
-    if (wave)
-    {
+
+void WaveManager::ActivateWave(EnemyWave* wave) {
+    if (wave) {
         m_activeWaves.push_back(*wave);
         RemoveUnactiveWave(wave->p_id);
     }
 }
-void WaveManager::RemoveUnactiveWave(const uint32_t id)
-{
-    const auto eraseLambda = [id](const EnemyWave &wave)
-    {
+
+void WaveManager::RemoveUnactiveWave(const uint32_t id) {
+    const auto eraseLambda = [id](const EnemyWave& wave) {
         return wave.p_id == id;
     };
-    m_unactiveWaves.erase(std::remove_if(m_unactiveWaves.begin(), m_unactiveWaves.end(), eraseLambda), m_unactiveWaves.end());
+    m_unactiveWaves.erase(
+        std::remove_if(m_unactiveWaves.begin(), m_unactiveWaves.end(), eraseLambda),
+        m_unactiveWaves.end()
+    );
 }
-void WaveManager::RemoveActiveWave(const uint32_t id)
-{
-    const auto eraseLambda = [id](const EnemyWave &wave)
-    {
+
+void WaveManager::RemoveActiveWave(const uint32_t id) {
+    const auto eraseLambda = [id](const EnemyWave& wave) {
         return wave.p_id == id;
     };
-    m_activeWaves.erase(std::remove_if(m_activeWaves.begin(), m_activeWaves.end(), eraseLambda), m_activeWaves.end());
+    m_activeWaves.erase(
+        std::remove_if(m_activeWaves.begin(), m_activeWaves.end(), eraseLambda),
+        m_activeWaves.end()
+    );
 }
-void WaveManager::UpdateUnactiveWaves()
-{
-    if (!m_activeWaves.empty() || !ShouldWaveStart())
-    {
+
+void WaveManager::UpdateUnactiveWaves() {
+    if (!m_activeWaves.empty() || !ShouldWaveStart()) {
         return;
     }
 
-    EnemyWave *nextWave = GetNextWave();
+    EnemyWave* nextWave = GetNextWave();
     ActivateWave(nextWave);
 }
-void WaveManager::UpdateActiveWaves(const float deltaTime)
-{
-    if (m_activeWaves.empty())
-    {
+
+void WaveManager::UpdateActiveWaves(const float deltaTime) {
+    if (m_activeWaves.empty()) {
         return;
     }
 
@@ -77,37 +77,30 @@ void WaveManager::UpdateActiveWaves(const float deltaTime)
     m_waveTime += deltaTime;
 
     int indexToDelete = -1;
-    for (EnemyWave &wave : m_activeWaves)
-    {
-        for (size_t i = 0; i < wave.p_enemySpawns.size(); i++)
-        {
-            if (wave.p_enemySpawns[i].first < m_spawnTime)
-            {
+    for (EnemyWave& wave : m_activeWaves) {
+        for (size_t i = 0; i < wave.p_enemySpawns.size(); i++) {
+            if (wave.p_enemySpawns[i].first < m_spawnTime) {
                 mgr_enemy->SpawnEnemy(wave.p_enemySpawns[i].second);
                 m_spawnTime = 0.0f;
                 indexToDelete = i;
                 break;
             }
         }
-        if (indexToDelete != -1)
-        {
+        if (indexToDelete != -1) {
             RemoveEnemySpawn(wave, indexToDelete);
         }
-        if (wave.p_enemySpawns.empty() && mgr_enemy->IsEnemiesEmpty())
-        {
+        if (wave.p_enemySpawns.empty() && mgr_enemy->IsEnemiesEmpty()) {
             m_waveTime = 0.0f;
             KillWave(wave.p_id);
             return;
         }
     }
 }
-void WaveManager::LoadWaves()
-{
-    auto getTotalWaveTime = [](const EnemyWave wave)
-    {
+
+void WaveManager::LoadWaves() {
+    auto getTotalWaveTime = [](const EnemyWave wave) {
         float totalTime = 0.0f;
-        for (auto &enemySpawn : wave.p_enemySpawns)
-        {
+        for (auto& enemySpawn : wave.p_enemySpawns) {
             totalTime += enemySpawn.first;
         }
         return totalTime;
@@ -517,98 +510,93 @@ void WaveManager::LoadWaves()
     m_unactiveWaves.push_back(wave20);
 
     uint32_t totalEnemies = 0;
-    for (size_t i = 0; i < m_unactiveWaves.size(); i++)
-    {
+    for (size_t i = 0; i < m_unactiveWaves.size(); i++) {
         totalEnemies += m_unactiveWaves[i].p_enemySpawns.size();
     }
     mgr_enemy->ReserveEnemies(totalEnemies);
 }
 
-EnemyWave *WaveManager::GetNextWave()
-{
+EnemyWave* WaveManager::GetNextWave() {
     if (m_unactiveWaves.empty())
         return nullptr;
 
-    EnemyWave *smallest = &m_unactiveWaves[0];
-    for (auto &wave : m_unactiveWaves)
-    {
-        if (wave.p_id < smallest->p_id)
-        {
+    EnemyWave* smallest = &m_unactiveWaves[0];
+    for (auto& wave : m_unactiveWaves) {
+        if (wave.p_id < smallest->p_id) {
             smallest = &wave;
         }
     }
     return smallest;
 }
-EnemyWave *WaveManager::GetCurrentWave()
-{
+
+EnemyWave* WaveManager::GetCurrentWave() {
     if (m_activeWaves.empty())
         return nullptr;
 
-    EnemyWave *biggest = &m_activeWaves[0];
-    for (auto &wave : m_activeWaves)
-    {
-        if (wave.p_id > biggest->p_id)
-        {
+    EnemyWave* biggest = &m_activeWaves[0];
+    for (auto& wave : m_activeWaves) {
+        if (wave.p_id > biggest->p_id) {
             biggest = &wave;
         }
     }
     return biggest;
 }
-const bool WaveManager::ShouldWaveStart() const
-{
+
+const bool WaveManager::ShouldWaveStart() const {
     return mgr_tower->WasAnyTowerPlaced();
 }
-bool WaveManager::IsSkipAllowed()
-{
-    if (m_unactiveWaves.empty())
-    {
+
+bool WaveManager::IsSkipAllowed() {
+    if (m_unactiveWaves.empty()) {
         return false;
     }
-    EnemyWave *currentWave = GetCurrentWave();
-    if (!currentWave)
-    {
+    EnemyWave* currentWave = GetCurrentWave();
+    if (!currentWave) {
         return false;
     }
-    if (m_spawnTime >= currentWave->p_totalWaveTime / 2.0f)
-    {
+    if (m_spawnTime >= currentWave->p_totalWaveTime / 2.0f) {
         return true;
     }
     return false;
 }
-void WaveManager::SkipWave()
-{
-    EnemyWave *currentWave = GetCurrentWave();
-    EnemyWave *nextWave = GetNextWave();
-    if (!currentWave || !nextWave)
-    {
+
+void WaveManager::SkipWave() {
+    EnemyWave* currentWave = GetCurrentWave();
+    EnemyWave* nextWave = GetNextWave();
+    if (!currentWave || !nextWave) {
         return;
     }
 
     mgr_ps->AddMoney(currentWave->p_moneyReward);
     ActivateWave(nextWave);
 }
-void WaveManager::ClearActiveWaves()
-{
+
+void WaveManager::ClearActiveWaves() {
     m_activeWaves.clear();
 }
-void WaveManager::ClearUnactiveWaves()
-{
+
+void WaveManager::ClearUnactiveWaves() {
     m_unactiveWaves.clear();
 }
-void WaveManager::Update(const float deltaTime)
-{
+
+void WaveManager::Update(const float deltaTime) {
     UpdateUnactiveWaves();
     UpdateActiveWaves(deltaTime);
 }
-void WaveManager::InjectDependencies(EnemyManager *enemyManager, PSManager *psManager, TowerManager *towerManager, MessageManager *messageManager)
-{
+
+void WaveManager::InjectDependencies(
+    EnemyManager* enemyManager,
+    PSManager* psManager,
+    TowerManager* towerManager,
+    MessageManager* messageManager
+) {
     mgr_enemy = enemyManager;
     mgr_ps = psManager;
     mgr_tower = towerManager;
     mgr_message = messageManager;
 }
-void WaveManager::Init()
-{
+
+void WaveManager::Init() {
     assert(mgr_enemy != nullptr && "enemyManager wasn't injected and its dependency");
     assert(mgr_ps != nullptr && "psManager wasn't injected and its dependency");
     assert(mgr_tower != nullptr && "towerManager wasn't injected and its dependency");

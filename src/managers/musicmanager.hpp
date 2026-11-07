@@ -2,10 +2,9 @@
 
 #include "../enums/gamestate.hpp"
 class MainMenu;
-class MusicManager
-{
-private:
 
+class MusicManager {
+private:
     GameState m_gameState = GameState::Menu;
     MainMenu* gui_mainMenu = nullptr;
 

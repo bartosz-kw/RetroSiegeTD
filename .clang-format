@@ -1,0 +1,73 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+ContinuationIndentWidth: 4
+ConstructorInitializerIndentWidth: 4
+AccessModifierOffset: -4
+IndentCaseLabels: true
+NamespaceIndentation: None
+
+BreakBeforeBraces: Attach
+BreakBeforeBinaryOperators: All
+Cpp11BracedListStyle: true
+SpaceBeforeCpp11BracedList: true
+
+AlignAfterOpenBracket: BlockIndent
+BinPackArguments: false
+BinPackParameters: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AlignOperands: DontAlign
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignConsecutiveMacros: None
+AlignTrailingComments: false
+BreakConstructorInitializers: BeforeColon
+PackConstructorInitializers: Never
+BreakInheritanceList: BeforeColon
+PenaltyReturnTypeOnItsOwnLine: 200
+
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Inline
+AllowShortEnumsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: Yes
+BreakAfterReturnType: None
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+SpaceAfterTemplateKeyword: false
+SpacesInAngles: Never
+SpacesBeforeTrailingComments: 1
+SpaceBeforeParens: ControlStatements
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: false
+SeparateDefinitionBlocks: Always
+EmptyLineBeforeAccessModifier: LogicalBlock
+
+ReflowComments: true
+CommentPragmas: '^ NOLINT'
+
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[^.]+>$' 
+    Priority: 1
+  - Regex: '^<.*\.h>$' 
+    Priority: 2
+  - Regex: '^<.*>$'  
+    Priority: 3
+  - Regex: '^".*"$'   
+    Priority: 4
+
+InsertNewlineAtEOF: true
+RemoveSemicolon: false
+FixNamespaceComments: true

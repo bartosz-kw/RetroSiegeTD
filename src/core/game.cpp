@@ -1,66 +1,54 @@
-#include <cstddef>
-#include "../utility/debugUtil.hpp"
-#include "../namespaces/loading.hpp"
-#include "../namespaces/music.hpp"
-#include "../namespaces/sprites.hpp"
-#include "../namespaces/settings.hpp"
-#include "../namespaces/towers.hpp"
-#include "../namespaces/enemies.hpp"
-#include "../namespaces/bullets.hpp"
 #include "game.hpp"
 
-void Game::HandleInput()
-{
-    if (IsKeyPressed(KEY_F11))
-    {
+#include "../namespaces/bullets.hpp"
+#include "../namespaces/enemies.hpp"
+#include "../namespaces/loading.hpp"
+#include "../namespaces/music.hpp"
+#include "../namespaces/settings.hpp"
+#include "../namespaces/sprites.hpp"
+#include "../namespaces/towers.hpp"
+
+void Game::HandleInput() {
+    if (IsKeyPressed(KEY_F11)) {
         ToggleFullscreen();
     }
-    if (IsKeyPressed(KEY_P))
-    {
-        if (m_gameState == GameState::Started)
-        {
+    if (IsKeyPressed(KEY_P)) {
+        if (m_gameState == GameState::Started) {
             m_gameState = GameState::Menu;
         }
     }
 }
-void Game::UpdateDebug()
-{
+
+void Game::UpdateDebug() {
 #ifdef RELEASE
     return;
 #endif
-    if (IsKeyPressed(KEY_F1))
-    {
+    if (IsKeyPressed(KEY_F1)) {
         StartGame();
     }
-    if (IsKeyPressed(KEY_M))
-    {
+    if (IsKeyPressed(KEY_M)) {
         mgr_ps.AddMoney(3000);
     }
-    if (IsKeyPressed(KEY_F3))
-    {
+    if (IsKeyPressed(KEY_F3)) {
         Settings::g_debugView = !Settings::g_debugView;
     }
-    if (IsKeyPressed(KEY_F4))
-    {
-        if (m_gameState != GameState::Started)
-        {
+    if (IsKeyPressed(KEY_F4)) {
+        if (m_gameState != GameState::Started) {
             return;
         }
 
         mgr_enemy.SpawnEnemy(EnemyType::Summoner);
     }
-    if (IsKeyPressed(KEY_F5))
-    {
-        if (m_gameState != GameState::Started)
-        {
+    if (IsKeyPressed(KEY_F5)) {
+        if (m_gameState != GameState::Started) {
             return;
         }
 
         mgr_enemy.SpawnEnemy(EnemyType::SkeletonKing);
     }
 }
-void Game::Update()
-{
+
+void Game::Update() {
     UpdateDebug();
 
     const bool gameStarted = (m_gameState == GameState::Started);
@@ -69,9 +57,7 @@ void Game::Update()
     HandleInput();
     mgr_gui.SyncGameState(m_gameState);
     mgr_gui.Update(deltaTime);
-    if (gameStarted)
-    {
-
+    if (gameStarted) {
         mgr_enemy.Update(deltaTime);
         mgr_tile.Update();
         mgr_tower.Update(deltaTime);
@@ -86,8 +72,8 @@ void Game::Update()
     mgr_music.SyncGameState(m_gameState);
     mgr_music.Update();
 }
-void Game::MakeTextureFrame() const
-{
+
+void Game::MakeTextureFrame() const {
     BeginTextureMode(m_frame);
     ClearBackground(BLACK);
     const bool gameStarted = (m_gameState == GameState::Started);
@@ -95,8 +81,7 @@ void Game::MakeTextureFrame() const
     constexpr uint8_t screenOffset = boundingWidth;
     constexpr Color boundingColor = DARKGRAY;
 
-    if (gameStarted)
-    {
+    if (gameStarted) {
         Settings::g_boundingSize = boundingWidth;
         Settings::g_gameScale = 4;
 
@@ -114,8 +99,8 @@ void Game::MakeTextureFrame() const
 
     EndTextureMode();
 }
-void Game::Draw() const
-{
+
+void Game::Draw() const {
     MakeTextureFrame();
     BeginDrawing();
     ClearBackground(BLACK);
@@ -126,12 +111,13 @@ void Game::Draw() const
         {0, 0, static_cast<float>(p_scaledWidth), static_cast<float>(p_scaledHeight)},
         {0, 0},
         0.0f,
-        WHITE);
+        WHITE
+    );
 
     EndDrawing();
 }
-void Game::InitManagers()
-{
+
+void Game::InitManagers() {
     mgr_ps.Init();
     mgr_tile.Init();
 
@@ -145,7 +131,14 @@ void Game::InitManagers()
     mgr_enemy.InjectDependencies(&mgr_tile, &mgr_bullet, &mgr_ps, &mgr_animation);
     mgr_enemy.Init();
 
-    mgr_tower.InjectDependencies(&mgr_tile, &mgr_enemy, &mgr_bullet, &mgr_ps, &mgr_particle, &mgr_message);
+    mgr_tower.InjectDependencies(
+        &mgr_tile,
+        &mgr_enemy,
+        &mgr_bullet,
+        &mgr_ps,
+        &mgr_particle,
+        &mgr_message
+    );
     mgr_tower.Init();
 
     mgr_wave.InjectDependencies(&mgr_enemy, &mgr_ps, &mgr_tower, &mgr_message);
@@ -161,8 +154,8 @@ void Game::InitManagers()
     mgr_message.Init();
     mgr_animation.Init();
 }
-void Game::InitGui()
-{
+
+void Game::InitGui() {
     gui_waveCounter.InjectDependencies(&mgr_wave, &mgr_gui, &mgr_player, &mgr_message);
     gui_waveCounter.Init();
     gui_towerSelect.InjectDependencies(&mgr_tower, &mgr_gui, &mgr_ps);
@@ -182,40 +175,39 @@ void Game::InitGui()
     gui_endGame.InjectDependencies(this, &mgr_player, &mgr_gui);
     gui_endGame.Init();
 }
-void Game::InitSprites()
-{
+
+void Game::InitSprites() {
     Sprites::LoadTextures();
 }
-void Game::InitAudio()
-{
+
+void Game::InitAudio() {
     GameMusic::InitAudio();
     GameMusic::LoadSounds();
     GameMusic::LoadMusic();
 }
-void Game::InitDatas()
-{
+
+void Game::InitDatas() {
     Towers::InitTowerData();
     Enemies::InitEnemyData();
     Bullets::InitBulletData();
 }
-void Game::InitMembers()
-{
+
+void Game::InitMembers() {
     m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
 }
-void Game::InitGame()
-{
+
+void Game::InitGame() {
     InitWindow(p_screenWidth, p_screenHeight, "Retro Siege TD");
-    //ToggleFullscreen();
+    // ToggleFullscreen();
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf", 8, 0, 0);
     SetTextureFilter(Settings::g_gameFont.texture, TEXTURE_FILTER_POINT);
     m_gameState = GameState::Menu;
 }
-void Game::Shutdown()
-{
-    if (m_shutingDown)
-    {
+
+void Game::Shutdown() {
+    if (m_shutingDown) {
         return;
     }
 
@@ -230,16 +222,15 @@ void Game::Shutdown()
     CloseWindow();
 }
 
-void Game::StartGame()
-{
+void Game::StartGame() {
     m_gameState = GameState::Started;
 }
-void Game::CloseGame()
-{
+
+void Game::CloseGame() {
     m_gameState = GameState::Ended;
 }
-void Game::Init()
-{
+
+void Game::Init() {
     InitGame();
     InitSprites();
     InitDatas();
@@ -248,8 +239,8 @@ void Game::Init()
     InitAudio();
     InitGui();
 }
-void Game::Restart()
-{
+
+void Game::Restart() {
     mgr_enemy.ClearEnemiesVector();
     mgr_wave.ClearActiveWaves();
     mgr_wave.ClearUnactiveWaves();
@@ -257,20 +248,17 @@ void Game::Restart()
     mgr_ps.SetMoney(0);
     InitManagers();
 }
-void Game::Run()
-{
-    while (!WindowShouldClose())
-    {
-        if (IsWindowMinimized() || !IsWindowReady() || IsWindowResized())
-        {
+
+void Game::Run() {
+    while (!WindowShouldClose()) {
+        if (IsWindowMinimized() || !IsWindowReady() || IsWindowResized()) {
             continue;
         }
-        
+
         Update();
         Draw();
 
-        if (m_gameState == GameState::Ended)
-        {
+        if (m_gameState == GameState::Ended) {
             Shutdown();
         }
     }

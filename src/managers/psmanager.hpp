@@ -2,12 +2,12 @@
 #pragma once
 #include <cstdint>
 
-class PSManager
-{
+class PSManager {
 private:
     uint64_t m_money = 0;
     uint64_t m_health = 0;
     uint64_t m_maxHealth = 0;
+
 public:
     PSManager() = default;
 

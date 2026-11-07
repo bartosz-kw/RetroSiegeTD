@@ -1,7 +1,6 @@
 #include "core/game.hpp"
 
-int main()
-{
+int main() {
     Game game = {};
     game.Init();
     game.Run();

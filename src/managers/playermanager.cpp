@@ -1,14 +1,15 @@
 #include "playermanager.hpp"
-#include "../managers/psmanager.hpp"
-#include "../managers/towermanager.hpp"
-#include "../managers/enemymanager.hpp"
-#include "../managers/wavemanager.hpp"
-#include "../managers/bulletmanager.hpp"
-#include "../utility/debugUtil.hpp"
+
 #include <cassert>
 
-void PlayerManager::OnGameOver()
-{
+#include "../managers/bulletmanager.hpp"
+#include "../managers/enemymanager.hpp"
+#include "../managers/psmanager.hpp"
+#include "../managers/towermanager.hpp"
+#include "../managers/wavemanager.hpp"
+#include "../utility/debugutil.hpp"
+
+void PlayerManager::OnGameOver() {
     mgr_enemy->ClearEnemiesVector();
     mgr_tower->ClearTowersVector();
     mgr_wave->ClearActiveWaves();
@@ -17,35 +18,33 @@ void PlayerManager::OnGameOver()
     mgr_ps->SetMoney(0);
 }
 
-bool PlayerManager::IsGameOver() const
-{
+bool PlayerManager::IsGameOver() const {
     return !mgr_ps->IsAlive();
 }
 
-PlayerState PlayerManager::GetPlayerState() const
-{
+PlayerState PlayerManager::GetPlayerState() const {
     return m_playerState;
 }
 
-void PlayerManager::Update()
-{
-    if (!mgr_wave->GetCurrentWave() && !mgr_wave->GetNextWave() && !IsGameOver())
-    {
+void PlayerManager::Update() {
+    if (!mgr_wave->GetCurrentWave() && !mgr_wave->GetNextWave() && !IsGameOver()) {
         m_playerState = PlayerState::Victory;
-    }
-    else
-    {
+    } else {
         m_playerState = IsGameOver() ? PlayerState::Dead : PlayerState::Alive;
     }
-   
-    if (IsGameOver())
-    {
+
+    if (IsGameOver()) {
         OnGameOver();
     }
 }
 
-void PlayerManager::InjectDependencies(PSManager* psManager, TowerManager* towerManager, EnemyManager* enemyManager, WaveManager* waveManager, BulletManager* bulletManager)
-{
+void PlayerManager::InjectDependencies(
+    PSManager* psManager,
+    TowerManager* towerManager,
+    EnemyManager* enemyManager,
+    WaveManager* waveManager,
+    BulletManager* bulletManager
+) {
     mgr_ps = psManager;
     mgr_tower = towerManager;
     mgr_enemy = enemyManager;
@@ -53,8 +52,7 @@ void PlayerManager::InjectDependencies(PSManager* psManager, TowerManager* tower
     mgr_bullet = bulletManager;
 }
 
-void PlayerManager::Init()
-{
+void PlayerManager::Init() {
     assert(mgr_ps != nullptr && "PSManager dependency not injected");
     assert(mgr_tower != nullptr && "TowerManager dependency not injected");
     assert(mgr_enemy != nullptr && "EnemyManager dependency not injected");

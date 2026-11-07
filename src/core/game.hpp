@@ -1,33 +1,31 @@
 #pragma once
 #include <raylib.h>
+
 #include "../enums/gamestate.hpp"
-#include "../managers/tilemanager.hpp"
-#include "../managers/enemymanager.hpp"
-#include "../managers/towermanager.hpp"
+#include "../gui/endgame.hpp"
+#include "../gui/enemyhover.hpp"
+#include "../gui/mainmenu.hpp"
+#include "../gui/playerstats.hpp"
+#include "../gui/popup.hpp"
+#include "../gui/speed.hpp"
+#include "../gui/towerplace.hpp"
+#include "../gui/towerselect.hpp"
+#include "../gui/wavecounter.hpp"
+#include "../managers/animationmanager.hpp"
 #include "../managers/bulletmanager.hpp"
-#include "../managers/wavemanager.hpp"
+#include "../managers/enemymanager.hpp"
 #include "../managers/guimanager.hpp"
-#include "../managers/psmanager.hpp"
-#include "../managers/playermanager.hpp"
+#include "../managers/messagemanager.hpp"
 #include "../managers/musicmanager.hpp"
 #include "../managers/particlemanager.hpp"
-#include "../managers/messagemanager.hpp"
-#include "../managers/animationmanager.hpp"
-#include "../gui/wavecounter.hpp"
-#include "../gui/towerselect.hpp"
-#include "../gui/towerplace.hpp"
-#include "../gui/playerstats.hpp"
-#include "../gui/speed.hpp"
-#include "../gui/mainmenu.hpp"
-#include "../gui/enemyhover.hpp"
-#include "../gui/popup.hpp"
-#include "../gui/endgame.hpp"
+#include "../managers/playermanager.hpp"
+#include "../managers/psmanager.hpp"
+#include "../managers/tilemanager.hpp"
+#include "../managers/towermanager.hpp"
+#include "../managers/wavemanager.hpp"
 
-
-class Game
-{
+class Game {
 private:
-
     bool m_shutingDown = false;
     RenderTexture2D m_frame = {};
     GameState m_gameState = GameState::Menu;
@@ -55,8 +53,7 @@ private:
     Popup gui_popup = {};
     EndGame gui_endGame = {};
 
-private: 
-
+private:
     void HandleInput();
     void UpdateDebug();
     void Update();
@@ -71,7 +68,8 @@ private:
     void InitGame();
 
     void Shutdown();
-public: 
+
+public:
     const int p_gameHeight = 270;
     const int p_gameWidth = 480;
     const int p_scaledHeight = 1080;
@@ -79,7 +77,7 @@ public:
     const int p_screenHeight = 1080;
     const int p_screenWidth = 1920;
 
-public: 
+public:
     Game() = default;
     ~Game() = default;
 

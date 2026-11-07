@@ -1,17 +1,13 @@
 #pragma once
-#include <vector>
-#include "../structs/button.hpp"
-#include "../structs/label.hpp"
 #include "../structs/tower.hpp"
 
 class TowerManager;
 class GuiManager;
 
-class TowerPlace
-{
+class TowerPlace {
 private:
-    TowerManager *mgr_tower = nullptr;
-    GuiManager *mgr_gui = nullptr;
+    TowerManager* mgr_tower = nullptr;
+    GuiManager* mgr_gui = nullptr;
 
 private:
     void InitLabels();
@@ -19,6 +15,6 @@ private:
     void InitButtons();
 
 public:
-    void InjectDependencies(TowerManager *towerManager, GuiManager *guiManager);
+    void InjectDependencies(TowerManager* towerManager, GuiManager* guiManager);
     void Init();
 };

@@ -1,16 +1,19 @@
 #pragma once
-#include "../enums/guitype.hpp"
 #include <cstdint>
-#include <string>
-#include <raylib.h>
 #include <functional>
+#include <string>
 
-struct Label
-{
+#include <raylib.h>
+
+#include "../enums/guitype.hpp"
+
+struct Label {
     Texture p_image = {0, 0, 0, 0, 0};
     std::string p_text = "";
 
-    std::function<void(float deltaTime, Label &label)> p_updateFunction = [](float deltaTime, Label &label) {};
+    std::function<void(float deltaTime, Label& label)> p_updateFunction
+        = [](float deltaTime, Label& label) {
+          };
 
     Rectangle p_rect = {0, 0};
     GuiType p_elementType = GuiType::GameGui;
@@ -19,7 +22,7 @@ struct Label
     Color p_color = WHITE;
     Color p_boundingColor = BLANK;
     Color p_textColor = BLACK;
-    float p_segments = 4.0f; 
+    float p_segments = 4.0f;
     float p_roundness = 5.0f;
     float p_boundingSize = 0.0f;
 
