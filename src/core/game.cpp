@@ -251,7 +251,9 @@ void Game::Restart() {
 
 void Game::Run() {
     while (!WindowShouldClose()) {
-        if (IsWindowMinimized() || !IsWindowReady() || IsWindowResized()) {
+        if (IsWindowMinimized()) {
+            PollInputEvents();
+            WaitTime(0.05);
             continue;
         }
 
