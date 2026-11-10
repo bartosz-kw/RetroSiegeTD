@@ -1,13 +1,14 @@
 #pragma once
-#include <functional>
 #include <vector>
 
+#include "../context/viewport.hpp"
 #include "../enums/gamestate.hpp"
 #include "../structs/button.hpp"
 #include "../structs/label.hpp"
 
 class GuiManager {
 private:
+    const Viewport& m_viewport;
     GameState m_gameState = GameState::Menu;
     std::vector<Label> m_labels;
     std::vector<Button> m_buttons;
@@ -26,6 +27,8 @@ private:
     const bool IsElementUsed(const Label& label) const;
 
 public:
+    GuiManager(const Viewport& viewport);
+
     const size_t GetAmountOfLabels() const;
     const size_t GetAmountOfButtons() const;
     void ReserveButton(const size_t count);
@@ -37,5 +40,4 @@ public:
     void SyncGameState(const GameState gameState);
     void Update(const float deltaTime);
     void Draw() const;
-    void Init();
 };

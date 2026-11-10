@@ -1,5 +1,9 @@
 #include "game.hpp"
 
+#include <algorithm>
+
+#include <raylib.h>
+
 #include "../namespaces/bullets.hpp"
 #include "../namespaces/enemies.hpp"
 #include "../namespaces/loading.hpp"
@@ -83,7 +87,6 @@ void Game::MakeTextureFrame() const {
 
     if (gameStarted) {
         Settings::g_boundingSize = boundingWidth;
-        Settings::g_gameScale = 4;
 
         mgr_tile.Draw(screenOffset);
         mgr_enemy.Draw(screenOffset);
@@ -92,27 +95,41 @@ void Game::MakeTextureFrame() const {
         mgr_particle.Draw(screenOffset);
     }
 
-    DrawRectangle(0, 0, boundingWidth, p_gameHeight, boundingColor);
-    DrawRectangle(p_gameWidth - boundingWidth, 0, boundingWidth, p_gameHeight, boundingColor);
+    DrawRectangle(0, 0, boundingWidth, p_virtualHeight, boundingColor);
+    DrawRectangle(p_virtualWidth - boundingWidth, 0, boundingWidth, p_virtualHeight, boundingColor);
 
     mgr_gui.Draw();
 
     EndTextureMode();
 }
 
-void Game::Draw() const {
+void Game::Draw() {
     MakeTextureFrame();
     BeginDrawing();
     ClearBackground(BLACK);
 
-    DrawTexturePro(
-        m_frame.texture,
-        {0, 0, static_cast<float>(p_gameWidth), static_cast<float>(-p_gameHeight)},
-        {0, 0, static_cast<float>(p_scaledWidth), static_cast<float>(p_scaledHeight)},
-        {0, 0},
-        0.0f,
-        WHITE
-    );
+    int windowWidth = GetScreenWidth();
+    int windowHeight = GetScreenHeight();
+
+    int scale = std::max(std::min(windowWidth / p_virtualWidth, windowHeight / p_virtualHeight), 1);
+
+    int renderWidth = p_virtualWidth * scale;
+    int renderHeight = p_virtualHeight * scale;
+
+    int x = (windowWidth - renderWidth) / 2;
+    int y = (windowHeight - renderHeight) / 2;
+
+    m_viewport.Update(scale, Vector2 {static_cast<float>(x), static_cast<float>(y)});
+
+    Rectangle src
+        = {0, 0, static_cast<float>(p_virtualWidth), static_cast<float>(-p_virtualHeight)};
+    Rectangle dest
+        = {static_cast<float>(x),
+           static_cast<float>(y),
+           static_cast<float>(renderWidth),
+           static_cast<float>(renderHeight)};
+
+    DrawTexturePro(m_frame.texture, src, dest, {0, 0}, 0.0f, WHITE);
 
     EndDrawing();
 }
@@ -193,12 +210,12 @@ void Game::InitDatas() {
 }
 
 void Game::InitMembers() {
-    m_frame = LoadRenderTexture(p_gameWidth, p_gameHeight);
+    m_frame = LoadRenderTexture(p_virtualWidth, p_virtualHeight);
 }
 
 void Game::InitGame() {
-    InitWindow(p_screenWidth, p_screenHeight, "Retro Siege TD");
-    // ToggleFullscreen();
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(1200, 600, "Retro Siege TD");
     SetExitKey(KEY_NULL);
     SetTargetFPS(120);
     Settings::g_gameFont = LoadFontEx("src/resources/fonts/Vaticanus-G3yVG.ttf", 8, 0, 0);

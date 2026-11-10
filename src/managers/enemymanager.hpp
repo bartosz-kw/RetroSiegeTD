@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "../context/viewport.hpp"
 #include "../enums/targetingtype.hpp"
 #include "../structs/enemy.hpp"
 
@@ -18,6 +19,7 @@ private:
     int32_t m_IdCounter = 1;
     uint32_t m_killedEnemies = 0;
 
+    const Viewport& m_viewport;
     TileManager* mgr_tile = nullptr;
     BulletManager* mgr_bullet = nullptr;
     PSManager* mgr_ps = nullptr;
@@ -61,4 +63,5 @@ public:
         AnimationManager* mgr_animationPtr
     );
     void Init();
+    EnemyManager(const Viewport& viewport);
 };

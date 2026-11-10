@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "../context/viewport.hpp"
 #include "../structs/tower.hpp"
 
 class Tile;
@@ -19,13 +20,15 @@ private:
     std::vector<Tower> m_towers = {};
     int32_t m_lastSelectedTowerId = -1;
     TowerType m_placeTower = TowerType::Nothing;
+    bool m_wasAnyTowerPlaced = false;
+
+    const Viewport& m_viewport;
     TileManager* mgr_tile = nullptr;
     EnemyManager* mgr_enemy = nullptr;
     PSManager* mgr_ps = nullptr;
     BulletManager* mgr_bullet = nullptr;
     ParticleManager* mgr_particle = nullptr;
     MessageManager* mgr_message = nullptr;
-    bool m_wasAnyTowerPlaced = false;
 
 private:
     std::vector<Tower>::iterator TryGetTowerIterator(const int32_t id);
@@ -41,7 +44,7 @@ private:
     void DrawHoverRange(const Tower& tower, const uint8_t screenOffset) const;
 
 public:
-    TowerManager() = default;
+    TowerManager(const Viewport& viewport);
 
     uint64_t CalculateSellPrice(const Tower& tower);
     std::string TowerTypeToString(const TowerType type);

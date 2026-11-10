@@ -9,13 +9,12 @@
 #include "../utility/debugutil.hpp"
 
 bool TileManager::IsTileHovered(Tile& tile) {
-    const Vector2 mousePosition = GetMousePosition();
+    const Vector2 mousePosition = m_viewport.ScreenToWorld(GetMousePosition());
     const Rectangle tileRect
-        = {tile.p_position.x * Settings::g_gameScale
-               + Settings::g_boundingSize * Settings::g_gameScale,
-           tile.p_position.y * Settings::g_gameScale,
-           static_cast<float>(g_tileSize * Settings::g_gameScale),
-           static_cast<float>(g_tileSize * Settings::g_gameScale)};
+        = {tile.p_position.x + Settings::g_boundingSize,
+           tile.p_position.y,
+           static_cast<float>(g_tileSize),
+           static_cast<float>(g_tileSize)};
     if (!CheckCollisionPointRec(mousePosition, tileRect)) {
         return false;
     }
@@ -150,3 +149,6 @@ void TileManager::LoadMap(const GameMap gameMap) {
 
 void TileManager::Init() {
 }
+
+TileManager::TileManager(Viewport& viewport)
+    : m_viewport(viewport) {};

@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <limits>
 
 #include <raymath.h>
 
@@ -150,21 +149,20 @@ void EnemyManager::HandleHits(Enemy& enemy) {
             enemy.p_hitCooldowns.push_back({hitCooldown, bullet->p_id});
         }
 
-        enemy.p_health -= static_cast<int64_t>(
-            Clamp(bullet->p_damage - enemy.p_defense, 0.0f, std::numeric_limits<int64_t>::max())
-        );
+        enemy.p_health
+            -= std::max(int64_t {0}, static_cast<int64_t>(bullet->p_damage) - enemy.p_defense);
         enemy.p_hitEffectTime = hitEffectTime;
     }
 }
 
 void EnemyManager::CheckForHover() {
-    const Vector2 mousePosition = GetMousePosition();
+    const Vector2 mousePosition = m_viewport.ScreenToWorld(GetMousePosition());
     for (auto& enemy : m_enemies) {
         Rectangle rect
-            = {(Settings::g_boundingSize + enemy.p_position.x) * Settings::g_gameScale,
-               enemy.p_position.y * Settings::g_gameScale,
-               enemy.p_sourceRect.width * Settings::g_gameScale,
-               enemy.p_sourceRect.height * Settings::g_gameScale};
+            = {(Settings::g_boundingSize + enemy.p_position.x),
+               enemy.p_position.y,
+               enemy.p_sourceRect.width,
+               enemy.p_sourceRect.height};
         if (CheckCollisionPointRec(mousePosition, rect)) {
             m_hoveredEnemy = &enemy;
             return;
@@ -394,4 +392,8 @@ void EnemyManager::InjectDependencies(
 void EnemyManager::Init() {
     m_IdCounter = 1;
     m_hoveredEnemy = nullptr;
+}
+
+EnemyManager::EnemyManager(const Viewport& viewport)
+    : m_viewport(viewport) {
 }

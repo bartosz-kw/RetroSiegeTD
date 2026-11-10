@@ -16,8 +16,8 @@ ROOT_DIR="$(dirname "$ROOT_DIR")"
 cd "$ROOT_DIR"
 
 BUILD_DIR="build/$MODE"
-CONFIG="Debug"
-[[ "$MODE" == "release" ]] && CONFIG="Release"
+
+CONFIG=${MODE^}
 
 GAME="RetroSiegeTD"
 

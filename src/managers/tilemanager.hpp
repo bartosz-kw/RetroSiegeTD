@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+#include "../context/viewport.hpp"
 #include "../structs/gamemap.hpp"
 #include "../structs/tile.hpp"
 
@@ -9,6 +10,8 @@ private:
     inline static const uint8_t g_tileSize = 15;
 
 private:
+    const Viewport& m_viewport;
+
     std::vector<Tile> m_tiles = {};
     Tile* m_lastClickedTile = nullptr;
     Tile* m_currentHoveredTile = nullptr;
@@ -20,7 +23,7 @@ private:
     bool IsTileClicked(Tile& tile);
 
 public:
-    TileManager() = default;
+    TileManager(Viewport& viewport);
     ~TileManager() = default;
     Tile GetPathStart();
     Tile GetTile(const uint16_t id) const;

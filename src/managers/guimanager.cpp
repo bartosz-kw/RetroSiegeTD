@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <format>
 
 #include <raylib.h>
 
@@ -55,20 +54,18 @@ void GuiManager::UpdateImagePosition(Label& label) {
 }
 
 void GuiManager::UpdatePress(const float deltaTime, Button& button) {
-    const Vector2 mousePosition = GetMousePosition();
-    const Rectangle scaledButtonRect
-        = {button.p_rect.x * Settings::g_gameScale,
-           button.p_rect.y * Settings::g_gameScale,
-           button.p_rect.width * Settings::g_gameScale,
-           button.p_rect.height * Settings::g_gameScale};
+    const Vector2 mousePosition = m_viewport.ScreenToWorld(GetMousePosition());
     button.p_isHovered = false;
-    if (!CheckCollisionPointRec(mousePosition, scaledButtonRect)) {
+    Debug::PrintError("Mrrrrrrr");
+    if (!CheckCollisionPointRec(mousePosition, button.p_rect)) {
         return;
     }
+    Debug::PrintError("Mrrpt");
     button.p_isHovered = true;
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         return;
     };
+    Debug::PrintError("MiauMrrpt");
 
     button.p_onPressed(deltaTime, button);
 }
@@ -346,5 +343,6 @@ void GuiManager::Draw() const {
     }
 }
 
-void GuiManager::Init() {
+GuiManager::GuiManager(const Viewport& viewport)
+    : m_viewport(viewport) {
 }

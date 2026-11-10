@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 
+#include "../context/viewport.hpp"
 #include "../enums/gamestate.hpp"
 #include "../gui/endgame.hpp"
 #include "../gui/enemyhover.hpp"
@@ -29,13 +30,14 @@ private:
     bool m_shutingDown = false;
     RenderTexture2D m_frame = {};
     GameState m_gameState = GameState::Menu;
+    Viewport m_viewport = {};
 
-    TileManager mgr_tile = {};
-    EnemyManager mgr_enemy = {};
-    TowerManager mgr_tower = {};
+    TileManager mgr_tile = {m_viewport};
+    EnemyManager mgr_enemy = {m_viewport};
+    TowerManager mgr_tower = {m_viewport};
     BulletManager mgr_bullet = {};
     WaveManager mgr_wave = {};
-    GuiManager mgr_gui = {};
+    GuiManager mgr_gui = GuiManager(m_viewport);
     PSManager mgr_ps = {};
     PlayerManager mgr_player = {};
     MusicManager mgr_music = {};
@@ -58,7 +60,7 @@ private:
     void UpdateDebug();
     void Update();
     void MakeTextureFrame() const;
-    void Draw() const;
+    void Draw();
     void InitManagers();
     void InitGui();
     void InitSprites();
@@ -70,12 +72,8 @@ private:
     void Shutdown();
 
 public:
-    const int p_gameHeight = 270;
-    const int p_gameWidth = 480;
-    const int p_scaledHeight = 1080;
-    const int p_scaledWidth = 1920;
-    const int p_screenHeight = 1080;
-    const int p_screenWidth = 1920;
+    const int p_virtualHeight = 270;
+    const int p_virtualWidth = 480;
 
 public:
     Game() = default;

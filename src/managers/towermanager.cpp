@@ -11,13 +11,8 @@
 #include "../managers/psmanager.hpp"
 #include "../managers/tilemanager.hpp"
 #include "../namespaces/basics.hpp"
-#include "../namespaces/bullets.hpp"
-#include "../namespaces/music.hpp"
 #include "../namespaces/settings.hpp"
-#include "../namespaces/sprites.hpp"
 #include "../namespaces/towers.hpp"
-#include "../utility/colorutil.hpp"
-#include "../utility/debugutil.hpp"
 
 std::vector<Tower>::iterator TowerManager::TryGetTowerIterator(const int32_t id) {
     std::vector<Tower>::iterator it
@@ -148,14 +143,13 @@ void TowerManager::DetectTowerInput(Tower& tower) {
         return;
     }
 
-    Vector2 mousePosition = GetMousePosition();
+    Vector2 mousePosition = m_viewport.ScreenToWorld(GetMousePosition());
     Texture2D texture = tower.p_texture;
     Rectangle towerRect
-        = {tower.p_position.x * Settings::g_gameScale
-               + Settings::g_boundingSize * Settings::g_gameScale,
-           tower.p_position.y * Settings::g_gameScale,
-           static_cast<float>(texture.width * Settings::g_gameScale),
-           static_cast<float>(texture.height * Settings::g_gameScale)};
+        = {tower.p_position.x + Settings::g_boundingSize,
+           tower.p_position.y,
+           static_cast<float>(texture.width),
+           static_cast<float>(texture.height)};
 
     if (!CheckCollisionPointRec(mousePosition, towerRect)) {
         return;
@@ -421,7 +415,6 @@ void TowerManager::Update(const float deltaTime) {
         assert(tower.p_id >= 0 && tower.p_id <= (18 * 18));
         if (tower.p_dirty) {
             Tile tile = mgr_tile->GetTile(tower.p_tileId);
-            assert(tile.p_id != -1);
             tower.p_position = tile.p_position;
             tower.p_dirty = false;
         }
@@ -491,3 +484,6 @@ void TowerManager::Init() {
     m_placeTower = TowerType::Nothing;
     m_wasAnyTowerPlaced = false;
 }
+
+TowerManager::TowerManager(const Viewport& viewport)
+    : m_viewport(viewport) {};
