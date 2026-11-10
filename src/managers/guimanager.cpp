@@ -7,7 +7,6 @@
 
 #include "../namespaces/settings.hpp"
 #include "../utility/colorutil.hpp"
-#include "../utility/debugutil.hpp"
 
 void GuiManager::UpdateTextPosition(Label& label) {
     const Vector2 textMeasurement = MeasureTextEx(
@@ -56,16 +55,13 @@ void GuiManager::UpdateImagePosition(Label& label) {
 void GuiManager::UpdatePress(const float deltaTime, Button& button) {
     const Vector2 mousePosition = m_viewport.ScreenToWorld(GetMousePosition());
     button.p_isHovered = false;
-    Debug::PrintError("Mrrrrrrr");
     if (!CheckCollisionPointRec(mousePosition, button.p_rect)) {
         return;
     }
-    Debug::PrintError("Mrrpt");
     button.p_isHovered = true;
     if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         return;
     };
-    Debug::PrintError("MiauMrrpt");
 
     button.p_onPressed(deltaTime, button);
 }
